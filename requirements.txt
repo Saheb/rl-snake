@@ -1,0 +1,11 @@
+# Game and visualization
+pygame
+
+# Numerical operations
+numpy
+
+# Deep learning model
+torch
+
+# Notebook environment
+jupyterlab
