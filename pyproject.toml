@@ -1,0 +1,14 @@
+[project]
+name = "rl-snake"
+version = "0.1"
+description = "Applying RL on Game of Snake"
+dependencies = [
+    "pygame",
+    "numpy",
+    "torch",
+    "jupyterlab",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
