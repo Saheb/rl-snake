@@ -7,6 +7,9 @@ dependencies = [
     "numpy",
     "torch",
     "jupyterlab",
+    "matplotlib",
+    "pandas",
+    "ipywidgets",
 ]
 
 [build-system]
