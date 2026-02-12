@@ -1,6 +1,6 @@
 # 🐍 Snake RL: Zero to Hero
 
-[![GitHub Pages](https://img.shields.io/badge/Live-Visualization-brightgreen)](https://saheb.github.io/rl-snake/snake_learning_journey.html)
+[![GitHub Pages](https://img.shields.io/badge/Live-Visualization-brightgreen)](https://Saheb.github.io/rl-snake/snake_learning_journey.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Mastering Snake with Reinforcement Learning, scaling from a 5x5 grid to a 10x10 board using **Proximal Policy Optimization (PPO)** and **Curriculum Learning**.
@@ -12,7 +12,7 @@ Mastering Snake with Reinforcement Learning, scaling from a 5x5 grid to a 10x10 
 
 ## 🚀 Experience the Journey
 
-### 1. [Live Interactive Visualization](https://saheb.github.io/rl-snake/snake_learning_journey.html)
+### 1. [Live Interactive Visualization](https://Saheb.github.io/rl-snake/snake_learning_journey.html)
 Watch the agent evolve through 9 distinct stages of learning. See the difference between basic Tabular Q-Learning and high-performance Deep RL.
 
 ### 2. [Interactive Tutorial (From Zero to Hero)](Snake_RL_Tutorial.ipynb)
@@ -43,14 +43,14 @@ This project uses [uv](https://github.com/astral-sh/uv) for lightning-fast depen
 
 ```bash
 # Clone the repository
-git clone https://github.com/saheb/rl-snake.git
+git clone https://github.com/Saheb/rl-snake.git
 cd rl-snake
 
 # Sync dependencies
 uv sync
 
 # Or using standard pip
-pip install -e .
+pip install -r requirements.txt
 ```
 
 ### Key Training Scripts

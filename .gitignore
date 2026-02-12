@@ -151,12 +151,13 @@ cython_debug/
 
 # Custom project excludes
 *.lock
-# Allow baseline models
+
+# Ignore models/data, then allow specific baselines
+*.pkl
 !tabular_q_5x5.pkl
 !tabular_double_q_5x5.pkl
-# Ignore other models/data
-*.pkl
-# Ignore generated images if not part of blog
+
+# Ignore generated images, then allow training plots
 *.png
 !tabular_q_training.png
 !tabular_double_q_training.png
