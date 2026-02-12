@@ -69,4 +69,4 @@ We don't just provide code; we explain the *why*:
 
 ---
 
-*Created by Antigravity AI*
+*Developed using Antigravity AI*
