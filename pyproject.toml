@@ -1,17 +1,14 @@
 [project]
 name = "rl-snake"
-version = "0.1"
-description = "Applying RL on Game of Snake"
+version = "0.1.0"
+description = "Snake RL project"
+readme = "README.md"
+requires-python = ">=3.9"
 dependencies = [
-    "pygame",
     "numpy",
     "torch",
-    "jupyterlab",
     "matplotlib",
-    "pandas",
-    "ipywidgets",
 ]
 
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+[tool.setuptools]
+py-modules = ["snake_game", "train_tabular_q", "train_ppo_curriculum", "visualize_journey"]
