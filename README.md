@@ -1,46 +1,72 @@
 # 🐍 Snake RL: Zero to Hero
 
-Welcome to the Snake Reinforcement Learning project!
-This repository contains code to train an AI agent to play Snake, scaling from a small 5x5 board to mastering a 10x10 grid using Curriculum Learning and PPO.
+[![GitHub Pages](https://img.shields.io/badge/Live-Visualization-brightgreen)](https://saheb.github.io/rl-snake/snake_learning_journey.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 Start Here
+Mastering Snake with Reinforcement Learning, scaling from a 5x5 grid to a 10x10 board using **Proximal Policy Optimization (PPO)** and **Curriculum Learning**.
 
-1.  **[Interactive Tutorial (Notebook)](Snake_RL_Tutorial.ipynb)**:
-    - Open `Snake_RL_Tutorial.ipynb` in Jupyter/VS Code.
-    - Learn the theory (REINFORCE vs DQN vs PPO).
-    - Run the code snippets to see how the agents work.
+![Snake AI 10x10 Mastery](assets/hero_snake.webp)
+*Our final PPO agent navigating a 10x10 board after completing the "Zero to Hero" curriculum.*
 
-2.  **[The Journey (Blog Post)](blog.md)**:
-    - Read `blog.md` for the narrative story of how we solved the sparse reward problem on large boards.
+---
 
-3.  **[Interactive Visualization](snake_learning_journey.html)**:
-    - Open `snake_learning_journey.html` in your browser.
-    - Watch the agent evolve from random movements to skilled gameplay!
+## 🚀 Experience the Journey
 
-## 📂 Key Files
+### 1. [Live Interactive Visualization](https://saheb.github.io/rl-snake/snake_learning_journey.html)
+Watch the agent evolve through 9 distinct stages of learning. See the difference between basic Tabular Q-Learning and high-performance Deep RL.
 
-- **`train_tabular_q.py`**: The "Zero" point. Classic non-deep Q-Learning and Double Q-Learning on small boards.
-- **`train_ppo_curriculum.py`**: The core logic. Implements Proximal Policy Optimization (PPO) with Curriculum Learning (5x5 -> 8x8) and Imitation Learning.
-- **`train_curriculum_10x10.py`**: The final boss level. Trains the agent on the 10x10 board.
-- **`snake_game.py`**: The custom Gym-like environment.
-- **`visualize_journey.py`**: The script that recorded the games and generated the HTML visualization.
+### 2. [Interactive Tutorial (From Zero to Hero)](Snake_RL_Tutorial.ipynb)
+A step-by-step Jupyter Notebook that takes you from the absolute basics of RL to advanced scaling strategies.
+- **The "Accountant" (Value-Based)**: Learn about Q-Learning and DQN (Deep Q-Network).
+- **The "Athlete" (Policy-Based)**: Master PPO (Proximal Policy Optimization).
 
-## 🛠️ Installation
+### 3. [Scaling Story (Blog Post)](blog.md)
+Read the full story of how we bypassed the "Sparse Reward" trap on 10x10 boards using Imitation Learning and Curriculums.
 
-This project uses modern Python tooling.
+---
+
+## 📈 The Evolution
+
+| Phase | Strategy | Board | Max Score |
+|---|---|---|---|
+| **Phase 0** | Tabular Q-Learning | 5x5 | 24 (Perfect) |
+| **Phase 1** | Double Q-Learning | 5x5 | 24 (Stable) |
+| **Phase 2** | Imitation Learning | 8x8 | 46 (Skilled) |
+| **Phase 3** | **Final PPO Master** | **10x10** | **64 (Master)** |
+
+---
+
+## 🛠️ Getting Started
+
+### Installation
+This project uses [uv](https://github.com/astral-sh/uv) for lightning-fast dependency management.
 
 ```bash
-# If using uv (recommended)
+# Clone the repository
+git clone https://github.com/saheb/rl-snake.git
+cd rl-snake
+
+# Sync dependencies
 uv sync
 
-# Or standard pip
+# Or using standard pip
 pip install -e .
 ```
 
-## 🏆 Results
+### Key Training Scripts
+- `train_tabular_q.py`: Train baseline tabular agents.
+- `train_ppo_curriculum.py`: The core curriculum pipeline (5x5 → 8x8 → 10x10).
+- `visualize_journey.py`: Records your own agents and generates the HTML visualization.
 
-- **5x5 Board**: Perfect Score (24/24)
-- **8x8 Board**: High Proficiency
-- **10x10 Board**: Record Score **64** (Mean ~18)
+---
 
-Happy Learning! 🐍
+## 🎓 Theory Primers Included
+We don't just provide code; we explain the *why*:
+- **Actor-Critic** architecture.
+- **Proximal Policy Optimization** (PPO) stability.
+- **Behavioral Cloning** as a bootstrap.
+- **Curriculum Learning** for environment scaling.
+
+---
+
+*Created by Antigravity AI*
