@@ -39,8 +39,8 @@ We started with **classic Tabular Q-Learning** — the simplest "Accountant" app
 
 On a tiny 5×5 board (max score: 24), both agents perform well. The Q-table only needs ~2,000 entries. Problem solved?
 
-![Tabular Q-Learning Training Curve](tabular_q_training.png)
-![Double Q-Learning Training Curve](tabular_double_q_training.png)
+![Tabular Q-Learning Training Curve](../assets/tabular_q_training.png)
+![Double Q-Learning Training Curve](../assets/tabular_double_q_training.png)
 
 Not quite.
 
@@ -139,7 +139,7 @@ The agent fills over **60%** of a 10×10 board. It plans long-term paths, avoids
 
 ## 🎬 See It in Action
 
-- **[Live Interactive Visualization](https://Saheb.github.io/rl-snake/snake_learning_journey.html)** — Watch all 9 stages of evolution
+- **[Live Interactive Visualization](../assets/snake_learning_journey.html)** — Watch all 9 stages of evolution
 - **[Tutorial Notebook](Snake_RL_Tutorial.ipynb)** — Run the code yourself
 - **`snake_10x10_replay.html`** — Watch the best 10×10 games
 
