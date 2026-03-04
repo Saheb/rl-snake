@@ -47,7 +47,7 @@ except ImportError:
     default_q_values = None
 
 try:
-    from snake_game import SnakeGame as TabularSnakeGame
+    from envs.snake_game import SnakeGame as TabularSnakeGame
 except ImportError:
     TabularSnakeGame = None
 
@@ -881,7 +881,7 @@ def main():
     if QLearningAgent:
         print("\n📸 Stage 0.5: Recording Tabular Q-Learning agent...")
         try:
-            with open('tabular_q_5x5.pkl', 'rb') as f:
+            with open('checkpoints/tabular_q_5x5.pkl', 'rb') as f:
                 tabular_agent = pickle.load(f)
             games = record_tabular_games(tabular_agent, board_size=5, num_games=3, max_steps=500)
             all_stages.append({
@@ -902,7 +902,7 @@ def main():
     if DoubleQLearningAgent:
         print("\n📸 Stage 0.6: Recording Double Q-Learning agent...")
         try:
-            with open('tabular_double_q_5x5.pkl', 'rb') as f:
+            with open('checkpoints/tabular_double_q_5x5.pkl', 'rb') as f:
                 double_q_agent = pickle.load(f)
             games = record_tabular_games(double_q_agent, board_size=5, num_games=3, max_steps=500)
             all_stages.append({

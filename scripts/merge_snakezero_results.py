@@ -3,7 +3,7 @@ import re
 import os
 
 HTML_FILE = "snake_learning_journey.html"
-JSON_FILE = "snakezero_games.json"
+JSON_FILE = "assets/snakezero_games.json"
 
 def merge_results():
     if not os.path.exists(JSON_FILE):
@@ -17,7 +17,7 @@ def merge_results():
 
     # Format for visualization
     formatted_stage = {
-        "label": "SnakeZero (4x4 MCTS)",
+        "label": "SnakeZero (Invariant)",
         "board": 4,
         "games": []
     }

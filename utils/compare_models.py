@@ -4,7 +4,7 @@ import os
 import statistics
 
 HTML_FILE = "snake_learning_journey.html"
-SNAKEZERO_FILE = "snakezero_games.json"
+SNAKEZERO_FILE = "assets/snakezero_games.json"
 
 def calculate_metrics(games, label):
     scores = [g['score'] for g in games]

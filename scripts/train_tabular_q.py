@@ -3,7 +3,7 @@ import collections
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-from snake_game import SnakeGame
+from envs.snake_game import SnakeGame
 
 # Helper for defaultdict
 def default_q_values():
