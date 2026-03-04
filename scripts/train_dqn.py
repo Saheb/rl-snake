@@ -6,7 +6,7 @@ import numpy as np
 import random
 from collections import deque
 import matplotlib.pyplot as plt
-from test_improvements import SnakeGame  # Reusing the existing game logic
+from envs.snake_game import SnakeGame  # Reusing the existing game logic
 
 # ============================================================================
 # NEURAL NETWORK
