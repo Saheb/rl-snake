@@ -140,7 +140,7 @@ The agent fills over **60%** of a 10×10 board. It plans long-term paths, avoids
 ## 🎬 See It in Action
 
 - **[Live Interactive Visualization](../assets/snake_learning_journey.html)** — Watch all 9 stages of evolution
-- **[Tutorial Notebook](Snake_RL_Tutorial.ipynb)** — Run the code yourself
+- **[Tutorial Notebook](https://github.com/Saheb/rl-snake/blob/main/docs/Snake_RL_Tutorial.ipynb)** — Run the code yourself
 - **`snake_10x10_replay.html`** — Watch the best 10×10 games
 
 ---

@@ -15,7 +15,7 @@ Mastering Snake with Reinforcement Learning, scaling from a 5x5 grid to a 10x10 
 ### 1. [Live Interactive Visualization](assets/snake_learning_journey.html)
 Watch the agent evolve through 9 distinct stages of learning. See the difference between basic Tabular Q-Learning and high-performance Deep RL.
 
-### 2. [Interactive Tutorial (From Zero to Hero)](docs/Snake_RL_Tutorial.ipynb)
+### 2. [Interactive Tutorial (From Zero to Hero)](https://github.com/Saheb/rl-snake/blob/main/docs/Snake_RL_Tutorial.ipynb)
 A step-by-step Jupyter Notebook that takes you from the absolute basics of RL to advanced scaling strategies.
 - **The "Accountant" (Value-Based)**: Learn about Q-Learning and DQN (Deep Q-Network).
 - **The "Athlete" (Policy-Based)**: Master PPO (Proximal Policy Optimization).
