@@ -11,6 +11,7 @@ import argparse
 import wandb
 from envs.snake_game import SnakeGame  # Reusing the existing game logic
 from utils.icm import ICM
+from utils.per import PrioritizedReplayBuffer
 
 
 # ============================================================================
@@ -58,9 +59,10 @@ class QTrainer:
         self.model = model
         self.target_model = target_model  # Target Network
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
-        self.criterion = nn.MSELoss()
+        # We use reduction='none' so we can apply importance sampling weights per-item
+        self.criterion = nn.MSELoss(reduction='none')
 
-    def train_step(self, state, action, reward, next_state, done):
+    def train_step(self, state, action, reward, next_state, done, is_weights=None):
         state = torch.tensor(np.array(state), dtype=torch.float)
         next_state = torch.tensor(np.array(next_state), dtype=torch.float)
         action = torch.tensor(np.array(action), dtype=torch.long)
@@ -104,9 +106,24 @@ class QTrainer:
             target[idx][torch.argmax(action[idx]).item()] = Q_new
 
         self.optimizer.zero_grad()
+        
+        # Compute unreduced loss (batch_size, num_actions)
         loss = self.criterion(target, pred)
+        
+        # Calculate TD Errors for PER: Since target=pred except at chosen action, sum is exactly the abs error.
+        td_errors = torch.abs(target - pred).sum(dim=1).detach().cpu().numpy()
+        
+        if is_weights is not None:
+            is_weights_tensor = torch.tensor(is_weights, dtype=torch.float)
+            # Apply IS weights and take the mean across the batch
+            loss = (loss.mean(dim=1) * is_weights_tensor).mean()
+        else:
+            loss = loss.mean()
+            
         loss.backward()
         self.optimizer.step()
+        
+        return td_errors
 
 
 # ============================================================================
@@ -117,7 +134,7 @@ class DQNAgent:
         self.n_games = 0
         self.epsilon = 0
         self.gamma = 0.9
-        self.memory = deque(maxlen=100_000)
+        self.memory = PrioritizedReplayBuffer(capacity=100_000)
         self.foundation_memory = deque(maxlen=20_000)
 
         # N-Step Learning
@@ -254,7 +271,7 @@ class DQNAgent:
         state_0, action_0 = self.n_step_buffer[0][:2]
 
         valid_transition = (state_0, action_0, R, next_s, d)
-        self.memory.append(valid_transition)
+        self.memory.add(valid_transition)
         if step_idx <= 50:
             self.foundation_memory.append(valid_transition)
 
@@ -276,25 +293,43 @@ class DQNAgent:
         return R, self.n_step_buffer[-1][3], False
 
     def train_long_memory(self):
-        # Sample standard buffer (75%)
+        # Sample standard buffer (75%) via PER
         standard_sample_size = 750
         if len(self.memory) > standard_sample_size:
-            mini_batch = random.sample(self.memory, standard_sample_size)
+            per_batch, per_indices, per_weights = self.memory.sample(standard_sample_size)
+        elif len(self.memory) > 0:
+            per_batch, per_indices, per_weights = self.memory.sample(len(self.memory))
         else:
-            mini_batch = list(self.memory)
+            per_batch, per_indices, per_weights = [], [], np.array([])
 
-        # Sample foundation buffer (25%)
+        # Sample foundation buffer (25%) via uniform random
         foundation_sample_size = 250
-        if len(self.foundation_memory) > foundation_sample_size:
-            mini_batch += random.sample(self.foundation_memory, foundation_sample_size)
-        else:
-            mini_batch += list(self.foundation_memory)
+        foundation_batch = []
+        foundation_weights = []
+        if len(self.foundation_memory) > 0:
+            if len(self.foundation_memory) > foundation_sample_size:
+                foundation_batch = random.sample(self.foundation_memory, foundation_sample_size)
+            else:
+                foundation_batch = list(self.foundation_memory)
+            # Foundation weights are 1.0 since it's uniform
+            foundation_weights = np.ones(len(foundation_batch), dtype=np.float32)
 
+        mini_batch = per_batch + foundation_batch
+        
         if not mini_batch:
             return
+            
+        is_weights = np.concatenate([per_weights, foundation_weights]) if len(per_batch) > 0 else np.array(foundation_weights)
 
         states, actions, rewards, next_states, dones = zip(*mini_batch)
-        self.trainer.train_step(states, actions, rewards, next_states, dones)
+        
+        # Train and get TD errors
+        td_errors = self.trainer.train_step(states, actions, rewards, next_states, dones, is_weights=is_weights)
+        
+        # We only update the PER tree for the indices that actually came from the PER buffer
+        if len(per_indices) > 0:
+            per_td_errors = td_errors[:len(per_indices)]
+            self.memory.update_priorities(per_indices, per_td_errors)
 
     def train_short_memory(self, state, action, reward, next_state, done):
         # N-step online training (Optional, but helps latency)
@@ -304,10 +339,8 @@ class DQNAgent:
         pass  # We delegate online training to the training loop using the returned transition
 
     def get_action(self, state):
-        # random moves: tradeoff exploration / exploitation
-        # Epsilon decay: 1.0 -> 0.01 slower decay now
-        # Decay over ~2000 games for the long 16k run
-        self.epsilon = max(0.01, 1.0 - (self.n_games * 0.0005))
+        # Epsilon decay: 1.0 -> 0.05 floor (5% grease prevents death-loop local minima)
+        self.epsilon = max(0.05, 1.0 - (self.n_games * 0.0005))
         final_move = [0, 0, 0]
 
         if random.random() < self.epsilon:
@@ -372,7 +405,7 @@ def get_absolute_action(move, game):
 def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
     wandb.init(
         project="rl-snake",
-        name=f"DQN_{'ICM' if use_icm else 'Baseline'}_{board_size}x{board_size}",
+        name=f"DQN_PER_v2_{'ICM' if use_icm else 'Baseline'}_{board_size}x{board_size}",
         config={
             "algorithm": "DQN",
             "board_size": board_size,
@@ -425,9 +458,12 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
 
         # Add intrinsic reward if using ICM (train ICM on every experience)
         if use_icm:
-            # Train ICM on every experience for better learning
             intrinsic_reward = agent.train_icm(state_old, final_move, state_new)
-            # Add intrinsic reward to the extrinsic reward for training
+            # Fix 1: MASK TERMINAL INTRINSIC REWARD
+            # The ICM generates massive "surprise" on death (game-over physics are unpredictable).
+            # Multiplying by (1 - done) strictly zeroes out the intrinsic reward on terminal steps,
+            # preventing the agent from learning to suicide for dopamine.
+            intrinsic_reward = intrinsic_reward * (1.0 - float(done))
             reward += intrinsic_reward
             game_intrinsic_reward += intrinsic_reward
 
@@ -447,7 +483,7 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
             while len(agent.n_step_buffer) > 0:
                 R, next_s, d = agent._get_n_step_info()
                 state_0, action_0 = agent.n_step_buffer.popleft()[:2]
-                agent.memory.append((state_0, action_0, R, next_s, d))
+                agent.memory.add((state_0, action_0, R, next_s, d))
                 agent.train_short_memory(state_0, action_0, R, next_s, d)
 
             # train long memory, plot result
@@ -484,6 +520,20 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
                         for param_group in agent.icm.inverse_optimizer.param_groups:
                             param_group['lr'] = param_group['lr'] * 0.1
                         optimizer_decayed = True
+            
+            # Fix 3: FINAL LR COOLDOWN
+            # At 87.5% through training (game 14000), force a hard 1e-5 floor on LR.
+            # This prevents late-game gradient spikes from overwriting the converged policy
+            # regardless of whether the mean_score threshold has been hit or not.
+            if agent.n_games == 14000:
+                for param_group in agent.trainer.optimizer.param_groups:
+                    param_group['lr'] = 1e-5
+                if use_icm and agent.icm is not None:
+                    for param_group in agent.icm.forward_optimizer.param_groups:
+                        param_group['lr'] = 1e-5
+                    for param_group in agent.icm.inverse_optimizer.param_groups:
+                        param_group['lr'] = 1e-5
+                print(f"[Game {agent.n_games}] Final LR cooldown applied → 1e-5")
 
             if agent.n_games % 100 == 0:
                 icm_eta_str = f" | Eta: {agent.icm.eta:.5f}" if (use_icm and agent.icm is not None) else ""

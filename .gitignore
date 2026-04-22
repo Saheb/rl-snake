@@ -166,4 +166,5 @@ checkpoints/
 
 .kilo/
 wandb/
+*.out
 *.pth
