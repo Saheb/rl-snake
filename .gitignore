@@ -163,3 +163,7 @@ cython_debug/
 !tabular_double_q_training.png
 # Ignore trained models
 checkpoints/
+
+.kilo/
+wandb/
+*.pth

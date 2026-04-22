@@ -70,7 +70,10 @@ import numpy as np
 import random
 import collections
 from collections import deque
+import argparse
+import wandb
 from enum import Enum
+from utils.icm import ICM
 
 # ============================================================================
 # GAME ENVIRONMENT
@@ -249,7 +252,8 @@ class PPOAgent:
     """
     
     def __init__(self, lr=0.0003, gamma=0.99, clip_epsilon=0.2, 
-                 n_epochs=4, entropy_coef=0.01, value_coef=0.5):
+                 n_epochs=4, entropy_coef=0.01, value_coef=0.5,
+                 use_icm=False, icm_eta=0.01, icm_lr=0.001):
         self.gamma = gamma
         self.clip_epsilon = clip_epsilon
         self.n_epochs = n_epochs
@@ -264,11 +268,23 @@ class PPOAgent:
         self.rewards = []
         self.values = []
         self.dones = []
+        self.next_states = []
         
-        # Combined network
         self.network = ActorCritic(14, 256, 3)
         self.optimizer = optim.Adam(self.network.parameters(), lr=lr)
-    
+        
+        # Intrinsic Curiosity Module
+        self.use_icm = use_icm
+        self.icm = ICM(state_dim=14, action_dim=3, lr=icm_lr, eta=icm_eta) if use_icm else None
+        
+    def compute_intrinsic_reward(self, state, action, next_state):
+        if not self.use_icm:
+            return 0.0
+        # Convert list format action [0,1,0] to explicitly sized numpy one-hot array if needed (already mostly 1-hot)
+        action_one_hot = np.zeros(3)
+        action_one_hot[np.argmax(action)] = 1
+        return self.icm.compute_intrinsic_reward(state, action_one_hot, next_state)
+
     def _get_reachable_count(self, game, start_pos):
         """BFS flood fill"""
         obstacles = set(game.snake_position)
@@ -277,7 +293,7 @@ class PPOAgent:
         visited = set([start_pos])
         queue = collections.deque([start_pos])
         count = 0
-        max_search = len(game.snake_position) * 3
+        max_search = max(len(game.snake_position) * 3, 20)
         while queue and count < max_search:
             curr = queue.popleft()
             count += 1
@@ -356,7 +372,7 @@ class PPOAgent:
         
         return final_move, action.item(), log_prob.item(), value.item()
     
-    def store(self, state, action, log_prob, reward, value, done):
+    def store(self, state, action, log_prob, reward, value, done, next_state):
         """Store transition"""
         self.states.append(state)
         self.actions.append(action)
@@ -364,6 +380,7 @@ class PPOAgent:
         self.rewards.append(reward)
         self.values.append(value)
         self.dones.append(done)
+        self.next_states.append(next_state)
     
     def compute_gae(self, next_value, gae_lambda=0.95):
         """
@@ -417,6 +434,7 @@ class PPOAgent:
         old_log_probs = torch.tensor(self.log_probs, dtype=torch.float)
         advantages = torch.tensor(advantages, dtype=torch.float)
         returns = advantages + torch.tensor(self.values, dtype=torch.float)
+        next_states_batch = torch.tensor(np.array(self.next_states), dtype=torch.float)
         
         # Normalize advantages
         advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
@@ -450,6 +468,14 @@ class PPOAgent:
             loss.backward()
             torch.nn.utils.clip_grad_norm_(self.network.parameters(), 0.5)
             self.optimizer.step()
+            
+            # 🎓 JOINT ICM BATCH TRAINING
+            if self.use_icm and self.icm is not None:
+                actions_one_hot = F.one_hot(actions, num_classes=3).float()
+                states_device = states.to(self.icm.device)
+                actions_device = actions_one_hot.to(self.icm.device)
+                next_states_device = next_states_batch.to(self.icm.device)
+                self.icm.train_batch(states_device, actions_device, next_states_device)
         
         # Clear storage
         self.states = []
@@ -458,6 +484,7 @@ class PPOAgent:
         self.rewards = []
         self.values = []
         self.dones = []
+        self.next_states = []
 
 
 # ============================================================================
@@ -487,23 +514,45 @@ def get_absolute_action(relative_move, game):
         return left_turn[direction]
     return direction
 
-def train():
+def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=8):
+    wandb.init(
+        project="rl-snake",
+        name=f"PPO_{'ICM' if use_icm else 'Baseline'}_{board_size}x{board_size}",
+        config={
+            "algorithm": "PPO",
+            "board_size": board_size,
+            "use_icm": use_icm,
+            "icm_eta": icm_eta if use_icm else 0,
+            "icm_lr": icm_lr if use_icm else 0,
+            "gamma": 0.99,
+            "clip_epsilon": 0.2,
+            "n_epochs": 4,
+            "rollout_length": 128,
+            "learning_rate": 0.0003
+        }
+    )
+    
+    # Set default x-axis in W&B to Game instead of Step
+    wandb.define_metric("Game")
+    wandb.define_metric("*", step_metric="Game")
+
     total_score = 0
     record = 0
     
-    agent = PPOAgent(lr=0.0003, gamma=0.99, clip_epsilon=0.2, n_epochs=4)
-    game = SnakeGame(board_size=5)
+    agent = PPOAgent(lr=0.0003, gamma=0.99, clip_epsilon=0.2, n_epochs=4, use_icm=use_icm, icm_eta=icm_eta, icm_lr=icm_lr)
+    game = SnakeGame(board_size=board_size)
     
     ROLLOUT_LENGTH = 128  # Collect this many steps before updating
-    MAX_STEPS = 500
+    MAX_STEPS = 500 if board_size <= 5 else 2000
     
-    print("Starting PPO Training on 5x5 Board...")
+    print(f"Starting {'ICM' if use_icm else 'Baseline'} PPO Training on {board_size}x{board_size} Board...")
     print("=" * 60)
     
     steps_in_game = 0
     total_steps = 0
+    game_intrinsic_reward = 0.0
     
-    while agent.n_games < 5000:
+    while agent.n_games < 16000:
         state = agent.get_state(game)
         
         # Select action
@@ -520,13 +569,19 @@ def train():
         if steps_in_game > MAX_STEPS:
             done = True
             reward = -10
+            
+        next_state = agent.get_state(game)
+        
+        if use_icm:
+            intrinsic_reward = agent.compute_intrinsic_reward(state, action_relative, next_state)
+            reward += intrinsic_reward
+            game_intrinsic_reward += intrinsic_reward
         
         # Store transition
-        agent.store(state, action_idx, log_prob, reward, value, done)
+        agent.store(state, action_idx, log_prob, reward, value, done, next_state)
         
         # 🎓 UPDATE every ROLLOUT_LENGTH steps
         if total_steps % ROLLOUT_LENGTH == 0:
-            next_state = agent.get_state(game)
             agent.update(next_state)
         
         if done:
@@ -536,17 +591,45 @@ def train():
             
             if score > record:
                 record = score
+                torch.save(agent.network.state_dict(), "ppo_model.pth")
+                if use_icm and agent.icm is not None:
+                    agent.icm.save_models("ppo_model_icm")
             
             total_score += score
             mean_score = total_score / agent.n_games
             
+            if use_icm and agent.icm is not None:
+                if mean_score > 15.0:
+                    agent.icm.eta = agent.icm.eta * 0.99
+            
             if agent.n_games % 100 == 0:
-                print(f"Game {agent.n_games} | Score: {score} | Record: {record} | Mean: {mean_score:.2f}")
+                icm_eta_str = f" | Eta: {agent.icm.eta:.5f}" if (use_icm and agent.icm is not None) else ""
+                print(f"Game {agent.n_games} | Score: {score} | Record: {record} | Mean: {mean_score:.2f} | Intrinsic: {game_intrinsic_reward:.3f}{icm_eta_str}")
+                
+                log_metrics = {
+                    "Game": agent.n_games,
+                    "Score": score,
+                    "Record": record,
+                    "Mean_Score": mean_score,
+                }
+                if use_icm:
+                    log_metrics["Intrinsic_Reward"] = game_intrinsic_reward
+                    log_metrics["Eta"] = agent.icm.eta
+                wandb.log(log_metrics)
+                
+            game_intrinsic_reward = 0.0
     
     print("=" * 60)
     print(f"Training Complete!")
     print(f"Best Score: {record}")
     print(f"Final Mean Score: {mean_score:.2f}")
+    wandb.finish()
 
 if __name__ == '__main__':
-    train()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--board_size', type=int, default=8, help='Size of the board (e.g., 8 for 8x8)')
+    parser.add_argument('--disable_icm', action='store_true', help='Disable the Intrinsic Curiosity Module for pure baseline runs')
+    args = parser.parse_args()
+    
+    use_icm = not args.disable_icm
+    train(use_icm=use_icm, icm_eta=0.01, icm_lr=0.001, board_size=args.board_size)
