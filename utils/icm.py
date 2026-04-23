@@ -46,7 +46,6 @@ class ForwardDynamicsModel(nn.Module):
             nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(),
             nn.Linear(hidden_dim, state_dim),
-            nn.Tanh(),  # Constrain output to [-1, 1] range
         )
 
     def forward(self, state, action):

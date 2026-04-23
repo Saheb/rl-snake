@@ -332,15 +332,14 @@ class DQNAgent:
             self.memory.update_priorities(per_indices, per_td_errors)
 
     def train_short_memory(self, state, action, reward, next_state, done):
-        # N-step online training (Optional, but helps latency)
-        # We need to construct the N-step transition immediately if possible, but we can't look 3 steps ahead instantly.
-        # Standard approach: Simple DQN does 1-step online. N-step usually relies on replay.
-        # We will use the valid transition processed by remember().
-        pass  # We delegate online training to the training loop using the returned transition
+        # Online 1-step training for immediate feedback (latency reduction)
+        self.trainer.train_step(
+            [state], [action], [reward], [next_state], [done], is_weights=None
+        )
 
     def get_action(self, state):
         # Epsilon decay: 1.0 -> 0.05 floor (5% grease prevents death-loop local minima)
-        self.epsilon = max(0.05, 1.0 - (self.n_games * 0.0005))
+        self.epsilon = max(0.01, 1.0 - (self.n_games * 0.0005))
         final_move = [0, 0, 0]
 
         if random.random() < self.epsilon:
@@ -429,7 +428,7 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
     agent = DQNAgent(use_icm=use_icm, icm_eta=icm_eta, icm_lr=icm_lr)
     game = SnakeGame(board_size=board_size)
     
-    MAX_STEPS = 500 if board_size <= 5 else 2000
+    MAX_STEPS = 500 if board_size <= 5 else (3000 if board_size <= 8 else 5000)
     print(
         f"Starting {'ICM' if use_icm else 'Baseline'} DQN Training (Dueling + 3-Step) on {board_size}x{board_size} Board..."
     )

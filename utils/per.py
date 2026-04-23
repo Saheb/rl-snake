@@ -46,8 +46,10 @@ class PrioritizedReplayBuffer:
         # Calculate max weight for normalization
         if self.tree.n_entries > 0:
             p_min_raw = np.min(self.tree.tree[-self.tree.capacity:][self.tree.tree[-self.tree.capacity:] > 0])
-            p_min = p_min_raw / self.tree.total_priority() if self.tree.total_priority() > 0 else 1.0
-            max_weight = (p_min * self.tree.n_entries) ** (-self.beta) if p_min > 0 else 1.0
+            total_p = self.tree.total_priority()
+            p_min = p_min_raw / total_p if total_p > 0 else 1e-8
+            p_min = max(p_min, 1e-8)
+            max_weight = (p_min * self.tree.n_entries) ** (-self.beta)
         else:
             max_weight = 1.0
 
