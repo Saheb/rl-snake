@@ -1441,7 +1441,7 @@ def _(json, mo):
     </body>
     </html>"""
 
-    source_accordion = mo.accordion({{
+    source_accordion = mo.accordion({
         "📂 Source code & training scripts": mo.md("""
     **GitHub:** [github.com/Saheb/rl-snake](https://github.com/Saheb/rl-snake)
 
@@ -1450,7 +1450,7 @@ def _(json, mo):
     | [`scripts/train_dqn.py`](https://github.com/Saheb/rl-snake/blob/main/scripts/train_dqn.py) | DQN + PER + ICM training loop — terminal mask fix at line 547 |
     | [`utils/icm.py`](https://github.com/Saheb/rl-snake/blob/main/utils/icm.py) | ICM module (encoder, inverse model, forward model) |
         """)
-    }})
+    })
 
     mo.vstack([fix_text, mo.iframe(html_fix, height="430px"), source_accordion])
     return
@@ -1551,15 +1551,20 @@ def _(mo):
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-    import matplotlib.pyplot as plt
-    import numpy as np
     import json
     import random
-    import importlib
     try:
-        torch = importlib.import_module("torch")
-        nn = importlib.import_module("torch.nn")
-        F = importlib.import_module("torch.nn.functional")
+        import matplotlib.pyplot as plt
+    except ImportError:
+        plt = None
+    try:
+        import numpy as np
+    except ImportError:
+        np = None
+    try:
+        import torch
+        import torch.nn as nn
+        import torch.nn.functional as F
     except ImportError:
         torch = nn = F = None
     return F, json, mo, nn, np, plt, random, torch
