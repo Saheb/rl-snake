@@ -85,17 +85,17 @@ class SnakeGame:
         
         if self._check_collision(new_head, will_eat_food):
             self.game_state = GameState.GAME_OVER
-            reward = -10
+            reward = -1
             return self.get_state(), reward, True, {"score": self.score, "game_state": self.game_state.value}
         
         if will_eat_food:
-            reward = 10
+            reward = 1
             self.score += 1
             self.snake_position.append(new_head)
             self.food_position = self._pick_food_position()
             if not self.food_position:
                 self.game_state = GameState.WIN
-                reward = 50
+                reward = 5
                 done = True
             else:
                 done = False

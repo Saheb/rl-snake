@@ -1,0 +1,67 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.2",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "2b990aab3f8dd3b17b5ed90553958039",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "5f9930e31deb060849365a0ffdf339c7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"curiosity-killed-the-snake-re-evaluating-intrinsic-motivation\">Curiosity Killed the Snake: Re-evaluating Intrinsic Motivation</h1>\n<span class=\"paragraph\"><em>An interactive exploration of \"Curiosity-driven Exploration by Self-supervised Prediction\" (Pathak et al., 2017).</em></span>\n<h3 id=\"the-problem-sparse-reward-trap\">The Problem: Sparse Reward Trap</h3>\n<span class=\"paragraph\">In Deep Reinforcement Learning, an agent learns by maximizing a reward signal. But what happens when the environment is vast, the board is empty, and the reward is incredibly hard to find by pure chance?</span>\n<span class=\"paragraph\">When an <marimo-tex class=\"arithmatex\">||(\\epsilon||)</marimo-tex>-greedy agent (like a standard DQN) faces a sparse environment, its exploration is entirely random. It suffers from \"Catastrophic Amnesia\" of its early states, spinning in circles rather than systematically mapping the environment.</span>\n<span class=\"paragraph\"><strong>Run the baseline agent below to see how it performs when the reward is 10 steps away.</strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "51fe2e33b23f855bdad601a0e3781465",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"curiosity-killed-the-snake-re-evaluating-intrinsic-motivation\">Curiosity Killed the Snake: Re-evaluating Intrinsic Motivation</h1>\n<span class=\"paragraph\"><em>An interactive exploration of \"Curiosity-driven Exploration by Self-supervised Prediction\" (Pathak et al., 2017).</em></span>\n<h3 id=\"act-1-the-sparse-reward-trap\">Act 1: The Sparse Reward Trap</h3>\n<span class=\"paragraph\">In traditional Deep Reinforcement Learning, an agent learns by maximizing a reward signal. But what happens when the environment is vast, the board is empty, and the reward is incredibly hard to find by pure chance? </span>\n<span class=\"paragraph\">When an <marimo-tex class=\"arithmatex\">||(\\epsilon||)</marimo-tex>-greedy agent (like a standard DQN) faces a sparse environment, its exploration is entirely random. It suffers from \"Catastrophic Amnesia\" of its early states, spinning in circles rather than systematically mapping the environment.</span>\n<span class=\"paragraph\"><strong>Deploy the baseline agent below to see how it performs when the reward is 10 steps away.</strong></span></span><marimo-ui-element object-id='vblA-0' random-id='e3ca5c9a-cd40-41c6-1f2d-b471fa6ac751'><marimo-button data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;\ud83d\udcc9 Deploy Standard Agent (Random Walk)&lt;/span&gt;&lt;/span&gt;&quot;' data-kind='&quot;danger&quot;' data-disabled='false' data-full-width='false'></marimo-button></marimo-ui-element></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "e99be3780a1875a383fa00a0f03d1daf",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"simulation-complete\">\u2705 Simulation Complete!</h3></span><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Drag the slider below to step through the agent's path:</span></span><marimo-ui-element object-id='bkHC-0' random-id='e8da7fa4-4719-a202-e82d-0025b0cacc54'><marimo-slider data-initial-value='0' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;&lt;strong&gt;\u23f1\ufe0f Scrub Timeline:&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&quot;' data-start='0' data-stop='200' data-step='1' data-steps='[]' data-debounce='false' data-disabled='false' data-orientation='&quot;horizontal&quot;' data-show-value='true' data-include-input='false' data-full-width='false'></marimo-slider></marimo-ui-element></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "eeb596e3f3f15851f51643bc6f8ccb3b",
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+import sys
+sys.stdout.reconfigure(line_buffering=True)  # Ensure print() flushes per line when redirected to file
+
+import math
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -20,28 +24,39 @@ from utils.per import PrioritizedReplayBuffer
 class DuelingQNet(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super().__init__()
-        self.linear1 = nn.Linear(input_size, hidden_size)
 
-        # Value stream (V(s))
-        self.value_stream = nn.Linear(hidden_size, 1)
+        # Shared feature extraction (two hidden layers)
+        self.shared = nn.Sequential(
+            nn.Linear(input_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU(),
+        )
 
-        # Advantage stream (A(s, a))
-        self.advantage_stream = nn.Linear(hidden_size, output_size)
+        # Value stream: dedicated hidden layer + output
+        self.value_stream = nn.Sequential(
+            nn.Linear(hidden_size, hidden_size // 2),
+            nn.ReLU(),
+            nn.Linear(hidden_size // 2, 1),
+        )
+
+        # Advantage stream: dedicated hidden layer + output
+        self.advantage_stream = nn.Sequential(
+            nn.Linear(hidden_size, hidden_size // 2),
+            nn.ReLU(),
+            nn.Linear(hidden_size // 2, output_size),
+        )
 
     def forward(self, x):
-        x = F.relu(self.linear1(x))
-
+        x = self.shared(x)
         val = self.value_stream(x)
         adv = self.advantage_stream(x)
 
         # If input is 1D (unbatched), dimensions are [hidden], output is [out].
         # If input is 2D (batch), dimensions are [batch, hidden], output is [batch, out].
-
         if adv.dim() == 1:
-            # Single item
             return val + (adv - adv.mean())
         else:
-            # Batch
             return val + (adv - adv.mean(dim=1, keepdim=True))
 
     def save(self, file_name="model.pth"):
@@ -121,6 +136,7 @@ class QTrainer:
             loss = loss.mean()
             
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10.0)
         self.optimizer.step()
         
         return td_errors
@@ -130,27 +146,36 @@ class QTrainer:
 # DQN AGENT
 # ============================================================================
 class DQNAgent:
-    def __init__(self, use_icm=False, icm_eta=0.01, icm_lr=0.001):
+    def __init__(self, use_icm=False, use_per=True, icm_eta=0.01, icm_lr=0.001):
         self.n_games = 0
-        self.epsilon = 0
-        self.gamma = 0.9
-        self.memory = PrioritizedReplayBuffer(capacity=100_000)
+        self.epsilon = 1.0
+        self.gamma = 0.95
+        self.use_per = use_per
+        self.total_steps = 0
+        self.epsilon_start = 1.0
+        self.epsilon_end = 0.02
+        self.epsilon_decay_rate = 300_000
+        self.min_game_steps = 150
+        if use_per:
+            self.memory = PrioritizedReplayBuffer(capacity=100_000)
+        else:
+            self.memory = deque(maxlen=100_000)
         self.foundation_memory = deque(maxlen=20_000)
 
         # N-Step Learning
         self.n_steps = 4
         self.n_step_buffer = deque(maxlen=self.n_steps)
 
-        # Dueling Network (Input 14)
-        self.model = DuelingQNet(14, 256, 3)
-        self.target_model = DuelingQNet(14, 256, 3)
+        # Dueling Network (Input 24)
+        self.model = DuelingQNet(24, 256, 3)
+        self.target_model = DuelingQNet(24, 256, 3)
         self.target_model.load_state_dict(self.model.state_dict())
         self.target_model.eval()
 
         self.trainer = QTrainer(
             self.model,
             self.target_model,
-            lr=0.001,
+            lr=0.0003,
             gamma=self.gamma,
             n_steps=self.n_steps,
         )
@@ -159,8 +184,9 @@ class DQNAgent:
         self.use_icm = use_icm
         self.icm = ICM(state_dim=14, action_dim=3, lr=icm_lr, eta=icm_eta) if use_icm else None
 
-    def update_target_network(self):
-        self.target_model.load_state_dict(self.model.state_dict())
+    def update_target_network(self, tau=0.005):
+        for target_param, local_param in zip(self.target_model.parameters(), self.model.parameters()):
+            target_param.data.copy_(tau * local_param.data + (1.0 - tau) * target_param.data)
 
     def _get_reachable_count(self, game, start_pos):
         """BFS to count reachable free cells from start_pos (Borrowed from QLearningAgentV4)"""
@@ -225,12 +251,36 @@ class DQNAgent:
         pos_left = clock_wise_points[(idx - 1) % 4]
 
         total_cells = game.board_size * game.board_size
+        b = game.board_size
 
         flood_straight = self._get_reachable_count(game, pos_straight) / total_cells
         flood_right = self._get_reachable_count(game, pos_right) / total_cells
         flood_left = self._get_reachable_count(game, pos_left) / total_cells
 
+        # Tail direction (where the tail tip is relative to head)
+        tail = game.snake_position[0]
+        tail_up   = int(tail[0] < head[0])
+        tail_down  = int(tail[0] > head[0])
+        tail_left  = int(tail[1] < head[1])
+        tail_right = int(tail[1] > head[1])
+
+        # Normalized snake length
+        snake_length_norm = len(game.snake_position) / total_cells
+
+        # Normalized Manhattan distance to food
+        if game.food_position:
+            food_dist_norm = (abs(head[0] - game.food_position[0]) + abs(head[1] - game.food_position[1])) / (2 * (b - 1))
+        else:
+            food_dist_norm = 0.0
+
+        # Normalized distances to each wall
+        wall_up    = head[0] / (b - 1)
+        wall_down  = (b - 1 - head[0]) / (b - 1)
+        wall_left  = head[1] / (b - 1)
+        wall_right = (b - 1 - head[1]) / (b - 1)
+
         state = [
+            # Danger (3)
             (dir_r and game._check_collision(point_r))
             or (dir_l and game._check_collision(point_l))
             or (dir_u and game._check_collision(point_u))
@@ -243,17 +293,34 @@ class DQNAgent:
             or (dir_u and game._check_collision(point_l))
             or (dir_r and game._check_collision(point_u))
             or (dir_l and game._check_collision(point_d)),
+            # Direction (4)
             dir_l,
             dir_r,
             dir_u,
             dir_d,
+            # Food direction (4)
             (game.food_position[1] < head[1]) if game.food_position else 0,
             (game.food_position[1] > head[1]) if game.food_position else 0,
             (game.food_position[0] < head[0]) if game.food_position else 0,
             (game.food_position[0] > head[0]) if game.food_position else 0,
+            # Flood-fill open space (3)
             flood_straight,
             flood_right,
             flood_left,
+            # Tail direction (4)
+            tail_up,
+            tail_down,
+            tail_left,
+            tail_right,
+            # Snake length normalized (1)
+            snake_length_norm,
+            # Food distance normalized (1)
+            food_dist_norm,
+            # Wall distances normalized (4)
+            wall_up,
+            wall_down,
+            wall_left,
+            wall_right,
         ]
 
         return np.array(state, dtype=float)
@@ -271,7 +338,10 @@ class DQNAgent:
         state_0, action_0 = self.n_step_buffer[0][:2]
 
         valid_transition = (state_0, action_0, R, next_s, d)
-        self.memory.add(valid_transition)
+        if self.use_per:
+            self.memory.add(valid_transition)
+        else:
+            self.memory.append(valid_transition)
         if step_idx <= 50:
             self.foundation_memory.append(valid_transition)
 
@@ -293,6 +363,16 @@ class DQNAgent:
         return R, self.n_step_buffer[-1][3], False
 
     def train_long_memory(self):
+        if not self.use_per:
+            # Simple uniform replay — no IS weights, no priority updates
+            batch_size = 1000
+            if len(self.memory) < batch_size:
+                return
+            mini_batch = random.sample(self.memory, batch_size)
+            states, actions, rewards, next_states, dones = zip(*mini_batch)
+            self.trainer.train_step(states, actions, rewards, next_states, dones, is_weights=None)
+            return
+
         # Sample standard buffer (75%) via PER
         standard_sample_size = 750
         if len(self.memory) > standard_sample_size:
@@ -338,8 +418,8 @@ class DQNAgent:
         )
 
     def get_action(self, state):
-        # Epsilon decay: 1.0 -> 0.05 floor (5% grease prevents death-loop local minima)
-        self.epsilon = max(0.01, 1.0 - (self.n_games * 0.0005))
+        # Linear game-based decay (best performing schedule so far)
+        self.epsilon = max(self.epsilon_end, 1.0 - (self.n_games * 0.0001))
         final_move = [0, 0, 0]
 
         if random.random() < self.epsilon:
@@ -401,17 +481,17 @@ def get_absolute_action(move, game):
     return new_dir
 
 
-def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
+def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
     wandb.init(
         project="rl-snake",
-        name=f"DQN_PER_v2_{'ICM' if use_icm else 'Baseline'}_{board_size}x{board_size}",
+        name=f"DQN_v15b_stable_{'ICM' if use_icm else 'Baseline'}_{'PER' if use_per else 'noPER'}_{board_size}x{board_size}",
         config={
             "algorithm": "DQN",
             "board_size": board_size,
             "use_icm": use_icm,
             "icm_eta": icm_eta if use_icm else 0,
             "icm_lr": icm_lr if use_icm else 0,
-            "gamma": 0.9,
+            "gamma": 0.95,
             "n_steps": 4,
             "learning_rate": 0.001
         }
@@ -425,7 +505,7 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
     plot_mean_scores = []
     total_score = 0
     record = 0
-    agent = DQNAgent(use_icm=use_icm, icm_eta=icm_eta, icm_lr=icm_lr)
+    agent = DQNAgent(use_icm=use_icm, use_per=use_per, icm_eta=icm_eta, icm_lr=icm_lr)
     game = SnakeGame(board_size=board_size)
     
     MAX_STEPS = 500 if board_size <= 5 else (3000 if board_size <= 8 else 5000)
@@ -449,9 +529,11 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
         score = info["score"]
 
         steps_in_game += 1
+        agent.total_steps += 1
+
         if steps_in_game > MAX_STEPS:
             done = True
-            reward = -10  # Penalize timeout
+            reward = -1  # Penalize timeout
 
         state_new = agent.get_state(game)
 
@@ -482,18 +564,21 @@ def train(use_icm=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
             while len(agent.n_step_buffer) > 0:
                 R, next_s, d = agent._get_n_step_info()
                 state_0, action_0 = agent.n_step_buffer.popleft()[:2]
-                agent.memory.add((state_0, action_0, R, next_s, d))
+                if agent.use_per:
+                    agent.memory.add((state_0, action_0, R, next_s, d))
+                else:
+                    agent.memory.append((state_0, action_0, R, next_s, d))
                 agent.train_short_memory(state_0, action_0, R, next_s, d)
 
             # train long memory, plot result
             game.reset()
             agent.n_games += 1
-            agent.train_long_memory()
+            for _ in range(3):
+                agent.train_long_memory()
             steps_in_game = 0  # Reset counter
 
-            # Update Target Network every 50 games
-            if agent.n_games % 50 == 0:
-                agent.update_target_network()
+            # Soft Polyak target update every game (τ=0.005)
+            agent.update_target_network(tau=0.005)
 
             if score > record:
                 record = score
@@ -564,7 +649,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--board_size', type=int, default=5, help='Size of the board (e.g., 5 for 5x5)')
     parser.add_argument('--disable_icm', action='store_true', help='Disable the Intrinsic Curiosity Module for pure baseline runs')
+    parser.add_argument('--disable_per', action='store_true', help='Use simple uniform replay instead of PER')
     args = parser.parse_args()
     
     use_icm = not args.disable_icm
-    train(use_icm=use_icm, icm_eta=0.01, icm_lr=0.001, board_size=args.board_size)
+    use_per = not args.disable_per
+    train(use_icm=use_icm, use_per=use_per, icm_eta=0.01, icm_lr=0.001, board_size=args.board_size)
