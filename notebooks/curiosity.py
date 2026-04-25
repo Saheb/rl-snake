@@ -1,10 +1,7 @@
 import marimo
 
 __generated_with = "0.23.2"
-app = marimo.App(
-    width="medium",
-    title="Curiosity Killed the Snake: The Trap That Taught an Agent to Die",
-)
+app = marimo.App(width="medium")
 
 
 @app.cell(hide_code=True)
@@ -707,6 +704,10 @@ def _(mo):
 
 @app.cell
 def _(F, mo, nn, torch):
+    mo.stop(
+        torch is None,
+        mo.callout(mo.md("**PyTorch is not available in the browser.** Clone the repo and run `marimo run notebooks/curiosity.py` locally to see the live tensor output."), kind="warn")
+    )
     class IntrinsicCuriosityModule(nn.Module):
         def __init__(self, state_dim, action_dim, latent_dim=256):
             super().__init__()
@@ -783,6 +784,10 @@ def _(mo):
 
 @app.cell
 def _(F, mo, nn, np, plt, random, torch, train_btn):
+    mo.stop(
+        torch is None,
+        mo.callout(mo.md("**PyTorch is not available in the browser.** Clone the repo and run `marimo run notebooks/curiosity.py` locally to train the live ICM experiment."), kind="warn")
+    )
     if not train_btn.value:
         _fig0, _ax0 = plt.subplots(figsize=(9, 3.5))
         _ax0.set_xlabel("Episode", fontsize=11)
@@ -1548,12 +1553,15 @@ def _():
     import marimo as mo
     import matplotlib.pyplot as plt
     import numpy as np
-    import torch
-    import torch.nn as nn
-    import torch.nn.functional as F
     import json
     import random
-
+    import importlib
+    try:
+        torch = importlib.import_module("torch")
+        nn = importlib.import_module("torch.nn")
+        F = importlib.import_module("torch.nn.functional")
+    except ImportError:
+        torch = nn = F = None
     return F, json, mo, nn, np, plt, random, torch
 
 
