@@ -168,3 +168,5 @@ checkpoints/
 wandb/
 *.out
 *.pth
+
+.DS_Store
