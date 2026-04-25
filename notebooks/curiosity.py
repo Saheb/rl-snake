@@ -62,11 +62,7 @@ def _(json, mo, random):
         hist_curious.append(next_pos)
         visit_counts[next_pos] = visit_counts.get(next_pos, 0) + 1
 
-    html = f"""<!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; }}
+    html = f"""<style>
       .row {{ display:flex; gap:24px; justify-content:center; }}
       .panel {{ display:flex; flex-direction:column; align-items:center; }}
       .label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
@@ -78,8 +74,6 @@ def _(json, mo, random):
       button:hover {{ background:#e0e0e0; }}
       .legend {{ font-size:11px; color:#777; margin-top:4px; text-align:center; }}
     </style>
-    </head>
-    <body>
     <div class="row">
       <div class="panel">
     <div class="label">Random Walk</div>
@@ -170,12 +164,10 @@ def _(json, mo, random):
     }};
 
     render();
-    </script>
-    </body>
-    </html>"""
+    </script>"""
 
     mo.vstack([
-        mo.iframe(html, height="500px"),
+        mo.html(html, style="height: 500px;"),
         mo.callout(
             mo.md(
                 "**Visualization note:** The right-hand agent uses a **count-based heuristic** "
@@ -227,11 +219,7 @@ def _(mo):
     )
 
     # 2. The Interactive "Boredom Simulator" (Native HTML5 Canvas)
-    html2 = """<!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-        body { margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }
+    html2 = """<style>
         .container { display:flex; gap:30px; align-items:flex-start; margin-top: 10px;}
         .panel { display:flex; flex-direction:column; align-items:center; }
         .label { font-weight:bold; font-size:14px; margin-bottom:5px; color:#333;}
@@ -240,8 +228,6 @@ def _(mo):
         .score-board { margin-top: 15px; font-size: 16px; font-weight: bold; color: #10b981; }
         .instructions { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
     </style>
-    </head>
-    <body>
 
     <div class="container">
         <div class="panel">
@@ -391,14 +377,12 @@ def _(mo):
     // Init
     drawGrid();
     drawChart();
-    </script>
-    </body>
-    </html>"""
+    </script>"""
 
     # 3. Stack the markdown and the widget together
     mo.vstack([
         intro_text,
-        mo.iframe(html2, height="400px"),
+        mo.html(html2, style="height: 400px;"),
         mo.callout(
             mo.md(
                 "**Simplification note:** The reward curve above uses a hardcoded 3-step decay "
@@ -462,11 +446,7 @@ def _(json, mo):
     hist_icm_tv = path_down_hallway + [(5,1)] * 5 + [(4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (3,6), (2,6), (1,6)] + [(1,6)] * 20
 
     # 3. Build the Canvas HTML (Saved to html_tv)
-    html_tv = f"""<!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; }}
+    html_tv = f"""<style>
       .row {{ display:flex; gap:24px; justify-content:center; }}
       .panel {{ display:flex; flex-direction:column; align-items:center; }}
       .label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
@@ -477,8 +457,6 @@ def _(json, mo):
       button:hover {{ background:#e0e0e0; }}
       .legend {{ font-size:12px; color:#555; margin-top:12px; text-align:center; }}
     </style>
-    </head>
-    <body>
     <div class="row">
       <div class="panel">
         <div class="label">Raw Pixel Prediction</div>
@@ -604,14 +582,12 @@ def _(json, mo):
     }};
 
     render(); // Initial draw
-    </script>
-    </body>
-    </html>"""
+    </script>"""
 
     # 4. Render everything together
     mo.vstack([
         act2_text,
-        mo.iframe(html_tv, height="380px"),
+        mo.html(html_tv, style="height: 380px;"),
         mo.callout(
             mo.md(
                 "**Visualization note:** The agent paths above are **scripted pedagogical illustrations**, "
@@ -958,11 +934,7 @@ def _(json, mo):
         "last_game": _games[-1] if _games else 16000,
     })
 
-    html_train = f"""<!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }}
+    html_train = f"""<style>
       .panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
       .header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
       .title {{ font-weight:bold; font-size:14px; color:#333; }}
@@ -975,8 +947,6 @@ def _(json, mo):
       .dot {{ width:10px; height:10px; border-radius:50%; }}
       .note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
     </style>
-    </head>
-    <body>
     <div class="panel">
       <div class="header">
         <div class="title">Real ICM Training Logs — DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
@@ -1087,11 +1057,9 @@ def _(json, mo):
     }};
 
     render(N);
-    </script>
-    </body>
-    </html>"""
+    </script>"""
 
-    mo.vstack([train_text, code_accordion, mo.iframe(html_train, height="430px")])
+    mo.vstack([train_text, code_accordion, mo.html(html_train, style="height: 430px;")])
     return
 
 
