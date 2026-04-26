@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.23.2"
+__generated_with = "0.23.3"
 app = marimo.App(width="medium")
 
 
@@ -19,12 +19,12 @@ def _(mo):
     # Curiosity Killed the Snake: The Trap That Taught an Agent to Die
     *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017).*
 
-    [![Open in marimo](https://marimo.io/shield.svg)](https://marimo.app/l/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py)
+    [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
 
     ### The Problem: Sparse Reward Trap
-    In Deep Reinforcement Learning, an agent learns by maximizing a reward signal. But what happens when the environment is vast, the board is empty, and the reward is incredibly hard to find by pure chance? And what if there are no external rewards at all?
+    In reinforcement learning, an agent learns by maximizing reward. Usually that reward is **external**: it comes from the environment, like `+1` for eating an apple in Snake or `-1` for dying. But what happens when the environment is vast, the board is empty, and the external reward is incredibly hard to find by pure chance? What happens if the environment gives no useful reward signal for a long time?
 
-    When an $\epsilon$-greedy agent (like a standard DQN) faces a sparse environment, its exploration is entirely random. It suffers from "Catastrophic Amnesia" of its early states, spinning in circles rather than systematically mapping the environment.
+    When an $\epsilon$-greedy agent, such as a standard **Deep Q-Network (DQN)**, faces a sparse environment, its exploration is mostly random. It can repeatedly revisit familiar states, spinning in circles rather than systematically mapping the environment.
 
     **Play with the agent below to see how it performs when the reward is 13 steps away.**
     """)
@@ -97,7 +97,7 @@ def _(json, mo, random, wasm_iframe):
       </div>
       <div class="panel">
     <div class="label">Count-Based Curiosity Agent</div>
-    <div class="sublabel">ICM proxy — seeks lowest-visited tiles</div>
+    <div class="sublabel">Curiosity proxy — seeks lowest-visited tiles</div>
     <canvas id="c2" width="400" height="400"></canvas>
       </div>
     </div>
@@ -190,10 +190,10 @@ def _(json, mo, random, wasm_iframe):
                 "**Visualization note:** The right-hand agent uses a **count-based heuristic** "
                 "(always move to the lowest visit-count neighbour), not a live neural network. "
                 "In this discrete finite grid, visit counts serve as a practical stand-in for "
-                "ICM's forward model prediction error — both signal how *novel* a state is, "
+                "the Intrinsic Curiosity Module (ICM)'s forward-model prediction error — both signal how *novel* a state is, "
                 "and the outward-seeking behaviour looks similar. However, this equivalence "
                 "**only holds in tabular settings** with an enumerable state space. "
-                "ICM's core contribution is generalizing curiosity to **continuous, high-dimensional "
+                "The Intrinsic Curiosity Module's core contribution is generalizing curiosity to **continuous, high-dimensional "
                 "observation spaces** (raw pixels, sensor arrays) where visit counts are undefined — "
                 "and where a learned forward model is the only tractable novelty signal."
             ),
@@ -203,7 +203,7 @@ def _(json, mo, random, wasm_iframe):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     eta_slider = mo.ui.slider(
         start=0.01, stop=1.0, step=0.01, value=0.5,
@@ -220,16 +220,24 @@ def _(mo, wasm_iframe):
         """
         ### The Concept: Mathematically Defining "Curiosity"
 
-        If the environment isn't giving the agent any rewards, the agent has to generate its own. Pathak et al. achieved this by giving the agent a **Forward Model**—a neural network that acts as an internal physics engine. 
+        If the environment is not giving the agent useful rewards, the agent has to generate its own. Pathak et al. achieved this by giving the agent a **Forward Model**: a neural network inside the agent that learns to predict what the next observation should look like after the agent takes an action.
 
-        Before the agent takes a step, the Forward Model guesses what the next state of the world will look like. The agent then takes the step and compares its guess to reality. The difference between the guess and reality is the **Prediction Error** (Mean Squared Error). 
+        Before the agent takes a step, the Forward Model predicts the next state. The agent then takes the step, observes the actual next state, and compares prediction to reality. The difference is the **Prediction Error** (Mean Squared Error). 
 
         $$Intrinsic\\ Reward = \\frac{\\eta}{2} (Predicted\\ State - Actual\\ State)^2$$
 
         Where **$\\eta$ (Eta)** is the **Curiosity Weight**. It scales how much intrinsic reward the agent gets from being surprised. The key insight of this equation is that **Prediction Error = Surprise = Reward**.
 
-        * If the agent visits a tile it has seen 100 times, its Forward Model perfectly predicts the physics of that tile. The error is zero. The agent is bored.
-        * If the agent visits a completely new tile, the Forward Model's guess is completely wrong. The error is massive. The agent experiences a spike of surprise.
+        More precisely, ICM computes prediction error in a learned latent space:
+
+        $$r_t^i = \\frac{\\eta}{2}\\left\\|\\hat{\\phi}(s_{t+1}) - \\phi(s_{t+1})\\right\\|_2^2$$
+
+        The squared error is not arbitrary. It is the standard regression loss for a continuous target and corresponds to a Gaussian negative log-likelihood assumption: large prediction mistakes are penalized quadratically, while small residual errors fade smoothly. The latent-space term matters because raw pixels contain action-irrelevant noise. ICM first maps observations through $\\phi(\\cdot)$, then rewards errors only in the learned representation that is useful for predicting the agent's own actions.
+
+        The Forward Model is trained from the agent's own experience: each transition `(state, action, next_state)` becomes a supervised learning example. After many updates on familiar transitions, its predictions become accurate and the intrinsic reward shrinks.
+
+        * If the agent repeatedly visits the same tile and observes the same transition, its Forward Model learns that transition. The prediction error becomes small. The agent is bored.
+        * If the agent reaches a new tile or a hard-to-predict transition, the Forward Model is wrong. The error is large. The agent experiences a spike of surprise.
 
         **Try it yourself:** Click the tiles in the "Boredom Simulator" below. Watch how "surprise" spikes when you explore new areas, and how the reward drops to zero if you linger in the same spot.
         """
@@ -452,7 +460,7 @@ def _(json, mo, wasm_iframe):
 
         The Inverse Model is trained to predict the *agent’s own actions*. Because the agent's actions cannot control the random TV static, the neural network learns to completely ignore the TV when creating the latent vector. The noise is mathematically filtered out.
 
-        **Run the agents below** to see why Raw Pixel Prediction fails, and how the Latent Filter (ICM) saves the agent.
+        **Run the agents below** to see why raw-pixel prediction fails, and how the latent filter in the Intrinsic Curiosity Module (ICM) saves the agent.
         """
     )
 
@@ -531,9 +539,10 @@ def _(json, mo, wasm_iframe):
     // Draw standard walls for the maze
     const walls = [
         [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],
-        [0,2],[1,2],[2,2],[3,2],[6,2],[7,2],
         [0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],
-        [0,1],[0,3],[0,4],[0,5],[2,3],[2,4],[2,5],[7,1],[7,3],[7,4],[7,5]
+        [0,1],[0,2],[0,3],[0,4],[0,5],[7,1],[7,2],[7,3],[7,4],[7,5],
+        [3,1],[4,1],[5,1],[3,2],[4,2],[5,2],
+        [2,3],[3,3],[4,3],[2,5],[3,5],[4,5],[5,5]
     ];
 
     function drawMaze(ctx, path, isRaw) {{
@@ -636,7 +645,7 @@ def _(json, mo, wasm_iframe):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     # The PyTorch Architecture Walkthrough
     architecture_text = mo.md(
@@ -645,11 +654,38 @@ def _(mo):
 
         Before we look at how this breaks down in late-stage training, we need to understand how the Intrinsic Curiosity Module is actually constructed. 
 
-        The ICM is not a standalone agent; it is an independent subsystem that runs *alongside* any standard RL algorithm (like PPO or DQN). It consists of three distinct neural networks working together:
+        The ICM is not a standalone agent; it is an auxiliary subsystem that runs *inside the training loop* of a standard reinforcement-learning algorithm such as Proximal Policy Optimization (PPO) or Deep Q-Network (DQN). The policy still chooses actions and learns from rewards. ICM adds an extra reward term and trains its own predictive models from the same transitions.
 
         1. **The Feature Encoder ($\phi$):** Compresses raw pixels/states into a dense, latent vector.
         2. **The Inverse Model:** Takes the current state $\phi(s_t)$ and the next state $\phi(s_{t+1})$ to predict the action $a_t$. This is the filter that ignores unpredictable noise.
         3. **The Forward Model:** Takes the current state $\phi(s_t)$ and the action $a_t$ to predict the next state $\hat{\phi}(s_{t+1})$. 
+
+        Formally, the inverse model is a classifier and the forward model is a regressor:
+
+        $$L_I = -\\log p(a_t \\mid \\phi(s_t), \\phi(s_{t+1}))$$
+
+        $$L_F = \\frac{1}{2}\\left\\|\\hat{\\phi}(s_{t+1}) - \\phi(s_{t+1})\\right\\|_2^2$$
+
+        $$L_{ICM} = (1 - \\beta)L_I + \\beta L_F$$
+
+        $L_I$ trains the encoder to preserve action-relevant information: if a visual feature does not help infer which action moved the agent from $s_t$ to $s_{t+1}$, the inverse objective has little reason to keep it. $L_F$ trains the dynamics predictor in that filtered feature space. The intrinsic reward is proportional to $L_F$, but the encoder is shaped by both losses.
+
+        In a DQN-style loop, the call site looks like this:
+
+        ```python
+        action = dqn_policy.select_action(state)
+        next_state, external_reward, done = env.step(action)
+
+        inverse_loss, forward_loss, intrinsic_reward = icm(state, next_state, action)
+        reward_for_dqn = external_reward + eta * intrinsic_reward
+
+        replay_buffer.add(state, action, reward_for_dqn, next_state, done)
+
+        dqn_loss = train_dqn_from_replay(replay_buffer)
+        icm_loss = (1 - beta) * inverse_loss + beta * forward_loss
+        ```
+
+        So the ICM is called immediately after the environment step. Its prediction error becomes an exploration bonus, while its own networks are trained on the observed transition.
 
         Here is the core PyTorch implementation of the module:
 
@@ -703,7 +739,7 @@ def _(mo):
                 return pred_action_logits, pred_phi_t_plus_1, phi_t_plus_1, intrinsic_reward
         ```
 
-        Notice the `intrinsic_reward` calculation at the very bottom. It is completely decoupled from the game's actual score. The agent trains this module simultaneously with its policy, constantly trying to minimize both the Forward and Inverse loss, while using the resulting error as an exploration bonus.
+        Notice the `intrinsic_reward` calculation at the very bottom. It is decoupled from the game's actual score, then added to the environment reward before the policy update. The agent trains this module simultaneously with its policy, constantly trying to minimize both the Forward and Inverse loss, while using the current Forward Model error as an exploration bonus.
         """
     )
 
@@ -711,7 +747,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     _state_dim, _action_dim, _batch, _latent_dim = 20, 4, 8, 256
 
@@ -735,12 +771,12 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     _train_intro = mo.md(r"""
     ### Mini-Experiment: Does the Forward Model Actually Learn?
 
-    The cell above proved ICM *runs*. This experiment proves it *learns*.
+    The cell above defined the ICM tensor contract. This experiment shows the core learning signal directly.
 
     We train a tiny **NumPy forward model** on a **5×5 grid** with a **purely random policy**
     (ε = 1.0, zero extrinsic reward). It predicts the next grid position from the current position
@@ -759,7 +795,7 @@ def _(mo):
     return (train_btn,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, np, plt, random, train_btn):
     mo.stop(
         np is None or plt is None,
@@ -859,7 +895,7 @@ def _(mo, np, plt, random, train_btn):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(json, mo, wasm_iframe):
     # 1. Narrative Text
     train_text = mo.md(
@@ -878,6 +914,8 @@ def _(json, mo, wasm_iframe):
         Watch what happens after **Game ~2,000** (when ε hits its floor and the agent goes fully greedy):
         intrinsic reward keeps spiking on every novel death. The agent never stops being "surprised" —
         but that persistent surprise doesn't translate into better performance. The next sections show why.
+
+        Methodological caveat: this is a mechanistic case study, not a benchmark claim. A research-grade evaluation would run multiple random seeds and report confidence intervals for at least four ablations: DQN + PER, DQN + ICM, DQN + PER + ICM, and DQN + PER + ICM with terminal intrinsic rewards masked. The single-run logs here are still useful because they expose a concrete failure mode in the replay distribution.
         """
     )
 
@@ -1066,35 +1104,37 @@ def _(json, mo, wasm_iframe):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     # The Transition and Literature Review Text
     bridge_text = mo.md(
         """
-        ### The Paradigm Shift: Self-Supervised vs. Hand-Coded Rewards
+        ### Self-Supervised vs. Hand-Coded Rewards
 
-        Before we look at where this architecture breaks down, we must acknowledge why Pathak et al.'s approach was so revolutionary. The title of the paper specifies **"Self-Supervised Prediction."** What does this mean?
+        Before we look at where this architecture breaks down, it helps to understand what Pathak et al. mean by **"Self-Supervised Prediction."** The paper was not the first work on intrinsic motivation or self-supervised signals, but it gave a clear and influential recipe for turning prediction error into an exploration bonus for deep reinforcement learning.
 
         Historically, to solve sparse environments, engineers relied on **Hand-Coded Reward Shaping**. A human programmer would manually inject domain knowledge: *"If the agent moves closer to the goal, give it +0.1 points. If it moves away, -0.1 points."* While reward shaping works, it is brittle. It requires a human to hand-hold the agent through every new game, and it frequently leads to "reward hacking" (where the agent finds a loophole to farm points without actually winning the game).
 
-        **Self-Supervised** curiosity requires zero human intervention. The agent creates its own dense reward signal natively from the environment's raw pixels. It learns the physics of the world first, and uses that knowledge to systematically explore until it naturally stumbles upon the true goal.
+        **Self-supervised** curiosity reduces the amount of human reward engineering. The agent creates a dense auxiliary reward from its own observations, learns a predictive model of environment dynamics, and uses prediction error to explore until it encounters task rewards.
 
         ---
 
         ### The Mechanics of Memory: Prioritized Experience Replay (PER)
 
-        The paper itself anticipated this problem. In the final paragraphs, Pathak et al. write:
+        We now have a new problem. Curiosity helps the agent discover rare events, but rare events are easy to forget if the training loop samples old experience uniformly. In Snake, an apple capture might be only a tiny fraction of the replay buffer. If the agent rarely replays those transitions, it does not learn much from them.
+
+        The paper anticipated this memory problem. In the final paragraphs, Pathak et al. write:
 
         > *”While the rich and diverse real world provides ample opportunities for interaction, reward signals are sparse. Our approach excels in this setting. However our approach does not directly extend to the scenarios where ‘opportunities for interactions’ are also rare. In theory, **one could save such events in a replay memory and use them to guide exploration**. However, we leave this extension for future work.”*
         >
         > — Pathak et al., *”Curiosity-driven Exploration by Self-supervised Prediction”*, ICML 2017. [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
 
-        Snake on a 10×10 board is precisely this setting. Early in training, apples are rare, interactions are thin, and the agent needs a way to revisit its most informative experiences. **We implemented the paper’s suggested extension** — a Prioritized Experience Replay (PER) buffer that samples memories based on their **Temporal Difference (TD) Error** — how “wrong” the agent was about that specific memory.
+        Snake on a 10×10 board is precisely this setting. Early in training, apples are rare, interactions are thin, and the agent needs a way to revisit its most informative experiences. **We implemented the paper’s suggested extension** using a Prioritized Experience Replay (PER) buffer that samples memories based on their **Temporal Difference (TD) Error** — how wrong the agent's Q-value estimate was for that memory.
 
         * In a standard buffer, memories are sampled purely at random.
         * In **PER**, high-error memories are sampled more frequently, forcing the agent to study its biggest mistakes.
 
-        But what happens when we combine **Self-Supervised Curiosity**, **PER**, and an environment with terminal failure states (like *Snake*)?
+        But what happens when we combine **self-supervised curiosity**, **PER**, and an environment with terminal failure states (like *Snake*)?
         """
     )
 
@@ -1102,7 +1142,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     # 1. The Narrative Text
     act3_text = mo.md(
@@ -1116,6 +1156,15 @@ def _(mo):
         This becomes catastrophic if you are using **Prioritized Experience Replay (PER)**. PER samples memories from the replay buffer based on their error magnitude. Because "deaths" have the highest error, PER oversamples them. 
 
         **The Trap:** The buffer becomes poisoned. The agent's training batches become flooded with death sequences, completely drowning out the "normal" steps and successful apple captures. The agent unlearns how to play and optimizes for fast deaths.
+
+        Ablation intuition:
+
+        | Variant | Expected behavior |
+        |---|---|
+        | PER only | Replays high-TD-error events, but death transitions are not additionally inflated by curiosity. |
+        | ICM only | Death may be intrinsically surprising, but uniform replay limits how often that transition dominates training. |
+        | PER + ICM | Death transitions get both high TD error and high intrinsic error, so replay probability compounds. |
+        | PER + ICM + terminal mask | Keeps curiosity for non-terminal novelty while preventing terminal resets from becoming a reward source. |
 
         *Adjust the toggle below to see how adding ICM to a PER buffer poisons the training batch.*
         """
@@ -1135,7 +1184,7 @@ def _(mo):
     return act3_text, agent_type, sample_btn
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(act3_text, agent_type, mo, np, plt, sample_btn):
     mo.stop(
         np is None or plt is None,
@@ -1229,7 +1278,7 @@ def _(act3_text, agent_type, mo, np, plt, sample_btn):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(json, mo, wasm_iframe):
     # 1. Narrative
     fix_text = mo.md(
