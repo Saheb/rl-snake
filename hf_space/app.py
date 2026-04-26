@@ -1,6 +1,15 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "marimo",
+#     "matplotlib",
+#     "numpy",
+# ]
+# ///
+
 import marimo
 
-__generated_with = "0.23.2"
+__generated_with = "0.23.3"
 app = marimo.App(width="medium")
 
 
@@ -10,12 +19,12 @@ def _(mo):
     # Curiosity Killed the Snake: The Trap That Taught an Agent to Die
     *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017).*
 
-    [![Open in marimo](https://marimo.io/shield.svg)](https://marimo.app/l/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py)
+    [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
 
     ### The Problem: Sparse Reward Trap
-    In Deep Reinforcement Learning, an agent learns by maximizing a reward signal. But what happens when the environment is vast, the board is empty, and the reward is incredibly hard to find by pure chance? And what if there are no external rewards at all?
+    In reinforcement learning, an agent learns by maximizing reward. Usually that reward is **external**: it comes from the environment, like `+1` for eating an apple in Snake or `-1` for dying. But what happens when the environment is vast, the board is empty, and the external reward is incredibly hard to find by pure chance? What happens if the environment gives no useful reward signal for a long time?
 
-    When an $\epsilon$-greedy agent (like a standard DQN) faces a sparse environment, its exploration is entirely random. It suffers from "Catastrophic Amnesia" of its early states, spinning in circles rather than systematically mapping the environment.
+    When an $\epsilon$-greedy agent, such as a standard **Deep Q-Network (DQN)**, faces a sparse environment, its exploration is mostly random. It can repeatedly revisit familiar states, spinning in circles rather than systematically mapping the environment.
 
     **Play with the agent below to see how it performs when the reward is 13 steps away.**
     """)
@@ -23,7 +32,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(json, mo, random):
+def _(json, mo, random, wasm_iframe):
     grid_size = 14
     start = (grid_size // 2, grid_size // 2)
     reward = (0, grid_size - 1)
@@ -62,48 +71,56 @@ def _(json, mo, random):
         hist_curious.append(next_pos)
         visit_counts[next_pos] = visit_counts.get(next_pos, 0) + 1
 
-    html = f"""<div style="font-family:sans-serif;background:white;padding:10px;">
+    html = f"""<!DOCTYPE html>
+    <html>
+    <head>
     <style>
-      .rw-row {{ display:flex; gap:24px; justify-content:center; }}
-      .rw-panel {{ display:flex; flex-direction:column; align-items:center; }}
-      .rw-label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
-      .rw-sublabel {{ font-size:11px; color:#666; margin-bottom:4px; }}
-      #rw_c1, #rw_c2 {{ border:1px solid #ccc; }}
-      .rw-controls {{ margin-top:10px; display:flex; gap:14px; align-items:center; justify-content:center; }}
-      #rw_btn {{ padding:5px 22px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #aaa; background:#f5f5f5; }}
-      #rw_btn:hover {{ background:#e0e0e0; }}
-      .rw-legend {{ font-size:11px; color:#777; margin-top:4px; text-align:center; }}
+      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; }}
+      .row {{ display:flex; gap:24px; justify-content:center; }}
+      .panel {{ display:flex; flex-direction:column; align-items:center; }}
+      .label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
+      .sublabel {{ font-size:11px; color:#666; margin-bottom:4px; }}
+      canvas {{ border:1px solid #ccc; }}
+      .controls {{ margin-top:10px; display:flex; gap:14px; align-items:center; justify-content:center; }}
+      button {{ padding:5px 22px; font-size:14px; cursor:pointer; border-radius:4px;
+            border:1px solid #aaa; background:#f5f5f5; }}
+      button:hover {{ background:#e0e0e0; }}
+      .legend {{ font-size:11px; color:#777; margin-top:4px; text-align:center; }}
     </style>
-    <div class="rw-row">
-      <div class="rw-panel">
-    <div class="rw-label">Random Walk</div>
-    <div class="rw-sublabel">No reward signal — pure chance</div>
-    <canvas id="rw_c1" width="400" height="400"></canvas>
+    </head>
+    <body>
+    <div class="row">
+      <div class="panel">
+    <div class="label">Random Walk</div>
+    <div class="sublabel">No reward signal — pure chance</div>
+    <canvas id="c1" width="400" height="400"></canvas>
       </div>
-      <div class="rw-panel">
-    <div class="rw-label">Count-Based Curiosity Agent</div>
-    <div class="rw-sublabel">ICM proxy — seeks lowest-visited tiles</div>
-    <canvas id="rw_c2" width="400" height="400"></canvas>
+      <div class="panel">
+    <div class="label">Count-Based Curiosity Agent</div>
+    <div class="sublabel">Curiosity proxy — seeks lowest-visited tiles</div>
+    <canvas id="c2" width="400" height="400"></canvas>
       </div>
     </div>
-    <div class="rw-controls">
-      <button id="rw_btn">▶ Play</button>
-      <span id="rw_info" style="font-size:13px;color:#444">Step 0 / {n_steps}</span>
+    <div class="controls">
+      <button id="btn">▶ Play</button>
+      <span id="info" style="font-size:13px;color:#444">Step 0 / {n_steps}</span>
     </div>
-    <div class="rw-legend">● Agent &nbsp;&nbsp; ■ Start &nbsp;&nbsp; ★ Reward</div>
+    <div class="legend">● Agent &nbsp;&nbsp; ■ Start &nbsp;&nbsp; ★ Reward</div>
+
     <script>
-    (function() {{
     const G = {grid_size}, SZ = 400, CELL = SZ / G;
     const pathA = {json.dumps(hist_random)};
     const pathB = {json.dumps(hist_curious)};
     const startPos = [{start[1]}, {start[0]}];
     const rewardPos = [{reward[1]}, {reward[0]}];
-    const c1 = document.getElementById('rw_c1').getContext('2d');
-    const c2 = document.getElementById('rw_c2').getContext('2d');
-    const btn = document.getElementById('rw_btn');
-    const info = document.getElementById('rw_info');
+    const c1 = document.getElementById('c1').getContext('2d');
+    const c2 = document.getElementById('c2').getContext('2d');
+    const btn = document.getElementById('btn');
+    const info = document.getElementById('info');
     let frame = 0, playing = false, timer = null;
+
     function cc(col, row) {{ return [(col+0.5)*CELL, (row+0.5)*CELL]; }}
+
     function drawStar(ctx, col, row, r) {{
       const [cx,cy] = cc(col, row);
       ctx.beginPath();
@@ -115,6 +132,7 @@ def _(json, mo, random):
       ctx.closePath(); ctx.fillStyle='gold'; ctx.fill();
       ctx.strokeStyle='#888'; ctx.lineWidth=1; ctx.stroke();
     }}
+
     function drawCanvas(ctx, path, agentColor) {{
       ctx.clearRect(0,0,SZ,SZ);
       ctx.strokeStyle='#ccc'; ctx.lineWidth=0.5;
@@ -139,11 +157,13 @@ def _(json, mo, random):
       ctx.fillStyle=agentColor; ctx.fill();
       ctx.strokeStyle='#000'; ctx.lineWidth=1.5; ctx.stroke();
     }}
+
     function render() {{
       drawCanvas(c1, pathA, '#ef4444');
       drawCanvas(c2, pathB, '#8b5cf6');
       info.textContent = 'Step ' + frame + ' / {n_steps}';
     }}
+
     function tick() {{
       render();
       if (playing) {{
@@ -151,27 +171,29 @@ def _(json, mo, random):
     timer = setTimeout(tick, 130);
       }}
     }}
+
     btn.onclick = () => {{
       playing = !playing;
       btn.textContent = playing ? '⏸ Pause' : '▶ Play';
       if (playing) tick();
     }};
+
     render();
-    }})();
     </script>
-    </div>"""
+    </body>
+    </html>"""
 
     mo.vstack([
-        mo.Html(html),
+        wasm_iframe(html, height="500px"),
         mo.callout(
             mo.md(
                 "**Visualization note:** The right-hand agent uses a **count-based heuristic** "
                 "(always move to the lowest visit-count neighbour), not a live neural network. "
                 "In this discrete finite grid, visit counts serve as a practical stand-in for "
-                "ICM's forward model prediction error — both signal how *novel* a state is, "
+                "the Intrinsic Curiosity Module (ICM)'s forward-model prediction error — both signal how *novel* a state is, "
                 "and the outward-seeking behaviour looks similar. However, this equivalence "
                 "**only holds in tabular settings** with an enumerable state space. "
-                "ICM's core contribution is generalizing curiosity to **continuous, high-dimensional "
+                "The Intrinsic Curiosity Module's core contribution is generalizing curiosity to **continuous, high-dimensional "
                 "observation spaces** (raw pixels, sensor arrays) where visit counts are undefined — "
                 "and where a learned forward model is the only tractable novelty signal."
             ),
@@ -181,7 +203,7 @@ def _(json, mo, random):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     eta_slider = mo.ui.slider(
         start=0.01, stop=1.0, step=0.01, value=0.5,
@@ -192,135 +214,208 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(mo):
+def _(mo, wasm_iframe):
     # 1. The Narrative Text (Explaining the Forward Model)
     intro_text = mo.md(
         """
         ### The Concept: Mathematically Defining "Curiosity"
 
-        If the environment isn't giving the agent any rewards, the agent has to generate its own. Pathak et al. achieved this by giving the agent a **Forward Model**—a neural network that acts as an internal physics engine. 
+        If the environment is not giving the agent useful rewards, the agent has to generate its own. Pathak et al. achieved this by giving the agent a **Forward Model**: a neural network inside the agent that learns to predict what the next observation should look like after the agent takes an action.
 
-        Before the agent takes a step, the Forward Model guesses what the next state of the world will look like. The agent then takes the step and compares its guess to reality. The difference between the guess and reality is the **Prediction Error** (Mean Squared Error). 
+        Before the agent takes a step, the Forward Model predicts the next state. The agent then takes the step, observes the actual next state, and compares prediction to reality. The difference is the **Prediction Error** (Mean Squared Error). 
 
         $$Intrinsic\\ Reward = \\frac{\\eta}{2} (Predicted\\ State - Actual\\ State)^2$$
 
         Where **$\\eta$ (Eta)** is the **Curiosity Weight**. It scales how much intrinsic reward the agent gets from being surprised. The key insight of this equation is that **Prediction Error = Surprise = Reward**.
 
-        * If the agent visits a tile it has seen 100 times, its Forward Model perfectly predicts the physics of that tile. The error is zero. The agent is bored.
-        * If the agent visits a completely new tile, the Forward Model's guess is completely wrong. The error is massive. The agent experiences a spike of surprise.
+        More precisely, ICM computes prediction error in a learned latent space:
+
+        $$r_t^i = \\frac{\\eta}{2}\\left\\|\\hat{\\phi}(s_{t+1}) - \\phi(s_{t+1})\\right\\|_2^2$$
+
+        The squared error is not arbitrary. It is the standard regression loss for a continuous target and corresponds to a Gaussian negative log-likelihood assumption: large prediction mistakes are penalized quadratically, while small residual errors fade smoothly. The latent-space term matters because raw pixels contain action-irrelevant noise. ICM first maps observations through $\\phi(\\cdot)$, then rewards errors only in the learned representation that is useful for predicting the agent's own actions.
+
+        The Forward Model is trained from the agent's own experience: each transition `(state, action, next_state)` becomes a supervised learning example. After many updates on familiar transitions, its predictions become accurate and the intrinsic reward shrinks.
+
+        * If the agent repeatedly visits the same tile and observes the same transition, its Forward Model learns that transition. The prediction error becomes small. The agent is bored.
+        * If the agent reaches a new tile or a hard-to-predict transition, the Forward Model is wrong. The error is large. The agent experiences a spike of surprise.
 
         **Try it yourself:** Click the tiles in the "Boredom Simulator" below. Watch how "surprise" spikes when you explore new areas, and how the reward drops to zero if you linger in the same spot.
         """
     )
 
     # 2. The Interactive "Boredom Simulator" (Native HTML5 Canvas)
-    html2 = """<div style="font-family:sans-serif;background:white;padding:10px;display:flex;flex-direction:column;align-items:center;">
+    html2 = """<!DOCTYPE html>
+    <html>
+    <head>
     <style>
-        .brd-container { display:flex; gap:30px; align-items:flex-start; margin-top:10px; }
-        .brd-panel { display:flex; flex-direction:column; align-items:center; }
-        .brd-label { font-weight:bold; font-size:14px; margin-bottom:5px; color:#333; }
-        #brd_gridCanvas { border:1px solid #ccc; background:#f9f9f9; border-radius:4px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-        #brd_chartCanvas { border:1px solid #ccc; background:#f9f9f9; border-radius:4px; cursor:default; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-        .brd-score-board { margin-top:15px; font-size:16px; font-weight:bold; color:#10b981; }
-        .brd-instructions { font-size:12px; color:#666; margin-top:5px; font-style:italic; }
-        #brd_resetBtn { padding:6px 16px; cursor:pointer; background:#f0f0f0; border:1px solid #aaa; border-radius:4px; font-weight:bold; }
+        body { margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }
+        .container { display:flex; gap:30px; align-items:flex-start; margin-top: 10px;}
+        .panel { display:flex; flex-direction:column; align-items:center; }
+        .label { font-weight:bold; font-size:14px; margin-bottom:5px; color:#333;}
+        canvas { border:1px solid #ccc; background:#f9f9f9; border-radius: 4px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        #chartCanvas { cursor: default; }
+        .score-board { margin-top: 15px; font-size: 16px; font-weight: bold; color: #10b981; }
+        .instructions { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
     </style>
-    <div class="brd-container">
-        <div class="brd-panel">
-        <div class="brd-label">The Environment (Click to Explore)</div>
-        <canvas id="brd_gridCanvas" width="250" height="250"></canvas>
-        <div class="brd-instructions">Click tiles to generate intrinsic reward.</div>
+    </head>
+    <body>
+
+    <div class="container">
+        <div class="panel">
+        <div class="label">The Environment (Click to Explore)</div>
+        <canvas id="gridCanvas" width="250" height="250"></canvas>
+        <div class="instructions">Click tiles to generate intrinsic reward.</div>
         </div>
-        <div class="brd-panel">
-        <div class="brd-label">Forward Model: Prediction Error (Reward)</div>
-        <canvas id="brd_chartCanvas" width="350" height="250"></canvas>
-        <div class="brd-score-board">Total Intrinsic Reward: <span id="brd_score">0.00</span></div>
+
+        <div class="panel">
+        <div class="label">Forward Model: Prediction Error (Reward)</div>
+        <canvas id="chartCanvas" width="350" height="250"></canvas>
+        <div class="score-board">Total Intrinsic Reward: <span id="score">0.00</span></div>
         </div>
     </div>
     <div style="margin-top:15px;">
-        <button id="brd_resetBtn">↺ Reset Environment</button>
+        <button id="resetBtn" style="padding:6px 16px; cursor:pointer; background:#f0f0f0; border:1px solid #aaa; border-radius:4px; font-weight:bold;">↺ Reset Environment</button>
     </div>
+
     <script>
-    (function() {
-    const gridCtx = document.getElementById('brd_gridCanvas').getContext('2d');
-    const chartCtx = document.getElementById('brd_chartCanvas').getContext('2d');
-    const scoreEl = document.getElementById('brd_score');
-    const resetBtn = document.getElementById('brd_resetBtn');
-    const ROWS = 5, COLS = 5, CELL_SIZE = 50;
+    // --- Grid Logic ---
+    const gridCtx = document.getElementById('gridCanvas').getContext('2d');
+    const chartCtx = document.getElementById('chartCanvas').getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const ROWS = 5;
+    const COLS = 5;
+    const CELL_SIZE = 50;
+
+    // State
     let visits = Array(ROWS).fill().map(() => Array(COLS).fill(0));
-    let rewardHistory = [], totalScore = 0;
-    function getReward(v) { if (v===1) return 1.0; if (v===2) return 0.4; if (v===3) return 0.1; return 0.0; }
-    function getCellColor(v) {
-        if (v===0) return '#f9f9f9';
-        if (v===1) return '#fde047';
-        if (v===2) return '#fcd34d';
-        if (v===3) return '#d1d5db';
-        return '#9ca3af';
+    let rewardHistory = [];
+    let totalScore = 0;
+
+    // Reward curve: 1st visit = 1.0, 2nd = 0.4, 3rd = 0.1, 4th+ = 0.0
+    function getReward(visitCount) {
+        if (visitCount === 1) return 1.0;
+        if (visitCount === 2) return 0.4;
+        if (visitCount === 3) return 0.1;
+        return 0.0;
     }
+
+    // Color mapping based on boredom (visits)
+    function getCellColor(visitCount) {
+        if (visitCount === 0) return '#f9f9f9'; // Unvisited
+        if (visitCount === 1) return '#fde047'; // Bright Yellow (High Surprise)
+        if (visitCount === 2) return '#fcd34d'; // Dull Yellow
+        if (visitCount === 3) return '#d1d5db'; // Light Gray (Getting Bored)
+        return '#9ca3af'; // Dark Gray (Completely Bored)
+    }
+
     function drawGrid() {
         gridCtx.clearRect(0, 0, 250, 250);
-        for (let r=0; r<ROWS; r++) {
-            for (let c=0; c<COLS; c++) {
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
                 gridCtx.fillStyle = getCellColor(visits[r][c]);
-                gridCtx.fillRect(c*CELL_SIZE, r*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                gridCtx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 gridCtx.strokeStyle = '#e5e7eb';
-                gridCtx.strokeRect(c*CELL_SIZE, r*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                gridCtx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+
+                // Add text to show it's bored
                 if (visits[r][c] >= 4) {
                     gridCtx.fillStyle = '#4b5563';
                     gridCtx.font = "10px sans-serif";
                     gridCtx.textAlign = "center";
-                    gridCtx.fillText("Bored", c*CELL_SIZE+25, r*CELL_SIZE+28);
+                    gridCtx.fillText("Bored", c * CELL_SIZE + 25, r * CELL_SIZE + 28);
                 }
             }
         }
     }
+
+    // --- Chart Logic ---
     function drawChart() {
         chartCtx.clearRect(0, 0, 350, 250);
+
+        // Draw axes
         chartCtx.strokeStyle = '#ccc';
         chartCtx.beginPath();
-        chartCtx.moveTo(30,10); chartCtx.lineTo(30,220); chartCtx.lineTo(340,220);
+        chartCtx.moveTo(30, 10); chartCtx.lineTo(30, 220); // Y axis
+        chartCtx.lineTo(340, 220); // X axis
         chartCtx.stroke();
-        chartCtx.fillStyle = '#888'; chartCtx.font = "10px sans-serif";
-        chartCtx.fillText("1.0 -", 10, 25); chartCtx.fillText("0.5 -", 10, 120); chartCtx.fillText("0.0 -", 10, 220);
+
+        // Y-axis labels
+        chartCtx.fillStyle = '#888';
+        chartCtx.font = "10px sans-serif";
+        chartCtx.fillText("1.0 -", 10, 25);
+        chartCtx.fillText("0.5 -", 10, 120);
+        chartCtx.fillText("0.0 -", 10, 220);
+
         if (rewardHistory.length === 0) return;
-        chartCtx.beginPath(); chartCtx.strokeStyle = '#10b981'; chartCtx.lineWidth = 2;
+
+        // Draw line
+        chartCtx.beginPath();
+        chartCtx.strokeStyle = '#10b981';
+        chartCtx.lineWidth = 2;
+
         const stepX = 300 / Math.max(10, rewardHistory.length);
-        for (let i=0; i<rewardHistory.length; i++) {
-            const x = 30 + (i*stepX), y = 220 - (rewardHistory[i]*200);
-            i===0 ? chartCtx.moveTo(x,y) : chartCtx.lineTo(x,y);
-            chartCtx.fillStyle = '#10b981'; chartCtx.fillRect(x-2, y-2, 4, 4);
+
+        for (let i = 0; i < rewardHistory.length; i++) {
+            const x = 30 + (i * stepX);
+            const y = 220 - (rewardHistory[i] * 200); // Scale 0-1 to 0-200px
+
+            if (i === 0) chartCtx.moveTo(x, y);
+            else chartCtx.lineTo(x, y);
+
+            // Draw points
+            chartCtx.fillStyle = '#10b981';
+            chartCtx.fillRect(x - 2, y - 2, 4, 4);
         }
         chartCtx.stroke();
     }
-    document.getElementById('brd_gridCanvas').addEventListener('mousedown', (e) => {
+
+    // --- Interaction ---
+    document.getElementById('gridCanvas').addEventListener('mousedown', (e) => {
         const rect = e.target.getBoundingClientRect();
-        const c = Math.floor((e.clientX-rect.left)/CELL_SIZE);
-        const r = Math.floor((e.clientY-rect.top)/CELL_SIZE);
-        if (r>=0 && r<ROWS && c>=0 && c<COLS) {
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const c = Math.floor(x / CELL_SIZE);
+        const r = Math.floor(y / CELL_SIZE);
+
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
             visits[r][c]++;
             const reward = getReward(visits[r][c]);
+
             rewardHistory.push(reward);
-            if (rewardHistory.length > 25) rewardHistory.shift();
+            // Keep chart from squeezing too much (show last 25 clicks)
+            if (rewardHistory.length > 25) rewardHistory.shift(); 
+
             totalScore += reward;
             scoreEl.innerText = totalScore.toFixed(2);
-            drawGrid(); drawChart();
+
+            drawGrid();
+            drawChart();
         }
     });
+
     resetBtn.addEventListener('click', () => {
         visits = Array(ROWS).fill().map(() => Array(COLS).fill(0));
-        rewardHistory = []; totalScore = 0;
+        rewardHistory = [];
+        totalScore = 0;
         scoreEl.innerText = "0.00";
-        drawGrid(); drawChart();
+        drawGrid();
+        drawChart();
     });
-    drawGrid(); drawChart();
-    })();
+
+    // Init
+    drawGrid();
+    drawChart();
     </script>
-    </div>"""
+    </body>
+    </html>"""
 
     # 3. Stack the markdown and the widget together
     mo.vstack([
         intro_text,
-        mo.Html(html2),
+        wasm_iframe(html2, height="400px"),
         mo.callout(
             mo.md(
                 "**Simplification note:** The reward curve above uses a hardcoded 3-step decay "
@@ -346,7 +441,7 @@ def _(eta_slider, mo):
 
 
 @app.cell(hide_code=True)
-def _(json, mo):
+def _(json, mo, wasm_iframe):
     # 1. The Narrative Text (Explaining the Trap and the Filter)
     act2_text = mo.md(
         """
@@ -365,7 +460,7 @@ def _(json, mo):
 
         The Inverse Model is trained to predict the *agent’s own actions*. Because the agent's actions cannot control the random TV static, the neural network learns to completely ignore the TV when creating the latent vector. The noise is mathematically filtered out.
 
-        **Run the agents below** to see why Raw Pixel Prediction fails, and how the Latent Filter (ICM) saves the agent.
+        **Run the agents below** to see why raw-pixel prediction fails, and how the latent filter in the Intrinsic Curiosity Module (ICM) saves the agent.
         """
     )
 
@@ -384,74 +479,99 @@ def _(json, mo):
     hist_icm_tv = path_down_hallway + [(5,1)] * 5 + [(4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (3,6), (2,6), (1,6)] + [(1,6)] * 20
 
     # 3. Build the Canvas HTML (Saved to html_tv)
-    html_tv = f"""<div style="font-family:sans-serif;background:white;padding:10px;">
+    html_tv = f"""<!DOCTYPE html>
+    <html>
+    <head>
     <style>
-      .tv-row {{ display:flex; gap:24px; justify-content:center; }}
-      .tv-panel {{ display:flex; flex-direction:column; align-items:center; }}
-      .tv-label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
-      .tv-sublabel {{ font-size:11px; color:#666; margin-bottom:8px; max-width:250px; text-align:center; height:30px; }}
-      #tv_c1, #tv_c2 {{ border:1px solid #ccc; background:#f9f9f9; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }}
-      .tv-controls {{ margin-top:15px; display:flex; gap:14px; align-items:center; justify-content:center; }}
-      #tv_btn {{ padding:6px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #aaa; background:#f5f5f5; font-weight:bold; }}
-      #tv_btn:hover {{ background:#e0e0e0; }}
-      .tv-legend {{ font-size:12px; color:#555; margin-top:12px; text-align:center; }}
+      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; }}
+      .row {{ display:flex; gap:24px; justify-content:center; }}
+      .panel {{ display:flex; flex-direction:column; align-items:center; }}
+      .label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
+      .sublabel {{ font-size:11px; color:#666; margin-bottom:8px; max-width: 250px; text-align: center; height: 30px;}}
+      canvas {{ border:1px solid #ccc; background: #f9f9f9; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}}
+      .controls {{ margin-top:15px; display:flex; gap:14px; align-items:center; justify-content:center; }}
+      button {{ padding:6px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #aaa; background:#f5f5f5; font-weight:bold; }}
+      button:hover {{ background:#e0e0e0; }}
+      .legend {{ font-size:12px; color:#555; margin-top:12px; text-align:center; }}
     </style>
-    <div class="tv-row">
-      <div class="tv-panel">
-        <div class="tv-label">Raw Pixel Prediction</div>
-        <div class="tv-sublabel">Unable to predict the TV's static, the agent gets permanently stuck by infinite "surprise".</div>
-        <canvas id="tv_c1" width="240" height="210"></canvas>
+    </head>
+    <body>
+    <div class="row">
+      <div class="panel">
+        <div class="label">Raw Pixel Prediction</div>
+        <div class="sublabel">Unable to predict the TV's static, the agent gets permanently stuck by infinite "surprise".</div>
+        <canvas id="c1" width="240" height="210"></canvas>
       </div>
-      <div class="tv-panel">
-        <div class="tv-label">Latent Feature Prediction (ICM)</div>
-        <div class="tv-sublabel">The Inverse Model filters out the TV noise. The agent gets bored and moves on.</div>
-        <canvas id="tv_c2" width="240" height="210"></canvas>
+      <div class="panel">
+        <div class="label">Latent Feature Prediction (ICM)</div>
+        <div class="sublabel">The Inverse Model filters out the TV noise. The agent gets bored and moves on.</div>
+        <canvas id="c2" width="240" height="210"></canvas>
       </div>
     </div>
-    <div class="tv-controls">
-      <button id="tv_btn">▶ Deploy Agents</button>
-      <span id="tv_info" style="font-size:14px;color:#444;font-weight:bold;width:100px;">Step: 0</span>
+    <div class="controls">
+      <button id="btn">▶ Deploy Agents</button>
+      <span id="info" style="font-size:14px;color:#444;font-weight:bold;width:100px;">Step: 0</span>
     </div>
-    <div class="tv-legend">
-      <span style="color:royalblue">■</span> Start &nbsp;&nbsp;
-      <span style="color:gold">★</span> Goal &nbsp;&nbsp;
-      <span style="color:magenta">▒</span> Noisy TV &nbsp;&nbsp;
+    <div class="legend">
+      <span style="color:royalblue">■</span> Start &nbsp;&nbsp; 
+      <span style="color:gold">★</span> Goal &nbsp;&nbsp; 
+      <span style="color:magenta">▒</span> Noisy TV &nbsp;&nbsp; 
       <span style="color:#ef4444">●</span> Agent
     </div>
+
     <script>
-    (function() {{
     const GH = {grid_h_tv}, GW = {grid_w_tv}, SZ_W = 240, SZ_H = 210;
-    const CELL = SZ_W / GW;
+    const CELL = SZ_W / GW; // 30px per cell
     const pathA = {json.dumps(hist_raw_tv)};
     const pathB = {json.dumps(hist_icm_tv)};
     const startPos = [{start_tv[1]}, {start_tv[0]}];
     const goalPos = [{goal_tv[1]}, {goal_tv[0]}];
     const tvPos = [{noisy_tv_tile[1]}, {noisy_tv_tile[0]}];
-    const c1 = document.getElementById('tv_c1').getContext('2d');
-    const c2 = document.getElementById('tv_c2').getContext('2d');
-    const btn = document.getElementById('tv_btn');
-    const info = document.getElementById('tv_info');
+
+    const c1 = document.getElementById('c1').getContext('2d');
+    const c2 = document.getElementById('c2').getContext('2d');
+    const btn = document.getElementById('btn');
+    const info = document.getElementById('info');
     let frame = 0, playing = false, timer = null;
+
     function cc(col, row) {{ return [(col+0.5)*CELL, (row+0.5)*CELL]; }}
+
+    // Draw standard walls for the maze
     const walls = [
         [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],
-        [0,2],[1,2],[2,2],[3,2],[6,2],[7,2],
         [0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],
-        [0,1],[0,3],[0,4],[0,5],[2,3],[2,4],[2,5],[7,1],[7,3],[7,4],[7,5]
+        [0,1],[0,2],[0,3],[0,4],[0,5],[7,1],[7,2],[7,3],[7,4],[7,5],
+        [3,1],[4,1],[5,1],[3,2],[4,2],[5,2],
+        [2,3],[3,3],[4,3],[2,5],[3,5],[4,5],[5,5]
     ];
+
     function drawMaze(ctx, path, isRaw) {{
       ctx.clearRect(0,0,SZ_W,SZ_H);
+
+      // Draw grid lines
       ctx.strokeStyle='#e0e0e0'; ctx.lineWidth=1;
       for(let i=0; i<=GW; i++) {{ ctx.beginPath(); ctx.moveTo(i*CELL,0); ctx.lineTo(i*CELL,SZ_H); ctx.stroke(); }}
       for(let i=0; i<=GH; i++) {{ ctx.beginPath(); ctx.moveTo(0,i*CELL); ctx.lineTo(SZ_W,i*CELL); ctx.stroke(); }}
+
+      // Draw walls
       ctx.fillStyle = '#444';
-      walls.forEach(([wx, wy]) => {{ ctx.fillRect(wx*CELL, wy*CELL, CELL, CELL); }});
+      walls.forEach(([wx, wy]) => {{
+          ctx.fillRect(wx*CELL, wy*CELL, CELL, CELL);
+      }});
+
+      // Draw Start
       const [sx,sy] = cc(...startPos);
       ctx.fillStyle='royalblue'; ctx.fillRect(sx-8,sy-8,16,16);
+
+      // Draw Goal
       const [gx,gy] = cc(...goalPos);
       ctx.fillStyle='gold'; ctx.beginPath(); ctx.arc(gx,gy,8,0,Math.PI*2); ctx.fill(); ctx.stroke();
+
+      // Draw Noisy TV (Flashes random colors)
       ctx.fillStyle = 'rgb(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ')';
-      ctx.fillRect(tvPos[0]*CELL+2, tvPos[1]*CELL+2, CELL-4, CELL-4);
+      ctx.fillRect(tvPos[0]*CELL + 2, tvPos[1]*CELL + 2, CELL-4, CELL-4);
+
+      // Draw Trail
       if (frame > 0) {{
         ctx.beginPath(); ctx.strokeStyle='rgba(100,100,100,0.3)'; ctx.lineWidth=3;
         for (let i=0; i<=frame; i++) {{
@@ -461,18 +581,22 @@ def _(json, mo):
         }}
         ctx.stroke();
       }}
+
+      // Draw Agent
       if(path[frame]) {{
           const [ax,ay] = cc(path[frame][1],path[frame][0]);
           ctx.beginPath(); ctx.arc(ax,ay,7,0,Math.PI*2);
-          ctx.fillStyle = isRaw ? '#ef4444' : '#10b981';
+          ctx.fillStyle = isRaw ? '#ef4444' : '#10b981'; // Red for Raw, Green for ICM
           ctx.fill(); ctx.strokeStyle='#000'; ctx.lineWidth=1.5; ctx.stroke();
       }}
     }}
+
     function render() {{
       drawMaze(c1, pathA, true);
       drawMaze(c2, pathB, false);
       info.textContent = 'Step: ' + frame;
     }}
+
     function tick() {{
       render();
       if (playing && frame < Math.max(pathA.length, pathB.length) - 1) {{
@@ -483,24 +607,29 @@ def _(json, mo):
         btn.textContent = '↺ Reset';
       }}
     }}
+
     btn.onclick = () => {{
       if (btn.textContent === '↺ Reset') {{
-          frame = 0; playing = true; btn.textContent = '⏸ Pause'; tick();
+          frame = 0;
+          playing = true;
+          btn.textContent = '⏸ Pause';
+          tick();
       }} else {{
           playing = !playing;
           btn.textContent = playing ? '⏸ Pause' : '▶ Deploy Agents';
           if (playing) tick();
       }}
     }};
-    render();
-    }})();
+
+    render(); // Initial draw
     </script>
-    </div>"""
+    </body>
+    </html>"""
 
     # 4. Render everything together
     mo.vstack([
         act2_text,
-        mo.Html(html_tv),
+        wasm_iframe(html_tv, height="380px"),
         mo.callout(
             mo.md(
                 "**Visualization note:** The agent paths above are **scripted pedagogical illustrations**, "
@@ -516,7 +645,7 @@ def _(json, mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     # The PyTorch Architecture Walkthrough
     architecture_text = mo.md(
@@ -525,11 +654,38 @@ def _(mo):
 
         Before we look at how this breaks down in late-stage training, we need to understand how the Intrinsic Curiosity Module is actually constructed. 
 
-        The ICM is not a standalone agent; it is an independent subsystem that runs *alongside* any standard RL algorithm (like PPO or DQN). It consists of three distinct neural networks working together:
+        The ICM is not a standalone agent; it is an auxiliary subsystem that runs *inside the training loop* of a standard reinforcement-learning algorithm such as Proximal Policy Optimization (PPO) or Deep Q-Network (DQN). The policy still chooses actions and learns from rewards. ICM adds an extra reward term and trains its own predictive models from the same transitions.
 
         1. **The Feature Encoder ($\phi$):** Compresses raw pixels/states into a dense, latent vector.
         2. **The Inverse Model:** Takes the current state $\phi(s_t)$ and the next state $\phi(s_{t+1})$ to predict the action $a_t$. This is the filter that ignores unpredictable noise.
         3. **The Forward Model:** Takes the current state $\phi(s_t)$ and the action $a_t$ to predict the next state $\hat{\phi}(s_{t+1})$. 
+
+        Formally, the inverse model is a classifier and the forward model is a regressor:
+
+        $$L_I = -\\log p(a_t \\mid \\phi(s_t), \\phi(s_{t+1}))$$
+
+        $$L_F = \\frac{1}{2}\\left\\|\\hat{\\phi}(s_{t+1}) - \\phi(s_{t+1})\\right\\|_2^2$$
+
+        $$L_{ICM} = (1 - \\beta)L_I + \\beta L_F$$
+
+        $L_I$ trains the encoder to preserve action-relevant information: if a visual feature does not help infer which action moved the agent from $s_t$ to $s_{t+1}$, the inverse objective has little reason to keep it. $L_F$ trains the dynamics predictor in that filtered feature space. The intrinsic reward is proportional to $L_F$, but the encoder is shaped by both losses.
+
+        In a DQN-style loop, the call site looks like this:
+
+        ```python
+        action = dqn_policy.select_action(state)
+        next_state, external_reward, done = env.step(action)
+
+        inverse_loss, forward_loss, intrinsic_reward = icm(state, next_state, action)
+        reward_for_dqn = external_reward + eta * intrinsic_reward
+
+        replay_buffer.add(state, action, reward_for_dqn, next_state, done)
+
+        dqn_loss = train_dqn_from_replay(replay_buffer)
+        icm_loss = (1 - beta) * inverse_loss + beta * forward_loss
+        ```
+
+        So the ICM is called immediately after the environment step. Its prediction error becomes an exploration bonus, while its own networks are trained on the observed transition.
 
         Here is the core PyTorch implementation of the module:
 
@@ -583,7 +739,7 @@ def _(mo):
                 return pred_action_logits, pred_phi_t_plus_1, phi_t_plus_1, intrinsic_reward
         ```
 
-        Notice the `intrinsic_reward` calculation at the very bottom. It is completely decoupled from the game's actual score. The agent trains this module simultaneously with its policy, constantly trying to minimize both the Forward and Inverse loss, while using the resulting error as an exploration bonus.
+        Notice the `intrinsic_reward` calculation at the very bottom. It is decoupled from the game's actual score, then added to the environment reward before the policy update. The agent trains this module simultaneously with its policy, constantly trying to minimize both the Forward and Inverse loss, while using the current Forward Model error as an exploration bonus.
         """
     )
 
@@ -591,78 +747,46 @@ def _(mo):
     return
 
 
-@app.cell
-def _(F, mo, nn, torch):
-    mo.stop(
-        torch is None,
-        mo.callout(mo.md("**PyTorch is not available in the browser.** Clone the repo and run `marimo run notebooks/curiosity.py` locally to see the live tensor output."), kind="warn")
+@app.cell(hide_code=True)
+def _(mo):
+    _state_dim, _action_dim, _batch, _latent_dim = 20, 4, 8, 256
+
+    mo.callout(
+        mo.md(f"""
+        **WASM-compatible forward-pass shape check** — same tensor contract as the PyTorch module above:
+
+        | Tensor | Shape | Role |
+        |--------|-------|------|
+        | `pred_action_logits` | `{[_batch, _action_dim]}` | Inverse model output — predicted action |
+        | `pred_phi_next` | `{[_batch, _latent_dim]}` | Forward model output — predicted next latent |
+        | `phi_next` | `{[_batch, _latent_dim]}` | Encoder output — actual next latent |
+        | `intrinsic_reward` | `{[_batch]}` | Per-step curiosity signal (MSE in latent space) |
+
+        The executable PyTorch demo was removed from the notebook runtime because `torch` has no Pyodide/WASM build.
+        The architecture above remains the implementation used in the repository; the browser cells below use NumPy
+        proxies to preserve the same math and interactivity.
+        """),
+        kind="info",
     )
-    class IntrinsicCuriosityModule(nn.Module):
-        def __init__(self, state_dim, action_dim, latent_dim=256):
-            super().__init__()
-            self.encoder = nn.Sequential(
-                nn.Linear(state_dim, 128), nn.ReLU(),
-                nn.Linear(128, latent_dim), nn.ReLU()
-            )
-            self.inverse_model = nn.Sequential(
-                nn.Linear(latent_dim * 2, 128), nn.ReLU(),
-                nn.Linear(128, action_dim)
-            )
-            self.forward_model = nn.Sequential(
-                nn.Linear(latent_dim + action_dim, 128), nn.ReLU(),
-                nn.Linear(128, latent_dim)
-            )
-
-        def forward(self, state, next_state, action_one_hot):
-            phi_t = self.encoder(state)
-            phi_t1 = self.encoder(next_state)
-            pred_action_logits = self.inverse_model(torch.cat([phi_t, phi_t1], dim=1))
-            pred_phi_t1 = self.forward_model(torch.cat([phi_t, action_one_hot], dim=1))
-            intrinsic_reward = 0.5 * (pred_phi_t1 - phi_t1).pow(2).sum(dim=1)
-            return pred_action_logits, pred_phi_t1, phi_t1, intrinsic_reward
-
-    # Live forward pass on dummy data — confirms the module runs end-to-end
-    _state_dim, _action_dim, _batch = 20, 4, 8
-    _icm = IntrinsicCuriosityModule(state_dim=_state_dim, action_dim=_action_dim)
-    _s = torch.randn(_batch, _state_dim)
-    _s1 = torch.randn(_batch, _state_dim)
-    _a = F.one_hot(torch.randint(0, _action_dim, (_batch,)), _action_dim).float()
-    _pred_a, _pred_phi, _phi_next, _r_i = _icm(_s, _s1, _a)
-
-    mo.md(f"""
-    **Live ICM forward pass** — untrained weights, random inputs
-    (batch={_batch}, state\\_dim={_state_dim}, action\\_dim={_action_dim}, latent\\_dim=256):
-
-    | Tensor | Shape | Role |
-    |--------|-------|------|
-    | `pred_action_logits` | `{list(_pred_a.shape)}` | Inverse model output — predicted action |
-    | `pred_phi_next` | `{list(_pred_phi.shape)}` | Forward model output — predicted next latent |
-    | `phi_next` | `{list(_phi_next.shape)}` | Encoder output — actual next latent |
-    | `intrinsic_reward` | `{list(_r_i.shape)}` | Per-step curiosity signal (MSE in latent space) |
-
-    *The code block above is not pseudocode — this cell instantiates and runs it. Here are the actual tensor shapes on your machine:*
-
-    Mean intrinsic reward on random inputs: **{_r_i.mean().item():.4f}**
-    (high because untrained weights produce large prediction errors — exactly what novelty looks like)
-    """)
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     _train_intro = mo.md(r"""
     ### Mini-Experiment: Does the Forward Model Actually Learn?
 
-    The cell above proved ICM *runs*. This experiment proves it *learns*.
+    The cell above defined the ICM tensor contract. This experiment shows the core learning signal directly.
 
-    We train a real ICM on a **5×5 grid** with a **purely random policy** (ε = 1.0, zero extrinsic reward).
-    The only signal is the forward model's own prediction error.
-    As the agent wanders and the model observes more transitions, its predictions improve — and intrinsic reward decays toward zero.
+    We train a tiny **NumPy forward model** on a **5×5 grid** with a **purely random policy**
+    (ε = 1.0, zero extrinsic reward). It predicts the next grid position from the current position
+    and action, then uses its own prediction error as the intrinsic reward.
 
-    This is "boredom by gradient descent." Same phenomenon as the boredom simulator — now produced by real PyTorch backprop.
+    This is "boredom by gradient descent." Same phenomenon as the boredom simulator — now produced by
+    a browser-compatible model that can run inside Pyodide.
     """)
     train_btn = mo.ui.button(
-        label="▶ Train ICM on 5×5 grid (300 episodes, ~3s)",
+        label="▶ Train NumPy forward model on 5×5 grid",
         kind="success",
         value=0,
         on_click=lambda v: v + 1,
@@ -671,11 +795,14 @@ def _(mo):
     return (train_btn,)
 
 
-@app.cell
-def _(F, mo, nn, np, plt, random, torch, train_btn):
+@app.cell(hide_code=True)
+def _(mo, np, plt, random, train_btn):
     mo.stop(
-        torch is None,
-        mo.callout(mo.md("**PyTorch is not available in the browser.** Clone the repo and run `marimo run notebooks/curiosity.py` locally to train the live ICM experiment."), kind="warn")
+        np is None or plt is None,
+        mo.callout(
+            mo.md("**NumPy/Matplotlib are unavailable in this runtime.** In WASM they are installed from the notebook metadata."),
+            kind="warn",
+        ),
     )
     if not train_btn.value:
         _fig0, _ax0 = plt.subplots(figsize=(9, 3.5))
@@ -702,43 +829,34 @@ def _(F, mo, nn, np, plt, random, torch, train_btn):
                 self.pos[1] = max(0, min(self.size - 1, self.pos[1] + dx))
                 return np.array(self.pos, dtype=np.float32) / self.size, 0.0, False
 
-        class _TinyICM(nn.Module):
-            def __init__(self):
-                super().__init__()
-                self.encoder = nn.Sequential(nn.Linear(2, 32), nn.ReLU(), nn.Linear(32, 32), nn.ReLU())
-                self.inverse = nn.Sequential(nn.Linear(64, 32), nn.ReLU(), nn.Linear(32, 4))
-                self.forward_m = nn.Sequential(nn.Linear(36, 32), nn.ReLU(), nn.Linear(32, 32))
-            def forward(self, s, ns, a):
-                phi = self.encoder(s)
-                phi1 = self.encoder(ns)
-                pred_a = self.inverse(torch.cat([phi, phi1], dim=1))
-                pred_phi1 = self.forward_m(torch.cat([phi, a], dim=1))
-                r_i = 0.5 * (pred_phi1 - phi1).pow(2).sum(dim=1)
-                return pred_a, pred_phi1, phi1, r_i
-
         _env = _GridEnv(5)
-        _icm = _TinyICM()
-        _opt = torch.optim.Adam(_icm.parameters(), lr=1e-3)
+        _rng = np.random.default_rng(7)
+        _w = _rng.normal(0.0, 0.15, size=(6, 2))
+        _b = np.zeros(2)
+        _lr = 0.2
         _ep_rewards = []
 
         for _ep in range(300):
             _s = _env.reset()
-            _buf_s, _buf_ns, _buf_a = [], [], []
+            _features, _targets = [], []
             for _ in range(25):
                 _a = random.randint(0, 3)
                 _ns, _, _ = _env.step(_a)
-                _buf_s.append(_s); _buf_ns.append(_ns); _buf_a.append(_a)
+                _action_one_hot = np.eye(4, dtype=np.float32)[_a]
+                _features.append(np.concatenate([_s, _action_one_hot]))
+                _targets.append(_ns)
                 _s = _ns
-            # One batch update per episode — prevents catastrophic forgetting
-            _st = torch.FloatTensor(np.array(_buf_s))
-            _nst = torch.FloatTensor(np.array(_buf_ns))
-            _at = torch.stack([F.one_hot(torch.tensor(a), 4).float() for a in _buf_a])
-            _pred_a_out, _pred_phi_out, _phi1_out, _r_i_out = _icm(_st, _nst, _at)
-            _fwd_loss = _r_i_out.mean()
-            _inv_loss = F.cross_entropy(_pred_a_out, torch.tensor(_buf_a))
-            _loss = 0.8 * _fwd_loss + 0.2 * _inv_loss
-            _opt.zero_grad(); _loss.backward(); _opt.step()
-            _ep_rewards.append(_r_i_out.mean().item())
+
+            _x = np.asarray(_features)
+            _y = np.asarray(_targets)
+            _pred = _x @ _w + _b
+            _err = _pred - _y
+            _r_i = 0.5 * np.sum(_err * _err, axis=1)
+            _ep_rewards.append(float(np.mean(_r_i)))
+
+            _grad_pred = _err / len(_x)
+            _w -= _lr * (_x.T @ _grad_pred)
+            _b -= _lr * np.sum(_grad_pred, axis=0)
 
         _episodes = list(range(1, 301))
         _floor = 1e-6
@@ -767,8 +885,8 @@ def _(F, mo, nn, np, plt, random, torch, train_btn):
                 mo.md(
                     f"Intrinsic reward decayed from **{_first5:.4f}** (first 5 episodes) → "
                     f"**{_last5:.5f}** (last 5 episodes) — a **{_drop:,}× drop**. "
-                    "The forward model has learned the grid's physics. There is nothing left to be curious about. "
-                    "The same phenomenon the boredom simulator illustrated — now proven by gradient descent."
+                    "The forward model has learned the grid's transition structure. There is little left to be curious about. "
+                    "The same phenomenon the boredom simulator illustrated — now shown by gradient descent."
                 ),
                 kind="success"
             )
@@ -777,8 +895,8 @@ def _(F, mo, nn, np, plt, random, torch, train_btn):
     return
 
 
-@app.cell
-def _(json, mo):
+@app.cell(hide_code=True)
+def _(json, mo, wasm_iframe):
     # 1. Narrative Text
     train_text = mo.md(
         """
@@ -796,6 +914,8 @@ def _(json, mo):
         Watch what happens after **Game ~2,000** (when ε hits its floor and the agent goes fully greedy):
         intrinsic reward keeps spiking on every novel death. The agent never stops being "surprised" —
         but that persistent surprise doesn't translate into better performance. The next sections show why.
+
+        Methodological caveat: this is a mechanistic case study, not a benchmark claim. A research-grade evaluation would run multiple random seeds and report confidence intervals for at least four ablations: DQN + PER, DQN + ICM, DQN + PER + ICM, and DQN + PER + ICM with terminal intrinsic rewards masked. The single-run logs here are still useful because they expose a concrete failure mode in the replay distribution.
         """
     )
 
@@ -847,35 +967,39 @@ def _(json, mo):
         "last_game": _games[-1] if _games else 16000,
     })
 
-    html_train = f"""<div style="font-family:sans-serif;background:white;padding:10px;display:flex;flex-direction:column;align-items:center;">
+    html_train = f"""<!DOCTYPE html>
+    <html>
+    <head>
     <style>
-      .tr-panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
-      .tr-header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
-      .tr-title {{ font-weight:bold; font-size:14px; color:#333; }}
-      #trainBtn {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#10b981; color:white; font-weight:bold; transition:background 0.2s; }}
-      #trainBtn:hover {{ background:#059669; }}
-      #trainBtn:disabled {{ background:#a7f3d0; cursor:not-allowed; }}
-      #lossChart {{ background:white; border:1px solid #eee; border-radius:4px; }}
-      .tr-legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
-      .tr-leg-item {{ display:flex; align-items:center; gap:5px; }}
-      .tr-dot {{ width:10px; height:10px; border-radius:50%; }}
-      .tr-note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
+      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }}
+      .panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
+      .header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
+      .title {{ font-weight:bold; font-size:14px; color:#333; }}
+      button {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#10b981; color:white; font-weight:bold; transition:background 0.2s; }}
+      button:hover {{ background:#059669; }}
+      button:disabled {{ background:#a7f3d0; cursor:not-allowed; }}
+      canvas {{ background:white; border:1px solid #eee; border-radius:4px; }}
+      .legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
+      .leg-item {{ display:flex; align-items:center; gap:5px; }}
+      .dot {{ width:10px; height:10px; border-radius:50%; }}
+      .note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
     </style>
-    <div class="tr-panel">
-      <div class="tr-header">
-        <div class="tr-title">Real ICM Training Logs — DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
+    </head>
+    <body>
+    <div class="panel">
+      <div class="header">
+        <div class="title">Real ICM Training Logs — DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
         <button id="trainBtn">▶ Animate</button>
       </div>
       <canvas id="lossChart" width="640" height="260"></canvas>
-      <div class="tr-legend">
-        <div class="tr-leg-item"><div class="tr-dot" style="background:#3b82f6;"></div>Mean Score</div>
-        <div class="tr-leg-item"><div class="tr-dot" style="background:#f97316;"></div>Intrinsic Reward (scaled)</div>
-        <div class="tr-leg-item"><div class="tr-dot" style="background:#9ca3af;"></div>Epsilon</div>
+      <div class="legend">
+        <div class="leg-item"><div class="dot" style="background:#3b82f6;"></div>Mean Score</div>
+        <div class="leg-item"><div class="dot" style="background:#f97316;"></div>Intrinsic Reward (scaled)</div>
+        <div class="leg-item"><div class="dot" style="background:#9ca3af;"></div>Epsilon</div>
       </div>
-      <div class="tr-note">Orange spikes = real forward model surprise events on novel states and deaths. Does persistent surprise correlate with better performance? See the next section.</div>
+      <div class="note">Orange spikes = real forward model surprise events on novel states and deaths. Does persistent surprise correlate with better performance? See the next section.</div>
     </div>
     <script>
-    (function() {{
     const canvas = document.getElementById('lossChart');
     const ctx = canvas.getContext('2d');
     const btn = document.getElementById('trainBtn');
@@ -972,43 +1096,45 @@ def _(json, mo):
     }};
 
     render(N);
-    }})();
     </script>
-    </div>"""
+    </body>
+    </html>"""
 
-    mo.vstack([train_text, code_accordion, mo.Html(html_train)])
+    mo.vstack([train_text, code_accordion, wasm_iframe(html_train, height="430px")])
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     # The Transition and Literature Review Text
     bridge_text = mo.md(
         """
-        ### The Paradigm Shift: Self-Supervised vs. Hand-Coded Rewards
+        ### Self-Supervised vs. Hand-Coded Rewards
 
-        Before we look at where this architecture breaks down, we must acknowledge why Pathak et al.'s approach was so revolutionary. The title of the paper specifies **"Self-Supervised Prediction."** What does this mean?
+        Before we look at where this architecture breaks down, it helps to understand what Pathak et al. mean by **"Self-Supervised Prediction."** The paper was not the first work on intrinsic motivation or self-supervised signals, but it gave a clear and influential recipe for turning prediction error into an exploration bonus for deep reinforcement learning.
 
         Historically, to solve sparse environments, engineers relied on **Hand-Coded Reward Shaping**. A human programmer would manually inject domain knowledge: *"If the agent moves closer to the goal, give it +0.1 points. If it moves away, -0.1 points."* While reward shaping works, it is brittle. It requires a human to hand-hold the agent through every new game, and it frequently leads to "reward hacking" (where the agent finds a loophole to farm points without actually winning the game).
 
-        **Self-Supervised** curiosity requires zero human intervention. The agent creates its own dense reward signal natively from the environment's raw pixels. It learns the physics of the world first, and uses that knowledge to systematically explore until it naturally stumbles upon the true goal.
+        **Self-supervised** curiosity reduces the amount of human reward engineering. The agent creates a dense auxiliary reward from its own observations, learns a predictive model of environment dynamics, and uses prediction error to explore until it encounters task rewards.
 
         ---
 
         ### The Mechanics of Memory: Prioritized Experience Replay (PER)
 
-        The paper itself anticipated this problem. In the final paragraphs, Pathak et al. write:
+        We now have a new problem. Curiosity helps the agent discover rare events, but rare events are easy to forget if the training loop samples old experience uniformly. In Snake, an apple capture might be only a tiny fraction of the replay buffer. If the agent rarely replays those transitions, it does not learn much from them.
+
+        The paper anticipated this memory problem. In the final paragraphs, Pathak et al. write:
 
         > *”While the rich and diverse real world provides ample opportunities for interaction, reward signals are sparse. Our approach excels in this setting. However our approach does not directly extend to the scenarios where ‘opportunities for interactions’ are also rare. In theory, **one could save such events in a replay memory and use them to guide exploration**. However, we leave this extension for future work.”*
         >
         > — Pathak et al., *”Curiosity-driven Exploration by Self-supervised Prediction”*, ICML 2017. [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
 
-        Snake on a 10×10 board is precisely this setting. Early in training, apples are rare, interactions are thin, and the agent needs a way to revisit its most informative experiences. **We implemented the paper’s suggested extension** — a Prioritized Experience Replay (PER) buffer that samples memories based on their **Temporal Difference (TD) Error** — how “wrong” the agent was about that specific memory.
+        Snake on a 10×10 board is precisely this setting. Early in training, apples are rare, interactions are thin, and the agent needs a way to revisit its most informative experiences. **We implemented the paper’s suggested extension** using a Prioritized Experience Replay (PER) buffer that samples memories based on their **Temporal Difference (TD) Error** — how wrong the agent's Q-value estimate was for that memory.
 
         * In a standard buffer, memories are sampled purely at random.
         * In **PER**, high-error memories are sampled more frequently, forcing the agent to study its biggest mistakes.
 
-        But what happens when we combine **Self-Supervised Curiosity**, **PER**, and an environment with terminal failure states (like *Snake*)?
+        But what happens when we combine **self-supervised curiosity**, **PER**, and an environment with terminal failure states (like *Snake*)?
         """
     )
 
@@ -1016,7 +1142,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     # 1. The Narrative Text
     act3_text = mo.md(
@@ -1030,6 +1156,15 @@ def _(mo):
         This becomes catastrophic if you are using **Prioritized Experience Replay (PER)**. PER samples memories from the replay buffer based on their error magnitude. Because "deaths" have the highest error, PER oversamples them. 
 
         **The Trap:** The buffer becomes poisoned. The agent's training batches become flooded with death sequences, completely drowning out the "normal" steps and successful apple captures. The agent unlearns how to play and optimizes for fast deaths.
+
+        Ablation intuition:
+
+        | Variant | Expected behavior |
+        |---|---|
+        | PER only | Replays high-TD-error events, but death transitions are not additionally inflated by curiosity. |
+        | ICM only | Death may be intrinsically surprising, but uniform replay limits how often that transition dominates training. |
+        | PER + ICM | Death transitions get both high TD error and high intrinsic error, so replay probability compounds. |
+        | PER + ICM + terminal mask | Keeps curiosity for non-terminal novelty while preventing terminal resets from becoming a reward source. |
 
         *Adjust the toggle below to see how adding ICM to a PER buffer poisons the training batch.*
         """
@@ -1049,8 +1184,16 @@ def _(mo):
     return act3_text, agent_type, sample_btn
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(act3_text, agent_type, mo, np, plt, sample_btn):
+    mo.stop(
+        np is None or plt is None,
+        mo.callout(
+            mo.md("**NumPy/Matplotlib are unavailable in this runtime.** In WASM they are installed from the notebook metadata."),
+            kind="warn",
+        ),
+    )
+
     # 3. The Visualization Logic
     def render_batch_viz(agent_val, btn_click):
         # Base Replay Buffer Composition (100 memories total)
@@ -1135,8 +1278,8 @@ def _(act3_text, agent_type, mo, np, plt, sample_btn):
     return
 
 
-@app.cell
-def _(json, mo):
+@app.cell(hide_code=True)
+def _(json, mo, wasm_iframe):
     # 1. Narrative
     fix_text = mo.md(
         """
@@ -1191,34 +1334,38 @@ def _(json, mo):
     })
 
     # 3. Animated two-phase chart
-    html_fix = f"""<div style="font-family:sans-serif;background:white;padding:10px;display:flex;flex-direction:column;align-items:center;">
+    html_fix = f"""<!DOCTYPE html>
+    <html>
+    <head>
     <style>
-      .fix-panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
-      .fix-header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
-      .fix-title {{ font-weight:bold; font-size:14px; color:#333; }}
-      #fixBtn {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#6366f1; color:white; font-weight:bold; transition:background 0.2s; }}
-      #fixBtn:hover {{ background:#4f46e5; }}
-      #fixBtn:disabled {{ background:#a5b4fc; cursor:not-allowed; }}
-      #fixChart {{ background:white; border:1px solid #eee; border-radius:4px; }}
-      .fix-legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
-      .fix-leg-item {{ display:flex; align-items:center; gap:5px; }}
-      .fix-dot {{ width:10px; height:10px; border-radius:50%; }}
-      .fix-note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
+      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }}
+      .panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
+      .header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
+      .title {{ font-weight:bold; font-size:14px; color:#333; }}
+      button {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#6366f1; color:white; font-weight:bold; transition:background 0.2s; }}
+      button:hover {{ background:#4f46e5; }}
+      button:disabled {{ background:#a5b4fc; cursor:not-allowed; }}
+      canvas {{ background:white; border:1px solid #eee; border-radius:4px; }}
+      .legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
+      .leg-item {{ display:flex; align-items:center; gap:5px; }}
+      .dot {{ width:10px; height:10px; border-radius:50%; }}
+      .note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
     </style>
-    <div class="fix-panel">
-      <div class="fix-header">
-        <div class="fix-title">Terminal Reward Masking: r_i × (1 − done) — 10×10 Snake, 16,000 games</div>
+    </head>
+    <body>
+    <div class="panel">
+      <div class="header">
+        <div class="title">Terminal Reward Masking: r_i × (1 − done) — 10×10 Snake, 16,000 games</div>
         <button id="fixBtn">▶ Animate</button>
       </div>
       <canvas id="fixChart" width="640" height="260"></canvas>
-      <div class="fix-legend">
-        <div class="fix-leg-item"><div class="fix-dot" style="background:#ef4444;"></div>PER + ICM — unmasked (poisoned)</div>
-        <div class="fix-leg-item"><div class="fix-dot" style="background:#10b981;"></div>PER + ICM + terminal mask — fixed</div>
+      <div class="legend">
+        <div class="leg-item"><div class="dot" style="background:#ef4444;"></div>PER + ICM — unmasked (poisoned)</div>
+        <div class="leg-item"><div class="dot" style="background:#10b981;"></div>PER + ICM + terminal mask — fixed</div>
       </div>
-      <div class="fix-note">Both curves trained identically — the only difference is one line of code.</div>
+      <div class="note">Both curves trained identically — the only difference is one line of code.</div>
     </div>
     <script>
-    (function() {{
     const canvas = document.getElementById('fixChart');
     const ctx = canvas.getContext('2d');
     const btn = document.getElementById('fixBtn');
@@ -1318,9 +1465,9 @@ def _(json, mo):
     }};
 
     drawAxes();
-    }})();
     </script>
-    </div>"""
+    </body>
+    </html>"""
 
     source_accordion = mo.accordion({
         "📂 Source code & training scripts": mo.md("""
@@ -1333,7 +1480,7 @@ def _(json, mo):
         """)
     })
 
-    mo.vstack([fix_text, mo.Html(html_fix), source_accordion])
+    mo.vstack([fix_text, wasm_iframe(html_fix, height="430px"), source_accordion])
     return
 
 
@@ -1431,6 +1578,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _():
+    import base64
     import marimo as mo
     import json
     import random
@@ -1442,13 +1590,15 @@ def _():
         import numpy as np
     except ImportError:
         np = None
-    try:
-        import torch
-        import torch.nn as nn
-        import torch.nn.functional as F
-    except ImportError:
-        torch = nn = F = None
-    return F, json, mo, nn, np, plt, random, torch
+    def wasm_iframe(html: str, *, width: str = "100%", height: str = "400px"):
+        encoded = base64.b64encode(html.encode("utf-8")).decode("ascii")
+        return mo.Html(
+            f'<iframe src="data:text/html;charset=utf-8;base64,{encoded}" '
+            f'width="{width}" height="{height}" '
+            'style="border:0; width:100%;" loading="lazy"></iframe>'
+        )
+
+    return json, mo, np, plt, random, wasm_iframe
 
 
 if __name__ == "__main__":
