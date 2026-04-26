@@ -62,56 +62,48 @@ def _(json, mo, random):
         hist_curious.append(next_pos)
         visit_counts[next_pos] = visit_counts.get(next_pos, 0) + 1
 
-    html = f"""<!DOCTYPE html>
-    <html>
-    <head>
+    html = f"""<div style="font-family:sans-serif;background:white;padding:10px;">
     <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; }}
-      .row {{ display:flex; gap:24px; justify-content:center; }}
-      .panel {{ display:flex; flex-direction:column; align-items:center; }}
-      .label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
-      .sublabel {{ font-size:11px; color:#666; margin-bottom:4px; }}
-      canvas {{ border:1px solid #ccc; }}
-      .controls {{ margin-top:10px; display:flex; gap:14px; align-items:center; justify-content:center; }}
-      button {{ padding:5px 22px; font-size:14px; cursor:pointer; border-radius:4px;
-            border:1px solid #aaa; background:#f5f5f5; }}
-      button:hover {{ background:#e0e0e0; }}
-      .legend {{ font-size:11px; color:#777; margin-top:4px; text-align:center; }}
+      .rw-row {{ display:flex; gap:24px; justify-content:center; }}
+      .rw-panel {{ display:flex; flex-direction:column; align-items:center; }}
+      .rw-label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
+      .rw-sublabel {{ font-size:11px; color:#666; margin-bottom:4px; }}
+      #rw_c1, #rw_c2 {{ border:1px solid #ccc; }}
+      .rw-controls {{ margin-top:10px; display:flex; gap:14px; align-items:center; justify-content:center; }}
+      #rw_btn {{ padding:5px 22px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #aaa; background:#f5f5f5; }}
+      #rw_btn:hover {{ background:#e0e0e0; }}
+      .rw-legend {{ font-size:11px; color:#777; margin-top:4px; text-align:center; }}
     </style>
-    </head>
-    <body>
-    <div class="row">
-      <div class="panel">
-    <div class="label">Random Walk</div>
-    <div class="sublabel">No reward signal — pure chance</div>
-    <canvas id="c1" width="400" height="400"></canvas>
+    <div class="rw-row">
+      <div class="rw-panel">
+    <div class="rw-label">Random Walk</div>
+    <div class="rw-sublabel">No reward signal — pure chance</div>
+    <canvas id="rw_c1" width="400" height="400"></canvas>
       </div>
-      <div class="panel">
-    <div class="label">Count-Based Curiosity Agent</div>
-    <div class="sublabel">ICM proxy — seeks lowest-visited tiles</div>
-    <canvas id="c2" width="400" height="400"></canvas>
+      <div class="rw-panel">
+    <div class="rw-label">Count-Based Curiosity Agent</div>
+    <div class="rw-sublabel">ICM proxy — seeks lowest-visited tiles</div>
+    <canvas id="rw_c2" width="400" height="400"></canvas>
       </div>
     </div>
-    <div class="controls">
-      <button id="btn">▶ Play</button>
-      <span id="info" style="font-size:13px;color:#444">Step 0 / {n_steps}</span>
+    <div class="rw-controls">
+      <button id="rw_btn">▶ Play</button>
+      <span id="rw_info" style="font-size:13px;color:#444">Step 0 / {n_steps}</span>
     </div>
-    <div class="legend">● Agent &nbsp;&nbsp; ■ Start &nbsp;&nbsp; ★ Reward</div>
-
+    <div class="rw-legend">● Agent &nbsp;&nbsp; ■ Start &nbsp;&nbsp; ★ Reward</div>
     <script>
+    (function() {{
     const G = {grid_size}, SZ = 400, CELL = SZ / G;
     const pathA = {json.dumps(hist_random)};
     const pathB = {json.dumps(hist_curious)};
     const startPos = [{start[1]}, {start[0]}];
     const rewardPos = [{reward[1]}, {reward[0]}];
-    const c1 = document.getElementById('c1').getContext('2d');
-    const c2 = document.getElementById('c2').getContext('2d');
-    const btn = document.getElementById('btn');
-    const info = document.getElementById('info');
+    const c1 = document.getElementById('rw_c1').getContext('2d');
+    const c2 = document.getElementById('rw_c2').getContext('2d');
+    const btn = document.getElementById('rw_btn');
+    const info = document.getElementById('rw_info');
     let frame = 0, playing = false, timer = null;
-
     function cc(col, row) {{ return [(col+0.5)*CELL, (row+0.5)*CELL]; }}
-
     function drawStar(ctx, col, row, r) {{
       const [cx,cy] = cc(col, row);
       ctx.beginPath();
@@ -123,7 +115,6 @@ def _(json, mo, random):
       ctx.closePath(); ctx.fillStyle='gold'; ctx.fill();
       ctx.strokeStyle='#888'; ctx.lineWidth=1; ctx.stroke();
     }}
-
     function drawCanvas(ctx, path, agentColor) {{
       ctx.clearRect(0,0,SZ,SZ);
       ctx.strokeStyle='#ccc'; ctx.lineWidth=0.5;
@@ -148,13 +139,11 @@ def _(json, mo, random):
       ctx.fillStyle=agentColor; ctx.fill();
       ctx.strokeStyle='#000'; ctx.lineWidth=1.5; ctx.stroke();
     }}
-
     function render() {{
       drawCanvas(c1, pathA, '#ef4444');
       drawCanvas(c2, pathB, '#8b5cf6');
       info.textContent = 'Step ' + frame + ' / {n_steps}';
     }}
-
     function tick() {{
       render();
       if (playing) {{
@@ -162,20 +151,18 @@ def _(json, mo, random):
     timer = setTimeout(tick, 130);
       }}
     }}
-
     btn.onclick = () => {{
       playing = !playing;
       btn.textContent = playing ? '⏸ Pause' : '▶ Play';
       if (playing) tick();
     }};
-
     render();
+    }})();
     </script>
-    </body>
-    </html>"""
+    </div>"""
 
     mo.vstack([
-        mo.iframe(html, height="500px"),
+        mo.Html(html),
         mo.callout(
             mo.md(
                 "**Visualization note:** The right-hand agent uses a **count-based heuristic** "
@@ -227,178 +214,113 @@ def _(mo):
     )
 
     # 2. The Interactive "Boredom Simulator" (Native HTML5 Canvas)
-    html2 = """<!DOCTYPE html>
-    <html>
-    <head>
+    html2 = """<div style="font-family:sans-serif;background:white;padding:10px;display:flex;flex-direction:column;align-items:center;">
     <style>
-        body { margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }
-        .container { display:flex; gap:30px; align-items:flex-start; margin-top: 10px;}
-        .panel { display:flex; flex-direction:column; align-items:center; }
-        .label { font-weight:bold; font-size:14px; margin-bottom:5px; color:#333;}
-        canvas { border:1px solid #ccc; background:#f9f9f9; border-radius: 4px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        #chartCanvas { cursor: default; }
-        .score-board { margin-top: 15px; font-size: 16px; font-weight: bold; color: #10b981; }
-        .instructions { font-size: 12px; color: #666; margin-top: 5px; font-style: italic; }
+        .brd-container { display:flex; gap:30px; align-items:flex-start; margin-top:10px; }
+        .brd-panel { display:flex; flex-direction:column; align-items:center; }
+        .brd-label { font-weight:bold; font-size:14px; margin-bottom:5px; color:#333; }
+        #brd_gridCanvas { border:1px solid #ccc; background:#f9f9f9; border-radius:4px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+        #brd_chartCanvas { border:1px solid #ccc; background:#f9f9f9; border-radius:4px; cursor:default; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+        .brd-score-board { margin-top:15px; font-size:16px; font-weight:bold; color:#10b981; }
+        .brd-instructions { font-size:12px; color:#666; margin-top:5px; font-style:italic; }
+        #brd_resetBtn { padding:6px 16px; cursor:pointer; background:#f0f0f0; border:1px solid #aaa; border-radius:4px; font-weight:bold; }
     </style>
-    </head>
-    <body>
-
-    <div class="container">
-        <div class="panel">
-        <div class="label">The Environment (Click to Explore)</div>
-        <canvas id="gridCanvas" width="250" height="250"></canvas>
-        <div class="instructions">Click tiles to generate intrinsic reward.</div>
+    <div class="brd-container">
+        <div class="brd-panel">
+        <div class="brd-label">The Environment (Click to Explore)</div>
+        <canvas id="brd_gridCanvas" width="250" height="250"></canvas>
+        <div class="brd-instructions">Click tiles to generate intrinsic reward.</div>
         </div>
-
-        <div class="panel">
-        <div class="label">Forward Model: Prediction Error (Reward)</div>
-        <canvas id="chartCanvas" width="350" height="250"></canvas>
-        <div class="score-board">Total Intrinsic Reward: <span id="score">0.00</span></div>
+        <div class="brd-panel">
+        <div class="brd-label">Forward Model: Prediction Error (Reward)</div>
+        <canvas id="brd_chartCanvas" width="350" height="250"></canvas>
+        <div class="brd-score-board">Total Intrinsic Reward: <span id="brd_score">0.00</span></div>
         </div>
     </div>
     <div style="margin-top:15px;">
-        <button id="resetBtn" style="padding:6px 16px; cursor:pointer; background:#f0f0f0; border:1px solid #aaa; border-radius:4px; font-weight:bold;">🔄 Reset Environment</button>
+        <button id="brd_resetBtn">🔄 Reset Environment</button>
     </div>
-
     <script>
-    // --- Grid Logic ---
-    const gridCtx = document.getElementById('gridCanvas').getContext('2d');
-    const chartCtx = document.getElementById('chartCanvas').getContext('2d');
-    const scoreEl = document.getElementById('score');
-    const resetBtn = document.getElementById('resetBtn');
-
-    const ROWS = 5;
-    const COLS = 5;
-    const CELL_SIZE = 50;
-
-    // State
+    (function() {
+    const gridCtx = document.getElementById('brd_gridCanvas').getContext('2d');
+    const chartCtx = document.getElementById('brd_chartCanvas').getContext('2d');
+    const scoreEl = document.getElementById('brd_score');
+    const resetBtn = document.getElementById('brd_resetBtn');
+    const ROWS = 5, COLS = 5, CELL_SIZE = 50;
     let visits = Array(ROWS).fill().map(() => Array(COLS).fill(0));
-    let rewardHistory = [];
-    let totalScore = 0;
-
-    // Reward curve: 1st visit = 1.0, 2nd = 0.4, 3rd = 0.1, 4th+ = 0.0
-    function getReward(visitCount) {
-        if (visitCount === 1) return 1.0;
-        if (visitCount === 2) return 0.4;
-        if (visitCount === 3) return 0.1;
-        return 0.0;
+    let rewardHistory = [], totalScore = 0;
+    function getReward(v) { if (v===1) return 1.0; if (v===2) return 0.4; if (v===3) return 0.1; return 0.0; }
+    function getCellColor(v) {
+        if (v===0) return '#f9f9f9';
+        if (v===1) return '#fde047';
+        if (v===2) return '#fcd34d';
+        if (v===3) return '#d1d5db';
+        return '#9ca3af';
     }
-
-    // Color mapping based on boredom (visits)
-    function getCellColor(visitCount) {
-        if (visitCount === 0) return '#f9f9f9'; // Unvisited
-        if (visitCount === 1) return '#fde047'; // Bright Yellow (High Surprise)
-        if (visitCount === 2) return '#fcd34d'; // Dull Yellow
-        if (visitCount === 3) return '#d1d5db'; // Light Gray (Getting Bored)
-        return '#9ca3af'; // Dark Gray (Completely Bored)
-    }
-
     function drawGrid() {
         gridCtx.clearRect(0, 0, 250, 250);
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
+        for (let r=0; r<ROWS; r++) {
+            for (let c=0; c<COLS; c++) {
                 gridCtx.fillStyle = getCellColor(visits[r][c]);
-                gridCtx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                gridCtx.fillRect(c*CELL_SIZE, r*CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 gridCtx.strokeStyle = '#e5e7eb';
-                gridCtx.strokeRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-
-                // Add text to show it's bored
+                gridCtx.strokeRect(c*CELL_SIZE, r*CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 if (visits[r][c] >= 4) {
                     gridCtx.fillStyle = '#4b5563';
                     gridCtx.font = "10px sans-serif";
                     gridCtx.textAlign = "center";
-                    gridCtx.fillText("Bored", c * CELL_SIZE + 25, r * CELL_SIZE + 28);
+                    gridCtx.fillText("Bored", c*CELL_SIZE+25, r*CELL_SIZE+28);
                 }
             }
         }
     }
-
-    // --- Chart Logic ---
     function drawChart() {
         chartCtx.clearRect(0, 0, 350, 250);
-
-        // Draw axes
         chartCtx.strokeStyle = '#ccc';
         chartCtx.beginPath();
-        chartCtx.moveTo(30, 10); chartCtx.lineTo(30, 220); // Y axis
-        chartCtx.lineTo(340, 220); // X axis
+        chartCtx.moveTo(30,10); chartCtx.lineTo(30,220); chartCtx.lineTo(340,220);
         chartCtx.stroke();
-
-        // Y-axis labels
-        chartCtx.fillStyle = '#888';
-        chartCtx.font = "10px sans-serif";
-        chartCtx.fillText("1.0 -", 10, 25);
-        chartCtx.fillText("0.5 -", 10, 120);
-        chartCtx.fillText("0.0 -", 10, 220);
-
+        chartCtx.fillStyle = '#888'; chartCtx.font = "10px sans-serif";
+        chartCtx.fillText("1.0 -", 10, 25); chartCtx.fillText("0.5 -", 10, 120); chartCtx.fillText("0.0 -", 10, 220);
         if (rewardHistory.length === 0) return;
-
-        // Draw line
-        chartCtx.beginPath();
-        chartCtx.strokeStyle = '#10b981';
-        chartCtx.lineWidth = 2;
-
+        chartCtx.beginPath(); chartCtx.strokeStyle = '#10b981'; chartCtx.lineWidth = 2;
         const stepX = 300 / Math.max(10, rewardHistory.length);
-
-        for (let i = 0; i < rewardHistory.length; i++) {
-            const x = 30 + (i * stepX);
-            const y = 220 - (rewardHistory[i] * 200); // Scale 0-1 to 0-200px
-
-            if (i === 0) chartCtx.moveTo(x, y);
-            else chartCtx.lineTo(x, y);
-
-            // Draw points
-            chartCtx.fillStyle = '#10b981';
-            chartCtx.fillRect(x - 2, y - 2, 4, 4);
+        for (let i=0; i<rewardHistory.length; i++) {
+            const x = 30 + (i*stepX), y = 220 - (rewardHistory[i]*200);
+            i===0 ? chartCtx.moveTo(x,y) : chartCtx.lineTo(x,y);
+            chartCtx.fillStyle = '#10b981'; chartCtx.fillRect(x-2, y-2, 4, 4);
         }
         chartCtx.stroke();
     }
-
-    // --- Interaction ---
-    document.getElementById('gridCanvas').addEventListener('mousedown', (e) => {
+    document.getElementById('brd_gridCanvas').addEventListener('mousedown', (e) => {
         const rect = e.target.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const c = Math.floor(x / CELL_SIZE);
-        const r = Math.floor(y / CELL_SIZE);
-
-        if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
+        const c = Math.floor((e.clientX-rect.left)/CELL_SIZE);
+        const r = Math.floor((e.clientY-rect.top)/CELL_SIZE);
+        if (r>=0 && r<ROWS && c>=0 && c<COLS) {
             visits[r][c]++;
             const reward = getReward(visits[r][c]);
-
             rewardHistory.push(reward);
-            // Keep chart from squeezing too much (show last 25 clicks)
-            if (rewardHistory.length > 25) rewardHistory.shift(); 
-
+            if (rewardHistory.length > 25) rewardHistory.shift();
             totalScore += reward;
             scoreEl.innerText = totalScore.toFixed(2);
-
-            drawGrid();
-            drawChart();
+            drawGrid(); drawChart();
         }
     });
-
     resetBtn.addEventListener('click', () => {
         visits = Array(ROWS).fill().map(() => Array(COLS).fill(0));
-        rewardHistory = [];
-        totalScore = 0;
+        rewardHistory = []; totalScore = 0;
         scoreEl.innerText = "0.00";
-        drawGrid();
-        drawChart();
+        drawGrid(); drawChart();
     });
-
-    // Init
-    drawGrid();
-    drawChart();
+    drawGrid(); drawChart();
+    })();
     </script>
-    </body>
-    </html>"""
+    </div>"""
 
     # 3. Stack the markdown and the widget together
     mo.vstack([
         intro_text,
-        mo.iframe(html2, height="400px"),
+        mo.Html(html2),
         mo.callout(
             mo.md(
                 "**Simplification note:** The reward curve above uses a hardcoded 3-step decay "
@@ -462,98 +384,74 @@ def _(json, mo):
     hist_icm_tv = path_down_hallway + [(5,1)] * 5 + [(4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (3,6), (2,6), (1,6)] + [(1,6)] * 20
 
     # 3. Build the Canvas HTML (Saved to html_tv)
-    html_tv = f"""<!DOCTYPE html>
-    <html>
-    <head>
+    html_tv = f"""<div style="font-family:sans-serif;background:white;padding:10px;">
     <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; }}
-      .row {{ display:flex; gap:24px; justify-content:center; }}
-      .panel {{ display:flex; flex-direction:column; align-items:center; }}
-      .label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
-      .sublabel {{ font-size:11px; color:#666; margin-bottom:8px; max-width: 250px; text-align: center; height: 30px;}}
-      canvas {{ border:1px solid #ccc; background: #f9f9f9; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}}
-      .controls {{ margin-top:15px; display:flex; gap:14px; align-items:center; justify-content:center; }}
-      button {{ padding:6px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #aaa; background:#f5f5f5; font-weight:bold; }}
-      button:hover {{ background:#e0e0e0; }}
-      .legend {{ font-size:12px; color:#555; margin-top:12px; text-align:center; }}
+      .tv-row {{ display:flex; gap:24px; justify-content:center; }}
+      .tv-panel {{ display:flex; flex-direction:column; align-items:center; }}
+      .tv-label {{ font-weight:bold; font-size:13px; margin-bottom:5px; }}
+      .tv-sublabel {{ font-size:11px; color:#666; margin-bottom:8px; max-width:250px; text-align:center; height:30px; }}
+      #tv_c1, #tv_c2 {{ border:1px solid #ccc; background:#f9f9f9; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }}
+      .tv-controls {{ margin-top:15px; display:flex; gap:14px; align-items:center; justify-content:center; }}
+      #tv_btn {{ padding:6px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #aaa; background:#f5f5f5; font-weight:bold; }}
+      #tv_btn:hover {{ background:#e0e0e0; }}
+      .tv-legend {{ font-size:12px; color:#555; margin-top:12px; text-align:center; }}
     </style>
-    </head>
-    <body>
-    <div class="row">
-      <div class="panel">
-        <div class="label">Raw Pixel Prediction</div>
-        <div class="sublabel">Unable to predict the TV's static, the agent gets permanently stuck by infinite "surprise".</div>
-        <canvas id="c1" width="240" height="210"></canvas>
+    <div class="tv-row">
+      <div class="tv-panel">
+        <div class="tv-label">Raw Pixel Prediction</div>
+        <div class="tv-sublabel">Unable to predict the TV's static, the agent gets permanently stuck by infinite "surprise".</div>
+        <canvas id="tv_c1" width="240" height="210"></canvas>
       </div>
-      <div class="panel">
-        <div class="label">Latent Feature Prediction (ICM)</div>
-        <div class="sublabel">The Inverse Model filters out the TV noise. The agent gets bored and moves on.</div>
-        <canvas id="c2" width="240" height="210"></canvas>
+      <div class="tv-panel">
+        <div class="tv-label">Latent Feature Prediction (ICM)</div>
+        <div class="tv-sublabel">The Inverse Model filters out the TV noise. The agent gets bored and moves on.</div>
+        <canvas id="tv_c2" width="240" height="210"></canvas>
       </div>
     </div>
-    <div class="controls">
-      <button id="btn">▶ Deploy Agents</button>
-      <span id="info" style="font-size:14px;color:#444;font-weight:bold;width:100px;">Step: 0</span>
+    <div class="tv-controls">
+      <button id="tv_btn">▶ Deploy Agents</button>
+      <span id="tv_info" style="font-size:14px;color:#444;font-weight:bold;width:100px;">Step: 0</span>
     </div>
-    <div class="legend">
-      <span style="color:royalblue">■</span> Start &nbsp;&nbsp; 
-      <span style="color:gold">★</span> Goal &nbsp;&nbsp; 
-      <span style="color:magenta">▒</span> Noisy TV &nbsp;&nbsp; 
+    <div class="tv-legend">
+      <span style="color:royalblue">■</span> Start &nbsp;&nbsp;
+      <span style="color:gold">★</span> Goal &nbsp;&nbsp;
+      <span style="color:magenta">▒</span> Noisy TV &nbsp;&nbsp;
       <span style="color:#ef4444">●</span> Agent
     </div>
-
     <script>
+    (function() {{
     const GH = {grid_h_tv}, GW = {grid_w_tv}, SZ_W = 240, SZ_H = 210;
-    const CELL = SZ_W / GW; // 30px per cell
+    const CELL = SZ_W / GW;
     const pathA = {json.dumps(hist_raw_tv)};
     const pathB = {json.dumps(hist_icm_tv)};
     const startPos = [{start_tv[1]}, {start_tv[0]}];
     const goalPos = [{goal_tv[1]}, {goal_tv[0]}];
     const tvPos = [{noisy_tv_tile[1]}, {noisy_tv_tile[0]}];
-
-    const c1 = document.getElementById('c1').getContext('2d');
-    const c2 = document.getElementById('c2').getContext('2d');
-    const btn = document.getElementById('btn');
-    const info = document.getElementById('info');
+    const c1 = document.getElementById('tv_c1').getContext('2d');
+    const c2 = document.getElementById('tv_c2').getContext('2d');
+    const btn = document.getElementById('tv_btn');
+    const info = document.getElementById('tv_info');
     let frame = 0, playing = false, timer = null;
-
     function cc(col, row) {{ return [(col+0.5)*CELL, (row+0.5)*CELL]; }}
-
-    // Draw standard walls for the maze
     const walls = [
         [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],
         [0,2],[1,2],[2,2],[3,2],[6,2],[7,2],
         [0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],
         [0,1],[0,3],[0,4],[0,5],[2,3],[2,4],[2,5],[7,1],[7,3],[7,4],[7,5]
     ];
-
     function drawMaze(ctx, path, isRaw) {{
       ctx.clearRect(0,0,SZ_W,SZ_H);
-
-      // Draw grid lines
       ctx.strokeStyle='#e0e0e0'; ctx.lineWidth=1;
       for(let i=0; i<=GW; i++) {{ ctx.beginPath(); ctx.moveTo(i*CELL,0); ctx.lineTo(i*CELL,SZ_H); ctx.stroke(); }}
       for(let i=0; i<=GH; i++) {{ ctx.beginPath(); ctx.moveTo(0,i*CELL); ctx.lineTo(SZ_W,i*CELL); ctx.stroke(); }}
-
-      // Draw walls
       ctx.fillStyle = '#444';
-      walls.forEach(([wx, wy]) => {{
-          ctx.fillRect(wx*CELL, wy*CELL, CELL, CELL);
-      }});
-
-      // Draw Start
+      walls.forEach(([wx, wy]) => {{ ctx.fillRect(wx*CELL, wy*CELL, CELL, CELL); }});
       const [sx,sy] = cc(...startPos);
       ctx.fillStyle='royalblue'; ctx.fillRect(sx-8,sy-8,16,16);
-
-      // Draw Goal
       const [gx,gy] = cc(...goalPos);
       ctx.fillStyle='gold'; ctx.beginPath(); ctx.arc(gx,gy,8,0,Math.PI*2); ctx.fill(); ctx.stroke();
-
-      // Draw Noisy TV (Flashes random colors)
       ctx.fillStyle = `rgb(${{Math.random()*255}},${{Math.random()*255}},${{Math.random()*255}})`;
-      ctx.fillRect(tvPos[0]*CELL + 2, tvPos[1]*CELL + 2, CELL-4, CELL-4);
-
-      // Draw Trail
+      ctx.fillRect(tvPos[0]*CELL+2, tvPos[1]*CELL+2, CELL-4, CELL-4);
       if (frame > 0) {{
         ctx.beginPath(); ctx.strokeStyle='rgba(100,100,100,0.3)'; ctx.lineWidth=3;
         for (let i=0; i<=frame; i++) {{
@@ -563,22 +461,18 @@ def _(json, mo):
         }}
         ctx.stroke();
       }}
-
-      // Draw Agent
       if(path[frame]) {{
           const [ax,ay] = cc(path[frame][1],path[frame][0]);
           ctx.beginPath(); ctx.arc(ax,ay,7,0,Math.PI*2);
-          ctx.fillStyle = isRaw ? '#ef4444' : '#10b981'; // Red for Raw, Green for ICM
+          ctx.fillStyle = isRaw ? '#ef4444' : '#10b981';
           ctx.fill(); ctx.strokeStyle='#000'; ctx.lineWidth=1.5; ctx.stroke();
       }}
     }}
-
     function render() {{
       drawMaze(c1, pathA, true);
       drawMaze(c2, pathB, false);
       info.textContent = 'Step: ' + frame;
     }}
-
     function tick() {{
       render();
       if (playing && frame < Math.max(pathA.length, pathB.length) - 1) {{
@@ -589,29 +483,24 @@ def _(json, mo):
         btn.textContent = '🔄 Reset';
       }}
     }}
-
     btn.onclick = () => {{
       if (btn.textContent === '🔄 Reset') {{
-          frame = 0;
-          playing = true;
-          btn.textContent = '⏸ Pause';
-          tick();
+          frame = 0; playing = true; btn.textContent = '⏸ Pause'; tick();
       }} else {{
           playing = !playing;
           btn.textContent = playing ? '⏸ Pause' : '▶ Deploy Agents';
           if (playing) tick();
       }}
     }};
-
-    render(); // Initial draw
+    render();
+    }})();
     </script>
-    </body>
-    </html>"""
+    </div>"""
 
     # 4. Render everything together
     mo.vstack([
         act2_text,
-        mo.iframe(html_tv, height="380px"),
+        mo.Html(html_tv),
         mo.callout(
             mo.md(
                 "**Visualization note:** The agent paths above are **scripted pedagogical illustrations**, "
@@ -958,39 +847,35 @@ def _(json, mo):
         "last_game": _games[-1] if _games else 16000,
     })
 
-    html_train = f"""<!DOCTYPE html>
-    <html>
-    <head>
+    html_train = f"""<div style="font-family:sans-serif;background:white;padding:10px;display:flex;flex-direction:column;align-items:center;">
     <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }}
-      .panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
-      .header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
-      .title {{ font-weight:bold; font-size:14px; color:#333; }}
-      button {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#10b981; color:white; font-weight:bold; transition:background 0.2s; }}
-      button:hover {{ background:#059669; }}
-      button:disabled {{ background:#a7f3d0; cursor:not-allowed; }}
-      canvas {{ background:white; border:1px solid #eee; border-radius:4px; }}
-      .legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
-      .leg-item {{ display:flex; align-items:center; gap:5px; }}
-      .dot {{ width:10px; height:10px; border-radius:50%; }}
-      .note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
+      .tr-panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
+      .tr-header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
+      .tr-title {{ font-weight:bold; font-size:14px; color:#333; }}
+      #trainBtn {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#10b981; color:white; font-weight:bold; transition:background 0.2s; }}
+      #trainBtn:hover {{ background:#059669; }}
+      #trainBtn:disabled {{ background:#a7f3d0; cursor:not-allowed; }}
+      #lossChart {{ background:white; border:1px solid #eee; border-radius:4px; }}
+      .tr-legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
+      .tr-leg-item {{ display:flex; align-items:center; gap:5px; }}
+      .tr-dot {{ width:10px; height:10px; border-radius:50%; }}
+      .tr-note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
     </style>
-    </head>
-    <body>
-    <div class="panel">
-      <div class="header">
-        <div class="title">Real ICM Training Logs — DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
+    <div class="tr-panel">
+      <div class="tr-header">
+        <div class="tr-title">Real ICM Training Logs — DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
         <button id="trainBtn">▶ Animate</button>
       </div>
       <canvas id="lossChart" width="640" height="260"></canvas>
-      <div class="legend">
-        <div class="leg-item"><div class="dot" style="background:#3b82f6;"></div>Mean Score</div>
-        <div class="leg-item"><div class="dot" style="background:#f97316;"></div>Intrinsic Reward (scaled)</div>
-        <div class="leg-item"><div class="dot" style="background:#9ca3af;"></div>Epsilon</div>
+      <div class="tr-legend">
+        <div class="tr-leg-item"><div class="tr-dot" style="background:#3b82f6;"></div>Mean Score</div>
+        <div class="tr-leg-item"><div class="tr-dot" style="background:#f97316;"></div>Intrinsic Reward (scaled)</div>
+        <div class="tr-leg-item"><div class="tr-dot" style="background:#9ca3af;"></div>Epsilon</div>
       </div>
-      <div class="note">Orange spikes = real forward model surprise events on novel states and deaths. Does persistent surprise correlate with better performance? See the next section.</div>
+      <div class="tr-note">Orange spikes = real forward model surprise events on novel states and deaths. Does persistent surprise correlate with better performance? See the next section.</div>
     </div>
     <script>
+    (function() {{
     const canvas = document.getElementById('lossChart');
     const ctx = canvas.getContext('2d');
     const btn = document.getElementById('trainBtn');
@@ -1087,11 +972,11 @@ def _(json, mo):
     }};
 
     render(N);
+    }})();
     </script>
-    </body>
-    </html>"""
+    </div>"""
 
-    mo.vstack([train_text, code_accordion, mo.iframe(html_train, height="430px")])
+    mo.vstack([train_text, code_accordion, mo.Html(html_train)])
     return
 
 
@@ -1306,38 +1191,34 @@ def _(json, mo):
     })
 
     # 3. Animated two-phase chart
-    html_fix = f"""<!DOCTYPE html>
-    <html>
-    <head>
+    html_fix = f"""<div style="font-family:sans-serif;background:white;padding:10px;display:flex;flex-direction:column;align-items:center;">
     <style>
-      body {{ margin:0; font-family:sans-serif; background:white; padding:10px; display:flex; flex-direction:column; align-items:center; }}
-      .panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
-      .header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
-      .title {{ font-weight:bold; font-size:14px; color:#333; }}
-      button {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#6366f1; color:white; font-weight:bold; transition:background 0.2s; }}
-      button:hover {{ background:#4f46e5; }}
-      button:disabled {{ background:#a5b4fc; cursor:not-allowed; }}
-      canvas {{ background:white; border:1px solid #eee; border-radius:4px; }}
-      .legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
-      .leg-item {{ display:flex; align-items:center; gap:5px; }}
-      .dot {{ width:10px; height:10px; border-radius:50%; }}
-      .note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
+      .fix-panel {{ border:1px solid #ccc; background:#f9f9f9; border-radius:6px; padding:15px; width:640px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }}
+      .fix-header {{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }}
+      .fix-title {{ font-weight:bold; font-size:14px; color:#333; }}
+      #fixBtn {{ padding:8px 24px; font-size:14px; cursor:pointer; border-radius:4px; border:none; background:#6366f1; color:white; font-weight:bold; transition:background 0.2s; }}
+      #fixBtn:hover {{ background:#4f46e5; }}
+      #fixBtn:disabled {{ background:#a5b4fc; cursor:not-allowed; }}
+      #fixChart {{ background:white; border:1px solid #eee; border-radius:4px; }}
+      .fix-legend {{ display:flex; gap:18px; font-size:12px; margin-top:10px; justify-content:center; font-weight:bold; }}
+      .fix-leg-item {{ display:flex; align-items:center; gap:5px; }}
+      .fix-dot {{ width:10px; height:10px; border-radius:50%; }}
+      .fix-note {{ font-size:11px; color:#6b7280; margin-top:6px; text-align:center; font-style:italic; }}
     </style>
-    </head>
-    <body>
-    <div class="panel">
-      <div class="header">
-        <div class="title">Terminal Reward Masking: r_i × (1 − done) — 10×10 Snake, 16,000 games</div>
+    <div class="fix-panel">
+      <div class="fix-header">
+        <div class="fix-title">Terminal Reward Masking: r_i × (1 − done) — 10×10 Snake, 16,000 games</div>
         <button id="fixBtn">▶ Animate</button>
       </div>
       <canvas id="fixChart" width="640" height="260"></canvas>
-      <div class="legend">
-        <div class="leg-item"><div class="dot" style="background:#ef4444;"></div>PER + ICM — unmasked (poisoned)</div>
-        <div class="leg-item"><div class="dot" style="background:#10b981;"></div>PER + ICM + terminal mask — fixed</div>
+      <div class="fix-legend">
+        <div class="fix-leg-item"><div class="fix-dot" style="background:#ef4444;"></div>PER + ICM — unmasked (poisoned)</div>
+        <div class="fix-leg-item"><div class="fix-dot" style="background:#10b981;"></div>PER + ICM + terminal mask — fixed</div>
       </div>
-      <div class="note">Both curves trained identically — the only difference is one line of code.</div>
+      <div class="fix-note">Both curves trained identically — the only difference is one line of code.</div>
     </div>
     <script>
+    (function() {{
     const canvas = document.getElementById('fixChart');
     const ctx = canvas.getContext('2d');
     const btn = document.getElementById('fixBtn');
@@ -1437,9 +1318,9 @@ def _(json, mo):
     }};
 
     drawAxes();
+    }})();
     </script>
-    </body>
-    </html>"""
+    </div>"""
 
     source_accordion = mo.accordion({
         "📂 Source code & training scripts": mo.md("""
@@ -1452,7 +1333,7 @@ def _(json, mo):
         """)
     })
 
-    mo.vstack([fix_text, mo.iframe(html_fix, height="430px"), source_accordion])
+    mo.vstack([fix_text, mo.Html(html_fix), source_accordion])
     return
 
 
