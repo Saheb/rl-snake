@@ -257,7 +257,7 @@ def _(mo):
         </div>
     </div>
     <div style="margin-top:15px;">
-        <button id="resetBtn" style="padding:6px 16px; cursor:pointer; background:#f0f0f0; border:1px solid #aaa; border-radius:4px; font-weight:bold;">🔄 Reset Environment</button>
+        <button id="resetBtn" style="padding:6px 16px; cursor:pointer; background:#f0f0f0; border:1px solid #aaa; border-radius:4px; font-weight:bold;">↺ Reset Environment</button>
     </div>
 
     <script>
@@ -550,7 +550,7 @@ def _(json, mo):
       ctx.fillStyle='gold'; ctx.beginPath(); ctx.arc(gx,gy,8,0,Math.PI*2); ctx.fill(); ctx.stroke();
 
       // Draw Noisy TV (Flashes random colors)
-      ctx.fillStyle = `rgb(${{Math.random()*255}},${{Math.random()*255}},${{Math.random()*255}})`;
+      ctx.fillStyle = 'rgb(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ')';
       ctx.fillRect(tvPos[0]*CELL + 2, tvPos[1]*CELL + 2, CELL-4, CELL-4);
 
       // Draw Trail
@@ -586,12 +586,12 @@ def _(json, mo):
         timer = setTimeout(tick, 150);
       }} else if (playing) {{
         playing = false;
-        btn.textContent = '🔄 Reset';
+        btn.textContent = '↺ Reset';
       }}
     }}
 
     btn.onclick = () => {{
-      if (btn.textContent === '🔄 Reset') {{
+      if (btn.textContent === '↺ Reset') {{
           frame = 0;
           playing = true;
           btn.textContent = '⏸ Pause';
@@ -1073,12 +1073,12 @@ def _(json, mo):
                 Math.abs(data.games[cur] - data.epsilon_floor_game) < 150;
             animId = setTimeout(animate, isEpsFloor ? 600 : 20);
         }} else {{
-            btn.textContent = '🔄 Reset'; btn.disabled = false;
+            btn.textContent = '↺ Reset'; btn.disabled = false;
         }}
     }}
 
     btn.onclick = () => {{
-        if (btn.textContent === '🔄 Reset') {{
+        if (btn.textContent === '↺ Reset') {{
             cur = 0; render(0); btn.textContent = '▶ Animate';
         }} else {{
             btn.disabled = true; btn.textContent = 'Animating...';
@@ -1423,12 +1423,12 @@ def _(json, mo):
         render(N, cur);
         if (cur < N) {{ cur += 1; animId = setTimeout(phase2, 20); }}
         else {{
-            btn.textContent = '🔄 Reset'; btn.disabled = false;
+            btn.textContent = '↺ Reset'; btn.disabled = false;
         }}
     }}
 
     btn.onclick = () => {{
-        if (btn.textContent === '🔄 Reset') {{
+        if (btn.textContent === '↺ Reset') {{
             phase = 0; cur = 0; render(0, 0); btn.textContent = '▶ Animate';
         }} else {{
             btn.disabled = true; btn.textContent = 'Animating...';

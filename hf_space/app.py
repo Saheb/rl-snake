@@ -238,7 +238,7 @@ def _(mo):
         </div>
     </div>
     <div style="margin-top:15px;">
-        <button id="brd_resetBtn">🔄 Reset Environment</button>
+        <button id="brd_resetBtn">↺ Reset Environment</button>
     </div>
     <script>
     (function() {
@@ -450,7 +450,7 @@ def _(json, mo):
       ctx.fillStyle='royalblue'; ctx.fillRect(sx-8,sy-8,16,16);
       const [gx,gy] = cc(...goalPos);
       ctx.fillStyle='gold'; ctx.beginPath(); ctx.arc(gx,gy,8,0,Math.PI*2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = `rgb(${{Math.random()*255}},${{Math.random()*255}},${{Math.random()*255}})`;
+      ctx.fillStyle = 'rgb(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ')';
       ctx.fillRect(tvPos[0]*CELL+2, tvPos[1]*CELL+2, CELL-4, CELL-4);
       if (frame > 0) {{
         ctx.beginPath(); ctx.strokeStyle='rgba(100,100,100,0.3)'; ctx.lineWidth=3;
@@ -480,11 +480,11 @@ def _(json, mo):
         timer = setTimeout(tick, 150);
       }} else if (playing) {{
         playing = false;
-        btn.textContent = '🔄 Reset';
+        btn.textContent = '↺ Reset';
       }}
     }}
     btn.onclick = () => {{
-      if (btn.textContent === '🔄 Reset') {{
+      if (btn.textContent === '↺ Reset') {{
           frame = 0; playing = true; btn.textContent = '⏸ Pause'; tick();
       }} else {{
           playing = !playing;
@@ -958,12 +958,12 @@ def _(json, mo):
                 Math.abs(data.games[cur] - data.epsilon_floor_game) < 150;
             animId = setTimeout(animate, isEpsFloor ? 600 : 20);
         }} else {{
-            btn.textContent = '🔄 Reset'; btn.disabled = false;
+            btn.textContent = '↺ Reset'; btn.disabled = false;
         }}
     }}
 
     btn.onclick = () => {{
-        if (btn.textContent === '🔄 Reset') {{
+        if (btn.textContent === '↺ Reset') {{
             cur = 0; render(0); btn.textContent = '▶ Animate';
         }} else {{
             btn.disabled = true; btn.textContent = 'Animating...';
@@ -1304,12 +1304,12 @@ def _(json, mo):
         render(N, cur);
         if (cur < N) {{ cur += 1; animId = setTimeout(phase2, 20); }}
         else {{
-            btn.textContent = '🔄 Reset'; btn.disabled = false;
+            btn.textContent = '↺ Reset'; btn.disabled = false;
         }}
     }}
 
     btn.onclick = () => {{
-        if (btn.textContent === '🔄 Reset') {{
+        if (btn.textContent === '↺ Reset') {{
             phase = 0; cur = 0; render(0, 0); btn.textContent = '▶ Animate';
         }} else {{
             btn.disabled = true; btn.textContent = 'Animating...';
