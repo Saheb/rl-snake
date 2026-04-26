@@ -16,7 +16,7 @@ app = marimo.App(width="medium")
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Curiosity Killed the Snake: The Trap That Taught an Agent to Die
+    # Curiosity Killed the Snake: The Bug That Taught an Agent to Die
     *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017).*
 
     [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
@@ -92,12 +92,12 @@ def _(json, mo, random, wasm_iframe):
     <div class="row">
       <div class="panel">
     <div class="label">Random Walk</div>
-    <div class="sublabel">No reward signal — pure chance</div>
+    <div class="sublabel">Illustrative baseline — no reward signal, pure chance</div>
     <canvas id="c1" width="400" height="400"></canvas>
       </div>
       <div class="panel">
-    <div class="label">Count-Based Curiosity Agent</div>
-    <div class="sublabel">Curiosity proxy — seeks lowest-visited tiles</div>
+    <div class="label">Illustrative Count-Based Curiosity Proxy</div>
+    <div class="sublabel">Heuristic stand-in — seeks lowest-visited tiles</div>
     <canvas id="c2" width="400" height="400"></canvas>
       </div>
     </div>
@@ -187,7 +187,7 @@ def _(json, mo, random, wasm_iframe):
         wasm_iframe(html, height="500px"),
         mo.callout(
             mo.md(
-                "**Visualization note:** The right-hand agent uses a **count-based heuristic** "
+                "**Illustration note:** The right-hand agent uses a **count-based heuristic** "
                 "(always move to the lowest visit-count neighbour), not a live neural network. "
                 "In this discrete finite grid, visit counts serve as a practical stand-in for "
                 "the Intrinsic Curiosity Module (ICM)'s forward-model prediction error — both signal how *novel* a state is, "
@@ -214,7 +214,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(mo, wasm_iframe):
+def _(eta_slider, mo, wasm_iframe):
     # 1. The Narrative Text (Explaining the Forward Model)
     intro_text = mo.md(
         """
@@ -239,11 +239,12 @@ def _(mo, wasm_iframe):
         * If the agent repeatedly visits the same tile and observes the same transition, its Forward Model learns that transition. The prediction error becomes small. The agent is bored.
         * If the agent reaches a new tile or a hard-to-predict transition, the Forward Model is wrong. The error is large. The agent experiences a spike of surprise.
 
-        **Try it yourself:** Click the tiles in the "Boredom Simulator" below. Watch how "surprise" spikes when you explore new areas, and how the reward drops to zero if you linger in the same spot.
+        **Try the illustrative simulator below:** Click the tiles and watch how "surprise" spikes when you explore new areas, then decays as transitions become familiar. The η slider underneath rescales the reward magnitude.
         """
     )
 
     # 2. The Interactive "Boredom Simulator" (Native HTML5 Canvas)
+    eta_value = eta_slider.value
     html2 = """<!DOCTYPE html>
     <html>
     <head>
@@ -283,6 +284,8 @@ def _(mo, wasm_iframe):
     const chartCtx = document.getElementById('chartCanvas').getContext('2d');
     const scoreEl = document.getElementById('score');
     const resetBtn = document.getElementById('resetBtn');
+    const ETA = __ETA__;
+    const YMAX = Math.max(ETA / 2, 0.01);
 
     const ROWS = 5;
     const COLS = 5;
@@ -295,9 +298,9 @@ def _(mo, wasm_iframe):
 
     // Reward curve: 1st visit = 1.0, 2nd = 0.4, 3rd = 0.1, 4th+ = 0.0
     function getReward(visitCount) {
-        if (visitCount === 1) return 1.0;
-        if (visitCount === 2) return 0.4;
-        if (visitCount === 3) return 0.1;
+        if (visitCount === 1) return 1.0 * YMAX;
+        if (visitCount === 2) return 0.4 * YMAX;
+        if (visitCount === 3) return 0.1 * YMAX;
         return 0.0;
     }
 
@@ -344,9 +347,9 @@ def _(mo, wasm_iframe):
         // Y-axis labels
         chartCtx.fillStyle = '#888';
         chartCtx.font = "10px sans-serif";
-        chartCtx.fillText("1.0 -", 10, 25);
-        chartCtx.fillText("0.5 -", 10, 120);
-        chartCtx.fillText("0.0 -", 10, 220);
+        chartCtx.fillText(YMAX.toFixed(2) + " -", 10, 25);
+        chartCtx.fillText((YMAX / 2).toFixed(2) + " -", 10, 120);
+        chartCtx.fillText("0.00 -", 10, 220);
 
         if (rewardHistory.length === 0) return;
 
@@ -359,7 +362,7 @@ def _(mo, wasm_iframe):
 
         for (let i = 0; i < rewardHistory.length; i++) {
             const x = 30 + (i * stepX);
-            const y = 220 - (rewardHistory[i] * 200); // Scale 0-1 to 0-200px
+            const y = 220 - ((rewardHistory[i] / YMAX) * 200);
 
             if (i === 0) chartCtx.moveTo(x, y);
             else chartCtx.lineTo(x, y);
@@ -410,7 +413,7 @@ def _(mo, wasm_iframe):
     drawChart();
     </script>
     </body>
-    </html>"""
+    </html>""".replace("__ETA__", f"{eta_value:.2f}")
 
     # 3. Stack the markdown and the widget together
     mo.vstack([
@@ -418,12 +421,12 @@ def _(mo, wasm_iframe):
         wasm_iframe(html2, height="400px"),
         mo.callout(
             mo.md(
-                "**Simplification note:** The reward curve above uses a hardcoded 3-step decay "
+                "**Illustration note:** The reward curve above uses a hardcoded 3-step decay "
                 "(1st visit → 1.0, 2nd → 0.4, 3rd → 0.1) as a pedagogical proxy, not a real forward model. "
                 "A live ICM computes $\\frac{\\eta}{2}(\\hat{\\phi}_{t+1} - \\phi_{t+1})^2$ in latent space — "
                 "the qualitative shape is the same but the exact decay depends on network training. "
                 "See the **Mini-Experiment** section for real gradient-descent-based decay. "
-                "The slider below shows how η scales the reward magnitude in the real formula."
+                "The slider below now rescales this illustrative reward curve as well."
             ),
             kind="info"
         ),
@@ -460,23 +463,23 @@ def _(json, mo, wasm_iframe):
 
         The Inverse Model is trained to predict the *agent’s own actions*. Because the agent's actions cannot control the random TV static, the neural network learns to completely ignore the TV when creating the latent vector. The noise is mathematically filtered out.
 
-        **Run the agents below** to see why raw-pixel prediction fails, and how the latent filter in the Intrinsic Curiosity Module (ICM) saves the agent.
+        **Run the illustrative agents below** to see why raw-pixel prediction fails, and how the latent filter in the Intrinsic Curiosity Module (ICM) saves the agent.
         """
     )
 
     # 2. Hardcode the pedagogical paths with UNIQUE variables
     grid_h_tv, grid_w_tv = 7, 8
-    start_tv = (1, 1)
-    goal_tv = (1, 6)
-    noisy_tv_tile = (5, 1)
+    start_tv_rc = (1, 1)
+    goal_tv_rc = (1, 6)
+    noisy_tv_rc = (5, 1)
 
-    path_down_hallway = [(1,1), (2,1), (3,1), (4,1), (5,1)]
+    hallway_path_rc = [(1,1), (2,1), (3,1), (4,1), (5,1)]
 
     # RAW AGENT: Gets stuck at the TV forever (infinite prediction error)
-    hist_raw_tv = path_down_hallway + [(5,1)] * 40 
+    hist_raw_tv_rc = hallway_path_rc + [noisy_tv_rc] * 40 
 
     # ICM AGENT: Stares for 5 frames, learns to filter it, turns around, finds goal
-    hist_icm_tv = path_down_hallway + [(5,1)] * 5 + [(4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (3,6), (2,6), (1,6)] + [(1,6)] * 20
+    hist_icm_tv_rc = hallway_path_rc + [noisy_tv_rc] * 5 + [(4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (3,6), (2,6), goal_tv_rc] + [goal_tv_rc] * 20
 
     # 3. Build the Canvas HTML (Saved to html_tv)
     html_tv = f"""<!DOCTYPE html>
@@ -522,11 +525,11 @@ def _(json, mo, wasm_iframe):
     <script>
     const GH = {grid_h_tv}, GW = {grid_w_tv}, SZ_W = 240, SZ_H = 210;
     const CELL = SZ_W / GW; // 30px per cell
-    const pathA = {json.dumps(hist_raw_tv)};
-    const pathB = {json.dumps(hist_icm_tv)};
-    const startPos = [{start_tv[1]}, {start_tv[0]}];
-    const goalPos = [{goal_tv[1]}, {goal_tv[0]}];
-    const tvPos = [{noisy_tv_tile[1]}, {noisy_tv_tile[0]}];
+    const pathA_rc = {json.dumps(hist_raw_tv_rc)};
+    const pathB_rc = {json.dumps(hist_icm_tv_rc)};
+    const startXY = [{start_tv_rc[1]}, {start_tv_rc[0]}];
+    const goalXY = [{goal_tv_rc[1]}, {goal_tv_rc[0]}];
+    const tvXY = [{noisy_tv_rc[1]}, {noisy_tv_rc[0]}];
 
     const c1 = document.getElementById('c1').getContext('2d');
     const c2 = document.getElementById('c2').getContext('2d');
@@ -535,9 +538,10 @@ def _(json, mo, wasm_iframe):
     let frame = 0, playing = false, timer = null;
 
     function cc(col, row) {{ return [(col+0.5)*CELL, (row+0.5)*CELL]; }}
+    function rcToXy(rc) {{ return [rc[1], rc[0]]; }}
 
     // Draw standard walls for the maze
-    const walls = [
+    const wallsXY = [
         [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],
         [0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],
         [0,1],[0,2],[0,3],[0,4],[0,5],[7,1],[7,2],[7,3],[7,4],[7,5],
@@ -545,7 +549,7 @@ def _(json, mo, wasm_iframe):
         [2,3],[3,3],[4,3],[2,5],[3,5],[4,5],[5,5]
     ];
 
-    function drawMaze(ctx, path, isRaw) {{
+    function drawMaze(ctx, pathRC, isRaw) {{
       ctx.clearRect(0,0,SZ_W,SZ_H);
 
       // Draw grid lines
@@ -555,36 +559,38 @@ def _(json, mo, wasm_iframe):
 
       // Draw walls
       ctx.fillStyle = '#444';
-      walls.forEach(([wx, wy]) => {{
+      wallsXY.forEach(([wx, wy]) => {{
           ctx.fillRect(wx*CELL, wy*CELL, CELL, CELL);
       }});
 
       // Draw Start
-      const [sx,sy] = cc(...startPos);
+      const [sx,sy] = cc(...startXY);
       ctx.fillStyle='royalblue'; ctx.fillRect(sx-8,sy-8,16,16);
 
       // Draw Goal
-      const [gx,gy] = cc(...goalPos);
+      const [gx,gy] = cc(...goalXY);
       ctx.fillStyle='gold'; ctx.beginPath(); ctx.arc(gx,gy,8,0,Math.PI*2); ctx.fill(); ctx.stroke();
 
       // Draw Noisy TV (Flashes random colors)
       ctx.fillStyle = 'rgb(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ')';
-      ctx.fillRect(tvPos[0]*CELL + 2, tvPos[1]*CELL + 2, CELL-4, CELL-4);
+      ctx.fillRect(tvXY[0]*CELL + 2, tvXY[1]*CELL + 2, CELL-4, CELL-4);
 
       // Draw Trail
       if (frame > 0) {{
         ctx.beginPath(); ctx.strokeStyle='rgba(100,100,100,0.3)'; ctx.lineWidth=3;
         for (let i=0; i<=frame; i++) {{
-          if(!path[i]) continue;
-          const [cx,cy] = cc(path[i][1],path[i][0]);
+          if(!pathRC[i]) continue;
+          const [col,row] = rcToXy(pathRC[i]);
+          const [cx,cy] = cc(col, row);
           i===0 ? ctx.moveTo(cx,cy) : ctx.lineTo(cx,cy);
         }}
         ctx.stroke();
       }}
 
       // Draw Agent
-      if(path[frame]) {{
-          const [ax,ay] = cc(path[frame][1],path[frame][0]);
+      if(pathRC[frame]) {{
+          const [col,row] = rcToXy(pathRC[frame]);
+          const [ax,ay] = cc(col, row);
           ctx.beginPath(); ctx.arc(ax,ay,7,0,Math.PI*2);
           ctx.fillStyle = isRaw ? '#ef4444' : '#10b981'; // Red for Raw, Green for ICM
           ctx.fill(); ctx.strokeStyle='#000'; ctx.lineWidth=1.5; ctx.stroke();
@@ -592,14 +598,14 @@ def _(json, mo, wasm_iframe):
     }}
 
     function render() {{
-      drawMaze(c1, pathA, true);
-      drawMaze(c2, pathB, false);
+      drawMaze(c1, pathA_rc, true);
+      drawMaze(c2, pathB_rc, false);
       info.textContent = 'Step: ' + frame;
     }}
 
     function tick() {{
       render();
-      if (playing && frame < Math.max(pathA.length, pathB.length) - 1) {{
+      if (playing && frame < Math.max(pathA_rc.length, pathB_rc.length) - 1) {{
         frame++;
         timer = setTimeout(tick, 150);
       }} else if (playing) {{
@@ -632,7 +638,7 @@ def _(json, mo, wasm_iframe):
         wasm_iframe(html_tv, height="380px"),
         mo.callout(
             mo.md(
-                "**Visualization note:** The agent paths above are **scripted pedagogical illustrations**, "
+                "**Illustration note:** The agent paths above are **scripted pedagogical illustrations**, "
                 "not live neural network runs. The Raw agent is hardcoded to stay fixed at the TV tile; "
                 "the ICM agent is hardcoded to move on after 5 steps. The qualitative behavior is "
                 "grounded in the paper's theoretical predictions — a real ICM agent learns to filter "
@@ -662,11 +668,11 @@ def _(mo):
 
         Formally, the inverse model is a classifier and the forward model is a regressor:
 
-        $$L_I = -\\log p(a_t \\mid \\phi(s_t), \\phi(s_{t+1}))$$
+        $$L_I = -\log p(a_t \mid \phi(s_t), \phi(s_{t+1}))$$
 
-        $$L_F = \\frac{1}{2}\\left\\|\\hat{\\phi}(s_{t+1}) - \\phi(s_{t+1})\\right\\|_2^2$$
+        $$L_F = \frac{1}{2}\left\|\hat{\phi}(s_{t+1}) - \phi(s_{t+1})\right\|_2^2$$
 
-        $$L_{ICM} = (1 - \\beta)L_I + \\beta L_F$$
+        $$L_{ICM} = (1 - \beta)L_I + \beta L_F$$
 
         $L_I$ trains the encoder to preserve action-relevant information: if a visual feature does not help infer which action moved the agent from $s_t$ to $s_{t+1}$, the inverse objective has little reason to keep it. $L_F$ trains the dynamics predictor in that filtered feature space. The intrinsic reward is proportional to $L_F$, but the encoder is shaped by both losses.
 
@@ -778,15 +784,16 @@ def _(mo):
 
     The cell above defined the ICM tensor contract. This experiment shows the core learning signal directly.
 
-    We train a tiny **NumPy forward model** on a **5×5 grid** with a **purely random policy**
+    We train a tiny **NumPy linear forward model** on a **5×5 grid** with a **purely random policy**
     (ε = 1.0, zero extrinsic reward). It predicts the next grid position from the current position
     and action, then uses its own prediction error as the intrinsic reward.
 
     This is "boredom by gradient descent." Same phenomenon as the boredom simulator — now produced by
-    a browser-compatible model that can run inside Pyodide.
+    a browser-compatible linear model that can run inside Pyodide. The full ICM paper uses a neural network;
+    this simplified example is intentionally linear because that is sufficient to learn deterministic 5×5 grid transitions.
     """)
     train_btn = mo.ui.button(
-        label="▶ Train NumPy forward model on 5×5 grid",
+        label="▶ Train NumPy linear forward model on 5×5 grid",
         kind="success",
         value=0,
         on_click=lambda v: v + 1,
@@ -808,7 +815,7 @@ def _(mo, np, plt, random, train_btn):
         _fig0, _ax0 = plt.subplots(figsize=(9, 3.5))
         _ax0.set_xlabel("Episode", fontsize=11)
         _ax0.set_ylabel("Mean Intrinsic Reward per Step (log scale)", fontsize=11)
-        _ax0.set_title("ICM Forward Model Learning Curve — 5×5 Grid, Random Policy", fontweight="bold", fontsize=13)
+        _ax0.set_title("Linear Forward Model Learning Curve — 5×5 Grid, Random Policy", fontweight="bold", fontsize=13)
         _ax0.set_xlim(1, 300)
         _ax0.spines["top"].set_visible(False)
         _ax0.spines["right"].set_visible(False)
@@ -868,7 +875,7 @@ def _(mo, np, plt, random, train_btn):
         _ax.set_yscale('log')
         _ax.set_xlabel("Episode", fontsize=11)
         _ax.set_ylabel("Mean Intrinsic Reward per Step (log scale)", fontsize=11)
-        _ax.set_title("ICM Forward Model Learning Curve — 5×5 Grid, Random Policy", fontweight='bold', fontsize=13)
+        _ax.set_title("Linear Forward Model Learning Curve — 5×5 Grid, Random Policy", fontweight='bold', fontsize=13)
         _ax.legend(fontsize=10)
         _ax.spines['top'].set_visible(False)
         _ax.spines['right'].set_visible(False)
@@ -885,8 +892,8 @@ def _(mo, np, plt, random, train_btn):
                 mo.md(
                     f"Intrinsic reward decayed from **{_first5:.4f}** (first 5 episodes) → "
                     f"**{_last5:.5f}** (last 5 episodes) — a **{_drop:,}× drop**. "
-                    "The forward model has learned the grid's transition structure. There is little left to be curious about. "
-                    "The same phenomenon the boredom simulator illustrated — now shown by gradient descent."
+                    "The linear forward model has learned the grid's transition structure. There is little left to be curious about. "
+                    "The same phenomenon the boredom simulator illustrated — now shown by gradient descent in a minimal linear setting."
                 ),
                 kind="success"
             )
@@ -997,7 +1004,7 @@ def _(json, mo, wasm_iframe):
         <div class="leg-item"><div class="dot" style="background:#f97316;"></div>Intrinsic Reward (scaled)</div>
         <div class="leg-item"><div class="dot" style="background:#9ca3af;"></div>Epsilon</div>
       </div>
-      <div class="note">Orange spikes = real forward model surprise events on novel states and deaths. Does persistent surprise correlate with better performance? See the next section.</div>
+      <div class="note">Orange spikes = real forward-model surprise events on novel states and deaths. This is real training data, but still from a single-run case study rather than a multi-seed benchmark.</div>
     </div>
     <script>
     const canvas = document.getElementById('lossChart');
@@ -1106,39 +1113,23 @@ def _(json, mo, wasm_iframe):
 
 @app.cell(hide_code=True)
 def _(mo):
-    # The Transition and Literature Review Text
-    bridge_text = mo.md(
-        """
-        ### Self-Supervised vs. Hand-Coded Rewards
+    mechanism_text = mo.md(
+        r"""
+        ### Why PER + ICM Specifically Amplifies Death
 
-        Before we look at where this architecture breaks down, it helps to understand what Pathak et al. mean by **"Self-Supervised Prediction."** The paper was not the first work on intrinsic motivation or self-supervised signals, but it gave a clear and influential recipe for turning prediction error into an exploration bonus for deep reinforcement learning.
+        The failure mode is not just that terminal states are surprising. It is that **curiosity changes what replay considers important**.
 
-        Historically, to solve sparse environments, engineers relied on **Hand-Coded Reward Shaping**. A human programmer would manually inject domain knowledge: *"If the agent moves closer to the goal, give it +0.1 points. If it moves away, -0.1 points."* While reward shaping works, it is brittle. It requires a human to hand-hold the agent through every new game, and it frequently leads to "reward hacking" (where the agent finds a loophole to farm points without actually winning the game).
+        The mechanism can be stated in three steps:
 
-        **Self-supervised** curiosity reduces the amount of human reward engineering. The agent creates a dense auxiliary reward from its own observations, learns a predictive model of environment dynamics, and uses prediction error to explore until it encounters task rewards.
+        1. **TD target inflation:** the Q-learning target contains `r_ext + η r_int`. If a terminal transition produces a large intrinsic reward spike, its TD error can jump even when the extrinsic outcome is bad.
+        2. **Replay amplification:** PER samples transitions with probability increasing in TD error magnitude, so those inflated terminal transitions are replayed disproportionately often.
+        3. **Terminal surprise concentration:** game-over resets are unusually hard for the forward model to predict, so the same death transitions are both highly surprising and highly replayed.
 
-        ---
-
-        ### The Mechanics of Memory: Prioritized Experience Replay (PER)
-
-        We now have a new problem. Curiosity helps the agent discover rare events, but rare events are easy to forget if the training loop samples old experience uniformly. In Snake, an apple capture might be only a tiny fraction of the replay buffer. If the agent rarely replays those transitions, it does not learn much from them.
-
-        The paper anticipated this memory problem. In the final paragraphs, Pathak et al. write:
-
-        > *”While the rich and diverse real world provides ample opportunities for interaction, reward signals are sparse. Our approach excels in this setting. However our approach does not directly extend to the scenarios where ‘opportunities for interactions’ are also rare. In theory, **one could save such events in a replay memory and use them to guide exploration**. However, we leave this extension for future work.”*
-        >
-        > — Pathak et al., *”Curiosity-driven Exploration by Self-supervised Prediction”*, ICML 2017. [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
-
-        Snake on a 10×10 board is precisely this setting. Early in training, apples are rare, interactions are thin, and the agent needs a way to revisit its most informative experiences. **We implemented the paper’s suggested extension** using a Prioritized Experience Replay (PER) buffer that samples memories based on their **Temporal Difference (TD) Error** — how wrong the agent's Q-value estimate was for that memory.
-
-        * In a standard buffer, memories are sampled purely at random.
-        * In **PER**, high-error memories are sampled more frequently, forcing the agent to study its biggest mistakes.
-
-        But what happens when we combine **self-supervised curiosity**, **PER**, and an environment with terminal failure states (like *Snake*)?
+        That is the core causal chain behind the sections that follow: **ICM raises the surprise of terminal events, and PER turns that surprise into repeated training signal.**
         """
     )
 
-    bridge_text
+    mechanism_text
     return
 
 
@@ -1149,13 +1140,13 @@ def _(mo):
         """
         ### The Edge Case: The Death Oversampling Trap (PER + ICM)
 
-        ICM is brilliant in sparse environments, but when deployed in environments with terminal failure states (like *Snake*), it introduces a fatal mathematical flaw. 
+        ICM is brilliant in sparse environments, but in this Snake setup it creates a specific failure mode once terminal states and replay interact.
 
         When an agent dies, the environment resets abruptly. The Forward Model cannot predict a "Game Over" screen from a standard movement action. This results in a massive spike in Prediction Error, which translates to a massive Intrinsic Reward. **The agent learns that suicide is incredibly rewarding.**
 
-        This becomes catastrophic if you are using **Prioritized Experience Replay (PER)**. PER samples memories from the replay buffer based on their error magnitude. Because "deaths" have the highest error, PER oversamples them. 
+        This becomes catastrophic if you are using **Prioritized Experience Replay (PER)**. PER samples memories from the replay buffer based on their error magnitude. Because "deaths" have the highest error, PER oversamples them.
 
-        **The Trap:** The buffer becomes poisoned. The agent's training batches become flooded with death sequences, completely drowning out the "normal" steps and successful apple captures. The agent unlearns how to play and optimizes for fast deaths.
+        **The Trap:** the replay distribution becomes poisoned. Training batches become flooded with death sequences, drowning out ordinary movement and successful apple captures. The agent is no longer just exploring poorly; it is repeatedly training on the transition that says "dying was salient."
 
         Ablation intuition:
 
@@ -1166,7 +1157,7 @@ def _(mo):
         | PER + ICM | Death transitions get both high TD error and high intrinsic error, so replay probability compounds. |
         | PER + ICM + terminal mask | Keeps curiosity for non-terminal novelty while preventing terminal resets from becoming a reward source. |
 
-        *Adjust the toggle below to see how adding ICM to a PER buffer poisons the training batch.*
+        *Adjust the toggle below to see an illustrative replay-distribution sketch of how adding ICM to a PER buffer can poison the training batch.*
         """
     )
 
@@ -1267,7 +1258,15 @@ def _(act3_text, agent_type, mo, np, plt, sample_btn):
     # 4. Stack the UI elements
     ui_stack = mo.vstack([
         act3_text,
-        mo.hstack([agent_type, sample_btn], justify="start", align="center", gap=2)
+        mo.hstack([agent_type, sample_btn], justify="start", align="center", gap=2),
+        mo.callout(
+            mo.md(
+                "**Interpretation note:** This widget is an **illustrative sampling model**, not a replay log. "
+                "The bubble sizes and priorities are hand-set to mirror the qualitative ordering argued above: "
+                "normal transitions < apples < terminal deaths under PER + ICM. The real evidence appears in the training-log sections before and after this sketch."
+            ),
+            kind="info"
+        )
     ])
 
     # 5. Bind the render function to the UI state
@@ -1313,8 +1312,12 @@ def _(json, mo, wasm_iframe):
         reward += intrinsic_reward
         ```
 
-        The chart below overlays the **actual Mean Score curves** from both runs on the same
-        10×10 board for 16,000 games. Watch the red curve plateau while the green one climbs.
+        The chart below overlays the **actual Mean Score curves** from two training runs on the same
+        10×10 board for 16,000 games. Watch the red curve plateau near **8.1** while the green one climbs to **10.1**.
+
+        In this run, the poisoned agent does **not** visibly collapse or regress. The failure mode is subtler: it learns a worse policy and then stalls there. That still matters — the terminal mask lifts final performance by roughly **25%** while changing only one line of code.
+
+        This comparison strengthens the case that the failure mode is real in this setup, but it still does **not** replace a full robustness study across seeds and hyperparameters.
         """
     )
 
@@ -1363,7 +1366,7 @@ def _(json, mo, wasm_iframe):
         <div class="leg-item"><div class="dot" style="background:#ef4444;"></div>PER + ICM — unmasked (poisoned)</div>
         <div class="leg-item"><div class="dot" style="background:#10b981;"></div>PER + ICM + terminal mask — fixed</div>
       </div>
-      <div class="note">Both curves trained identically — the only difference is one line of code.</div>
+      <div class="note">Both curves trained identically — the only difference is one line of code. In this run, the unmasked agent plateaus near 8.1 while the masked agent reaches 10.1 (~25% higher).</div>
     </div>
     <script>
     const canvas = document.getElementById('fixChart');
