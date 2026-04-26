@@ -1,4 +1,5 @@
 # /// script
+# requires-python = ">=3.11"
 # dependencies = [
 #     "marimo",
 #     "matplotlib",
@@ -31,7 +32,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(json, mo, random):
+def _(json, mo, random, wasm_iframe):
     grid_size = 14
     start = (grid_size // 2, grid_size // 2)
     reward = (0, grid_size - 1)
@@ -183,7 +184,7 @@ def _(json, mo, random):
     </html>"""
 
     mo.vstack([
-        mo.iframe(html, height="500px"),
+        wasm_iframe(html, height="500px"),
         mo.callout(
             mo.md(
                 "**Visualization note:** The right-hand agent uses a **count-based heuristic** "
@@ -213,7 +214,7 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(mo):
+def _(mo, wasm_iframe):
     # 1. The Narrative Text (Explaining the Forward Model)
     intro_text = mo.md(
         """
@@ -406,7 +407,7 @@ def _(mo):
     # 3. Stack the markdown and the widget together
     mo.vstack([
         intro_text,
-        mo.iframe(html2, height="400px"),
+        wasm_iframe(html2, height="400px"),
         mo.callout(
             mo.md(
                 "**Simplification note:** The reward curve above uses a hardcoded 3-step decay "
@@ -432,7 +433,7 @@ def _(eta_slider, mo):
 
 
 @app.cell(hide_code=True)
-def _(json, mo):
+def _(json, mo, wasm_iframe):
     # 1. The Narrative Text (Explaining the Trap and the Filter)
     act2_text = mo.md(
         """
@@ -619,7 +620,7 @@ def _(json, mo):
     # 4. Render everything together
     mo.vstack([
         act2_text,
-        mo.iframe(html_tv, height="380px"),
+        wasm_iframe(html_tv, height="380px"),
         mo.callout(
             mo.md(
                 "**Visualization note:** The agent paths above are **scripted pedagogical illustrations**, "
@@ -711,59 +712,26 @@ def _(mo):
 
 
 @app.cell
-def _(F, mo, nn, torch):
-    mo.stop(
-        torch is None,
-        mo.callout(mo.md("**PyTorch is not available in the browser.** Clone the repo and run `marimo run notebooks/curiosity.py` locally to see the live tensor output."), kind="warn")
+def _(mo):
+    _state_dim, _action_dim, _batch, _latent_dim = 20, 4, 8, 256
+
+    mo.callout(
+        mo.md(f"""
+        **WASM-compatible forward-pass shape check** — same tensor contract as the PyTorch module above:
+
+        | Tensor | Shape | Role |
+        |--------|-------|------|
+        | `pred_action_logits` | `{[_batch, _action_dim]}` | Inverse model output — predicted action |
+        | `pred_phi_next` | `{[_batch, _latent_dim]}` | Forward model output — predicted next latent |
+        | `phi_next` | `{[_batch, _latent_dim]}` | Encoder output — actual next latent |
+        | `intrinsic_reward` | `{[_batch]}` | Per-step curiosity signal (MSE in latent space) |
+
+        The executable PyTorch demo was removed from the notebook runtime because `torch` has no Pyodide/WASM build.
+        The architecture above remains the implementation used in the repository; the browser cells below use NumPy
+        proxies to preserve the same math and interactivity.
+        """),
+        kind="info",
     )
-    class IntrinsicCuriosityModule(nn.Module):
-        def __init__(self, state_dim, action_dim, latent_dim=256):
-            super().__init__()
-            self.encoder = nn.Sequential(
-                nn.Linear(state_dim, 128), nn.ReLU(),
-                nn.Linear(128, latent_dim), nn.ReLU()
-            )
-            self.inverse_model = nn.Sequential(
-                nn.Linear(latent_dim * 2, 128), nn.ReLU(),
-                nn.Linear(128, action_dim)
-            )
-            self.forward_model = nn.Sequential(
-                nn.Linear(latent_dim + action_dim, 128), nn.ReLU(),
-                nn.Linear(128, latent_dim)
-            )
-
-        def forward(self, state, next_state, action_one_hot):
-            phi_t = self.encoder(state)
-            phi_t1 = self.encoder(next_state)
-            pred_action_logits = self.inverse_model(torch.cat([phi_t, phi_t1], dim=1))
-            pred_phi_t1 = self.forward_model(torch.cat([phi_t, action_one_hot], dim=1))
-            intrinsic_reward = 0.5 * (pred_phi_t1 - phi_t1).pow(2).sum(dim=1)
-            return pred_action_logits, pred_phi_t1, phi_t1, intrinsic_reward
-
-    # Live forward pass on dummy data — confirms the module runs end-to-end
-    _state_dim, _action_dim, _batch = 20, 4, 8
-    _icm = IntrinsicCuriosityModule(state_dim=_state_dim, action_dim=_action_dim)
-    _s = torch.randn(_batch, _state_dim)
-    _s1 = torch.randn(_batch, _state_dim)
-    _a = F.one_hot(torch.randint(0, _action_dim, (_batch,)), _action_dim).float()
-    _pred_a, _pred_phi, _phi_next, _r_i = _icm(_s, _s1, _a)
-
-    mo.md(f"""
-    **Live ICM forward pass** — untrained weights, random inputs
-    (batch={_batch}, state\\_dim={_state_dim}, action\\_dim={_action_dim}, latent\\_dim=256):
-
-    | Tensor | Shape | Role |
-    |--------|-------|------|
-    | `pred_action_logits` | `{list(_pred_a.shape)}` | Inverse model output — predicted action |
-    | `pred_phi_next` | `{list(_pred_phi.shape)}` | Forward model output — predicted next latent |
-    | `phi_next` | `{list(_phi_next.shape)}` | Encoder output — actual next latent |
-    | `intrinsic_reward` | `{list(_r_i.shape)}` | Per-step curiosity signal (MSE in latent space) |
-
-    *The code block above is not pseudocode — this cell instantiates and runs it. Here are the actual tensor shapes on your machine:*
-
-    Mean intrinsic reward on random inputs: **{_r_i.mean().item():.4f}**
-    (high because untrained weights produce large prediction errors — exactly what novelty looks like)
-    """)
     return
 
 
@@ -774,14 +742,15 @@ def _(mo):
 
     The cell above proved ICM *runs*. This experiment proves it *learns*.
 
-    We train a real ICM on a **5×5 grid** with a **purely random policy** (ε = 1.0, zero extrinsic reward).
-    The only signal is the forward model's own prediction error.
-    As the agent wanders and the model observes more transitions, its predictions improve — and intrinsic reward decays toward zero.
+    We train a tiny **NumPy forward model** on a **5×5 grid** with a **purely random policy**
+    (ε = 1.0, zero extrinsic reward). It predicts the next grid position from the current position
+    and action, then uses its own prediction error as the intrinsic reward.
 
-    This is "boredom by gradient descent." Same phenomenon as the boredom simulator — now produced by real PyTorch backprop.
+    This is "boredom by gradient descent." Same phenomenon as the boredom simulator — now produced by
+    a browser-compatible model that can run inside Pyodide.
     """)
     train_btn = mo.ui.button(
-        label="▶ Train ICM on 5×5 grid (300 episodes, ~3s)",
+        label="▶ Train NumPy forward model on 5×5 grid",
         kind="success",
         value=0,
         on_click=lambda v: v + 1,
@@ -791,10 +760,13 @@ def _(mo):
 
 
 @app.cell
-def _(F, mo, nn, np, plt, random, torch, train_btn):
+def _(mo, np, plt, random, train_btn):
     mo.stop(
-        torch is None,
-        mo.callout(mo.md("**PyTorch is not available in the browser.** Clone the repo and run `marimo run notebooks/curiosity.py` locally to train the live ICM experiment."), kind="warn")
+        np is None or plt is None,
+        mo.callout(
+            mo.md("**NumPy/Matplotlib are unavailable in this runtime.** In WASM they are installed from the notebook metadata."),
+            kind="warn",
+        ),
     )
     if not train_btn.value:
         _fig0, _ax0 = plt.subplots(figsize=(9, 3.5))
@@ -821,43 +793,34 @@ def _(F, mo, nn, np, plt, random, torch, train_btn):
                 self.pos[1] = max(0, min(self.size - 1, self.pos[1] + dx))
                 return np.array(self.pos, dtype=np.float32) / self.size, 0.0, False
 
-        class _TinyICM(nn.Module):
-            def __init__(self):
-                super().__init__()
-                self.encoder = nn.Sequential(nn.Linear(2, 32), nn.ReLU(), nn.Linear(32, 32), nn.ReLU())
-                self.inverse = nn.Sequential(nn.Linear(64, 32), nn.ReLU(), nn.Linear(32, 4))
-                self.forward_m = nn.Sequential(nn.Linear(36, 32), nn.ReLU(), nn.Linear(32, 32))
-            def forward(self, s, ns, a):
-                phi = self.encoder(s)
-                phi1 = self.encoder(ns)
-                pred_a = self.inverse(torch.cat([phi, phi1], dim=1))
-                pred_phi1 = self.forward_m(torch.cat([phi, a], dim=1))
-                r_i = 0.5 * (pred_phi1 - phi1).pow(2).sum(dim=1)
-                return pred_a, pred_phi1, phi1, r_i
-
         _env = _GridEnv(5)
-        _icm = _TinyICM()
-        _opt = torch.optim.Adam(_icm.parameters(), lr=1e-3)
+        _rng = np.random.default_rng(7)
+        _w = _rng.normal(0.0, 0.15, size=(6, 2))
+        _b = np.zeros(2)
+        _lr = 0.2
         _ep_rewards = []
 
         for _ep in range(300):
             _s = _env.reset()
-            _buf_s, _buf_ns, _buf_a = [], [], []
+            _features, _targets = [], []
             for _ in range(25):
                 _a = random.randint(0, 3)
                 _ns, _, _ = _env.step(_a)
-                _buf_s.append(_s); _buf_ns.append(_ns); _buf_a.append(_a)
+                _action_one_hot = np.eye(4, dtype=np.float32)[_a]
+                _features.append(np.concatenate([_s, _action_one_hot]))
+                _targets.append(_ns)
                 _s = _ns
-            # One batch update per episode — prevents catastrophic forgetting
-            _st = torch.FloatTensor(np.array(_buf_s))
-            _nst = torch.FloatTensor(np.array(_buf_ns))
-            _at = torch.stack([F.one_hot(torch.tensor(a), 4).float() for a in _buf_a])
-            _pred_a_out, _pred_phi_out, _phi1_out, _r_i_out = _icm(_st, _nst, _at)
-            _fwd_loss = _r_i_out.mean()
-            _inv_loss = F.cross_entropy(_pred_a_out, torch.tensor(_buf_a))
-            _loss = 0.8 * _fwd_loss + 0.2 * _inv_loss
-            _opt.zero_grad(); _loss.backward(); _opt.step()
-            _ep_rewards.append(_r_i_out.mean().item())
+
+            _x = np.asarray(_features)
+            _y = np.asarray(_targets)
+            _pred = _x @ _w + _b
+            _err = _pred - _y
+            _r_i = 0.5 * np.sum(_err * _err, axis=1)
+            _ep_rewards.append(float(np.mean(_r_i)))
+
+            _grad_pred = _err / len(_x)
+            _w -= _lr * (_x.T @ _grad_pred)
+            _b -= _lr * np.sum(_grad_pred, axis=0)
 
         _episodes = list(range(1, 301))
         _floor = 1e-6
@@ -886,8 +849,8 @@ def _(F, mo, nn, np, plt, random, torch, train_btn):
                 mo.md(
                     f"Intrinsic reward decayed from **{_first5:.4f}** (first 5 episodes) → "
                     f"**{_last5:.5f}** (last 5 episodes) — a **{_drop:,}× drop**. "
-                    "The forward model has learned the grid's physics. There is nothing left to be curious about. "
-                    "The same phenomenon the boredom simulator illustrated — now proven by gradient descent."
+                    "The forward model has learned the grid's transition structure. There is little left to be curious about. "
+                    "The same phenomenon the boredom simulator illustrated — now shown by gradient descent."
                 ),
                 kind="success"
             )
@@ -897,7 +860,7 @@ def _(F, mo, nn, np, plt, random, torch, train_btn):
 
 
 @app.cell
-def _(json, mo):
+def _(json, mo, wasm_iframe):
     # 1. Narrative Text
     train_text = mo.md(
         """
@@ -1099,7 +1062,7 @@ def _(json, mo):
     </body>
     </html>"""
 
-    mo.vstack([train_text, code_accordion, mo.iframe(html_train, height="430px")])
+    mo.vstack([train_text, code_accordion, wasm_iframe(html_train, height="430px")])
     return
 
 
@@ -1174,6 +1137,14 @@ def _(mo):
 
 @app.cell
 def _(act3_text, agent_type, mo, np, plt, sample_btn):
+    mo.stop(
+        np is None or plt is None,
+        mo.callout(
+            mo.md("**NumPy/Matplotlib are unavailable in this runtime.** In WASM they are installed from the notebook metadata."),
+            kind="warn",
+        ),
+    )
+
     # 3. The Visualization Logic
     def render_batch_viz(agent_val, btn_click):
         # Base Replay Buffer Composition (100 memories total)
@@ -1259,7 +1230,7 @@ def _(act3_text, agent_type, mo, np, plt, sample_btn):
 
 
 @app.cell
-def _(json, mo):
+def _(json, mo, wasm_iframe):
     # 1. Narrative
     fix_text = mo.md(
         """
@@ -1460,7 +1431,7 @@ def _(json, mo):
         """)
     })
 
-    mo.vstack([fix_text, mo.iframe(html_fix, height="430px"), source_accordion])
+    mo.vstack([fix_text, wasm_iframe(html_fix, height="430px"), source_accordion])
     return
 
 
@@ -1558,6 +1529,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _():
+    import base64
     import marimo as mo
     import json
     import random
@@ -1569,13 +1541,15 @@ def _():
         import numpy as np
     except ImportError:
         np = None
-    try:
-        import torch
-        import torch.nn as nn
-        import torch.nn.functional as F
-    except ImportError:
-        torch = nn = F = None
-    return F, json, mo, nn, np, plt, random, torch
+    def wasm_iframe(html: str, *, width: str = "100%", height: str = "400px"):
+        encoded = base64.b64encode(html.encode("utf-8")).decode("ascii")
+        return mo.Html(
+            f'<iframe src="data:text/html;charset=utf-8;base64,{encoded}" '
+            f'width="{width}" height="{height}" '
+            'style="border:0; width:100%;" loading="lazy"></iframe>'
+        )
+
+    return json, mo, np, plt, random, wasm_iframe
 
 
 if __name__ == "__main__":

@@ -12,3 +12,5 @@ wheels/
 .agents
 .claude
 skills-lock.json
+
+assets/
