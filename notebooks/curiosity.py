@@ -2077,11 +2077,6 @@ def _(mo):
         **Curiosity is not universally helpful - it is highly dependent on the reward
         structure of the environment.**
 
-        ICM is most powerful exactly where extrinsic reward is sparse *and* the learner is
-        on-policy enough to consume each rollout's signal before it becomes stale. Outside
-        that intersection, it is a no-op at best and a source of replay-buffer poisoning
-        at worst.
-
         ---
 
         ### Beyond ICM: Where the Research Went Next
