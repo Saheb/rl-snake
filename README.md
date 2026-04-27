@@ -50,7 +50,7 @@ uv sync
 uv run marimo edit notebooks/curiosity.py
 ```
 
-### Training Scripts
+### Key Scripts
 
 | Script | What it does |
 |---|---|
@@ -58,6 +58,8 @@ uv run marimo edit notebooks/curiosity.py
 | `scripts/train_ppo.py` | PPO + ICM on 10×10 Snake |
 | `scripts/parse_pilot_logs.py` | Parses `pilot_logs/` into JSON (data is inlined in the notebook) |
 | `utils/icm.py` | ICM module (encoder, inverse model, forward model) |
+
+The `scripts/` folder also contains many earlier experiments that preceded the ICM investigation: tabular Q-learning (`train_tabular_q.py`), REINFORCE (`train_reinforce.py`), A2C (`train_a2c.py`), PPO with curriculum and imitation learning (`train_ppo_curriculum.py`, `train_ppo_with_demos.py`), knowledge distillation from DQN to PPO (`train_ppo_from_dqn.py`), and ablation sweep runners (`run_eta_sweep.sh`, `run_pilot_ablation.sh`, `run_sparsity_ablation.sh`). These are preserved as a record of the full experimental history but are not the focus of the current notebook.
 
 ---
 
@@ -67,16 +69,16 @@ uv run marimo edit notebooks/curiosity.py
 rl-snake/
 ├── notebooks/
 │   └── curiosity.py        # The main interactive investigation
-├── scripts/
-│   ├── train_dqn.py
-│   ├── train_ppo.py
-│   └── parse_pilot_logs.py
+├── scripts/                # Training scripts (DQN, PPO, ICM, and earlier experiments)
 ├── utils/
 │   └── icm.py
 ├── pilot_logs/             # Raw training logs from the 2×3×2×3 experiment
 ├── assets/                 # Charts and figures
+├── docs/                   # ⚠️ Outdated — see notebook instead
 └── logs/                   # Miscellaneous training output
 ```
+
+> **Note:** The [GitHub Pages visualization](https://Saheb.github.io/rl-snake/snake_learning_journey.html) and [blog post](docs/blog.md) document an earlier phase of the project (PPO curriculum learning) and are no longer current. The notebook is the up-to-date record of findings.
 
 ---
 
