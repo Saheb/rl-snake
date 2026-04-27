@@ -16,7 +16,7 @@ app = marimo.App(width="medium")
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Curiosity Killed the Snake: When Intrinsic Motivation Helps - and When It Doesn't
+    # Curiosity Killed the Snake: When Intrinsic Motivation Helps and When It Doesn't
     *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017) and analyzing the impact of ICM on the game of Snake.*
 
     [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
