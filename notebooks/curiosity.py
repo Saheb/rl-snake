@@ -61,7 +61,7 @@ def _(mo):
     ### The Problem: Sparse Reward Trap
     In reinforcement learning, an agent learns by maximizing reward. Usually that reward is **external**: it comes from the environment, like `+1` for eating an apple in Snake or `-1` for dying. But what happens when the environment is vast, the board is empty, and the external reward is incredibly hard to find by pure chance? What happens if the environment gives no useful reward signal for a long time?
 
-    When an $\epsilon$-greedy agent, such as a standard **Deep Q-Network (<span class="gl" data-t="DQN (Deep Q-Network) is an off-policy, value-based RL algorithm. It learns a Q-function — Q(s,a), the expected future return from state s taking action a — using a neural network. Transitions are stored in a replay buffer and sampled randomly for training, so updates can use experience collected by older versions of the policy. The agent always picks the action with the highest Q-value (with ε-greedy exploration).">DQN</span>)**, faces a sparse environment, its exploration is mostly random. It can repeatedly revisit familiar states, spinning in circles rather than systematically mapping the environment.
+    When an $\epsilon$-greedy agent, such as a standard **Deep Q-Network (<span class="gl" data-t="DQN (Deep Q-Network) is an off-policy, value-based RL algorithm. It learns a Q-function — Q(s,a), the expected future return from state s taking action a — using a neural network. Transitions are stored in a replay buffer and sampled randomly for training, so updates can use experience collected by older versions of the policy. The agent always picks the action with the highest Q-value (with ε-greedy exploration).">DQN</span>)**, faces a sparse environment, its exploration is random — with no signal to guide it, it stumbles across the state space rather than systematically searching. The natural fix is to give the agent an intrinsic drive toward novelty. But whether that drive actually helps depends entirely on what is bottlenecking learning — exploration, or something else.
 
     **Play with the agent below to see how it performs when the reward is 13 steps away.**
     """)
@@ -2163,7 +2163,8 @@ def _():
     import json
     import random
     try:
-        import matplotlib.pyplot as plt
+        with mo.capture_stderr():
+            import matplotlib.pyplot as plt
     except ImportError:
         plt = None
     try:
