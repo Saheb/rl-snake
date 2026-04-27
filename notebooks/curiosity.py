@@ -16,8 +16,8 @@ app = marimo.App(width="medium")
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Curiosity Killed the Snake: The Bug That Taught an Agent to Die
-    *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017).*
+    # When Does Curiosity Actually Help? Stress-Testing ICM on Snake
+    *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017) and analyzing the impact of ICM on the game of Snake.*
 
     [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
 
@@ -1524,7 +1524,12 @@ def _(mo):
 
         ### A Better Question: When Does Curiosity *Actually* Help on Snake?
 
-        Snake's reward function is exceptionally **dense**:
+        > *"Curiosity is not universally helpful — it is highly dependent on the
+        > reward structure of the environment."*
+
+        That single line is the thesis of everything that follows. The original ICM
+        paper paired curiosity with on-policy A3C on Mario, where extrinsic reward is
+        rare and exploration *is* the bottleneck. Snake is a different animal:
 
         | Event | Reward |
         |-------|-------:|
@@ -1537,12 +1542,10 @@ def _(mo):
         | Win (fill board) | +5 |
 
         With distance shaping firing every single step, the extrinsic gradient already
-        screams the answer at the agent. ICM was designed for the *opposite* regime —
-        Mario-style sparse rewards where pure extrinsic signal is rare. **Curiosity has no
-        problem to solve here.**
-
-        To put ICM on stronger experimental ground, we strip out the shaping and ask: does
-        curiosity rescue learning when the extrinsic reward becomes sparse?
+        screams the answer at the agent. **In this regime, curiosity has no problem to
+        solve.** To put ICM on harder experimental ground, we strip the shaping out and
+        ask: does curiosity rescue learning when the extrinsic reward actually becomes
+        sparse?
 
         | Reward Mode | Step Penalty | Distance Shaping | Anti-Loop Penalty | Food / Death |
         |------------|:------------:|:----------------:|:-----------------:|:------------:|
@@ -1970,24 +1973,51 @@ def _(mo):
         """
         ---
 
-        ### Conclusion: The Legacy of ICM
+        ### Conclusion: Curiosity, Conditioned
 
-        The Intrinsic Curiosity Module (Pathak et al., 2017) fundamentally changed how we approach
-        exploration in Reinforcement Learning. By equating **surprise with reward**, it proved that
-        agents do not need hand-coded guidance to navigate sparse environments — they just need a
-        model of the world's physics and a drive to be surprised by it.
+        The Intrinsic Curiosity Module (Pathak et al., 2017) reframed exploration in
+        reinforcement learning by equating *surprise with reward* — a single elegant move
+        that let agents learn in environments with no extrinsic feedback.
 
-        But as we demonstrated with the Snake edge-case, purely relying on forward prediction error
-        has real limits. Action-dependent noise and terminal failure states can silently hijack the
-        curiosity signal. The fix — zeroing intrinsic reward at terminal steps — is one line of code,
-        but finding it required understanding the full interaction between ICM, PER, and game-over
-        dynamics. That understanding is what this notebook was built to give you.
+        What this notebook stress-tested is the *boundary* of that elegance. The original
+        finding it was built around — that a terminal-mask fix unlocks ICM's performance
+        on Snake — does not reproduce reliably under the present 24-dim state
+        representation. Rather than paper over the failed reproduction, we used it as
+        motivation to ask the more interesting question: **when does curiosity actually
+        help on this problem?**
+
+        The 2 × 3 × 2 × 3 grid (algorithm × reward mode × board × seed) gave a sharper
+        answer than the textbook ICM story would predict:
+
+        - **Algorithm matters.** ICM gave DQN nothing — across every reward mode and
+          board size, |Δ| stayed inside seed noise. The same module on PPO `pure_sparse`
+          delivered +24% (n = 3, robust per seed). ICM's value is bottlenecked by whether
+          the learner can consume the intrinsic signal *fresh*, before replay-buffer
+          staleness washes it out.
+        - **Reward structure matters more.** Where ICM did help, the mechanism was not
+          exploration — both PPO and PPO + ICM saturated state coverage at ~98.9%. ICM's
+          actual contribution was *per-step reward densification*: a continuous novelty
+          signal that filled in for the hand-engineered distance shaping we deliberately
+          removed. Functionally, ICM behaved as a self-supervised replacement for reward
+          shaping, not as an exploration bonus.
+
+        Which lands the headline:
+
+        **Curiosity is not universally helpful — it is highly dependent on the reward
+        structure of the environment.**
+
+        ICM is most powerful exactly where extrinsic reward is sparse *and* the learner is
+        on-policy enough to consume each rollout's signal before it becomes stale. Outside
+        that intersection, it is a no-op at best and a source of replay-buffer poisoning
+        at worst.
 
         ---
 
         ### Beyond ICM: Where the Research Went Next
 
-        ICM opened the door. Every paper below is a direct response to one of its limitations.
+        The lineage of papers below can be read as systematic responses to the same
+        boundary conditions this investigation traced — each one repairing a different
+        failure mode of pure forward-prediction curiosity.
         """
     )
 
