@@ -15,16 +15,53 @@ app = marimo.App(width="medium")
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.Html("""
+    <style>
+    .gl {
+        text-decoration: underline dotted currentColor;
+        text-underline-offset: 3px;
+        cursor: help;
+        position: relative;
+        display: inline-block;
+    }
+    .gl:hover { text-decoration-color: #6366f1; }
+    .gl:hover::after {
+        content: attr(data-t);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1c1c28;
+        color: #e2e8f0;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1.55;
+        white-space: normal;
+        width: 300px;
+        z-index: 9999;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        pointer-events: none;
+    }
+    </style>
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(r"""
     # Curiosity Killed the Snake: When Intrinsic Motivation Helps and When It Doesn't
-    *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017) and analyzing the impact of ICM on the game of Snake.*
+    *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017 · [arXiv](https://arxiv.org/abs/1705.05363) · [alphaxiv](https://alphaxiv.org/abs/1705.05363)) and analyzing the impact of curiosity on the game of Snake.*
 
     [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
 
     ### The Problem: Sparse Reward Trap
     In reinforcement learning, an agent learns by maximizing reward. Usually that reward is **external**: it comes from the environment, like `+1` for eating an apple in Snake or `-1` for dying. But what happens when the environment is vast, the board is empty, and the external reward is incredibly hard to find by pure chance? What happens if the environment gives no useful reward signal for a long time?
 
-    When an $\epsilon$-greedy agent, such as a standard **Deep Q-Network (DQN)**, faces a sparse environment, its exploration is mostly random. It can repeatedly revisit familiar states, spinning in circles rather than systematically mapping the environment.
+    When an $\epsilon$-greedy agent, such as a standard **Deep Q-Network (<span class="gl" data-t="DQN (Deep Q-Network) is an off-policy, value-based RL algorithm. It learns a Q-function — Q(s,a), the expected future return from state s taking action a — using a neural network. Transitions are stored in a replay buffer and sampled randomly for training, so updates can use experience collected by older versions of the policy. The agent always picks the action with the highest Q-value (with ε-greedy exploration).">DQN</span>)**, faces a sparse environment, its exploration is mostly random. It can repeatedly revisit familiar states, spinning in circles rather than systematically mapping the environment.
 
     **Play with the agent below to see how it performs when the reward is 13 steps away.**
     """)
@@ -190,7 +227,7 @@ def _(json, mo, random, wasm_iframe):
                 "**Illustration note:** The right-hand agent uses a **count-based heuristic** "
                 "(always move to the lowest visit-count neighbour), not a live neural network. "
                 "In this discrete finite grid, visit counts serve as a practical stand-in for "
-                "the Intrinsic Curiosity Module (ICM)'s forward-model prediction error - both signal how *novel* a state is, "
+                "the Intrinsic Curiosity Module (<span class=\"gl\" data-t=\"ICM (Intrinsic Curiosity Module) is an auxiliary module introduced by Pathak et al. (2017). It trains a forward model to predict the next latent state given the current state and action. The prediction error becomes an intrinsic reward bonus — the harder a transition is to predict, the more surprising it is, and the more reward the agent receives for visiting it. This drives exploration without any external reward signal.\">ICM</span>)'s forward-model prediction error - both signal how *novel* a state is, "
                 "and the outward-seeking behaviour looks similar. However, this equivalence "
                 "**only holds in tabular settings** with an enumerable state space. "
                 "The Intrinsic Curiosity Module's core contribution is generalizing curiosity to **continuous, high-dimensional "
@@ -656,7 +693,7 @@ def _(mo):
 
         Before we look at how this breaks down in late-stage training, we need to understand how the Intrinsic Curiosity Module is actually constructed. 
 
-        The ICM is not a standalone agent; it is an auxiliary subsystem that runs *inside the training loop* of a standard reinforcement-learning algorithm such as Proximal Policy Optimization (PPO) or Deep Q-Network (DQN). The policy still chooses actions and learns from rewards. ICM adds an extra reward term and trains its own predictive models from the same transitions.
+        The ICM is not a standalone agent; it is an auxiliary subsystem that runs *inside the training loop* of a standard reinforcement-learning algorithm such as Proximal Policy Optimization (<span class="gl" data-t="PPO (Proximal Policy Optimization) is an on-policy, policy-gradient RL algorithm. It updates the policy directly using data collected from the current policy (no replay buffer). To prevent destructively large updates, it clips the probability ratio between old and new policy, keeping each update step conservative. Because it discards data after each update, it needs to re-collect experience every iteration.">PPO</span>) or Deep Q-Network (<span class="gl" data-t="DQN (Deep Q-Network) is an off-policy, value-based RL algorithm. It learns a Q-function — Q(s,a), the expected future return from state s taking action a — using a neural network. Transitions are stored in a replay buffer and sampled randomly for training, so updates can use experience collected by older versions of the policy.">DQN</span>). The policy still chooses actions and learns from rewards. ICM adds an extra reward term and trains its own predictive models from the same transitions.
 
         1. **The Feature Encoder ($\phi$):** Compresses raw pixels/states into a dense, latent vector.
         2. **The Inverse Model:** Takes the current state $\phi(s_t)$ and the next state $\phi(s_{t+1})$ to predict the action $a_t$. This is the filter that ignores unpredictable noise.
@@ -905,7 +942,7 @@ def _(json, mo, wasm_iframe):
         """
         ### Live Training: Real ICM Data from Snake
 
-        Below are **real training logs** from our Snake DQN agent (Dueling DQN + 3-Step Returns + PER + ICM)
+        Below are **real training logs** from our Snake DQN agent (Dueling DQN + 3-Step Returns + <span class="gl" data-t="PER (Prioritized Experience Replay) is a replay buffer strategy where transitions are sampled with probability proportional to their TD-error magnitude rather than uniformly at random. The intuition: transitions the agent was most wrong about are the most informative for learning. A high TD error means the Q-network's prediction was far from the target, so replaying it carries more signal. This amplifies any mechanism that inflates TD errors — including ICM.">PER</span> + ICM)
         trained on a 10×10 board for 16,000 games. The `Intrinsic` value is the **actual forward model
         prediction error** - not a simulation.
 
@@ -1109,28 +1146,6 @@ def _(json, mo, wasm_iframe):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mechanism_text = mo.md(
-        r"""
-        ### Why PER + ICM Specifically Amplifies Death
-
-        The failure mode is not just that terminal states are surprising. It is that **curiosity changes what replay considers important**.
-
-        The mechanism can be stated in three steps:
-
-        1. **TD target inflation:** the Q-learning target contains `r_ext + η r_int`. If a terminal transition produces a large intrinsic reward spike, its TD error can jump even when the extrinsic outcome is bad.
-        2. **Replay amplification:** PER samples transitions with probability increasing in TD error magnitude, so those inflated terminal transitions are replayed disproportionately often.
-        3. **Terminal surprise concentration:** game-over resets are unusually hard for the forward model to predict, so the same death transitions are both highly surprising and highly replayed.
-
-        That is the core causal chain behind the sections that follow: **ICM raises the surprise of terminal events, and PER turns that surprise into repeated training signal.**
-        """
-    )
-
-    mechanism_text
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
     # 1. The Narrative Text
     act3_text = mo.md(
         """
@@ -1157,6 +1172,19 @@ def _(mo):
         """
     )
 
+    _mechanism_detail = mo.md(
+        r"""
+        The failure mode is not just that terminal states are surprising — it is that **curiosity changes what replay considers important**. The mechanism in three steps:
+
+        1. **TD target inflation:** the Q-learning target contains `r_ext + η r_int`. If a terminal transition produces a large intrinsic reward spike, its <span class="gl" data-t="TD error (Temporal Difference error) is the gap between what the Q-network predicted and what the bootstrapped target says it should be: δ = r + γ·max Q(s′,·) − Q(s,a). It is the core learning signal — the Q-network is trained to minimise δ² via gradient descent. PER uses |δ| as a priority score, so anything that inflates δ also inflates replay probability.">TD error</span> jumps even when the extrinsic outcome is bad.
+        2. **Replay amplification:** PER samples transitions with probability $p \propto |\delta|^\alpha$. Elevated $r_i$ inflates $\delta$, which inflates $p$, so novel (and terminal) transitions are over-sampled.
+        3. **Terminal surprise concentration:** game-over resets are unusually hard for the forward model to predict, so the same death transitions are both highly surprising *and* highly replayed — a compounding loop.
+
+        **ICM raises the surprise of terminal events; PER turns that surprise into repeated training signal.**
+        """
+    )
+    act3_mechanism_accordion = mo.accordion({"▶ Why PER + ICM specifically amplifies death (causal chain)": _mechanism_detail})
+
     # 2. The Interactive UI (FIXED: Using a flat list to prevent KeyErrors)
     agent_type = mo.ui.radio(
         options=["Standard Agent (PER Only)", "Curious Agent (PER + ICM)"],
@@ -1168,11 +1196,19 @@ def _(mo):
         label="🎲 Sample Training Batch (n=32)", 
         kind="success"
     )
-    return act3_text, agent_type, sample_btn
+    return act3_mechanism_accordion, act3_text, agent_type, sample_btn
 
 
 @app.cell(hide_code=True)
-def _(act3_text, agent_type, mo, np, plt, sample_btn):
+def _(
+    act3_mechanism_accordion,
+    act3_text,
+    agent_type,
+    mo,
+    np,
+    plt,
+    sample_btn,
+):
     mo.stop(
         np is None or plt is None,
         mo.callout(
@@ -1254,6 +1290,7 @@ def _(act3_text, agent_type, mo, np, plt, sample_btn):
     # 4. Stack the UI elements
     ui_stack = mo.vstack([
         act3_text,
+        act3_mechanism_accordion,
         mo.hstack([agent_type, sample_btn], justify="start", align="center", gap=2),
         mo.callout(
             mo.md(
@@ -1612,7 +1649,7 @@ def _(mo):
     )
     scoreboard_table = mo.md(table_md)
     scoreboard_text = mo.md(
-        """
+        r"""
         **What we expected vs. what we got:**
 
         - **H1 - ICM is irrelevant in dense Snake** → ✓ **Confirmed.** The 8×8 and 10×10
@@ -1632,10 +1669,17 @@ def _(mo):
         saturation holds for DQN, but the larger board is the natural setting for an
         on-policy learner whose credit-assignment horizon can extend further.
 
+        **Mechanism in one sentence.** Intrinsic reward is added to the TD target, raising
+        the TD error for surprising transitions; in sparse environments this promotes
+        exploration, but in dense environments the existing reward shaping dominates and the
+        intrinsic signal becomes negligible.
+
         **Why DQN can't consume ICM's signal - the causal chain.** ICM emits a per-transition
-        intrinsic reward $r_i = \eta \cdot \lVert \phi(s') - \hat\phi_\theta(s, a) \rVert^2$
-        (forward-model latent-prediction error). Three things are *supposed* to happen
-        to that scalar:
+        intrinsic reward (forward-model latent-prediction error):
+
+        $$r_i = \eta \cdot \lVert \phi(s') - \hat{\phi}_\theta(s, a) \rVert^2$$
+
+        Three things are *supposed* to happen to that scalar:
 
         1. **It enters the TD target.** The target becomes
            $y = (r_e + r_i) + \gamma \max_{a'} Q(s', a')$, so a novel transition looks
@@ -1736,48 +1780,44 @@ def _(mo):
         """
     )
     ppo_table_md = mo.md(ppo_table)
+
+    ppo_dense_callout = mo.callout(
+        mo.md(
+            "**Dense reward: PPO stalls at ~0.12 (vs DQN's ~5.2 in the same environment).**"
+            " PPO updates on full rollout episodes; with −0.1/step shaping, a typical 10–20"
+            " step episode returns ~−1 to −2 cumulative reward before death. The value"
+            " function learns all states are deeply negative and the sparse +1 food signal"
+            " can never flip the advantage positive. DQN sidesteps this via off-policy TD:"
+            " each food transition bootstraps directly regardless of surrounding negatives."
+            " ICM doesn't rescue it — this is a value-bootstrapping failure, not an"
+            " exploration failure."
+        ),
+        kind="neutral",
+    )
+
     ppo_text = mo.md(
         """
-        **Two findings, one expected and one not:**
+        **Key finding:** on `pure_sparse`, PPO + ICM beats PPO baseline by +24%
+        across 3 seeds (6.63 ± 0.79 vs. 5.36 ± 0.76). The effect is robust — the *worst*
+        ICM seed (5.75) still beats the median baseline seed (4.95), and the best ICM run
+        (7.27) is well outside the baseline distribution.
 
-        **(1) PPO can't learn dense 10×10 Snake at all.** Both PPO and PPO + ICM stall at
-        ~0.12 mean score per game across 3 seeds — compare DQN dense which reaches ~5.2
-        in the same environment. The failure mode is specific to how PPO bootstraps value:
-        PPO's value function is updated on full rollout episodes. When every step incurs
-        −0.1 (away from food) plus −0.01 (step penalty), a typical 10–20 step episode
-        returns a cumulative extrinsic reward of roughly −1 to −2 before the snake dies.
-        The value function learns that all states are deeply negative, so the advantage
-        estimates for food-finding actions never become positive enough to reinforce them —
-        the sparse +1 food signal is overwhelmed and the policy never escapes random-walk
-        territory. DQN sidesteps this via off-policy TD: each food transition gets directly
-        bootstrapped into `Q(s, a) ← r + γ max Q(s', ·)` regardless of when it was
-        collected, so the +1 signal propagates backwards even across long stretches of
-        negative steps. This is consistent with prior experience that vanilla PPO on 10×10
-        Snake needs a curriculum (start at 5×5, grow the board) to take off. ICM doesn't
-        rescue this — exploration isn't the problem; *value bootstrapping under dense
-        negative shaping* is.
-
-        **(2) On `pure_sparse`, PPO + ICM beats PPO baseline by +24% across 3 seeds**
-        (6.63 ± 0.79 vs. 5.36 ± 0.76). The effect is robust - the *worst* ICM seed
-        (5.75) still beats the median baseline seed (4.95), and the best ICM run (7.27)
-        is well outside the baseline distribution.
-
-        **And the mechanism is not what you'd expect from the textbook ICM story** -
+        **And the mechanism is not what you'd expect from the textbook ICM story** —
         see the coverage chart that follows. Both PPO baseline and PPO + ICM saturate at
         ~98.9% of the 10×10 state space, so the +24% score gain is *not* exploration:
         both agents already see the whole board. What ICM contributes is **per-step
-        reward densification** - a continuously non-zero novelty signal that PPO's
+        reward densification** — a continuously non-zero novelty signal that PPO's
         advantage estimator can credit-assign over, in the regime where the extrinsic
         signal is one sparse `+1` per food. Functionally, ICM here behaves less like an
         exploration bonus and more like a *learned shaping function*, a self-supervised
         replacement for the distance shaping we deliberately removed. PPO consumes it
         cleanly because the gradient is on-policy and fresh; DQN's replay buffer does
-        not get the same benefit (see the DQN null above). This sharpens - rather than
-        confirms - the H4 thesis: ICM substitutes for *shaping*, not for *exploration*.
+        not get the same benefit (see the DQN null above). This sharpens — rather than
+        confirms — the H4 thesis: ICM substitutes for *shaping*, not for *exploration*.
         """
     )
 
-    mo.vstack([ppo_intro, ppo_table_md, ppo_text])
+    mo.vstack([ppo_intro, ppo_table_md, ppo_dense_callout, ppo_text])
     return
 
 
@@ -2037,8 +2077,6 @@ def _(mo):
           removed. Functionally, ICM behaved as a self-supervised replacement for reward
           shaping, not as an exploration bonus.
 
-        Which lands the headline:
-
         **Curiosity is not universally helpful - it is highly dependent on the reward
         structure of the environment.**
 
@@ -2117,7 +2155,6 @@ def _(mo):
     mo.vstack([
         _conclusion,
         _lit_tabs,
-        mo.md("*Built with Python, PyTorch, and Marimo. Trained on a 10×10 Snake board.*")
     ])
     return
 
