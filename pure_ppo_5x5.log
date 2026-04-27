@@ -1,0 +1,199 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run mlez0s2s
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260422_094740-mlez0s2s
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run PPO_Baseline_5x5
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/mlez0s2s
+Starting Baseline PPO Training on 5x5 Board...
+============================================================
+Game 100 | Score: 0 | Record: 1 | Mean: 0.14 | Intrinsic: 0.000
+Game 200 | Score: 0 | Record: 2 | Mean: 0.17 | Intrinsic: 0.000
+Game 300 | Score: 0 | Record: 3 | Mean: 0.19 | Intrinsic: 0.000
+Game 400 | Score: 0 | Record: 3 | Mean: 0.20 | Intrinsic: 0.000
+Game 500 | Score: 0 | Record: 3 | Mean: 0.22 | Intrinsic: 0.000
+Game 600 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 700 | Score: 1 | Record: 3 | Mean: 0.20 | Intrinsic: 0.000
+Game 800 | Score: 1 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 900 | Score: 1 | Record: 3 | Mean: 0.20 | Intrinsic: 0.000
+Game 1000 | Score: 0 | Record: 3 | Mean: 0.20 | Intrinsic: 0.000
+Game 1100 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1200 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1300 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1400 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1500 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1600 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1700 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1800 | Score: 0 | Record: 3 | Mean: 0.21 | Intrinsic: 0.000
+Game 1900 | Score: 0 | Record: 3 | Mean: 0.22 | Intrinsic: 0.000
+Game 2000 | Score: 0 | Record: 3 | Mean: 0.22 | Intrinsic: 0.000
+Game 2100 | Score: 2 | Record: 3 | Mean: 0.23 | Intrinsic: 0.000
+Game 2200 | Score: 1 | Record: 3 | Mean: 0.23 | Intrinsic: 0.000
+Game 2300 | Score: 0 | Record: 3 | Mean: 0.24 | Intrinsic: 0.000
+Game 2400 | Score: 0 | Record: 3 | Mean: 0.25 | Intrinsic: 0.000
+Game 2500 | Score: 0 | Record: 3 | Mean: 0.26 | Intrinsic: 0.000
+Game 2600 | Score: 0 | Record: 3 | Mean: 0.26 | Intrinsic: 0.000
+Game 2700 | Score: 0 | Record: 3 | Mean: 0.27 | Intrinsic: 0.000
+Game 2800 | Score: 0 | Record: 3 | Mean: 0.27 | Intrinsic: 0.000
+Game 2900 | Score: 1 | Record: 3 | Mean: 0.28 | Intrinsic: 0.000
+Game 3000 | Score: 0 | Record: 6 | Mean: 0.29 | Intrinsic: 0.000
+Game 3100 | Score: 0 | Record: 6 | Mean: 0.29 | Intrinsic: 0.000
+Game 3200 | Score: 0 | Record: 6 | Mean: 0.30 | Intrinsic: 0.000
+Game 3300 | Score: 1 | Record: 6 | Mean: 0.31 | Intrinsic: 0.000
+Game 3400 | Score: 2 | Record: 6 | Mean: 0.31 | Intrinsic: 0.000
+Game 3500 | Score: 0 | Record: 6 | Mean: 0.32 | Intrinsic: 0.000
+Game 3600 | Score: 1 | Record: 6 | Mean: 0.33 | Intrinsic: 0.000
+Game 3700 | Score: 0 | Record: 6 | Mean: 0.33 | Intrinsic: 0.000
+Game 3800 | Score: 0 | Record: 6 | Mean: 0.34 | Intrinsic: 0.000
+Game 3900 | Score: 0 | Record: 6 | Mean: 0.35 | Intrinsic: 0.000
+Game 4000 | Score: 0 | Record: 6 | Mean: 0.36 | Intrinsic: 0.000
+Game 4100 | Score: 1 | Record: 6 | Mean: 0.36 | Intrinsic: 0.000
+Game 4200 | Score: 3 | Record: 6 | Mean: 0.37 | Intrinsic: 0.000
+Game 4300 | Score: 0 | Record: 6 | Mean: 0.38 | Intrinsic: 0.000
+Game 4400 | Score: 2 | Record: 6 | Mean: 0.38 | Intrinsic: 0.000
+Game 4500 | Score: 0 | Record: 6 | Mean: 0.39 | Intrinsic: 0.000
+Game 4600 | Score: 1 | Record: 6 | Mean: 0.40 | Intrinsic: 0.000
+Game 4700 | Score: 3 | Record: 6 | Mean: 0.41 | Intrinsic: 0.000
+Game 4800 | Score: 0 | Record: 6 | Mean: 0.41 | Intrinsic: 0.000
+Game 4900 | Score: 0 | Record: 6 | Mean: 0.42 | Intrinsic: 0.000
+Game 5000 | Score: 0 | Record: 6 | Mean: 0.42 | Intrinsic: 0.000
+Game 5100 | Score: 1 | Record: 6 | Mean: 0.43 | Intrinsic: 0.000
+Game 5200 | Score: 1 | Record: 6 | Mean: 0.44 | Intrinsic: 0.000
+Game 5300 | Score: 1 | Record: 6 | Mean: 0.45 | Intrinsic: 0.000
+Game 5400 | Score: 0 | Record: 6 | Mean: 0.45 | Intrinsic: 0.000
+Game 5500 | Score: 0 | Record: 6 | Mean: 0.46 | Intrinsic: 0.000
+Game 5600 | Score: 0 | Record: 6 | Mean: 0.46 | Intrinsic: 0.000
+Game 5700 | Score: 0 | Record: 6 | Mean: 0.47 | Intrinsic: 0.000
+Game 5800 | Score: 3 | Record: 6 | Mean: 0.47 | Intrinsic: 0.000
+Game 5900 | Score: 0 | Record: 6 | Mean: 0.48 | Intrinsic: 0.000
+Game 6000 | Score: 0 | Record: 6 | Mean: 0.49 | Intrinsic: 0.000
+Game 6100 | Score: 0 | Record: 6 | Mean: 0.49 | Intrinsic: 0.000
+Game 6200 | Score: 0 | Record: 6 | Mean: 0.50 | Intrinsic: 0.000
+Game 6300 | Score: 0 | Record: 6 | Mean: 0.51 | Intrinsic: 0.000
+Game 6400 | Score: 1 | Record: 6 | Mean: 0.51 | Intrinsic: 0.000
+Game 6500 | Score: 3 | Record: 6 | Mean: 0.52 | Intrinsic: 0.000
+Game 6600 | Score: 0 | Record: 6 | Mean: 0.52 | Intrinsic: 0.000
+Game 6700 | Score: 2 | Record: 6 | Mean: 0.53 | Intrinsic: 0.000
+Game 6800 | Score: 0 | Record: 6 | Mean: 0.54 | Intrinsic: 0.000
+Game 6900 | Score: 2 | Record: 6 | Mean: 0.55 | Intrinsic: 0.000
+Game 7000 | Score: 0 | Record: 6 | Mean: 0.55 | Intrinsic: 0.000
+Game 7100 | Score: 0 | Record: 6 | Mean: 0.56 | Intrinsic: 0.000
+Game 7200 | Score: 2 | Record: 6 | Mean: 0.57 | Intrinsic: 0.000
+Game 7300 | Score: 0 | Record: 6 | Mean: 0.57 | Intrinsic: 0.000
+Game 7400 | Score: 3 | Record: 7 | Mean: 0.58 | Intrinsic: 0.000
+Game 7500 | Score: 0 | Record: 7 | Mean: 0.59 | Intrinsic: 0.000
+Game 7600 | Score: 0 | Record: 8 | Mean: 0.60 | Intrinsic: 0.000
+Game 7700 | Score: 0 | Record: 8 | Mean: 0.61 | Intrinsic: 0.000
+Game 7800 | Score: 0 | Record: 8 | Mean: 0.62 | Intrinsic: 0.000
+Game 7900 | Score: 0 | Record: 8 | Mean: 0.63 | Intrinsic: 0.000
+Game 8000 | Score: 0 | Record: 8 | Mean: 0.64 | Intrinsic: 0.000
+Game 8100 | Score: 6 | Record: 11 | Mean: 0.65 | Intrinsic: 0.000
+Game 8200 | Score: 0 | Record: 11 | Mean: 0.66 | Intrinsic: 0.000
+Game 8300 | Score: 0 | Record: 11 | Mean: 0.68 | Intrinsic: 0.000
+Game 8400 | Score: 2 | Record: 11 | Mean: 0.69 | Intrinsic: 0.000
+Game 8500 | Score: 0 | Record: 11 | Mean: 0.69 | Intrinsic: 0.000
+Game 8600 | Score: 0 | Record: 11 | Mean: 0.70 | Intrinsic: 0.000
+Game 8700 | Score: 1 | Record: 11 | Mean: 0.72 | Intrinsic: 0.000
+Game 8800 | Score: 0 | Record: 11 | Mean: 0.73 | Intrinsic: 0.000
+Game 8900 | Score: 3 | Record: 11 | Mean: 0.74 | Intrinsic: 0.000
+Game 9000 | Score: 8 | Record: 11 | Mean: 0.76 | Intrinsic: 0.000
+Game 9100 | Score: 0 | Record: 11 | Mean: 0.77 | Intrinsic: 0.000
+Game 9200 | Score: 0 | Record: 11 | Mean: 0.79 | Intrinsic: 0.000
+Game 9300 | Score: 0 | Record: 11 | Mean: 0.80 | Intrinsic: 0.000
+Game 9400 | Score: 0 | Record: 13 | Mean: 0.82 | Intrinsic: 0.000
+Game 9500 | Score: 0 | Record: 13 | Mean: 0.83 | Intrinsic: 0.000
+Game 9600 | Score: 2 | Record: 13 | Mean: 0.85 | Intrinsic: 0.000
+Game 9700 | Score: 7 | Record: 14 | Mean: 0.87 | Intrinsic: 0.000
+Game 9800 | Score: 0 | Record: 14 | Mean: 0.90 | Intrinsic: 0.000
+Game 9900 | Score: 0 | Record: 14 | Mean: 0.91 | Intrinsic: 0.000
+Game 10000 | Score: 9 | Record: 14 | Mean: 0.93 | Intrinsic: 0.000
+Game 10100 | Score: 10 | Record: 14 | Mean: 0.95 | Intrinsic: 0.000
+Game 10200 | Score: 8 | Record: 15 | Mean: 0.96 | Intrinsic: 0.000
+Game 10300 | Score: 10 | Record: 15 | Mean: 0.99 | Intrinsic: 0.000
+Game 10400 | Score: 8 | Record: 15 | Mean: 1.01 | Intrinsic: 0.000
+Game 10500 | Score: 3 | Record: 15 | Mean: 1.03 | Intrinsic: 0.000
+Game 10600 | Score: 0 | Record: 15 | Mean: 1.05 | Intrinsic: 0.000
+Game 10700 | Score: 11 | Record: 15 | Mean: 1.07 | Intrinsic: 0.000
+Game 10800 | Score: 0 | Record: 15 | Mean: 1.09 | Intrinsic: 0.000
+Game 10900 | Score: 8 | Record: 15 | Mean: 1.12 | Intrinsic: 0.000
+Game 11000 | Score: 0 | Record: 15 | Mean: 1.13 | Intrinsic: 0.000
+Game 11100 | Score: 0 | Record: 15 | Mean: 1.15 | Intrinsic: 0.000
+Game 11200 | Score: 0 | Record: 15 | Mean: 1.16 | Intrinsic: 0.000
+Game 11300 | Score: 0 | Record: 15 | Mean: 1.18 | Intrinsic: 0.000
+Game 11400 | Score: 0 | Record: 15 | Mean: 1.20 | Intrinsic: 0.000
+Game 11500 | Score: 5 | Record: 15 | Mean: 1.22 | Intrinsic: 0.000
+Game 11600 | Score: 0 | Record: 16 | Mean: 1.25 | Intrinsic: 0.000
+Game 11700 | Score: 12 | Record: 16 | Mean: 1.27 | Intrinsic: 0.000
+Game 11800 | Score: 11 | Record: 16 | Mean: 1.30 | Intrinsic: 0.000
+Game 11900 | Score: 8 | Record: 16 | Mean: 1.33 | Intrinsic: 0.000
+Game 12000 | Score: 8 | Record: 16 | Mean: 1.36 | Intrinsic: 0.000
+Game 12100 | Score: 0 | Record: 16 | Mean: 1.37 | Intrinsic: 0.000
+Game 12200 | Score: 0 | Record: 16 | Mean: 1.37 | Intrinsic: 0.000
+Game 12300 | Score: 0 | Record: 16 | Mean: 1.36 | Intrinsic: 0.000
+Game 12400 | Score: 0 | Record: 16 | Mean: 1.35 | Intrinsic: 0.000
+Game 12500 | Score: 0 | Record: 16 | Mean: 1.34 | Intrinsic: 0.000
+Game 12600 | Score: 0 | Record: 16 | Mean: 1.33 | Intrinsic: 0.000
+Game 12700 | Score: 4 | Record: 16 | Mean: 1.33 | Intrinsic: 0.000
+Game 12800 | Score: 1 | Record: 16 | Mean: 1.32 | Intrinsic: 0.000
+Game 12900 | Score: 0 | Record: 16 | Mean: 1.31 | Intrinsic: 0.000
+Game 13000 | Score: 0 | Record: 16 | Mean: 1.31 | Intrinsic: 0.000
+Game 13100 | Score: 0 | Record: 16 | Mean: 1.30 | Intrinsic: 0.000
+Game 13200 | Score: 0 | Record: 16 | Mean: 1.30 | Intrinsic: 0.000
+Game 13300 | Score: 0 | Record: 16 | Mean: 1.29 | Intrinsic: 0.000
+Game 13400 | Score: 0 | Record: 16 | Mean: 1.28 | Intrinsic: 0.000
+Game 13500 | Score: 0 | Record: 16 | Mean: 1.28 | Intrinsic: 0.000
+Game 13600 | Score: 0 | Record: 16 | Mean: 1.27 | Intrinsic: 0.000
+Game 13700 | Score: 0 | Record: 16 | Mean: 1.27 | Intrinsic: 0.000
+Game 13800 | Score: 0 | Record: 16 | Mean: 1.26 | Intrinsic: 0.000
+Game 13900 | Score: 0 | Record: 16 | Mean: 1.26 | Intrinsic: 0.000
+Game 14000 | Score: 0 | Record: 16 | Mean: 1.25 | Intrinsic: 0.000
+Game 14100 | Score: 1 | Record: 16 | Mean: 1.24 | Intrinsic: 0.000
+Game 14200 | Score: 0 | Record: 16 | Mean: 1.24 | Intrinsic: 0.000
+Game 14300 | Score: 0 | Record: 16 | Mean: 1.24 | Intrinsic: 0.000
+Game 14400 | Score: 0 | Record: 16 | Mean: 1.23 | Intrinsic: 0.000
+Game 14500 | Score: 0 | Record: 16 | Mean: 1.23 | Intrinsic: 0.000
+Game 14600 | Score: 0 | Record: 16 | Mean: 1.23 | Intrinsic: 0.000
+Game 14700 | Score: 0 | Record: 16 | Mean: 1.22 | Intrinsic: 0.000
+Game 14800 | Score: 4 | Record: 16 | Mean: 1.22 | Intrinsic: 0.000
+Game 14900 | Score: 0 | Record: 16 | Mean: 1.22 | Intrinsic: 0.000
+Game 15000 | Score: 0 | Record: 16 | Mean: 1.23 | Intrinsic: 0.000
+Game 15100 | Score: 0 | Record: 16 | Mean: 1.23 | Intrinsic: 0.000
+Game 15200 | Score: 0 | Record: 16 | Mean: 1.23 | Intrinsic: 0.000
+Game 15300 | Score: 0 | Record: 16 | Mean: 1.24 | Intrinsic: 0.000
+Game 15400 | Score: 0 | Record: 16 | Mean: 1.24 | Intrinsic: 0.000
+Game 15500 | Score: 0 | Record: 16 | Mean: 1.25 | Intrinsic: 0.000
+Game 15600 | Score: 0 | Record: 16 | Mean: 1.25 | Intrinsic: 0.000
+Game 15700 | Score: 10 | Record: 16 | Mean: 1.26 | Intrinsic: 0.000
+Game 15800 | Score: 5 | Record: 16 | Mean: 1.26 | Intrinsic: 0.000
+Game 15900 | Score: 0 | Record: 16 | Mean: 1.26 | Intrinsic: 0.000
+Game 16000 | Score: 0 | Record: 16 | Mean: 1.27 | Intrinsic: 0.000
+============================================================
+Training Complete!
+Best Score: 16
+Final Mean Score: 1.27
+wandb: uploading history steps 136-151, summary, console lines 138-153; updating run metadata
+wandb: uploading history steps 136-151, summary, console lines 138-153
+wandb: uploading history steps 136-151, summary, console lines 138-153; uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 136-151, summary, console lines 138-153
+wandb: uploading history steps 152-159, summary, console lines 154-165
+wandb: 
+wandb: Run history:
+wandb:       Game ▁▁▁▁▁▂▂▂▂▂▂▂▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▄▅▅▅▅▅▆▆▆▇▇█████▇▇▇▇▇
+wandb:     Record ▁▁▁▁▁▁▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▄▅▅▅▅▇▇▇▇█████████
+wandb:      Score ▁▁▁▁▁▁▁▂▂▁▃▁▁▁▂▁▁▂▃▁▂▁▁▂▇▃▁█▆▁▁▁▁▁▁▁▄▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:       Game 16000
+wandb: Mean_Score 1.27019
+wandb:     Record 16
+wandb:      Score 0
+wandb: 
+wandb: 🚀 View run PPO_Baseline_5x5 at: https://wandb.ai/saheb37/rl-snake/runs/mlez0s2s
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260422_094740-mlez0s2s/logs

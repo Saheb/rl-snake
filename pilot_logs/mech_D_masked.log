@@ -1,0 +1,69 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: Tracking run with wandb version 0.26.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/offline-run-20260426_205937-fcr6ksv0
+Starting ICM DQN Training (Dueling + 3-Step) on 8x8 Board...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.10 | Epsilon: 0.94 | Intrinsic: 0.009 | Eta: 0.10000 | BufTerm: 0.422 | SampTerm: 0.381 | Oversample: 0.90x
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.11 | Epsilon: 0.87 | Intrinsic: 0.011 | Eta: 0.10000 | BufTerm: 0.441 | SampTerm: 0.401 | Oversample: 0.91x
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.10 | Epsilon: 0.80 | Intrinsic: 0.003 | Eta: 0.10000 | BufTerm: 0.463 | SampTerm: 0.408 | Oversample: 0.88x
+Game 400 | Score: 0 | Record: 2 | Mean Score: 0.10 | Epsilon: 0.74 | Intrinsic: 0.008 | Eta: 0.10000 | BufTerm: 0.478 | SampTerm: 0.403 | Oversample: 0.84x
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.10 | Epsilon: 0.67 | Intrinsic: 0.002 | Eta: 0.10000 | BufTerm: 0.496 | SampTerm: 0.418 | Oversample: 0.84x
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.12 | Epsilon: 0.61 | Intrinsic: 0.009 | Eta: 0.10000 | BufTerm: 0.502 | SampTerm: 0.401 | Oversample: 0.80x
+Game 700 | Score: 1 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.54 | Intrinsic: 0.047 | Eta: 0.10000 | BufTerm: 0.502 | SampTerm: 0.445 | Oversample: 0.89x
+Game 800 | Score: 1 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.48 | Intrinsic: 0.009 | Eta: 0.10000 | BufTerm: 0.510 | SampTerm: 0.447 | Oversample: 0.88x
+Game 900 | Score: 0 | Record: 4 | Mean Score: 0.19 | Epsilon: 0.41 | Intrinsic: 0.000 | Eta: 0.10000 | BufTerm: 0.509 | SampTerm: 0.423 | Oversample: 0.83x
+Game 1000 | Score: 0 | Record: 4 | Mean Score: 0.23 | Epsilon: 0.35 | Intrinsic: 0.003 | Eta: 0.10000 | BufTerm: 0.504 | SampTerm: 0.404 | Oversample: 0.80x
+Game 1100 | Score: 0 | Record: 7 | Mean Score: 0.34 | Epsilon: 0.28 | Intrinsic: 0.004 | Eta: 0.10000 | BufTerm: 0.472 | SampTerm: 0.434 | Oversample: 0.92x
+Game 1200 | Score: 0 | Record: 7 | Mean Score: 0.41 | Epsilon: 0.22 | Intrinsic: 0.004 | Eta: 0.10000 | BufTerm: 0.461 | SampTerm: 0.394 | Oversample: 0.85x
+Game 1300 | Score: 4 | Record: 8 | Mean Score: 0.53 | Epsilon: 0.15 | Intrinsic: 0.111 | Eta: 0.10000 | BufTerm: 0.437 | SampTerm: 0.401 | Oversample: 0.92x
+Game 1400 | Score: 3 | Record: 14 | Mean Score: 0.72 | Epsilon: 0.09 | Intrinsic: 0.083 | Eta: 0.10000 | BufTerm: 0.400 | SampTerm: 0.414 | Oversample: 1.04x
+Game 1500 | Score: 0 | Record: 19 | Mean Score: 0.97 | Epsilon: 0.02 | Intrinsic: 0.002 | Eta: 0.10000 | BufTerm: 0.359 | SampTerm: 0.428 | Oversample: 1.19x
+Game 1600 | Score: 16 | Record: 19 | Mean Score: 1.27 | Epsilon: 0.02 | Intrinsic: 0.396 | Eta: 0.10000 | BufTerm: 0.323 | SampTerm: 0.377 | Oversample: 1.17x
+Game 1700 | Score: 9 | Record: 20 | Mean Score: 1.53 | Epsilon: 0.02 | Intrinsic: 0.211 | Eta: 0.10000 | BufTerm: 0.298 | SampTerm: 0.357 | Oversample: 1.20x
+Game 1800 | Score: 0 | Record: 26 | Mean Score: 1.83 | Epsilon: 0.02 | Intrinsic: 0.001 | Eta: 0.10000 | BufTerm: 0.273 | SampTerm: 0.369 | Oversample: 1.35x
+Game 1900 | Score: 20 | Record: 26 | Mean Score: 2.05 | Epsilon: 0.02 | Intrinsic: 0.410 | Eta: 0.10000 | BufTerm: 0.256 | SampTerm: 0.332 | Oversample: 1.30x
+Game 2000 | Score: 14 | Record: 26 | Mean Score: 2.26 | Epsilon: 0.02 | Intrinsic: 0.272 | Eta: 0.10000 | BufTerm: 0.242 | SampTerm: 0.305 | Oversample: 1.26x
+Game 2100 | Score: 0 | Record: 26 | Mean Score: 2.41 | Epsilon: 0.02 | Intrinsic: 0.001 | Eta: 0.10000 | BufTerm: 0.233 | SampTerm: 0.325 | Oversample: 1.40x
+Game 2200 | Score: 9 | Record: 26 | Mean Score: 2.63 | Epsilon: 0.02 | Intrinsic: 0.143 | Eta: 0.10000 | BufTerm: 0.219 | SampTerm: 0.312 | Oversample: 1.42x
+Game 2300 | Score: 6 | Record: 26 | Mean Score: 2.84 | Epsilon: 0.02 | Intrinsic: 0.086 | Eta: 0.10000 | BufTerm: 0.207 | SampTerm: 0.326 | Oversample: 1.57x
+Game 2400 | Score: 0 | Record: 29 | Mean Score: 3.05 | Epsilon: 0.02 | Intrinsic: 0.001 | Eta: 0.10000 | BufTerm: 0.197 | SampTerm: 0.288 | Oversample: 1.46x
+Game 2500 | Score: 0 | Record: 32 | Mean Score: 3.27 | Epsilon: 0.02 | Intrinsic: 0.001 | Eta: 0.10000 | BufTerm: 0.187 | SampTerm: 0.270 | Oversample: 1.44x
+Game 2600 | Score: 12 | Record: 32 | Mean Score: 3.45 | Epsilon: 0.02 | Intrinsic: 0.225 | Eta: 0.10000 | BufTerm: 0.179 | SampTerm: 0.266 | Oversample: 1.48x
+[Game 2625] Final LR cooldown applied → 1e-5
+Game 2700 | Score: 0 | Record: 32 | Mean Score: 3.61 | Epsilon: 0.02 | Intrinsic: 0.011 | Eta: 0.10000 | BufTerm: 0.173 | SampTerm: 0.268 | Oversample: 1.55x
+Game 2800 | Score: 0 | Record: 33 | Mean Score: 3.78 | Epsilon: 0.02 | Intrinsic: 0.003 | Eta: 0.10000 | BufTerm: 0.166 | SampTerm: 0.259 | Oversample: 1.56x
+Game 2900 | Score: 12 | Record: 33 | Mean Score: 3.93 | Epsilon: 0.02 | Intrinsic: 0.143 | Eta: 0.10000 | BufTerm: 0.161 | SampTerm: 0.257 | Oversample: 1.59x
+Game 3000 | Score: 0 | Record: 37 | Mean Score: 4.04 | Epsilon: 0.02 | Intrinsic: 0.004 | Eta: 0.10000 | BufTerm: 0.158 | SampTerm: 0.245 | Oversample: 1.55x
+
+Training Complete!
+Best Score: 37
+Final Mean Score: 4.04
+wandb: 
+wandb: Run history:
+wandb:          Buf_Terminal_Frac ▆▇▇▇██████▇▇▇▆▅▄▄▃▃▃▂▂▂▂▂▁▁▁▁▁
+wandb:                    Epsilon ██▇▇▆▆▅▅▄▄▃▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        Eta ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                       Game ▁▁▁▂▂▂▂▃▃▃▃▄▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇███
+wandb:           Intrinsic_Reward ▁▁▁▁▁▁▂▁▁▁▁▁▃▂▁█▅▁█▆▁▃▂▁▁▅▁▁▃▁
+wandb:                 Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▂▂▂▃▃▄▄▄▅▅▆▆▆▇▇▇███
+wandb:                     Record ▁▁▁▁▁▁▁▁▁▁▂▂▂▃▄▄▅▆▆▆▆▆▆▆▇▇▇▇▇█
+wandb:       Sample_Terminal_Frac ▆▆▇▆▇▆██▇▇█▆▆▇▇▆▅▅▄▃▄▃▄▂▂▂▂▁▁▁
+wandb:                      Score ▁▁▁▁▁▁▁▁▁▁▁▁▂▂▁▇▄▁█▆▁▄▃▁▁▅▁▁▅▁
+wandb: Terminal_Oversample_Factor ▂▂▂▁▁▁▂▂▁▁▂▁▂▃▄▄▄▆▅▅▆▇█▇▇▇████
+wandb: 
+wandb: Run summary:
+wandb:          Buf_Terminal_Frac 0.15775
+wandb:                    Epsilon 0.02
+wandb:                        Eta 0.1
+wandb:                       Game 3000
+wandb:           Intrinsic_Reward 0.00395
+wandb:                 Mean_Score 4.03667
+wandb:                     Record 37
+wandb:       Sample_Terminal_Frac 0.245
+wandb:                      Score 0
+wandb: Terminal_Oversample_Factor 1.55306
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /Users/saheb/home/rl-snake/wandb/offline-run-20260426_205937-fcr6ksv0
+wandb: Find logs at: ./wandb/offline-run-20260426_205937-fcr6ksv0/logs

@@ -1,0 +1,69 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: Tracking run with wandb version 0.26.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/offline-run-20260426_190128-chfc99cf
+Starting Baseline DQN Training (Dueling + 3-Step) on 8x8 Board...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.10 | Epsilon: 0.95 | Intrinsic: 0.000
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.08 | Epsilon: 0.90 | Intrinsic: 0.000
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.11 | Epsilon: 0.85 | Intrinsic: 0.000
+Game 400 | Score: 0 | Record: 2 | Mean Score: 0.11 | Epsilon: 0.80 | Intrinsic: 0.000
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.76 | Intrinsic: 0.000
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.71 | Intrinsic: 0.000
+Game 700 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.66 | Intrinsic: 0.000
+Game 800 | Score: 0 | Record: 4 | Mean Score: 0.15 | Epsilon: 0.61 | Intrinsic: 0.000
+Game 900 | Score: 0 | Record: 4 | Mean Score: 0.17 | Epsilon: 0.56 | Intrinsic: 0.000
+Game 1000 | Score: 1 | Record: 4 | Mean Score: 0.20 | Epsilon: 0.51 | Intrinsic: 0.000
+Game 1100 | Score: 1 | Record: 4 | Mean Score: 0.23 | Epsilon: 0.46 | Intrinsic: 0.000
+Game 1200 | Score: 0 | Record: 6 | Mean Score: 0.28 | Epsilon: 0.41 | Intrinsic: 0.000
+Game 1300 | Score: 1 | Record: 6 | Mean Score: 0.31 | Epsilon: 0.36 | Intrinsic: 0.000
+Game 1400 | Score: 2 | Record: 8 | Mean Score: 0.37 | Epsilon: 0.31 | Intrinsic: 0.000
+Game 1500 | Score: 0 | Record: 9 | Mean Score: 0.43 | Epsilon: 0.27 | Intrinsic: 0.000
+Game 1600 | Score: 3 | Record: 11 | Mean Score: 0.54 | Epsilon: 0.22 | Intrinsic: 0.000
+Game 1700 | Score: 0 | Record: 13 | Mean Score: 0.67 | Epsilon: 0.17 | Intrinsic: 0.000
+Game 1800 | Score: 0 | Record: 15 | Mean Score: 0.78 | Epsilon: 0.12 | Intrinsic: 0.000
+Game 1900 | Score: 7 | Record: 17 | Mean Score: 0.95 | Epsilon: 0.07 | Intrinsic: 0.000
+Game 2000 | Score: 0 | Record: 27 | Mean Score: 1.15 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2100 | Score: 8 | Record: 27 | Mean Score: 1.41 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2200 | Score: 15 | Record: 28 | Mean Score: 1.65 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2300 | Score: 0 | Record: 28 | Mean Score: 1.91 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2400 | Score: 0 | Record: 28 | Mean Score: 2.12 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2500 | Score: 10 | Record: 28 | Mean Score: 2.35 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2600 | Score: 27 | Record: 31 | Mean Score: 2.57 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2700 | Score: 18 | Record: 32 | Mean Score: 2.82 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2800 | Score: 0 | Record: 32 | Mean Score: 3.01 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 2900 | Score: 0 | Record: 32 | Mean Score: 3.17 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3000 | Score: 23 | Record: 32 | Mean Score: 3.35 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3100 | Score: 0 | Record: 34 | Mean Score: 3.45 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3200 | Score: 11 | Record: 34 | Mean Score: 3.65 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3300 | Score: 0 | Record: 34 | Mean Score: 3.77 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3400 | Score: 0 | Record: 35 | Mean Score: 3.87 | Epsilon: 0.02 | Intrinsic: 0.000
+[Game 3500] Final LR cooldown applied → 1e-5
+Game 3500 | Score: 0 | Record: 35 | Mean Score: 4.03 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3600 | Score: 0 | Record: 35 | Mean Score: 4.12 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3700 | Score: 12 | Record: 37 | Mean Score: 4.25 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3800 | Score: 0 | Record: 37 | Mean Score: 4.38 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 3900 | Score: 0 | Record: 37 | Mean Score: 4.46 | Epsilon: 0.02 | Intrinsic: 0.000
+Game 4000 | Score: 0 | Record: 37 | Mean Score: 4.58 | Epsilon: 0.02 | Intrinsic: 0.000
+
+Training Complete!
+Best Score: 37
+Final Mean Score: 4.58
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▅▅▅▄▄▄▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb: Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▃▄▄▅▅▅▆▆▆▆▇▇▇▇▇▇███
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▃▃▄▄▆▆▆▆▆▆▇▇▇▇▇▇▇▇███████
+wandb:      Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▂▁▂▁▁▃▁▃▅▁▁▄█▆▁▁▇▁▄▁▁▁▁▄▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 4000
+wandb: Mean_Score 4.58175
+wandb:     Record 37
+wandb:      Score 0
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /Users/saheb/home/rl-snake/wandb/offline-run-20260426_190128-chfc99cf
+wandb: Find logs at: ./wandb/offline-run-20260426_190128-chfc99cf/logs

@@ -1,0 +1,10 @@
+[ppo-chain] Polling chain pid 95026; will fire PPO when it exits.
+[ppo-chain] Main chain exited at 2026-04-27 03:52:58.
+[ppo-chain] Draining stragglers...
+[ppo-chain] Launching Phase 3: PPO 10x10 (4 conditions in parallel)
+[ppo-chain] launching ppo_dense_baseline -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_baseline_10x10_g5000_seed1.log
+[ppo-chain] launching ppo_dense_icm -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_icm_10x10_g5000_seed1.log
+[ppo-chain] launching ppo_puresparse_baseline -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_baseline_10x10_g5000_seed1.log
+[ppo-chain] launching ppo_puresparse_icm -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_icm_10x10_g5000_seed1.log
+[ppo-chain] PPO PIDs: 16723 16726 16729 16732
+[ppo-chain] ALL PPO RUNS DONE at 2026-04-27 04:44:58

@@ -1,0 +1,85 @@
+[chain] Polling pilot pid 73618...
+[chain] Sparsity pilot finished at 2026-04-26 22:38:12.
+[chain] === Phase 1: 8x8 pure_sparse (S3, S4 only) ===
+Queued 6 jobs (parallel=4, threads/job=2, eta=0.1, sparse_mode=pure_sparse).
+Tag prefix: puresparse_
+Logs → pilot_logs/
+
+[start] puresparse_S3_pure_sparse_dqn_8x8_g5000_seed1 → pilot_logs/puresparse_S3_pure_sparse_dqn_8x8_g5000_seed1.log
+[start] puresparse_S4_pure_sparse_icm_8x8_g5000_seed1 → pilot_logs/puresparse_S4_pure_sparse_icm_8x8_g5000_seed1.log
+[start] puresparse_S3_pure_sparse_dqn_8x8_g5000_seed2 → pilot_logs/puresparse_S3_pure_sparse_dqn_8x8_g5000_seed2.log
+[start] puresparse_S4_pure_sparse_icm_8x8_g5000_seed2 → pilot_logs/puresparse_S4_pure_sparse_icm_8x8_g5000_seed2.log
+[ok   ] puresparse_S3_pure_sparse_dqn_8x8_g5000_seed1 — Final Mean Score: 4.04
+[start] puresparse_S3_pure_sparse_dqn_8x8_g5000_seed3 → pilot_logs/puresparse_S3_pure_sparse_dqn_8x8_g5000_seed3.log
+[ok   ] puresparse_S3_pure_sparse_dqn_8x8_g5000_seed2 — Final Mean Score: 4.30
+[start] puresparse_S4_pure_sparse_icm_8x8_g5000_seed3 → pilot_logs/puresparse_S4_pure_sparse_icm_8x8_g5000_seed3.log
+[ok   ] puresparse_S4_pure_sparse_icm_8x8_g5000_seed1 — Final Mean Score: 4.13
+[ok   ] puresparse_S4_pure_sparse_icm_8x8_g5000_seed2 — Final Mean Score: 3.85
+[ok   ] puresparse_S3_pure_sparse_dqn_8x8_g5000_seed3 — Final Mean Score: 4.27
+[ok   ] puresparse_S4_pure_sparse_icm_8x8_g5000_seed3 — Final Mean Score: 4.19
+
+=== Final cumulative-mean scores ===
+  puresparse_S3_pure_sparse_dqn_8x8_g5000_seed1: Final Mean Score: 4.04
+  puresparse_S3_pure_sparse_dqn_8x8_g5000_seed2: Final Mean Score: 4.30
+  puresparse_S3_pure_sparse_dqn_8x8_g5000_seed3: Final Mean Score: 4.27
+  puresparse_S4_pure_sparse_icm_8x8_g5000_seed1: Final Mean Score: 4.13
+  puresparse_S4_pure_sparse_icm_8x8_g5000_seed2: Final Mean Score: 3.85
+  puresparse_S4_pure_sparse_icm_8x8_g5000_seed3: Final Mean Score: 4.19
+[chain] Phase 1 complete at 2026-04-27 00:52:11.
+[chain] === Phase 2: 10x10 pure_sparse (full 2x2) ===
+Queued 12 jobs (parallel=4, threads/job=2, eta=0.1, sparse_mode=pure_sparse).
+Tag prefix: puresparse_
+Logs → pilot_logs/
+
+[start] puresparse_S1_dense_dqn_10x10_g5000_seed1 → pilot_logs/puresparse_S1_dense_dqn_10x10_g5000_seed1.log
+[start] puresparse_S2_dense_icm_10x10_g5000_seed1 → pilot_logs/puresparse_S2_dense_icm_10x10_g5000_seed1.log
+[start] puresparse_S3_pure_sparse_dqn_10x10_g5000_seed1 → pilot_logs/puresparse_S3_pure_sparse_dqn_10x10_g5000_seed1.log
+[start] puresparse_S4_pure_sparse_icm_10x10_g5000_seed1 → pilot_logs/puresparse_S4_pure_sparse_icm_10x10_g5000_seed1.log
+[ok   ] puresparse_S1_dense_dqn_10x10_g5000_seed1 — Final Mean Score: 5.40
+[start] puresparse_S1_dense_dqn_10x10_g5000_seed2 → pilot_logs/puresparse_S1_dense_dqn_10x10_g5000_seed2.log
+[ok   ] puresparse_S2_dense_icm_10x10_g5000_seed1 — Final Mean Score: 5.15
+[start] puresparse_S2_dense_icm_10x10_g5000_seed2 → pilot_logs/puresparse_S2_dense_icm_10x10_g5000_seed2.log
+[ok   ] puresparse_S1_dense_dqn_10x10_g5000_seed2 — Final Mean Score: 5.08
+[start] puresparse_S3_pure_sparse_dqn_10x10_g5000_seed2 → pilot_logs/puresparse_S3_pure_sparse_dqn_10x10_g5000_seed2.log
+[ok   ] puresparse_S3_pure_sparse_dqn_10x10_g5000_seed1 — Final Mean Score: 4.44
+[start] puresparse_S4_pure_sparse_icm_10x10_g5000_seed2 → pilot_logs/puresparse_S4_pure_sparse_icm_10x10_g5000_seed2.log
+[ok   ] puresparse_S2_dense_icm_10x10_g5000_seed2 — Final Mean Score: 5.31
+[start] puresparse_S1_dense_dqn_10x10_g5000_seed3 → pilot_logs/puresparse_S1_dense_dqn_10x10_g5000_seed3.log
+[ok   ] puresparse_S1_dense_dqn_10x10_g5000_seed3 — Final Mean Score: 5.08
+[start] puresparse_S2_dense_icm_10x10_g5000_seed3 → pilot_logs/puresparse_S2_dense_icm_10x10_g5000_seed3.log
+[ok   ] puresparse_S4_pure_sparse_icm_10x10_g5000_seed1 — Final Mean Score: 4.55
+[start] puresparse_S3_pure_sparse_dqn_10x10_g5000_seed3 → pilot_logs/puresparse_S3_pure_sparse_dqn_10x10_g5000_seed3.log
+[ok   ] puresparse_S3_pure_sparse_dqn_10x10_g5000_seed2 — Final Mean Score: 4.29
+[start] puresparse_S4_pure_sparse_icm_10x10_g5000_seed3 → pilot_logs/puresparse_S4_pure_sparse_icm_10x10_g5000_seed3.log
+[ok   ] puresparse_S2_dense_icm_10x10_g5000_seed3 — Final Mean Score: 5.18
+[ok   ] puresparse_S3_pure_sparse_dqn_10x10_g5000_seed3 — Final Mean Score: 4.41
+[ok   ] puresparse_S4_pure_sparse_icm_10x10_g5000_seed2 — Final Mean Score: 4.32
+[ok   ] puresparse_S4_pure_sparse_icm_10x10_g5000_seed3 — Final Mean Score: 4.32
+
+=== Final cumulative-mean scores ===
+  puresparse_S1_dense_dqn_10x10_g5000_seed1: Final Mean Score: 5.40
+  puresparse_S1_dense_dqn_10x10_g5000_seed2: Final Mean Score: 5.08
+  puresparse_S1_dense_dqn_10x10_g5000_seed3: Final Mean Score: 5.08
+  puresparse_S2_dense_icm_10x10_g5000_seed1: Final Mean Score: 5.15
+  puresparse_S2_dense_icm_10x10_g5000_seed2: Final Mean Score: 5.31
+  puresparse_S2_dense_icm_10x10_g5000_seed3: Final Mean Score: 5.18
+  puresparse_S3_pure_sparse_dqn_10x10_g5000_seed1: Final Mean Score: 4.44
+  puresparse_S3_pure_sparse_dqn_10x10_g5000_seed2: Final Mean Score: 4.29
+  puresparse_S3_pure_sparse_dqn_10x10_g5000_seed3: Final Mean Score: 4.41
+  puresparse_S3_pure_sparse_dqn_8x8_g5000_seed1: Final Mean Score: 4.04
+  puresparse_S3_pure_sparse_dqn_8x8_g5000_seed2: Final Mean Score: 4.30
+  puresparse_S3_pure_sparse_dqn_8x8_g5000_seed3: Final Mean Score: 4.27
+  puresparse_S4_pure_sparse_icm_10x10_g5000_seed1: Final Mean Score: 4.55
+  puresparse_S4_pure_sparse_icm_10x10_g5000_seed2: Final Mean Score: 4.32
+  puresparse_S4_pure_sparse_icm_10x10_g5000_seed3: Final Mean Score: 4.32
+  puresparse_S4_pure_sparse_icm_8x8_g5000_seed1: Final Mean Score: 4.13
+  puresparse_S4_pure_sparse_icm_8x8_g5000_seed2: Final Mean Score: 3.85
+  puresparse_S4_pure_sparse_icm_8x8_g5000_seed3: Final Mean Score: 4.19
+[chain] All phases complete at 2026-04-27 02:59:10.
+[chain] === Phase 3: PPO 10x10 (4 runs in parallel, 1 seed each) ===
+[chain] launching ppo_dense_dqn -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_dqn_10x10_g5000_seed1.log
+[chain] launching ppo_dense_icm -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_icm_10x10_g5000_seed1.log
+[chain] launching ppo_puresparse_dqn -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_dqn_10x10_g5000_seed1.log
+[chain] launching ppo_puresparse_icm -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_icm_10x10_g5000_seed1.log
+[chain] Phase 3 complete at 2026-04-27 03:52:30.
+[chain] ALL DONE at 2026-04-27 03:52:30.

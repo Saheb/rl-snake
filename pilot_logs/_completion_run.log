@@ -1,0 +1,18 @@
+[completion] start 2026-04-27 07:08:09
+[completion] launched DQN-sparse-10x10 seed=1 pid=20048 -> /Users/saheb/home/rl-snake/pilot_logs/sparse10_S5_sparse_dqn_10x10_g5000_seed1.log
+[completion] launched DQN+ICM-sparse-10x10 seed=1 pid=20051 -> /Users/saheb/home/rl-snake/pilot_logs/sparse10_S6_sparse_icm_10x10_g5000_seed1.log
+[completion] launched DQN-sparse-10x10 seed=2 pid=20054 -> /Users/saheb/home/rl-snake/pilot_logs/sparse10_S5_sparse_dqn_10x10_g5000_seed2.log
+[completion] launched DQN+ICM-sparse-10x10 seed=2 pid=20057 -> /Users/saheb/home/rl-snake/pilot_logs/sparse10_S6_sparse_icm_10x10_g5000_seed2.log
+[completion] launched DQN-sparse-10x10 seed=3 pid=20060 -> /Users/saheb/home/rl-snake/pilot_logs/sparse10_S5_sparse_dqn_10x10_g5000_seed3.log
+[completion] launched DQN+ICM-sparse-10x10 seed=3 pid=20063 -> /Users/saheb/home/rl-snake/pilot_logs/sparse10_S6_sparse_icm_10x10_g5000_seed3.log
+[completion] launched ppo_dense_baseline seed=2 pid=20066 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_baseline_10x10_g5000_seed2.log
+[completion] launched ppo_dense_icm seed=2 pid=20069 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_icm_10x10_g5000_seed2.log
+[completion] launched ppo_puresparse_baseline seed=2 pid=20072 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_baseline_10x10_g5000_seed2.log
+[completion] launched ppo_puresparse_icm seed=2 pid=20075 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_icm_10x10_g5000_seed2.log
+[completion] launched ppo_dense_baseline seed=3 pid=20078 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_baseline_10x10_g5000_seed3.log
+[completion] launched ppo_dense_icm seed=3 pid=20081 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_dense_icm_10x10_g5000_seed3.log
+[completion] launched ppo_puresparse_baseline seed=3 pid=20084 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_baseline_10x10_g5000_seed3.log
+[completion] launched ppo_puresparse_icm seed=3 pid=20087 -> /Users/saheb/home/rl-snake/pilot_logs/ppo_puresparse_icm_10x10_g5000_seed3.log
+[completion] All 14 jobs launched; waiting...
+[completion] PIDs: 20048 20051 20054 20057 20060 20063 20066 20069 20072 20075 20078 20081 20084 20087
+[completion] ALL DONE at 2026-04-27 09:43:01

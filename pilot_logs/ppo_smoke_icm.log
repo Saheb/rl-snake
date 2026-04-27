@@ -1,0 +1,38 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: Tracking run with wandb version 0.26.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/offline-run-20260426_234726-54ow1bpv
+Starting ICM PPO Training on 8x8, reward_mode=pure_sparse...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.18 | Intrinsic: 0.271 | Eta: 0.10000
+[coverage] Game 100 | unique_states_cumulative: 727/4096 (17.7%) | last100_unique: 727
+
+Training Complete!
+Best Score: 2
+Final Mean Score: 0.18
+wandb: 
+wandb: Run history:
+wandb:      Coverage_Cumulative ▁
+wandb: Coverage_Cumulative_Frac ▁
+wandb:       Coverage_Window100 ▁
+wandb:                      Eta ▁
+wandb:                     Game ▁
+wandb:         Intrinsic_Reward ▁
+wandb:               Mean_Score ▁
+wandb:                   Record ▁
+wandb:                    Score ▁
+wandb: 
+wandb: Run summary:
+wandb:      Coverage_Cumulative 727
+wandb: Coverage_Cumulative_Frac 0.17749
+wandb:       Coverage_Window100 727
+wandb:                      Eta 0.1
+wandb:                     Game 100
+wandb:         Intrinsic_Reward 0.27096
+wandb:               Mean_Score 0.18
+wandb:                   Record 2
+wandb:                    Score 0
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /Users/saheb/home/rl-snake/wandb/offline-run-20260426_234726-54ow1bpv
+wandb: Find logs at: ./wandb/offline-run-20260426_234726-54ow1bpv/logs

@@ -1,0 +1,200 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run v7ghu7zl
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260424_094337-v7ghu7zl
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run DQN_v9_rewnorm_Baseline_noPER_10x10
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/v7ghu7zl
+Starting Baseline DQN Training (Dueling + 3-Step) on 10x10 Board...
+Game 100 | Score: 0 | Record: 1 | Mean Score: 0.05 | Epsilon: 0.95 | Intrinsic: 0.000
+Game 200 | Score: 0 | Record: 1 | Mean Score: 0.05 | Epsilon: 0.90 | Intrinsic: 0.000
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.06 | Epsilon: 0.85 | Intrinsic: 0.000
+Game 400 | Score: 0 | Record: 3 | Mean Score: 0.09 | Epsilon: 0.80 | Intrinsic: 0.000
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.10 | Epsilon: 0.75 | Intrinsic: 0.000
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.12 | Epsilon: 0.70 | Intrinsic: 0.000
+Game 700 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.65 | Intrinsic: 0.000
+Game 800 | Score: 1 | Record: 3 | Mean Score: 0.18 | Epsilon: 0.60 | Intrinsic: 0.000
+Game 900 | Score: 1 | Record: 4 | Mean Score: 0.20 | Epsilon: 0.55 | Intrinsic: 0.000
+Game 1000 | Score: 0 | Record: 5 | Mean Score: 0.24 | Epsilon: 0.50 | Intrinsic: 0.000
+Game 1100 | Score: 1 | Record: 5 | Mean Score: 0.26 | Epsilon: 0.45 | Intrinsic: 0.000
+Game 1200 | Score: 2 | Record: 7 | Mean Score: 0.30 | Epsilon: 0.40 | Intrinsic: 0.000
+Game 1300 | Score: 0 | Record: 7 | Mean Score: 0.34 | Epsilon: 0.35 | Intrinsic: 0.000
+Game 1400 | Score: 0 | Record: 7 | Mean Score: 0.39 | Epsilon: 0.30 | Intrinsic: 0.000
+Game 1500 | Score: 2 | Record: 7 | Mean Score: 0.45 | Epsilon: 0.25 | Intrinsic: 0.000
+Game 1600 | Score: 0 | Record: 11 | Mean Score: 0.55 | Epsilon: 0.20 | Intrinsic: 0.000
+Game 1700 | Score: 0 | Record: 16 | Mean Score: 0.61 | Epsilon: 0.15 | Intrinsic: 0.000
+Game 1800 | Score: 0 | Record: 16 | Mean Score: 0.70 | Epsilon: 0.10 | Intrinsic: 0.000
+Game 1900 | Score: 12 | Record: 21 | Mean Score: 0.86 | Epsilon: 0.05 | Intrinsic: 0.000
+Game 2000 | Score: 0 | Record: 23 | Mean Score: 1.11 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2100 | Score: 0 | Record: 32 | Mean Score: 1.32 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2200 | Score: 0 | Record: 39 | Mean Score: 1.66 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2300 | Score: 0 | Record: 39 | Mean Score: 1.95 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2400 | Score: 0 | Record: 40 | Mean Score: 2.18 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2500 | Score: 0 | Record: 40 | Mean Score: 2.41 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2600 | Score: 23 | Record: 40 | Mean Score: 2.67 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2700 | Score: 8 | Record: 40 | Mean Score: 2.93 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2800 | Score: 0 | Record: 40 | Mean Score: 3.15 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 2900 | Score: 0 | Record: 40 | Mean Score: 3.36 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3000 | Score: 0 | Record: 40 | Mean Score: 3.53 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3100 | Score: 0 | Record: 40 | Mean Score: 3.75 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3200 | Score: 0 | Record: 40 | Mean Score: 3.90 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3300 | Score: 0 | Record: 40 | Mean Score: 4.13 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3400 | Score: 0 | Record: 43 | Mean Score: 4.28 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3500 | Score: 24 | Record: 43 | Mean Score: 4.44 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3600 | Score: 26 | Record: 43 | Mean Score: 4.58 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3700 | Score: 0 | Record: 43 | Mean Score: 4.71 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3800 | Score: 14 | Record: 48 | Mean Score: 4.82 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 3900 | Score: 0 | Record: 48 | Mean Score: 4.94 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4000 | Score: 27 | Record: 48 | Mean Score: 5.09 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4100 | Score: 5 | Record: 48 | Mean Score: 5.24 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4200 | Score: 0 | Record: 48 | Mean Score: 5.33 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4300 | Score: 0 | Record: 48 | Mean Score: 5.43 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4400 | Score: 42 | Record: 48 | Mean Score: 5.51 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4500 | Score: 14 | Record: 48 | Mean Score: 5.64 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4600 | Score: 0 | Record: 48 | Mean Score: 5.72 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4700 | Score: 0 | Record: 48 | Mean Score: 5.82 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4800 | Score: 0 | Record: 48 | Mean Score: 5.88 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 4900 | Score: 26 | Record: 48 | Mean Score: 5.95 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5000 | Score: 0 | Record: 48 | Mean Score: 6.06 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5100 | Score: 26 | Record: 48 | Mean Score: 6.16 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5200 | Score: 0 | Record: 48 | Mean Score: 6.20 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5300 | Score: 21 | Record: 48 | Mean Score: 6.29 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5400 | Score: 10 | Record: 48 | Mean Score: 6.35 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5500 | Score: 33 | Record: 48 | Mean Score: 6.43 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5600 | Score: 23 | Record: 48 | Mean Score: 6.50 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5700 | Score: 0 | Record: 48 | Mean Score: 6.58 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5800 | Score: 3 | Record: 54 | Mean Score: 6.66 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 5900 | Score: 0 | Record: 54 | Mean Score: 6.73 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6000 | Score: 38 | Record: 54 | Mean Score: 6.84 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6100 | Score: 0 | Record: 54 | Mean Score: 6.90 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6200 | Score: 37 | Record: 54 | Mean Score: 6.98 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6300 | Score: 23 | Record: 54 | Mean Score: 7.05 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6400 | Score: 0 | Record: 54 | Mean Score: 7.12 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6500 | Score: 0 | Record: 54 | Mean Score: 7.12 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6600 | Score: 25 | Record: 54 | Mean Score: 7.18 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6700 | Score: 6 | Record: 54 | Mean Score: 7.22 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6800 | Score: 0 | Record: 54 | Mean Score: 7.25 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 6900 | Score: 29 | Record: 54 | Mean Score: 7.28 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7000 | Score: 0 | Record: 54 | Mean Score: 7.29 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7100 | Score: 16 | Record: 54 | Mean Score: 7.31 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7200 | Score: 0 | Record: 54 | Mean Score: 7.37 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7300 | Score: 23 | Record: 54 | Mean Score: 7.41 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7400 | Score: 0 | Record: 54 | Mean Score: 7.46 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7500 | Score: 0 | Record: 54 | Mean Score: 7.50 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7600 | Score: 27 | Record: 54 | Mean Score: 7.54 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7700 | Score: 3 | Record: 54 | Mean Score: 7.58 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7800 | Score: 36 | Record: 54 | Mean Score: 7.60 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 7900 | Score: 0 | Record: 54 | Mean Score: 7.62 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8000 | Score: 0 | Record: 54 | Mean Score: 7.64 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8100 | Score: 0 | Record: 54 | Mean Score: 7.67 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8200 | Score: 8 | Record: 54 | Mean Score: 7.73 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8300 | Score: 0 | Record: 54 | Mean Score: 7.77 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8400 | Score: 0 | Record: 54 | Mean Score: 7.80 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8500 | Score: 0 | Record: 54 | Mean Score: 7.82 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8600 | Score: 20 | Record: 54 | Mean Score: 7.85 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8700 | Score: 15 | Record: 54 | Mean Score: 7.89 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8800 | Score: 1 | Record: 54 | Mean Score: 7.94 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 8900 | Score: 0 | Record: 54 | Mean Score: 7.98 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9000 | Score: 33 | Record: 54 | Mean Score: 8.02 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9100 | Score: 21 | Record: 54 | Mean Score: 8.04 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9200 | Score: 0 | Record: 54 | Mean Score: 8.07 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9300 | Score: 27 | Record: 54 | Mean Score: 8.12 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9400 | Score: 29 | Record: 54 | Mean Score: 8.15 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9500 | Score: 26 | Record: 54 | Mean Score: 8.20 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9600 | Score: 23 | Record: 54 | Mean Score: 8.24 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9700 | Score: 0 | Record: 54 | Mean Score: 8.26 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9800 | Score: 27 | Record: 54 | Mean Score: 8.28 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 9900 | Score: 46 | Record: 54 | Mean Score: 8.29 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10000 | Score: 0 | Record: 54 | Mean Score: 8.32 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10100 | Score: 28 | Record: 54 | Mean Score: 8.33 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10200 | Score: 20 | Record: 54 | Mean Score: 8.35 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10300 | Score: 0 | Record: 54 | Mean Score: 8.35 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10400 | Score: 24 | Record: 54 | Mean Score: 8.36 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10500 | Score: 23 | Record: 54 | Mean Score: 8.38 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10600 | Score: 0 | Record: 54 | Mean Score: 8.40 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10700 | Score: 0 | Record: 54 | Mean Score: 8.42 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10800 | Score: 0 | Record: 54 | Mean Score: 8.43 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 10900 | Score: 0 | Record: 54 | Mean Score: 8.44 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11000 | Score: 35 | Record: 54 | Mean Score: 8.47 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11100 | Score: 19 | Record: 54 | Mean Score: 8.49 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11200 | Score: 33 | Record: 54 | Mean Score: 8.53 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11300 | Score: 25 | Record: 54 | Mean Score: 8.55 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11400 | Score: 22 | Record: 54 | Mean Score: 8.58 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11500 | Score: 0 | Record: 54 | Mean Score: 8.59 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11600 | Score: 0 | Record: 54 | Mean Score: 8.61 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11700 | Score: 33 | Record: 54 | Mean Score: 8.61 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11800 | Score: 24 | Record: 54 | Mean Score: 8.62 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 11900 | Score: 4 | Record: 54 | Mean Score: 8.63 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12000 | Score: 0 | Record: 54 | Mean Score: 8.65 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12100 | Score: 23 | Record: 54 | Mean Score: 8.66 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12200 | Score: 0 | Record: 54 | Mean Score: 8.66 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12300 | Score: 4 | Record: 54 | Mean Score: 8.69 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12400 | Score: 0 | Record: 54 | Mean Score: 8.72 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12500 | Score: 0 | Record: 54 | Mean Score: 8.73 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12600 | Score: 0 | Record: 54 | Mean Score: 8.75 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12700 | Score: 27 | Record: 54 | Mean Score: 8.77 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12800 | Score: 19 | Record: 54 | Mean Score: 8.79 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 12900 | Score: 0 | Record: 54 | Mean Score: 8.81 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13000 | Score: 27 | Record: 54 | Mean Score: 8.81 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13100 | Score: 24 | Record: 54 | Mean Score: 8.84 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13200 | Score: 22 | Record: 54 | Mean Score: 8.87 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13300 | Score: 0 | Record: 54 | Mean Score: 8.87 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13400 | Score: 29 | Record: 54 | Mean Score: 8.88 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13500 | Score: 0 | Record: 54 | Mean Score: 8.90 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13600 | Score: 0 | Record: 54 | Mean Score: 8.90 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13700 | Score: 0 | Record: 54 | Mean Score: 8.92 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13800 | Score: 0 | Record: 54 | Mean Score: 8.95 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 13900 | Score: 6 | Record: 54 | Mean Score: 8.95 | Epsilon: 0.01 | Intrinsic: 0.000
+[Game 14000] Final LR cooldown applied → 1e-5
+Game 14000 | Score: 33 | Record: 54 | Mean Score: 8.96 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14100 | Score: 27 | Record: 54 | Mean Score: 8.98 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14200 | Score: 33 | Record: 54 | Mean Score: 9.01 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14300 | Score: 21 | Record: 54 | Mean Score: 9.02 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14400 | Score: 0 | Record: 54 | Mean Score: 9.04 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14500 | Score: 32 | Record: 54 | Mean Score: 9.06 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14600 | Score: 0 | Record: 55 | Mean Score: 9.08 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14700 | Score: 0 | Record: 55 | Mean Score: 9.08 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14800 | Score: 27 | Record: 55 | Mean Score: 9.10 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 14900 | Score: 0 | Record: 55 | Mean Score: 9.13 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15000 | Score: 27 | Record: 55 | Mean Score: 9.15 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15100 | Score: 0 | Record: 55 | Mean Score: 9.15 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15200 | Score: 0 | Record: 55 | Mean Score: 9.17 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15300 | Score: 0 | Record: 55 | Mean Score: 9.18 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15400 | Score: 34 | Record: 55 | Mean Score: 9.22 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15500 | Score: 32 | Record: 55 | Mean Score: 9.24 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15600 | Score: 27 | Record: 55 | Mean Score: 9.25 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15700 | Score: 29 | Record: 55 | Mean Score: 9.27 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15800 | Score: 0 | Record: 55 | Mean Score: 9.29 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 15900 | Score: 0 | Record: 55 | Mean Score: 9.29 | Epsilon: 0.01 | Intrinsic: 0.000
+Game 16000 | Score: 0 | Record: 55 | Mean Score: 9.32 | Epsilon: 0.01 | Intrinsic: 0.000
+
+Training Complete!
+Best Score: 55
+Final Mean Score: 9.32
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading config.yaml; uploading output.log
+wandb: uploading history steps 159-159, summary, console lines 161-165
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▅▅▅▆▆▆▆▆▇▇▇███
+wandb: Mean_Score ▁▁▁▁▂▄▄▄▅▅▅▅▅▆▆▆▇▇▇▇▇▇▇▇▇▇▇█████████████
+wandb:     Record ▁▁▂▂▂▅▆▆▆▆▆▇▇▇▇▇▇███████████████████████
+wandb:      Score ▁▁▁▁▁▁▆▁▁▁▇▁▁▆▁▆▁▆▁▄▁▄▁▁▇▁▆▁▁▁▂▁▇▆▆█▇█▇▁
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 16000
+wandb: Mean_Score 9.31669
+wandb:     Record 55
+wandb:      Score 0
+wandb: 
+wandb: 🚀 View run DQN_v9_rewnorm_Baseline_noPER_10x10 at: https://wandb.ai/saheb37/rl-snake/runs/v7ghu7zl
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260424_094337-v7ghu7zl/logs

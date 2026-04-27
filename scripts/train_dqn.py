@@ -146,21 +146,34 @@ class QTrainer:
 # DQN AGENT
 # ============================================================================
 class DQNAgent:
-    def __init__(self, use_icm=False, use_per=True, icm_eta=0.01, icm_lr=0.001):
+    def __init__(
+        self,
+        use_icm=False,
+        use_per=True,
+        icm_eta=0.01,
+        icm_lr=0.001,
+        epsilon_decay_per_game=0.0001,
+        epsilon_end=0.02,
+        use_priority_cap=True,
+        use_foundation_memory=True,
+    ):
         self.n_games = 0
         self.epsilon = 1.0
         self.gamma = 0.95
         self.use_per = use_per
         self.total_steps = 0
         self.epsilon_start = 1.0
-        self.epsilon_end = 0.02
-        self.epsilon_decay_rate = 300_000
-        self.min_game_steps = 150
+        self.epsilon_end = epsilon_end
+        self.epsilon_decay_per_game = epsilon_decay_per_game
+        self.use_foundation_memory = use_foundation_memory
         if use_per:
-            self.memory = PrioritizedReplayBuffer(capacity=100_000)
+            # priority_cap=inf disables the hard ceiling that otherwise prevents
+            # high-TD-error transitions (e.g. ICM-inflated terminal steps) from dominating sampling.
+            cap = 1.0 if use_priority_cap else float("inf")
+            self.memory = PrioritizedReplayBuffer(capacity=100_000, priority_cap=cap)
         else:
             self.memory = deque(maxlen=100_000)
-        self.foundation_memory = deque(maxlen=20_000)
+        self.foundation_memory = deque(maxlen=20_000) if use_foundation_memory else None
 
         # N-Step Learning
         self.n_steps = 4
@@ -182,7 +195,8 @@ class DQNAgent:
 
         # Intrinsic Curiosity Module
         self.use_icm = use_icm
-        self.icm = ICM(state_dim=14, action_dim=3, lr=icm_lr, eta=icm_eta) if use_icm else None
+        # state_dim must match the dim returned by get_state() (24); the DuelingQNet above also takes 24.
+        self.icm = ICM(state_dim=24, action_dim=3, lr=icm_lr, eta=icm_eta) if use_icm else None
 
     def update_target_network(self, tau=0.005):
         for target_param, local_param in zip(self.target_model.parameters(), self.model.parameters()):
@@ -342,7 +356,7 @@ class DQNAgent:
             self.memory.add(valid_transition)
         else:
             self.memory.append(valid_transition)
-        if step_idx <= 50:
+        if self.foundation_memory is not None and step_idx <= 50:
             self.foundation_memory.append(valid_transition)
 
         return valid_transition  # Return computed transition for online training
@@ -373,20 +387,21 @@ class DQNAgent:
             self.trainer.train_step(states, actions, rewards, next_states, dones, is_weights=None)
             return
 
-        # Sample standard buffer (75%) via PER
-        standard_sample_size = 750
-        if len(self.memory) > standard_sample_size:
-            per_batch, per_indices, per_weights = self.memory.sample(standard_sample_size)
+        # Sample standard buffer via PER. When foundation memory is enabled, it takes 25% of the
+        # batch; when disabled, PER takes the entire 1000-sample batch (= textbook PER).
+        per_target = 750 if self.use_foundation_memory else 1000
+        if len(self.memory) > per_target:
+            per_batch, per_indices, per_weights = self.memory.sample(per_target)
         elif len(self.memory) > 0:
             per_batch, per_indices, per_weights = self.memory.sample(len(self.memory))
         else:
             per_batch, per_indices, per_weights = [], [], np.array([])
 
-        # Sample foundation buffer (25%) via uniform random
+        # Sample foundation buffer (25%) via uniform random — disabled cleanly when use_foundation_memory=False
         foundation_sample_size = 250
         foundation_batch = []
         foundation_weights = []
-        if len(self.foundation_memory) > 0:
+        if self.foundation_memory is not None and len(self.foundation_memory) > 0:
             if len(self.foundation_memory) > foundation_sample_size:
                 foundation_batch = random.sample(self.foundation_memory, foundation_sample_size)
             else:
@@ -418,8 +433,9 @@ class DQNAgent:
         )
 
     def get_action(self, state):
-        # Linear game-based decay (best performing schedule so far)
-        self.epsilon = max(self.epsilon_end, 1.0 - (self.n_games * 0.0001))
+        # Linear game-based decay. Rate scales with num_games so short pilots floor early
+        # enough to leave room for policy consolidation.
+        self.epsilon = max(self.epsilon_end, 1.0 - (self.n_games * self.epsilon_decay_per_game))
         final_move = [0, 0, 0]
 
         if random.random() < self.epsilon:
@@ -481,19 +497,54 @@ def get_absolute_action(move, game):
     return new_dir
 
 
-def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
+def train(
+    use_icm=True,
+    use_per=True,
+    icm_eta=0.01,
+    icm_lr=0.001,
+    board_size=5,
+    num_games=16000,
+    mask_terminal_intrinsic=True,
+    use_priority_cap=True,
+    use_foundation_memory=True,
+    reward_mode="dense",
+    seed=None,
+    run_tag=None,
+):
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+
+    if run_tag is None:
+        run_tag = (
+            f"DQN_{'ICM' if use_icm else 'Baseline'}"
+            f"_{'PER' if use_per else 'noPER'}"
+            f"_{'masked' if mask_terminal_intrinsic else 'unmasked'}"
+            f"_{board_size}x{board_size}"
+            f"_g{num_games}"
+            + (f"_seed{seed}" if seed is not None else "")
+        )
+
     wandb.init(
         project="rl-snake",
-        name=f"DQN_v15b_stable_{'ICM' if use_icm else 'Baseline'}_{'PER' if use_per else 'noPER'}_{board_size}x{board_size}",
+        name=run_tag,
         config={
             "algorithm": "DQN",
             "board_size": board_size,
             "use_icm": use_icm,
+            "use_per": use_per,
+            "mask_terminal_intrinsic": mask_terminal_intrinsic,
+            "use_priority_cap": use_priority_cap,
+            "use_foundation_memory": use_foundation_memory,
+            "reward_mode": reward_mode,
             "icm_eta": icm_eta if use_icm else 0,
             "icm_lr": icm_lr if use_icm else 0,
             "gamma": 0.95,
             "n_steps": 4,
-            "learning_rate": 0.001
+            "learning_rate": 0.001,
+            "num_games": num_games,
+            "seed": seed,
         }
     )
     
@@ -505,8 +556,20 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
     plot_mean_scores = []
     total_score = 0
     record = 0
-    agent = DQNAgent(use_icm=use_icm, use_per=use_per, icm_eta=icm_eta, icm_lr=icm_lr)
-    game = SnakeGame(board_size=board_size)
+    # Scale epsilon decay so ε reaches its floor at ~50% of training, leaving the rest for consolidation.
+    # For num_games=16000 this evaluates to ~6e-5 (≈ original 0.0001 schedule, slightly slower);
+    # for num_games=4000 it evaluates to ~2.45e-4 (≈ ε floors at game 4000, post-decay zone is small but nonzero).
+    epsilon_decay_per_game = max((1.0 - 0.02) / max(num_games * 0.5, 1.0), 1e-6)
+    agent = DQNAgent(
+        use_icm=use_icm,
+        use_per=use_per,
+        icm_eta=icm_eta,
+        icm_lr=icm_lr,
+        epsilon_decay_per_game=epsilon_decay_per_game,
+        use_priority_cap=use_priority_cap,
+        use_foundation_memory=use_foundation_memory,
+    )
+    game = SnakeGame(board_size=board_size, reward_mode=reward_mode)
     
     MAX_STEPS = 500 if board_size <= 5 else (3000 if board_size <= 8 else 5000)
     print(
@@ -516,7 +579,11 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
     steps_in_game = 0
     game_intrinsic_reward = 0.0
     optimizer_decayed = False
-    while agent.n_games < 16000:  # Train for 16000 games
+    # Exploration coverage: unique (head_x, head_y, food_x, food_y) tuples visited.
+    # Cumulative set saturates at board_size**4 (4096 for 8x8). Windowed set is reset every 100 games.
+    visited_cumulative = set()
+    visited_window = set()
+    while agent.n_games < num_games:  # Train for num_games games
         # get old state
         state_old = agent.get_state(game)
 
@@ -527,6 +594,13 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
         action = get_absolute_action(final_move, game)
         _, reward, done, info = game.step(action)
         score = info["score"]
+
+        # Coverage: log the post-step (head, food) pair the agent transitioned into.
+        if game.snake_position and game.food_position:
+            head = game.snake_position[-1]
+            state_key = (head[0], head[1], game.food_position[0], game.food_position[1])
+            visited_cumulative.add(state_key)
+            visited_window.add(state_key)
 
         steps_in_game += 1
         agent.total_steps += 1
@@ -544,7 +618,9 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
             # The ICM generates massive "surprise" on death (game-over physics are unpredictable).
             # Multiplying by (1 - done) strictly zeroes out the intrinsic reward on terminal steps,
             # preventing the agent from learning to suicide for dopamine.
-            intrinsic_reward = intrinsic_reward * (1.0 - float(done))
+            # Disabling this mask reproduces the "poisoned" PER + ICM baseline.
+            if mask_terminal_intrinsic:
+                intrinsic_reward = intrinsic_reward * (1.0 - float(done))
             reward += intrinsic_reward
             game_intrinsic_reward += intrinsic_reward
 
@@ -606,10 +682,11 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
                         optimizer_decayed = True
             
             # Fix 3: FINAL LR COOLDOWN
-            # At 87.5% through training (game 14000), force a hard 1e-5 floor on LR.
+            # At 87.5% through training, force a hard 1e-5 floor on LR.
             # This prevents late-game gradient spikes from overwriting the converged policy
             # regardless of whether the mean_score threshold has been hit or not.
-            if agent.n_games == 14000:
+            lr_cooldown_game = int(num_games * 0.875)
+            if agent.n_games == lr_cooldown_game:
                 for param_group in agent.trainer.optimizer.param_groups:
                     param_group['lr'] = 1e-5
                 if use_icm and agent.icm is not None:
@@ -621,10 +698,17 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
 
             if agent.n_games % 100 == 0:
                 icm_eta_str = f" | Eta: {agent.icm.eta:.5f}" if (use_icm and agent.icm is not None) else ""
+                # Replay-buffer composition diagnostics (PER only).
+                buf_term = sample_term = oversample = 0.0
+                if use_per and hasattr(agent.memory, "buffer_terminal_frac"):
+                    buf_term = agent.memory.buffer_terminal_frac()
+                    sample_term = agent.memory.last_sample_terminal_frac()
+                    oversample = (sample_term / buf_term) if buf_term > 0 else 0.0
+                buf_str = f" | BufTerm: {buf_term:.3f} | SampTerm: {sample_term:.3f} | Oversample: {oversample:.2f}x" if use_per else ""
                 print(
-                    f"Game {agent.n_games} | Score: {score} | Record: {record} | Mean Score: {mean_score:.2f} | Epsilon: {agent.epsilon:.2f} | Intrinsic: {game_intrinsic_reward:.3f}{icm_eta_str}"
+                    f"Game {agent.n_games} | Score: {score} | Record: {record} | Mean Score: {mean_score:.2f} | Epsilon: {agent.epsilon:.2f} | Intrinsic: {game_intrinsic_reward:.3f}{icm_eta_str}{buf_str}"
                 )
-                
+
                 log_metrics = {
                     "Game": agent.n_games,
                     "Score": score,
@@ -635,6 +719,21 @@ def train(use_icm=True, use_per=True, icm_eta=0.01, icm_lr=0.001, board_size=5):
                 if use_icm:
                     log_metrics["Intrinsic_Reward"] = game_intrinsic_reward
                     log_metrics["Eta"] = agent.icm.eta
+                if use_per:
+                    log_metrics["Buf_Terminal_Frac"] = buf_term
+                    log_metrics["Sample_Terminal_Frac"] = sample_term
+                    log_metrics["Terminal_Oversample_Factor"] = oversample
+                # Coverage diagnostics
+                cov_cum = len(visited_cumulative)
+                cov_win = len(visited_window)
+                cov_max = board_size ** 4
+                print(
+                    f"[coverage] Game {agent.n_games} | unique_states_cumulative: {cov_cum}/{cov_max} ({100*cov_cum/cov_max:.1f}%) | last100_unique: {cov_win}"
+                )
+                log_metrics["Coverage_Cumulative"] = cov_cum
+                log_metrics["Coverage_Window100"] = cov_win
+                log_metrics["Coverage_Cumulative_Frac"] = cov_cum / cov_max
+                visited_window = set()
                 wandb.log(log_metrics)
             
             game_intrinsic_reward = 0.0
@@ -650,8 +749,32 @@ if __name__ == "__main__":
     parser.add_argument('--board_size', type=int, default=5, help='Size of the board (e.g., 5 for 5x5)')
     parser.add_argument('--disable_icm', action='store_true', help='Disable the Intrinsic Curiosity Module for pure baseline runs')
     parser.add_argument('--disable_per', action='store_true', help='Use simple uniform replay instead of PER')
+    parser.add_argument('--disable_terminal_mask', action='store_true', help='Do NOT mask intrinsic reward at terminal steps (reproduces the poisoned PER+ICM baseline)')
+    parser.add_argument('--disable_priority_cap', action='store_true', help='Disable PER hard ceiling on TD-error priorities (allows high-TD events to dominate sampling)')
+    parser.add_argument('--disable_foundation_memory', action='store_true', help='Use textbook PER without the 75/25 foundation-memory blend')
+    parser.add_argument('--num_games', type=int, default=16000, help='Number of games to train for')
+    parser.add_argument('--icm_eta', type=float, default=0.01, help='ICM intrinsic reward scaling (default 0.01; raise for clearer ICM signal)')
+    parser.add_argument('--reward_mode', type=str, default='dense', choices=['dense', 'sparse', 'pure_sparse'], help='dense = full shaping (default); sparse = food/death/step penalty only; pure_sparse = food/death only, zero step penalty')
+    parser.add_argument('--seed', type=int, default=None, help='Random seed for reproducibility')
+    parser.add_argument('--run_tag', type=str, default=None, help='Override wandb run name (useful for ablation logging)')
     args = parser.parse_args()
-    
+
     use_icm = not args.disable_icm
     use_per = not args.disable_per
-    train(use_icm=use_icm, use_per=use_per, icm_eta=0.01, icm_lr=0.001, board_size=args.board_size)
+    mask_terminal = not args.disable_terminal_mask
+    use_priority_cap = not args.disable_priority_cap
+    use_foundation_memory = not args.disable_foundation_memory
+    train(
+        use_icm=use_icm,
+        use_per=use_per,
+        icm_eta=args.icm_eta,
+        icm_lr=0.001,
+        board_size=args.board_size,
+        num_games=args.num_games,
+        mask_terminal_intrinsic=mask_terminal,
+        use_priority_cap=use_priority_cap,
+        use_foundation_memory=use_foundation_memory,
+        reward_mode=args.reward_mode,
+        seed=args.seed,
+        run_tag=args.run_tag,
+    )

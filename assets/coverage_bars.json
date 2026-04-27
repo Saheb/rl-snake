@@ -1,0 +1,72 @@
+[
+  {
+    "label": "DQN dense",
+    "color": "tab:blue",
+    "mean": 98.94,
+    "std": 0.02645751311064333,
+    "n": 3
+  },
+  {
+    "label": "DQN dense + ICM",
+    "color": "tab:red",
+    "mean": 98.95333333333333,
+    "std": 0.02516611478423459,
+    "n": 3
+  },
+  {
+    "label": "DQN sparse",
+    "color": "tab:blue",
+    "mean": 98.93333333333334,
+    "std": 0.011547005383790217,
+    "n": 3
+  },
+  {
+    "label": "DQN sparse + ICM",
+    "color": "tab:red",
+    "mean": 98.89,
+    "std": 0.052915026221294716,
+    "n": 3
+  },
+  {
+    "label": "DQN pure_sparse",
+    "color": "tab:blue",
+    "mean": 98.91,
+    "std": 0.04358898943540784,
+    "n": 3
+  },
+  {
+    "label": "DQN pure_sparse +ICM",
+    "color": "tab:red",
+    "mean": 98.92,
+    "std": 0.036055512754636664,
+    "n": 3
+  },
+  {
+    "label": "PPO dense",
+    "color": "tab:orange",
+    "mean": 51.79666666666667,
+    "std": 2.0867279011249504,
+    "n": 3
+  },
+  {
+    "label": "PPO dense + ICM",
+    "color": "tab:red",
+    "mean": 50.67,
+    "std": 1.5998749951168063,
+    "n": 3
+  },
+  {
+    "label": "PPO pure_sparse",
+    "color": "tab:orange",
+    "mean": 98.87,
+    "std": 0.05567764362830701,
+    "n": 3
+  },
+  {
+    "label": "PPO pure_sparse +ICM",
+    "color": "tab:red",
+    "mean": 98.89666666666666,
+    "std": 0.08386497083606279,
+    "n": 3
+  }
+]

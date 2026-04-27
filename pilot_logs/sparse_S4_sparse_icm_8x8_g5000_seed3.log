@@ -1,0 +1,139 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: Tracking run with wandb version 0.26.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/offline-run-20260426_223810-hw5ho5tz
+Starting ICM DQN Training (Dueling + 3-Step) on 8x8 Board...
+Game 100 | Score: 0 | Record: 1 | Mean Score: 0.07 | Epsilon: 0.96 | Intrinsic: 0.009 | Eta: 0.10000
+[coverage] Game 100 | unique_states_cumulative: 564/4096 (13.8%) | last100_unique: 564
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.10 | Epsilon: 0.92 | Intrinsic: 0.017 | Eta: 0.10000
+[coverage] Game 200 | unique_states_cumulative: 968/4096 (23.6%) | last100_unique: 630
+Game 300 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.88 | Intrinsic: 0.006 | Eta: 0.10000
+[coverage] Game 300 | unique_states_cumulative: 1304/4096 (31.8%) | last100_unique: 641
+Game 400 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.84 | Intrinsic: 0.007 | Eta: 0.10000
+[coverage] Game 400 | unique_states_cumulative: 1519/4096 (37.1%) | last100_unique: 651
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.80 | Intrinsic: 0.017 | Eta: 0.10000
+[coverage] Game 500 | unique_states_cumulative: 1708/4096 (41.7%) | last100_unique: 705
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.77 | Intrinsic: 0.010 | Eta: 0.10000
+[coverage] Game 600 | unique_states_cumulative: 1861/4096 (45.4%) | last100_unique: 693
+Game 700 | Score: 1 | Record: 3 | Mean Score: 0.18 | Epsilon: 0.73 | Intrinsic: 0.051 | Eta: 0.10000
+[coverage] Game 700 | unique_states_cumulative: 1966/4096 (48.0%) | last100_unique: 682
+Game 800 | Score: 1 | Record: 4 | Mean Score: 0.20 | Epsilon: 0.69 | Intrinsic: 0.055 | Eta: 0.10000
+[coverage] Game 800 | unique_states_cumulative: 2069/4096 (50.5%) | last100_unique: 754
+Game 900 | Score: 0 | Record: 4 | Mean Score: 0.23 | Epsilon: 0.65 | Intrinsic: 0.005 | Eta: 0.10000
+[coverage] Game 900 | unique_states_cumulative: 2199/4096 (53.7%) | last100_unique: 777
+Game 1000 | Score: 0 | Record: 4 | Mean Score: 0.26 | Epsilon: 0.61 | Intrinsic: 0.020 | Eta: 0.10000
+[coverage] Game 1000 | unique_states_cumulative: 2372/4096 (57.9%) | last100_unique: 898
+Game 1100 | Score: 0 | Record: 4 | Mean Score: 0.28 | Epsilon: 0.57 | Intrinsic: 0.007 | Eta: 0.10000
+[coverage] Game 1100 | unique_states_cumulative: 2549/4096 (62.2%) | last100_unique: 953
+Game 1200 | Score: 0 | Record: 4 | Mean Score: 0.29 | Epsilon: 0.53 | Intrinsic: 0.003 | Eta: 0.10000
+[coverage] Game 1200 | unique_states_cumulative: 2622/4096 (64.0%) | last100_unique: 846
+Game 1300 | Score: 0 | Record: 5 | Mean Score: 0.33 | Epsilon: 0.49 | Intrinsic: 0.027 | Eta: 0.10000
+[coverage] Game 1300 | unique_states_cumulative: 2783/4096 (67.9%) | last100_unique: 1052
+Game 1400 | Score: 2 | Record: 5 | Mean Score: 0.38 | Epsilon: 0.45 | Intrinsic: 0.038 | Eta: 0.10000
+[coverage] Game 1400 | unique_states_cumulative: 2963/4096 (72.3%) | last100_unique: 1094
+Game 1500 | Score: 1 | Record: 5 | Mean Score: 0.43 | Epsilon: 0.41 | Intrinsic: 0.021 | Eta: 0.10000
+[coverage] Game 1500 | unique_states_cumulative: 3119/4096 (76.1%) | last100_unique: 1186
+Game 1600 | Score: 0 | Record: 8 | Mean Score: 0.49 | Epsilon: 0.37 | Intrinsic: 0.009 | Eta: 0.10000
+[coverage] Game 1600 | unique_states_cumulative: 3226/4096 (78.8%) | last100_unique: 1135
+Game 1700 | Score: 0 | Record: 8 | Mean Score: 0.53 | Epsilon: 0.33 | Intrinsic: 0.011 | Eta: 0.10000
+[coverage] Game 1700 | unique_states_cumulative: 3302/4096 (80.6%) | last100_unique: 1115
+Game 1800 | Score: 0 | Record: 8 | Mean Score: 0.61 | Epsilon: 0.29 | Intrinsic: 0.004 | Eta: 0.10000
+[coverage] Game 1800 | unique_states_cumulative: 3407/4096 (83.2%) | last100_unique: 1364
+Game 1900 | Score: 1 | Record: 12 | Mean Score: 0.66 | Epsilon: 0.26 | Intrinsic: 0.022 | Eta: 0.10000
+[coverage] Game 1900 | unique_states_cumulative: 3512/4096 (85.7%) | last100_unique: 1357
+Game 2000 | Score: 0 | Record: 15 | Mean Score: 0.71 | Epsilon: 0.22 | Intrinsic: 0.037 | Eta: 0.10000
+[coverage] Game 2000 | unique_states_cumulative: 3586/4096 (87.5%) | last100_unique: 1311
+Game 2100 | Score: 0 | Record: 15 | Mean Score: 0.77 | Epsilon: 0.18 | Intrinsic: 0.006 | Eta: 0.10000
+[coverage] Game 2100 | unique_states_cumulative: 3641/4096 (88.9%) | last100_unique: 1287
+Game 2200 | Score: 1 | Record: 18 | Mean Score: 0.85 | Epsilon: 0.14 | Intrinsic: 0.018 | Eta: 0.10000
+[coverage] Game 2200 | unique_states_cumulative: 3693/4096 (90.2%) | last100_unique: 1507
+Game 2300 | Score: 0 | Record: 18 | Mean Score: 0.94 | Epsilon: 0.10 | Intrinsic: 0.007 | Eta: 0.10000
+[coverage] Game 2300 | unique_states_cumulative: 3753/4096 (91.6%) | last100_unique: 1631
+Game 2400 | Score: 17 | Record: 20 | Mean Score: 1.05 | Epsilon: 0.06 | Intrinsic: 0.496 | Eta: 0.10000
+[coverage] Game 2400 | unique_states_cumulative: 3833/4096 (93.6%) | last100_unique: 1886
+Game 2500 | Score: 0 | Record: 27 | Mean Score: 1.16 | Epsilon: 0.02 | Intrinsic: 0.025 | Eta: 0.10000
+[coverage] Game 2500 | unique_states_cumulative: 3868/4096 (94.4%) | last100_unique: 1878
+Game 2600 | Score: 0 | Record: 27 | Mean Score: 1.28 | Epsilon: 0.02 | Intrinsic: 0.031 | Eta: 0.10000
+[coverage] Game 2600 | unique_states_cumulative: 3912/4096 (95.5%) | last100_unique: 2057
+Game 2700 | Score: 13 | Record: 27 | Mean Score: 1.44 | Epsilon: 0.02 | Intrinsic: 0.494 | Eta: 0.10000
+[coverage] Game 2700 | unique_states_cumulative: 3946/4096 (96.3%) | last100_unique: 2310
+Game 2800 | Score: 21 | Record: 27 | Mean Score: 1.55 | Epsilon: 0.02 | Intrinsic: 0.448 | Eta: 0.10000
+[coverage] Game 2800 | unique_states_cumulative: 3973/4096 (97.0%) | last100_unique: 2077
+Game 2900 | Score: 14 | Record: 27 | Mean Score: 1.67 | Epsilon: 0.02 | Intrinsic: 0.317 | Eta: 0.10000
+[coverage] Game 2900 | unique_states_cumulative: 3989/4096 (97.4%) | last100_unique: 2156
+Game 3000 | Score: 17 | Record: 27 | Mean Score: 1.84 | Epsilon: 0.02 | Intrinsic: 0.456 | Eta: 0.10000
+[coverage] Game 3000 | unique_states_cumulative: 4006/4096 (97.8%) | last100_unique: 2429
+Game 3100 | Score: 8 | Record: 27 | Mean Score: 2.03 | Epsilon: 0.02 | Intrinsic: 0.139 | Eta: 0.10000
+[coverage] Game 3100 | unique_states_cumulative: 4010/4096 (97.9%) | last100_unique: 2556
+Game 3200 | Score: 0 | Record: 27 | Mean Score: 2.14 | Epsilon: 0.02 | Intrinsic: 0.024 | Eta: 0.10000
+[coverage] Game 3200 | unique_states_cumulative: 4016/4096 (98.0%) | last100_unique: 2262
+Game 3300 | Score: 19 | Record: 29 | Mean Score: 2.34 | Epsilon: 0.02 | Intrinsic: 0.385 | Eta: 0.10000
+[coverage] Game 3300 | unique_states_cumulative: 4023/4096 (98.2%) | last100_unique: 2800
+Game 3400 | Score: 2 | Record: 29 | Mean Score: 2.45 | Epsilon: 0.02 | Intrinsic: 0.033 | Eta: 0.10000
+[coverage] Game 3400 | unique_states_cumulative: 4025/4096 (98.3%) | last100_unique: 2378
+Game 3500 | Score: 0 | Record: 29 | Mean Score: 2.58 | Epsilon: 0.02 | Intrinsic: 0.012 | Eta: 0.10000
+[coverage] Game 3500 | unique_states_cumulative: 4027/4096 (98.3%) | last100_unique: 2500
+Game 3600 | Score: 19 | Record: 29 | Mean Score: 2.72 | Epsilon: 0.02 | Intrinsic: 0.331 | Eta: 0.10000
+[coverage] Game 3600 | unique_states_cumulative: 4027/4096 (98.3%) | last100_unique: 2558
+Game 3700 | Score: 17 | Record: 29 | Mean Score: 2.83 | Epsilon: 0.02 | Intrinsic: 0.436 | Eta: 0.10000
+[coverage] Game 3700 | unique_states_cumulative: 4027/4096 (98.3%) | last100_unique: 2414
+Game 3800 | Score: 0 | Record: 29 | Mean Score: 2.93 | Epsilon: 0.02 | Intrinsic: 0.019 | Eta: 0.10000
+[coverage] Game 3800 | unique_states_cumulative: 4029/4096 (98.4%) | last100_unique: 2434
+Game 3900 | Score: 19 | Record: 29 | Mean Score: 3.07 | Epsilon: 0.02 | Intrinsic: 0.439 | Eta: 0.10000
+[coverage] Game 3900 | unique_states_cumulative: 4029/4096 (98.4%) | last100_unique: 2676
+Game 4000 | Score: 0 | Record: 29 | Mean Score: 3.15 | Epsilon: 0.02 | Intrinsic: 0.053 | Eta: 0.10000
+[coverage] Game 4000 | unique_states_cumulative: 4031/4096 (98.4%) | last100_unique: 2354
+Game 4100 | Score: 6 | Record: 29 | Mean Score: 3.26 | Epsilon: 0.02 | Intrinsic: 0.111 | Eta: 0.10000
+[coverage] Game 4100 | unique_states_cumulative: 4031/4096 (98.4%) | last100_unique: 2610
+Game 4200 | Score: 0 | Record: 29 | Mean Score: 3.34 | Epsilon: 0.02 | Intrinsic: 0.008 | Eta: 0.10000
+[coverage] Game 4200 | unique_states_cumulative: 4031/4096 (98.4%) | last100_unique: 2456
+Game 4300 | Score: 22 | Record: 29 | Mean Score: 3.45 | Epsilon: 0.02 | Intrinsic: 0.521 | Eta: 0.10000
+[coverage] Game 4300 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2843
+[Game 4375] Final LR cooldown applied → 1e-5
+Game 4400 | Score: 0 | Record: 31 | Mean Score: 3.57 | Epsilon: 0.02 | Intrinsic: 0.013 | Eta: 0.10000
+[coverage] Game 4400 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2764
+Game 4500 | Score: 0 | Record: 31 | Mean Score: 3.66 | Epsilon: 0.02 | Intrinsic: 0.055 | Eta: 0.10000
+[coverage] Game 4500 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2480
+Game 4600 | Score: 14 | Record: 31 | Mean Score: 3.77 | Epsilon: 0.02 | Intrinsic: 0.260 | Eta: 0.10000
+[coverage] Game 4600 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2736
+Game 4700 | Score: 0 | Record: 31 | Mean Score: 3.85 | Epsilon: 0.02 | Intrinsic: 0.201 | Eta: 0.10000
+[coverage] Game 4700 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2552
+Game 4800 | Score: 19 | Record: 31 | Mean Score: 3.94 | Epsilon: 0.02 | Intrinsic: 0.284 | Eta: 0.10000
+[coverage] Game 4800 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2650
+Game 4900 | Score: 9 | Record: 31 | Mean Score: 4.03 | Epsilon: 0.02 | Intrinsic: 0.117 | Eta: 0.10000
+[coverage] Game 4900 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2652
+Game 5000 | Score: 24 | Record: 31 | Mean Score: 4.13 | Epsilon: 0.02 | Intrinsic: 0.622 | Eta: 0.10000
+[coverage] Game 5000 | unique_states_cumulative: 4032/4096 (98.4%) | last100_unique: 2706
+
+Training Complete!
+Best Score: 31
+Final Mean Score: 4.13
+wandb: 
+wandb: Run history:
+wandb:      Coverage_Cumulative ▁▂▂▃▃▄▄▄▅▅▅▆▆▆▇▇▇▇▇▇████████████████████
+wandb: Coverage_Cumulative_Frac ▁▂▂▃▃▄▄▅▅▅▆▆▇▇▇▇▇▇██████████████████████
+wandb:       Coverage_Window100 ▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▃▄▄▅▆▆▆▆▇█▇▇▇▇▇▆▇▇█▇█▇▇█
+wandb:                  Epsilon ██▇▇▇▆▆▆▅▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                      Eta ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                     Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▇▇▇▇▇▇███
+wandb:         Intrinsic_Reward ▁▁▁▁▁▂▂▁▁▁▁▁▁▁▁▁▁▁▁▇▁▇▆▅▆▁▅▁▁▅▆▂▂▁▇▂▄▃▄█
+wandb:               Mean_Score ▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▃▃▃▄▄▄▄▅▅▅▆▆▆▆▇▇▇▇▇███
+wandb:                   Record ▁▁▁▁▁▁▂▂▂▂▂▂▂▃▃▄▄▄▅▅▇▇▇▇▇▇▇█████████████
+wandb:                    Score ▁▁▁▁▁▁▁▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁▅▇▅▃▁▇▂▁▆▇▁▃▁▁▅▁▇█
+wandb: 
+wandb: Run summary:
+wandb:      Coverage_Cumulative 4032
+wandb: Coverage_Cumulative_Frac 0.98438
+wandb:       Coverage_Window100 2706
+wandb:                  Epsilon 0.02
+wandb:                      Eta 0.1
+wandb:                     Game 5000
+wandb:         Intrinsic_Reward 0.62182
+wandb:               Mean_Score 4.1274
+wandb:                   Record 31
+wandb:                    Score 24
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /Users/saheb/home/rl-snake/wandb/offline-run-20260426_223810-hw5ho5tz
+wandb: Find logs at: ./wandb/offline-run-20260426_223810-hw5ho5tz/logs

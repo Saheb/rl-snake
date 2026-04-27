@@ -14,7 +14,15 @@ class GameState(Enum):
 
 
 class SnakeGame:
-    def __init__(self, board_size=10, seed=None):
+    def __init__(self, board_size=10, seed=None, reward_mode="dense"):
+        """reward_mode:
+            'dense'       - default, full shaping (distance, anti-loop, step penalty, food/death).
+            'sparse'      - only food (+1) / death (-1) / win (+5) / step penalty (-0.01); no shaping.
+            'pure_sparse' - only food (+1) / death (-1) / win (+5); zero step penalty.
+        """
+        if reward_mode not in ("dense", "sparse", "pure_sparse"):
+            raise ValueError(f"reward_mode must be 'dense', 'sparse' or 'pure_sparse', got {reward_mode!r}")
+        self.reward_mode = reward_mode
         self.board_size = board_size
         if seed is not None:
             r.seed(seed)
@@ -102,21 +110,22 @@ class SnakeGame:
         else:
             self.snake_position.append(new_head)
             self.snake_position.popleft()
-            
-            # Tiny step penalty
-            reward = -0.01
-            
-            # Reward shaping based on distance
-            if self.food_position:
-                new_dist = abs(new_head[0] - self.food_position[0]) + abs(new_head[1] - self.food_position[1])
-                if new_dist < old_dist:
-                    reward += 0.1 # Moved closer
-                else:
-                    reward -= 0.1 # Moved further
-            
-            # Penalize waffling/loops
-            if is_biting_neck or is_waffling:
-                reward -= 0.5 
+
+            # Step penalty (zero in pure_sparse mode; small in dense/sparse to discourage infinite loops).
+            reward = 0.0 if self.reward_mode == "pure_sparse" else -0.01
+
+            if self.reward_mode == "dense":
+                # Reward shaping based on distance
+                if self.food_position:
+                    new_dist = abs(new_head[0] - self.food_position[0]) + abs(new_head[1] - self.food_position[1])
+                    if new_dist < old_dist:
+                        reward += 0.1 # Moved closer
+                    else:
+                        reward -= 0.1 # Moved further
+
+                # Penalize waffling/loops
+                if is_biting_neck or is_waffling:
+                    reward -= 0.5
 
             self.head_history.append(new_head)
             done = False

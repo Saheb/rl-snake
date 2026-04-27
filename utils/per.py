@@ -24,6 +24,11 @@ class PrioritizedReplayBuffer:
         
         self.tree = SumTree(capacity)
 
+        # --- Instrumentation: track terminal-state buffer & sampling composition ---
+        # Updated in sample(); inspected by the training loop each checkpoint.
+        self.last_sample_terminal_count = 0
+        self.last_sample_total = 0
+
     def __len__(self):
         return self.tree.n_entries
 
@@ -71,7 +76,27 @@ class PrioritizedReplayBuffer:
             batch.append(data)
             is_weights[i] = is_weight
 
+        # Instrumentation: count terminals in this sampled batch (data[4] == done flag).
+        self.last_sample_total = len(batch)
+        self.last_sample_terminal_count = sum(1 for t in batch if t[4])
+
         return batch, indices, is_weights
+
+    def buffer_terminal_frac(self):
+        """Fraction of currently stored transitions that are terminal (done=True). O(capacity) walk."""
+        n = self.tree.n_entries
+        if n == 0:
+            return 0.0
+        terminal = 0
+        for transition in self.tree.data[:n]:
+            if transition is not None and transition[4]:
+                terminal += 1
+        return terminal / n
+
+    def last_sample_terminal_frac(self):
+        if self.last_sample_total == 0:
+            return 0.0
+        return self.last_sample_terminal_count / self.last_sample_total
 
     def update_priorities(self, indices, errors):
         # Update tree priorities based on absolute TD error
