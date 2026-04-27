@@ -169,5 +169,3 @@ wandb/
 *.pth
 
 .DS_Store
-
-logs/
