@@ -1561,10 +1561,7 @@ def _(mo):
 
         ### A Better Question: When Does Curiosity *Actually* Help on Snake?
 
-        > *"Curiosity is not universally helpful - it is highly dependent on the
-        > reward structure of the environment."*
-
-        That single line is the thesis of everything that follows. The original ICM
+        That is the thesis of everything that follows. The original ICM
         paper paired curiosity with on-policy A3C on Mario, where extrinsic reward is
         rare and exploration *is* the bottleneck. Snake is a different animal:
 
@@ -1669,7 +1666,7 @@ def _(mo):
         saturation holds for DQN, but the larger board is the natural setting for an
         on-policy learner whose credit-assignment horizon can extend further.
 
-        **Mechanism in one sentence.** Intrinsic reward is added to the TD target, raising
+        **Mechanism in one sentence.** Intrinsic reward is added to the <span class="gl" data-t="TD (Temporal Difference) target: the training signal used to update Q-values. For Q-learning it is r + γ·max Q(s′,·) — a bootstrapped estimate of the true return. The TD error δ is the gap between this target and the current Q-network prediction; the network is trained to minimise δ².">TD</span> target, raising
         the TD error for surprising transitions; in sparse environments this promotes
         exploration, but in dense environments the existing reward shaping dominates and the
         intrinsic signal becomes negligible.
