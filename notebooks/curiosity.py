@@ -16,7 +16,7 @@ app = marimo.App(width="medium")
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # When Does Curiosity Actually Help? Stress-Testing ICM on Snake
+    # Curiosity Killed the Snake: When Intrinsic Motivation Helps - and When It Doesn't
     *An interactive exploration of "Curiosity-driven Exploration by Self-supervised Prediction" (Pathak et al., 2017) and analyzing the impact of ICM on the game of Snake.*
 
     [![Open in marimo](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
@@ -92,12 +92,12 @@ def _(json, mo, random, wasm_iframe):
     <div class="row">
       <div class="panel">
     <div class="label">Random Walk</div>
-    <div class="sublabel">Illustrative baseline — no reward signal, pure chance</div>
+    <div class="sublabel">Illustrative baseline - no reward signal, pure chance</div>
     <canvas id="c1" width="400" height="400"></canvas>
       </div>
       <div class="panel">
     <div class="label">Illustrative Count-Based Curiosity Proxy</div>
-    <div class="sublabel">Heuristic stand-in — seeks lowest-visited tiles</div>
+    <div class="sublabel">Heuristic stand-in - seeks lowest-visited tiles</div>
     <canvas id="c2" width="400" height="400"></canvas>
       </div>
     </div>
@@ -190,11 +190,11 @@ def _(json, mo, random, wasm_iframe):
                 "**Illustration note:** The right-hand agent uses a **count-based heuristic** "
                 "(always move to the lowest visit-count neighbour), not a live neural network. "
                 "In this discrete finite grid, visit counts serve as a practical stand-in for "
-                "the Intrinsic Curiosity Module (ICM)'s forward-model prediction error — both signal how *novel* a state is, "
+                "the Intrinsic Curiosity Module (ICM)'s forward-model prediction error - both signal how *novel* a state is, "
                 "and the outward-seeking behaviour looks similar. However, this equivalence "
                 "**only holds in tabular settings** with an enumerable state space. "
                 "The Intrinsic Curiosity Module's core contribution is generalizing curiosity to **continuous, high-dimensional "
-                "observation spaces** (raw pixels, sensor arrays) where visit counts are undefined — "
+                "observation spaces** (raw pixels, sensor arrays) where visit counts are undefined - "
                 "and where a learned forward model is the only tractable novelty signal."
             ),
             kind="info"
@@ -228,7 +228,7 @@ def _(eta_slider, mo, wasm_iframe):
 
         Where **$\\eta$ (Eta)** is the **Curiosity Weight**. It scales how much intrinsic reward the agent gets from being surprised. The key insight of this equation is that **Prediction Error = Surprise = Reward**.
 
-        The squared error here is not arbitrary. It is the standard regression loss for a continuous target and corresponds to a Gaussian negative log-likelihood assumption: large prediction mistakes are penalized quadratically, while small residual errors fade smoothly. The factor of $\\frac{1}{2}$ is conventional — it cancels with the gradient of the square during backprop, so $\\eta$ becomes the clean multiplier on the residual.
+        The squared error here is not arbitrary. It is the standard regression loss for a continuous target and corresponds to a Gaussian negative log-likelihood assumption: large prediction mistakes are penalized quadratically, while small residual errors fade smoothly. The factor of $\\frac{1}{2}$ is conventional - it cancels with the gradient of the square during backprop, so $\\eta$ becomes the clean multiplier on the residual.
 
         The Forward Model is trained from the agent's own experience: each transition `(state, action, next_state)` becomes a supervised learning example. After many updates on familiar transitions, its predictions become accurate and the intrinsic reward shrinks.
 
@@ -419,7 +419,7 @@ def _(eta_slider, mo, wasm_iframe):
             mo.md(
                 "**Illustration note:** The reward curve above uses a hardcoded 3-step decay "
                 "(1st visit → 1.0, 2nd → 0.4, 3rd → 0.1) as a pedagogical proxy, not a real forward model. "
-                "A live ICM computes $\\frac{\\eta}{2}(\\hat{\\phi}_{t+1} - \\phi_{t+1})^2$ in latent space — "
+                "A live ICM computes $\\frac{\\eta}{2}(\\hat{\\phi}_{t+1} - \\phi_{t+1})^2$ in latent space - "
                 "the qualitative shape is the same but the exact decay depends on network training. "
                 "See the **Mini-Experiment** section for real gradient-descent-based decay. "
                 "The slider below now rescales this illustrative reward curve as well."
@@ -450,12 +450,12 @@ def _(json, mo, wasm_iframe):
 
         How do we remove this noise, so agent can focus on what matters? How do we teach the agent to ignore this noise?
 
-        Rather than making predictions in raw sensory space (e.g. pixels), the paper transforms sensory input into a feature space where only information relevant to the agent's actions is represented. The core insight is to predict only those changes in the environment that could possibly be due to the actions of the agent or could affect the agent — and ignore everything else.
+        Rather than making predictions in raw sensory space (e.g. pixels), the paper transforms sensory input into a feature space where only information relevant to the agent's actions is represented. The core insight is to predict only those changes in the environment that could possibly be due to the actions of the agent or could affect the agent - and ignore everything else.
 
 
         > "We learn this feature space using self-supervision – training a neural network on a proxy inverse dynamics task of predicting the agent’s action given its current and next states. Since the neural network is only required to predict the action, it has no incentive to represent within its feature embedding space the factors of variation in the environment that do not affect the agent itself."
         >
-        > — Pathak et al., *"Curiosity-driven Exploration by Self-supervised Prediction"*, ICML 2017. [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
+        > - Pathak et al., *"Curiosity-driven Exploration by Self-supervised Prediction"*, ICML 2017. [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
 
         The Inverse Model is trained to predict the *agent’s own actions*. Because the agent's actions cannot control the random TV static, the neural network learns to completely ignore the TV when creating the latent vector. The noise is mathematically filtered out.
 
@@ -637,8 +637,8 @@ def _(json, mo, wasm_iframe):
                 "**Illustration note:** The agent paths above are **scripted pedagogical illustrations**, "
                 "not live neural network runs. The Raw agent is hardcoded to stay fixed at the TV tile; "
                 "the ICM agent is hardcoded to move on after 5 steps. The qualitative behavior is "
-                "grounded in the paper's theoretical predictions — a real ICM agent learns to filter "
-                "action-independent noise through its inverse model training objective — but the paths "
+                "grounded in the paper's theoretical predictions - a real ICM agent learns to filter "
+                "action-independent noise through its inverse model training objective - but the paths "
                 "themselves are hand-authored for clarity."
             ),
             kind="info"
@@ -755,13 +755,13 @@ def _(mo):
 
     mo.callout(
         mo.md(f"""
-        **WASM-compatible forward-pass shape check** — same tensor contract as the PyTorch module above:
+        **WASM-compatible forward-pass shape check** - same tensor contract as the PyTorch module above:
 
         | Tensor | Shape | Role |
         |--------|-------|------|
-        | `pred_action_logits` | `{[_batch, _action_dim]}` | Inverse model output — predicted action |
-        | `pred_phi_next` | `{[_batch, _latent_dim]}` | Forward model output — predicted next latent |
-        | `phi_next` | `{[_batch, _latent_dim]}` | Encoder output — actual next latent |
+        | `pred_action_logits` | `{[_batch, _action_dim]}` | Inverse model output - predicted action |
+        | `pred_phi_next` | `{[_batch, _latent_dim]}` | Forward model output - predicted next latent |
+        | `phi_next` | `{[_batch, _latent_dim]}` | Encoder output - actual next latent |
         | `intrinsic_reward` | `{[_batch]}` | Per-step curiosity signal (MSE in latent space) |
 
         The executable PyTorch demo was removed from the notebook runtime because `torch` has no Pyodide/WASM build.
@@ -784,7 +784,7 @@ def _(mo):
     (ε = 1.0, zero extrinsic reward). It predicts the next grid position from the current position
     and action, then uses its own prediction error as the intrinsic reward.
 
-    This is "boredom by gradient descent." Same phenomenon as the boredom simulator — now produced by
+    This is "boredom by gradient descent." Same phenomenon as the boredom simulator - now produced by
     a browser-compatible linear model that can run inside Pyodide. The full ICM paper uses a neural network;
     this simplified example is intentionally linear because that is sufficient to learn deterministic 5×5 grid transitions.
     """)
@@ -811,7 +811,7 @@ def _(mo, np, plt, random, train_btn):
         _fig0, _ax0 = plt.subplots(figsize=(9, 3.5))
         _ax0.set_xlabel("Episode", fontsize=11)
         _ax0.set_ylabel("Mean Intrinsic Reward per Step (log scale)", fontsize=11)
-        _ax0.set_title("Linear Forward Model Learning Curve — 5×5 Grid, Random Policy", fontweight="bold", fontsize=13)
+        _ax0.set_title("Linear Forward Model Learning Curve - 5×5 Grid, Random Policy", fontweight="bold", fontsize=13)
         _ax0.set_xlim(1, 300)
         _ax0.spines["top"].set_visible(False)
         _ax0.spines["right"].set_visible(False)
@@ -871,7 +871,7 @@ def _(mo, np, plt, random, train_btn):
         _ax.set_yscale('log')
         _ax.set_xlabel("Episode", fontsize=11)
         _ax.set_ylabel("Mean Intrinsic Reward per Step (log scale)", fontsize=11)
-        _ax.set_title("Linear Forward Model Learning Curve — 5×5 Grid, Random Policy", fontweight='bold', fontsize=13)
+        _ax.set_title("Linear Forward Model Learning Curve - 5×5 Grid, Random Policy", fontweight='bold', fontsize=13)
         _ax.legend(fontsize=10)
         _ax.spines['top'].set_visible(False)
         _ax.spines['right'].set_visible(False)
@@ -887,9 +887,9 @@ def _(mo, np, plt, random, train_btn):
             mo.callout(
                 mo.md(
                     f"Intrinsic reward decayed from **{_first5:.4f}** (first 5 episodes) → "
-                    f"**{_last5:.5f}** (last 5 episodes) — a **{_drop:,}× drop**. "
+                    f"**{_last5:.5f}** (last 5 episodes) - a **{_drop:,}× drop**. "
                     "The linear forward model has learned the grid's transition structure. There is little left to be curious about. "
-                    "The same phenomenon the boredom simulator illustrated — now shown by gradient descent in a minimal linear setting."
+                    "The same phenomenon the boredom simulator illustrated - now shown by gradient descent in a minimal linear setting."
                 ),
                 kind="success"
             )
@@ -907,15 +907,15 @@ def _(json, mo, wasm_iframe):
 
         Below are **real training logs** from our Snake DQN agent (Dueling DQN + 3-Step Returns + PER + ICM)
         trained on a 10×10 board for 16,000 games. The `Intrinsic` value is the **actual forward model
-        prediction error** — not a simulation.
+        prediction error** - not a simulation.
 
         Two signals tell the story:
-        * **Mean Score** (blue) — rolling average game score over the last 100 games
-        * **Intrinsic Reward** (orange) — the forward model's live prediction error (the curiosity signal)
-        * **Epsilon** (grey dashed) — exploration rate, decaying 0.95 → 0.01
+        * **Mean Score** (blue) - rolling average game score over the last 100 games
+        * **Intrinsic Reward** (orange) - the forward model's live prediction error (the curiosity signal)
+        * **Epsilon** (grey dashed) - exploration rate, decaying 0.95 → 0.01
 
         Watch what happens after **Game ~2,000** (when ε hits its floor and the agent goes fully greedy):
-        intrinsic reward keeps spiking on every novel death. The agent never stops being "surprised" —
+        intrinsic reward keeps spiking on every novel death. The agent never stops being "surprised" -
         but that persistent surprise doesn't translate into better performance. The next sections show why.
 
         Methodological caveat: this is a mechanistic case study, not a benchmark claim. A research-grade evaluation would run multiple random seeds and report confidence intervals for at least four ablations: DQN + PER, DQN + ICM, DQN + PER + ICM, and DQN + PER + ICM with terminal intrinsic rewards masked. The single-run logs here are still useful because they expose a concrete failure mode in the replay distribution.
@@ -991,7 +991,7 @@ def _(json, mo, wasm_iframe):
     <body>
     <div class="panel">
       <div class="header">
-        <div class="title">Real ICM Training Logs — DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
+        <div class="title">Real ICM Training Logs - DQN + PER + ICM, 10×10 Snake ({len(_games)} checkpoints)</div>
         <button id="trainBtn">▶ Animate</button>
       </div>
       <canvas id="lossChart" width="640" height="260"></canvas>
@@ -1196,7 +1196,7 @@ def _(act3_text, agent_type, mo, np, plt, sample_btn):
         if agent_val == "Curious Agent (PER + ICM)":
             # ICM adds a forward-model MSE spike at terminal transitions.
             # In the training logs, per-step intrinsic reward at game-over frames
-            # ran ~10–50× normal-step values before η scaling (η=0.01).
+            # ran ~10-50x normal-step values before eta scaling (η=0.01).
             # The 4.0 approximates raw latent-space MSE on terminal transitions.
             intrinsic_surprise = np.array([0.0] * 80 + [0.0] * 15 + [4.0] * 5)
             priorities = base_td + intrinsic_surprise
@@ -1291,13 +1291,13 @@ def _(json, mo, wasm_iframe):
         The paper flags this as an open problem. Our Snake failure is a different but related
         variant: **terminal states** are action-dependent (the death is caused by the agent's
         move), and the physics of a game-over reset is maximally unpredictable. The paper's
-        own framework predicts this should be a problem — and it is.
+        own framework predicts this should be a problem - and it is.
 
         ---
 
         ### The Fix: One Line Changes Everything
 
-        The death trap has a clean solution — **zero out the intrinsic reward on terminal steps**.
+        The death trap has a clean solution - **zero out the intrinsic reward on terminal steps**.
         When the game ends (`done=True`), `(1 − done) = 0`, so the massive death-surprise is
         suppressed before it ever enters the replay buffer. PER can no longer oversample deaths
         with inflated priorities.
@@ -1311,7 +1311,7 @@ def _(json, mo, wasm_iframe):
         The chart below overlays the **actual Mean Score curves** from two training runs on the same
         10×10 board for 16,000 games. Watch the red curve plateau near **8.1** while the green one climbs to **10.1**.
 
-        In this run, the poisoned agent does **not** visibly collapse or regress. The failure mode is subtler: it learns a worse policy and then stalls there. That still matters — the terminal mask lifts final performance by roughly **25%** while changing only one line of code.
+        In this run, the poisoned agent does **not** visibly collapse or regress. The failure mode is subtler: it learns a worse policy and then stalls there. That still matters - the terminal mask lifts final performance by roughly **25%** while changing only one line of code.
 
         This comparison strengthens the case that the failure mode is real in this setup, but it still does **not** replace a full robustness study across seeds and hyperparameters.
         """
@@ -1354,15 +1354,15 @@ def _(json, mo, wasm_iframe):
     <body>
     <div class="panel">
       <div class="header">
-        <div class="title">Terminal Reward Masking: r_i × (1 − done) — 10×10 Snake, 16,000 games</div>
+        <div class="title">Terminal Reward Masking: r_i × (1 − done) - 10×10 Snake, 16,000 games</div>
         <button id="fixBtn">▶ Animate</button>
       </div>
       <canvas id="fixChart" width="640" height="260"></canvas>
       <div class="legend">
-        <div class="leg-item"><div class="dot" style="background:#ef4444;"></div>PER + ICM — unmasked (poisoned)</div>
-        <div class="leg-item"><div class="dot" style="background:#10b981;"></div>PER + ICM + terminal mask — fixed</div>
+        <div class="leg-item"><div class="dot" style="background:#ef4444;"></div>PER + ICM - unmasked (poisoned)</div>
+        <div class="leg-item"><div class="dot" style="background:#10b981;"></div>PER + ICM + terminal mask - fixed</div>
       </div>
-      <div class="note">Both curves trained identically — the only difference is one line of code. In this run, the unmasked agent plateaus near 8.1 while the masked agent reaches 10.1 (~25% higher).</div>
+      <div class="note">Both curves trained identically - the only difference is one line of code. In this run, the unmasked agent plateaus near 8.1 while the masked agent reaches 10.1 (~25% higher).</div>
     </div>
     <script>
     const canvas = document.getElementById('fixChart');
@@ -1474,7 +1474,7 @@ def _(json, mo, wasm_iframe):
 
     | File | Purpose |
     |------|---------|
-    | [`scripts/train_dqn.py`](https://github.com/Saheb/rl-snake/blob/main/scripts/train_dqn.py) | DQN + PER + ICM training loop — terminal mask fix at line 547 |
+    | [`scripts/train_dqn.py`](https://github.com/Saheb/rl-snake/blob/main/scripts/train_dqn.py) | DQN + PER + ICM training loop - terminal mask fix at line 547 |
     | [`utils/icm.py`](https://github.com/Saheb/rl-snake/blob/main/utils/icm.py) | ICM module (encoder, inverse model, forward model) |
         """)
     })
@@ -1492,7 +1492,7 @@ def _(mo):
         ### Following Up: Does the Failure Reproduce?
 
         The "death oversampling" story above is mechanistically clean, and the score gap in
-        the chart (8.1 → 10.1) is real — measured on an earlier code revision. But when we
+        the chart (8.1 → 10.1) is real - measured on an earlier code revision. But when we
         re-ran the comparison against the present implementation with **direct
         buffer-composition instrumentation**, we found something more nuanced.
 
@@ -1507,7 +1507,7 @@ def _(mo):
         | **Terminal oversample factor** | **1.44 ×** | **1.48 ×** | **−0.04** |
         | Mean score (cumulative) | 3.50 | 3.21 | +0.29 |
 
-        The masked version doesn't sample fewer terminals — and on this seed it scores
+        The masked version doesn't sample fewer terminals - and on this seed it scores
         *slightly worse*. The dramatic plateau-vs-fix gap from the original log does not
         reproduce reliably.
 
@@ -1524,7 +1524,7 @@ def _(mo):
 
         ### A Better Question: When Does Curiosity *Actually* Help on Snake?
 
-        > *"Curiosity is not universally helpful — it is highly dependent on the
+        > *"Curiosity is not universally helpful - it is highly dependent on the
         > reward structure of the environment."*
 
         That single line is the thesis of everything that follows. The original ICM
@@ -1550,8 +1550,8 @@ def _(mo):
         | Reward Mode | Step Penalty | Distance Shaping | Anti-Loop Penalty | Food / Death |
         |------------|:------------:|:----------------:|:-----------------:|:------------:|
         | **dense** *(current)*    | −0.01 | ±0.1 | −0.5 | +1 / −1 |
-        | **sparse**       | −0.01 | — | — | +1 / −1 |
-        | **pure_sparse**  | — | — | — | +1 / −1 |
+        | **sparse**       | −0.01 | - | - | +1 / −1 |
+        | **pure_sparse**  | - | - | - | +1 / −1 |
 
         Crossed with `{DQN, DQN + ICM}`, run on 8×8 (and 10×10 for the most extreme
         `pure_sparse` regime), 3 seeds × 5,000 games each.
@@ -1588,7 +1588,7 @@ def _(mo):
     def _delta(_cells):
         a, b = _cells.get("DQN"), _cells.get("DQN+ICM")
         if a is None or b is None:
-            return "—"
+            return "-"
         d = b[0] - a[0]
         sign = "+" if d >= 0 else ""
         return f"{sign}{d:.2f}"
@@ -1615,22 +1615,44 @@ def _(mo):
         """
         **What we expected vs. what we got:**
 
-        - **H1 — ICM is irrelevant in dense Snake** → ✓ **Confirmed.** The 8×8 and 10×10
-          dense cells show |Δ| < 0.05 — well inside seed noise. With distance shaping
+        - **H1 - ICM is irrelevant in dense Snake** → ✓ **Confirmed.** The 8×8 and 10×10
+          dense cells show |Δ| < 0.05 - well inside seed noise. With distance shaping
           firing every step, the policy gradient swamps the intrinsic signal.
-        - **H2 — ICM rescues sparse learning for DQN** → ✗ **Falsified.** Across `sparse`
+        - **H2 - ICM rescues sparse learning for DQN** → ✗ **Falsified.** Across `sparse`
           and `pure_sparse` on 8×8, |Δ| stays under 0.15. ICM doesn't help DQN even when
           the extrinsic signal is gone.
-        - **H3 — Dense shaping upper-bounds everything** → ✓ **Confirmed.** Stripping
+        - **H3 - Dense shaping upper-bounds everything** → ✓ **Confirmed.** Stripping
           shaping costs ~0.6 score on 8×8 (4.69 → 4.08) and ~0.8 on 10×10 (5.19 → 4.38).
           Shaping is doing real work for DQN.
 
-        **The interpretation.** ICM was paired with on-policy A3C in the original paper.
-        DQN's replay buffer breaks that pairing: by the time a transition is sampled for
-        a gradient step, its intrinsic-reward estimate is stale (computed by an older ICM
-        forward model on an older policy's distribution). The intrinsic signal is there;
-        it just doesn't *propagate*. To test that interpretation, we need an on-policy
-        learner — see the PPO results below.
+        **Why DQN can't consume ICM's signal - the causal chain.** ICM emits a per-transition
+        intrinsic reward $r_i = \eta \cdot \lVert \phi(s') - \hat\phi_\theta(s, a) \rVert^2$
+        (forward-model latent-prediction error). Three things are *supposed* to happen
+        to that scalar:
+
+        1. **It enters the TD target.** The target becomes
+           $y = (r_e + r_i) + \gamma \max_{a'} Q(s', a')$, so a novel transition looks
+           like it has higher value - exactly the intended bias.
+        2. **PER amplifies it.** Prioritized replay samples transitions with probability
+           $p \propto |\delta|^\alpha$ where $\delta = y - Q(s, a)$. Elevated $r_i$
+           inflates $\delta$, which inflates $p$, so novel transitions are over-sampled
+           relative to uniform replay. PER turns the intrinsic signal into a *sampling
+           pressure* on top of a value-target shift.
+        3. **The breakdown.** $r_i$ is computed *once*, at the moment the transition is
+           collected, by the ICM forward model that existed at that moment. By the time
+           PER selects that transition for a gradient step (often thousands of updates
+           later), the forward model has trained further. Its current estimate of novelty
+           for the same $(s, a, s')$ is much lower than what's stored. The Q-network is
+           being fit to *yesterday's* surprise - a value target that the world model has
+           since revised downward. The intrinsic gradient is structurally there, but it's
+           pointing at a moving target that has already moved.
+
+        PPO has no such gap: each rollout produces transitions whose $r_i$ is computed
+        by the same ICM that the value function then updates against, in the same step.
+        Intrinsic and extrinsic estimates stay consistent; the advantage function sees
+        a coherent reward signal. There is no stale-$r_i$ problem because there is no
+        buffer. To test that interpretation, we need an on-policy learner - see the
+        PPO results below.
         """
     )
 
@@ -1638,7 +1660,7 @@ def _(mo):
         mo.md(
             "**Coverage note.** Every DQN condition above visits a near-identical "
             "fraction of the reachable `(head, food)` state space within 5,000 games "
-            "— 8×8 conditions all land at exactly **4,032 / 4,096 ≈ 98.4%**, and on "
+            "- 8×8 conditions all land at exactly **4,032 / 4,096 ≈ 98.4%**, and on "
             "10×10 every condition (DQN, DQN+ICM, every reward mode) sits in a "
             "5-state band around 98.9%. See the coverage chart further down for the "
             "full picture. Exploration *coverage* is not the bottleneck at this horizon "
@@ -1674,7 +1696,7 @@ def _(mo):
         a = _cells.get("PPO")
         b = _cells.get("PPO+ICM")
         if a is None or b is None:
-            return "—"
+            return "-"
         d = b[0] - a[0]
         rel = (d / a[0] * 100) if a[0] > 0.05 else None
         sign = "+" if d >= 0 else ""
@@ -1702,7 +1724,7 @@ def _(mo):
 
         If our DQN-stale-signal interpretation is right, swapping the off-policy DQN for
         an on-policy PPO should let the curiosity bonus actually steer the policy. Same
-        environment, same 24-dim state, same ICM module, same η = 0.1, same 5,000 games —
+        environment, same 24-dim state, same ICM module, same η = 0.1, same 5,000 games -
         only the learner changes. See `scripts/train_ppo.py`.
         """
     )
@@ -1713,30 +1735,30 @@ def _(mo):
 
         **(1) PPO can't learn dense 10×10 Snake at all.** Both PPO and PPO + ICM stall at
         a final mean score of ~0.1 apple per game across 3 seeds. Episodes are tiny
-        (typically 10–20 steps before death) because PPO's value function gets crushed by
+        (typically 10-20 steps before death) because PPO's value function gets crushed by
         the constant negative shaping (−0.1 every step away from food, −0.01 step penalty)
         before it can credit the rare +1 food reward. This is consistent with prior repo
         experience that vanilla PPO on 10×10 Snake needs a curriculum (start at 5×5, grow)
-        to take off. ICM doesn't rescue this — exploration isn't the problem; *credit
+        to take off. ICM doesn't rescue this - exploration isn't the problem; *credit
         assignment under negative shaping* is.
 
         **(2) On `pure_sparse`, PPO + ICM beats PPO baseline by +24% across 3 seeds**
-        (6.63 ± 0.79 vs. 5.36 ± 0.76). The effect is robust — the *worst* ICM seed
+        (6.63 ± 0.79 vs. 5.36 ± 0.76). The effect is robust - the *worst* ICM seed
         (5.75) still beats the median baseline seed (4.95), and the best ICM run (7.27)
         is well outside the baseline distribution.
 
-        **And the mechanism is not what you'd expect from the textbook ICM story** —
+        **And the mechanism is not what you'd expect from the textbook ICM story** -
         see the coverage chart that follows. Both PPO baseline and PPO + ICM saturate at
         ~98.9% of the 10×10 state space, so the +24% score gain is *not* exploration:
         both agents already see the whole board. What ICM contributes is **per-step
-        reward densification** — a continuously non-zero novelty signal that PPO's
+        reward densification** - a continuously non-zero novelty signal that PPO's
         advantage estimator can credit-assign over, in the regime where the extrinsic
         signal is one sparse `+1` per food. Functionally, ICM here behaves less like an
         exploration bonus and more like a *learned shaping function*, a self-supervised
         replacement for the distance shaping we deliberately removed. PPO consumes it
         cleanly because the gradient is on-policy and fresh; DQN's replay buffer does
-        not get the same benefit (see the DQN null above). This sharpens — rather than
-        confirms — the H4 thesis: ICM substitutes for *shaping*, not for *exploration*.
+        not get the same benefit (see the DQN null above). This sharpens - rather than
+        confirms - the H4 thesis: ICM substitutes for *shaping*, not for *exploration*.
         """
     )
 
@@ -1746,7 +1768,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    # Coverage bar chart — visualizes the cumulative state coverage at game 5000
+    # Coverage bar chart - visualizes the cumulative state coverage at game 5000
     # across all 10 final-cell conditions on the 10×10 board. Data source:
     # assets/coverage_bars.json, regenerated by scripts/parse_pilot_logs.py
     # (or the ad-hoc parse loop in the chat history).
@@ -1765,7 +1787,7 @@ def _(mo):
             return mo.md("_(matplotlib unavailable; coverage chart skipped)_")
         if not _cov_path.exists():
             return mo.md(
-                "_(`assets/coverage_bars.json` not found — regenerate from "
+                "_(`assets/coverage_bars.json` not found - regenerate from "
                 "`pilot_logs/`.)_"
             )
         rows = _json.loads(_cov_path.read_text())
@@ -1809,8 +1831,8 @@ def _(mo):
         - **DQN (blue / red, top six bars)**: identical 98.9% across every reward mode
           and every algorithm variant. ICM never moves coverage for DQN.
         - **PPO `dense` (orange / red, middle two bars)**: stuck at ~51% because
-          episodes terminate within 10–20 steps under the negative shaping. ICM
-          changes nothing here either — the agent dies before novelty has time to act.
+          episodes terminate within 10-20 steps under the negative shaping. ICM
+          changes nothing here either - the agent dies before novelty has time to act.
         - **PPO `pure_sparse` (orange / red, bottom two bars)**: jumps back to 98.9%
           once the shaping is removed and episodes can run. ICM and baseline match to
           within 0.1 percentage points.
@@ -1818,7 +1840,7 @@ def _(mo):
         Read across: the only thing that moves coverage on this problem is **whether
         the agent stays alive long enough to walk the board**, which is governed by the
         reward structure, not by ICM. The +24% score gain in `PPO pure_sparse + ICM`
-        therefore cannot be explained by exploration. It must come from somewhere else —
+        therefore cannot be explained by exploration. It must come from somewhere else -
         the per-step reward densification effect described above.
         """
     )
@@ -1829,7 +1851,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    # 2x2 learning curves panel — the headline chart of the investigation.
+    # 2x2 learning curves panel - the headline chart of the investigation.
     # Data source: assets/learning_curves.json, regenerated by
     # scripts/parse_pilot_logs.py.
     import json as _json
@@ -1846,10 +1868,10 @@ def _(mo):
 
     def _render_chart():
         if _plt is None or _np is None:
-            return mo.md("_(matplotlib/numpy unavailable; chart skipped — see scoreboards above)_")
+            return mo.md("_(matplotlib/numpy unavailable; chart skipped - see scoreboards above)_")
         if not _curves_path.exists():
             return mo.md(
-                "_(`assets/learning_curves.json` not found — run "
+                "_(`assets/learning_curves.json` not found - run "
                 "`python scripts/parse_pilot_logs.py` to regenerate.)_"
             )
         data = _json.loads(_curves_path.read_text())
@@ -1902,12 +1924,12 @@ def _(mo):
         ±1 σ across seeds (no band drawn when n = 1). All panels are 10×10 boards, 5,000
         training games.
 
-        Read top-to-bottom: **DQN curves track each other** in both reward modes — the
+        Read top-to-bottom: **DQN curves track each other** in both reward modes - the
         dashed-red ICM line sits inside the seed band of the solid baseline, so any
-        difference is noise. **PPO curves diverge in the bottom-right panel** — under
+        difference is noise. **PPO curves diverge in the bottom-right panel** - under
         `pure_sparse`, PPO + ICM separates from PPO baseline within the first ~2,000
         games and stays above through training. (PPO `dense` panel: both curves stuck at
-        ~0.1 — credit-assignment failure under negative shaping, as discussed above.)
+        ~0.1 - credit-assignment failure under negative shaping, as discussed above.)
         """
     )
 
@@ -1926,7 +1948,7 @@ def _(mo):
 
         We started with a clean story (terminal mask fixes a death-oversampling bug),
         couldn't reproduce it reliably, and used that miss as an excuse to
-        ask the harder question — *when does curiosity matter on Snake at all?* The
+        ask the harder question - *when does curiosity matter on Snake at all?* The
         2 × 3 × 2 × 3 grid (algorithm × reward mode × board × seed) gave a sharper answer
         than we expected:
 
@@ -1941,9 +1963,9 @@ def _(mo):
 
         **The mechanistic takeaway.** Two effects, both contrary to the standard
         "ICM = exploration bonus" framing. First, ICM is not a free upgrade across
-        algorithms — DQN's replay buffer dilutes the intrinsic signal across stale
+        algorithms - DQN's replay buffer dilutes the intrinsic signal across stale
         transitions, while PPO consumes it fresh on every rollout. Second, even where
-        ICM helps (PPO `pure_sparse`), it does not help by *expanding coverage* — both
+        ICM helps (PPO `pure_sparse`), it does not help by *expanding coverage* - both
         PPO and PPO + ICM reach the same ~98.9% of the state space. ICM's contribution
         on this problem is **per-step reward densification**: turning a one-`+1`-per-food
         sparse signal into a continuously non-zero novelty signal that PPO's advantage
@@ -1956,7 +1978,7 @@ def _(mo):
         (5.36 ± 0.76 baseline vs 6.63 ± 0.79 ICM). What the investigation does *not* yet
         pin down: whether the effect generalizes to (a) larger boards (12×12, 15×15)
         where coverage actually fails to saturate at 5,000 games, (b) longer horizons
-        (10,000+ games — does ICM keep helping or does the gap close?), and (c) a fairer
+        (10,000+ games - does ICM keep helping or does the gap close?), and (c) a fairer
         comparison against the curriculum-trained 10×10 PPO baseline that already lives
         in `scripts/train_curriculum_10x10.py`. If ICM matches curriculum without a
         hand-engineered training schedule, the H4 thesis ("curiosity substitutes for
@@ -1976,12 +1998,12 @@ def _(mo):
         ### Conclusion: Curiosity, Conditioned
 
         The Intrinsic Curiosity Module (Pathak et al., 2017) reframed exploration in
-        reinforcement learning by equating *surprise with reward* — a single elegant move
+        reinforcement learning by equating *surprise with reward* - a single elegant move
         that let agents learn in environments with no extrinsic feedback.
 
         What this notebook stress-tested is the *boundary* of that elegance. The original
-        finding it was built around — that a terminal-mask fix unlocks ICM's performance
-        on Snake — does not reproduce reliably under the present 24-dim state
+        finding it was built around - that a terminal-mask fix unlocks ICM's performance
+        on Snake - does not reproduce reliably under the present 24-dim state
         representation. Rather than paper over the failed reproduction, we used it as
         motivation to ask the more interesting question: **when does curiosity actually
         help on this problem?**
@@ -1989,13 +2011,13 @@ def _(mo):
         The 2 × 3 × 2 × 3 grid (algorithm × reward mode × board × seed) gave a sharper
         answer than the textbook ICM story would predict:
 
-        - **Algorithm matters.** ICM gave DQN nothing — across every reward mode and
+        - **Algorithm matters.** ICM gave DQN nothing - across every reward mode and
           board size, |Δ| stayed inside seed noise. The same module on PPO `pure_sparse`
           delivered +24% (n = 3, robust per seed). ICM's value is bottlenecked by whether
           the learner can consume the intrinsic signal *fresh*, before replay-buffer
           staleness washes it out.
         - **Reward structure matters more.** Where ICM did help, the mechanism was not
-          exploration — both PPO and PPO + ICM saturated state coverage at ~98.9%. ICM's
+          exploration - both PPO and PPO + ICM saturated state coverage at ~98.9%. ICM's
           actual contribution was *per-step reward densification*: a continuous novelty
           signal that filled in for the hand-engineered distance shaping we deliberately
           removed. Functionally, ICM behaved as a self-supervised replacement for reward
@@ -2003,7 +2025,7 @@ def _(mo):
 
         Which lands the headline:
 
-        **Curiosity is not universally helpful — it is highly dependent on the reward
+        **Curiosity is not universally helpful - it is highly dependent on the reward
         structure of the environment.**
 
         ICM is most powerful exactly where extrinsic reward is sparse *and* the learner is
@@ -2016,61 +2038,61 @@ def _(mo):
         ### Beyond ICM: Where the Research Went Next
 
         The lineage of papers below can be read as systematic responses to the same
-        boundary conditions this investigation traced — each one repairing a different
+        boundary conditions this investigation traced - each one repairing a different
         failure mode of pure forward-prediction curiosity.
         """
     )
 
     _lit_tabs = mo.ui.tabs({
         "ICM (2017)": mo.md("""
-    **Pathak et al., ICML 2017** — [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
+    **Pathak et al., ICML 2017** - [arXiv:1705.05363](https://arxiv.org/abs/1705.05363)
 
     **Problem solved:** Dense exploration in sparse-reward environments without hand-coded reward shaping.
 
-    **Key result:** Self-supervised agents matched or exceeded hand-shaped baselines on VizDoom and Super Mario Bros — with zero domain knowledge injected.
+    **Key result:** Self-supervised agents matched or exceeded hand-shaped baselines on VizDoom and Super Mario Bros - with zero domain knowledge injected.
 
     **Relation to this notebook:** The foundation. Every section above builds on or stress-tests this paper's core mechanism.
         """),
         "Large-Scale Curiosity (2018)": mo.md("""
-    **Burda, Edwards, Pathak et al., ICLR 2019** — [arXiv:1808.04355](https://arxiv.org/abs/1808.04355)
+    **Burda, Edwards, Pathak et al., ICLR 2019** - [arXiv:1808.04355](https://arxiv.org/abs/1808.04355)
 
     **Problem solved:** Does intrinsic curiosity *alone* (zero extrinsic reward) produce meaningful learning?
 
-    **Key result:** Yes — agents trained purely on curiosity learned 54 Atari environments and navigated 3D mazes, with no game score signal whatsoever.
+    **Key result:** Yes - agents trained purely on curiosity learned 54 Atari environments and navigated 3D mazes, with no game score signal whatsoever.
 
     **Relation:** Validates ICM's hypothesis at scale. Also found the Noisy TV problem is endemic, motivating the next entry.
         """),
         "RND (2018)": mo.md("""
-    **Burda et al., ICLR 2019** — [arXiv:1810.12894](https://arxiv.org/abs/1810.12894)
+    **Burda et al., ICLR 2019** - [arXiv:1810.12894](https://arxiv.org/abs/1810.12894)
 
-    **Problem solved:** The Noisy TV problem — unpredictable environment stochasticity corrupts ICM's forward model prediction.
+    **Problem solved:** The Noisy TV problem - unpredictable environment stochasticity corrupts ICM's forward model prediction.
 
-    **Key result:** State-of-the-art on Montezuma's Revenge by replacing forward prediction with *random network distillation* — a frozen random network whose output a second network learns to predict. Novelty = gap between the two. Stochasticity cannot corrupt a random target.
+    **Key result:** State-of-the-art on Montezuma's Revenge by replacing forward prediction with *random network distillation* - a frozen random network whose output a second network learns to predict. Novelty = gap between the two. Stochasticity cannot corrupt a random target.
 
     **Relation:** RND discards ICM's forward model entirely. No physics prediction, no noise vulnerability.
         """),
         "Episodic Curiosity (2018)": mo.md("""
-    **Savinov et al., ICLR 2019** — [arXiv:1810.02274](https://arxiv.org/abs/1810.02274)
+    **Savinov et al., ICLR 2019** - [arXiv:1810.02274](https://arxiv.org/abs/1810.02274)
 
-    **Problem solved:** Within-episode reward collapse — an agent that finds one novel state and farms it forever instead of exploring further.
+    **Problem solved:** Within-episode reward collapse - an agent that finds one novel state and farms it forever instead of exploring further.
 
     **Key result:** Outperformed ICM on long-horizon navigation tasks by gating rewards through *episodic reachability*: only states that are hard to reach from anything seen this episode earn reward.
 
     **Relation:** ICM's reward decays only as the forward model learns. Episodic Curiosity forces continued movement regardless of model quality.
         """),
         "DreamerV3 (2023)": mo.md("""
-    **Hafner et al., DeepMind 2023** — [arXiv:2301.04104](https://arxiv.org/abs/2301.04104)
+    **Hafner et al., DeepMind 2023** - [arXiv:2301.04104](https://arxiv.org/abs/2301.04104)
 
     **Problem solved:** Sample efficiency and generalization across radically different environments without any task-specific hyperparameter tuning.
 
-    **Key result:** Human-level performance on 150+ tasks including Minecraft diamond collection — with a single fixed hyperparameter set.
+    **Key result:** Human-level performance on 150+ tasks including Minecraft diamond collection - with a single fixed hyperparameter set.
 
-    **Relation:** ICM's forward model predicts one step ahead in latent space. Dreamer learns a complete *world model* — dynamics, rewards, and terminations — and trains its policy entirely inside imagined rollouts. The lineage from ICM's single forward model to Dreamer's full generative world model is direct and unbroken.
+    **Relation:** ICM's forward model predicts one step ahead in latent space. Dreamer learns a complete *world model* - dynamics, rewards, and terminations - and trains its policy entirely inside imagined rollouts. The lineage from ICM's single forward model to Dreamer's full generative world model is direct and unbroken.
         """),
         "Agent57 (2020)": mo.md("""
-    **Badia et al., DeepMind 2020** — [arXiv:2003.13350](https://arxiv.org/abs/2003.13350)
+    **Badia et al., DeepMind 2020** - [arXiv:2003.13350](https://arxiv.org/abs/2003.13350)
 
-    **Problem solved:** Achieving above-human performance on *all* 57 classic Atari games simultaneously — including the hard-exploration games that had resisted every prior method.
+    **Problem solved:** Achieving above-human performance on *all* 57 classic Atari games simultaneously - including the hard-exploration games that had resisted every prior method.
 
     **Key result:** First agent to surpass human baselines on the complete Atari-57 suite. Used a meta-controller to balance intrinsic vs. extrinsic reward, combining episodic novelty (short-term) with a lifelong novelty metric (long-term).
 
