@@ -1,0 +1,51 @@
+program: scripts/train_dqn_conv_sweep.py
+method: random
+metric:
+  name: Mean_Score
+  goal: maximize
+
+# Stop clearly bad runs early (Hyperband scheduler).
+# min_iter=500 → first cull at game 500; eta=3 → keeps top 1/3 each round.
+early_terminate:
+  type: hyperband
+  min_iter: 500
+  eta: 3
+
+parameters:
+  # Optimizer
+  lr:
+    distribution: log_uniform_values
+    min: 0.00003
+    max: 0.001
+
+  # Replay / training intensity
+  batch_size:
+    values: [128, 256, 512]
+  train_calls:
+    values: [4, 6, 8, 10]
+
+  # Credit assignment
+  gamma:
+    values: [0.98, 0.99, 0.995]
+  n_steps:
+    values: [1, 2, 4]
+
+  # Exploration
+  epsilon_end:
+    values: [0.01, 0.05, 0.10]
+  # Fraction of estimated total steps over which epsilon decays.
+  # Lower = faster exploitation; higher = more exploration.
+  epsilon_decay_fraction:
+    values: [0.30, 0.50, 0.70]
+
+  # Network capacity
+  ch1:
+    values: [32, 64]
+  ch2:
+    values: [64, 128]
+  hidden_dim:
+    values: [128, 256]
+
+  # Fixed for all sweep trials
+  seed:
+    value: 42
