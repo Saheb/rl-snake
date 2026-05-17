@@ -1,0 +1,107 @@
+=== ConvDQN_v2_10x10_dense_seed0 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run xxwvnit4
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_140331-xxwvnit4
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_v2_10x10_dense_seed0
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/xxwvnit4
+ConvDQN v2 | 10×10 dense | γ=0.99 batch=256 calls/ep=6 lr=0.0001 ε_decay/step=2.53e-05
+Game 100 | Score: 0 | Record: 2 | Mean: 0.31 | ε: 0.907 | Steps: 3,663
+Game 200 | Score: 0 | Record: 2 | Mean: 0.27 | ε: 0.840 | Steps: 6,331
+Game 300 | Score: 0 | Record: 2 | Mean: 0.25 | ε: 0.773 | Steps: 8,968
+Game 400 | Score: 0 | Record: 2 | Mean: 0.25 | ε: 0.710 | Steps: 11,462
+Game 500 | Score: 0 | Record: 2 | Mean: 0.27 | ε: 0.662 | Steps: 13,343
+Game 600 | Score: 1 | Record: 2 | Mean: 0.25 | ε: 0.626 | Steps: 14,775
+Game 700 | Score: 1 | Record: 2 | Mean: 0.26 | ε: 0.585 | Steps: 16,376
+Game 800 | Score: 0 | Record: 2 | Mean: 0.27 | ε: 0.550 | Steps: 17,757
+Game 900 | Score: 0 | Record: 2 | Mean: 0.27 | ε: 0.515 | Steps: 19,133
+Game 1000 | Score: 1 | Record: 3 | Mean: 0.28 | ε: 0.482 | Steps: 20,466
+Game 1100 | Score: 0 | Record: 3 | Mean: 0.29 | ε: 0.447 | Steps: 21,843
+Game 1200 | Score: 0 | Record: 4 | Mean: 0.31 | ε: 0.414 | Steps: 23,137
+Game 1300 | Score: 0 | Record: 4 | Mean: 0.32 | ε: 0.381 | Steps: 24,436
+Game 1400 | Score: 0 | Record: 4 | Mean: 0.34 | ε: 0.347 | Steps: 25,761
+Game 1500 | Score: 0 | Record: 4 | Mean: 0.36 | ε: 0.318 | Steps: 26,933
+Game 1600 | Score: 1 | Record: 4 | Mean: 0.38 | ε: 0.288 | Steps: 28,110
+Game 1700 | Score: 3 | Record: 4 | Mean: 0.41 | ε: 0.256 | Steps: 29,365
+Game 1800 | Score: 0 | Record: 4 | Mean: 0.43 | ε: 0.225 | Steps: 30,588
+Game 1900 | Score: 0 | Record: 4 | Mean: 0.45 | ε: 0.193 | Steps: 31,845
+Game 2000 | Score: 1 | Record: 4 | Mean: 0.48 | ε: 0.154 | Steps: 33,404
+Game 2100 | Score: 1 | Record: 5 | Mean: 0.50 | ε: 0.121 | Steps: 34,688
+Game 2200 | Score: 0 | Record: 5 | Mean: 0.53 | ε: 0.091 | Steps: 35,881
+Game 2300 | Score: 1 | Record: 5 | Mean: 0.56 | ε: 0.050 | Steps: 37,530
+Game 2400 | Score: 2 | Record: 5 | Mean: 0.59 | ε: 0.050 | Steps: 38,844
+Game 2500 | Score: 1 | Record: 5 | Mean: 0.62 | ε: 0.050 | Steps: 40,769
+Game 2600 | Score: 0 | Record: 5 | Mean: 0.65 | ε: 0.050 | Steps: 42,360
+Game 2700 | Score: 0 | Record: 5 | Mean: 0.68 | ε: 0.050 | Steps: 44,143
+Game 2800 | Score: 1 | Record: 5 | Mean: 0.72 | ε: 0.050 | Steps: 46,360
+Game 2900 | Score: 3 | Record: 5 | Mean: 0.76 | ε: 0.050 | Steps: 48,466
+Game 3000 | Score: 2 | Record: 7 | Mean: 0.79 | ε: 0.050 | Steps: 50,324
+Game 3100 | Score: 2 | Record: 7 | Mean: 0.82 | ε: 0.050 | Steps: 52,122
+Game 3200 | Score: 1 | Record: 7 | Mean: 0.86 | ε: 0.050 | Steps: 54,269
+Game 3300 | Score: 2 | Record: 7 | Mean: 0.89 | ε: 0.050 | Steps: 57,102
+Game 3400 | Score: 3 | Record: 7 | Mean: 0.93 | ε: 0.050 | Steps: 59,762
+Game 3500 | Score: 6 | Record: 7 | Mean: 0.96 | ε: 0.050 | Steps: 62,258
+Game 3600 | Score: 1 | Record: 7 | Mean: 1.00 | ε: 0.050 | Steps: 64,931
+Game 3700 | Score: 3 | Record: 7 | Mean: 1.03 | ε: 0.050 | Steps: 67,887
+Game 3800 | Score: 0 | Record: 7 | Mean: 1.07 | ε: 0.050 | Steps: 70,487
+Game 3900 | Score: 1 | Record: 7 | Mean: 1.11 | ε: 0.050 | Steps: 74,385
+Game 4000 | Score: 2 | Record: 8 | Mean: 1.15 | ε: 0.050 | Steps: 77,474
+Game 4100 | Score: 1 | Record: 8 | Mean: 1.18 | ε: 0.050 | Steps: 80,777
+Game 4200 | Score: 2 | Record: 8 | Mean: 1.22 | ε: 0.050 | Steps: 84,034
+Game 4300 | Score: 0 | Record: 8 | Mean: 1.26 | ε: 0.050 | Steps: 87,286
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 3 | Record: 8 | Mean: 1.30 | ε: 0.050 | Steps: 90,464
+Game 4500 | Score: 5 | Record: 8 | Mean: 1.33 | ε: 0.050 | Steps: 93,953
+Game 4600 | Score: 3 | Record: 8 | Mean: 1.36 | ε: 0.050 | Steps: 96,679
+Game 4700 | Score: 4 | Record: 8 | Mean: 1.40 | ε: 0.050 | Steps: 100,186
+Game 4800 | Score: 6 | Record: 8 | Mean: 1.44 | ε: 0.050 | Steps: 103,598
+Game 4900 | Score: 2 | Record: 8 | Mean: 1.47 | ε: 0.050 | Steps: 106,895
+Game 5000 | Score: 3 | Record: 8 | Mean: 1.51 | ε: 0.050 | Steps: 110,320
+
+Done. Best: 8, Final Mean: 1.51
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:     Epsilon █▇▇▆▆▅▅▅▅▄▄▃▃▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:        Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇███
+wandb:  Mean_Score ▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▅▅▅▅▆▆▆▆▆▇▇▇██
+wandb:      Record ▁▁▁▁▁▁▁▁▂▂▃▃▃▃▃▃▃▅▅▅▅▅▅▅▅▇▇▇▇▇▇█████████
+wandb:       Score ▁▁▁▁▁▂▁▁▂▁▁▁▁▂▅▁▂▂▁▂▂▁▁▂▅▃▂▃▅█▁▂▃▂▃▇▅▆█▅
+wandb: Total_Steps ▁▁▂▂▂▂▂▂▂▂▂▃▃▃▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▇▇▇██
+wandb: 
+wandb: Run summary:
+wandb:     Epsilon 0.05
+wandb:        Game 5000
+wandb:  Mean_Score 1.5142
+wandb:      Record 8
+wandb:       Score 3
+wandb: Total_Steps 110320
+wandb: 
+wandb: 🚀 View run ConvDQN_v2_10x10_dense_seed0 at: https://wandb.ai/saheb37/rl-snake/runs/xxwvnit4
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_140331-xxwvnit4/logs
+--- ConvDQN_v2_10x10_dense_seed0 done ---
+=== ConvDQN_v2_10x10_dense_seed1 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run qyakbbau
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_143512-qyakbbau
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_v2_10x10_dense_seed1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/qyakbbau
+ConvDQN v2 | 10×10 dense | γ=0.99 batch=256 calls/ep=6 lr=0.0001 ε_decay/step=2.53e-05
+Game 100 | Score: 0 | Record: 2 | Mean: 0.14 | ε: 0.912 | Steps: 3,457
+Game 200 | Score: 1 | Record: 3 | Mean: 0.15 | ε: 0.840 | Steps: 6,299
+Game 300 | Score: 0 | Record: 3 | Mean: 0.18 | ε: 0.760 | Steps: 9,467

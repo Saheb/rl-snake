@@ -115,3 +115,23 @@ if __name__ == "__main__":
             if d: c16v3.append(d)
     g, m, s = to_arrays(c16v3)
     report("ConvNet DQN v3 16×16 dense", g, m, s, len(c16v3))
+
+    # Feature DQN v2 10×10 (10k games — matched to ConvNet v3)
+    f10v2 = []
+    for seed in (0, 1, 2):
+        p = LOG_DIR / f"FeatureDQN_v2_10x10_dense_seed{seed}.log"
+        if p.exists():
+            d = parse_log(p)
+            if d: f10v2.append(d)
+    g, m, s = to_arrays(f10v2)
+    report("Feature DQN 10×10 dense (10k games)", g, m, s, len(f10v2))
+
+    # Feature DQN v2 16×16 (16k games — matched to ConvNet v3)
+    f16v2 = []
+    for seed in (0, 1, 2):
+        p = LOG_DIR / f"FeatureDQN_v2_16x16_dense_seed{seed}.log"
+        if p.exists():
+            d = parse_log(p)
+            if d: f16v2.append(d)
+    g, m, s = to_arrays(f16v2)
+    report("Feature DQN 16×16 dense (16k games)", g, m, s, len(f16v2))

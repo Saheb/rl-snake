@@ -1,0 +1,1527 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: Starting wandb agent 🕵️
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+2026-05-13 14:56:44,691 - wandb.wandb_agent - INFO - Running runs: []
+2026-05-13 14:56:45,642 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 14:56:45,642 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.05
+	gamma: 0.995
+	hidden_dim: 256
+	lr: 9.530905179769006e-05
+	n_steps: 1
+	seed: 42
+	train_calls: 4
+2026-05-13 14:56:45,643 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.7 --epsilon_end=0.05 --gamma=0.995 --hidden_dim=256 --lr=9.530905179769006e-05 --n_steps=1 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run hmqzgmt2
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_145647-hmqzgmt2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dark-sweep-1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/hmqzgmt2
+2026-05-13 14:56:50,651 - wandb.wandb_agent - INFO - Running runs: ['hmqzgmt2']
+Done. Games=2000 | Final Mean: 3.841 | Best: 24
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb:     Record ▁▁▁▁▁▂▂▃▃▄▅▅▅▅▇▇▇▇██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 3.841
+wandb:     Record 24
+wandb: 
+wandb: 🚀 View run dark-sweep-1 at: https://wandb.ai/saheb37/rl-snake/runs/hmqzgmt2
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_145647-hmqzgmt2/logs
+2026-05-13 15:04:37,517 - wandb.wandb_agent - INFO - Cleaning up finished run: hmqzgmt2
+2026-05-13 15:04:38,309 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 15:04:38,310 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.01
+	gamma: 0.98
+	hidden_dim: 256
+	lr: 4.832643311558493e-05
+	n_steps: 4
+	seed: 42
+	train_calls: 10
+2026-05-13 15:04:38,313 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.7 --epsilon_end=0.01 --gamma=0.98 --hidden_dim=256 --lr=4.832643311558493e-05 --n_steps=4 --seed=42 --train_calls=10
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run ay9lnga9
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_150440-ay9lnga9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run good-sweep-2
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/ay9lnga9
+2026-05-13 15:04:43,324 - wandb.wandb_agent - INFO - Running runs: ['ay9lnga9']
+wandb: Network error (ConnectionError), entering retry loop.
+Done. Games=2000 | Final Mean: 0.658 | Best: 5
+wandb: updating run metadata
+wandb: updating run metadata; uploading history steps 19-19, summary, console lines 0-0
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading data
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▆▅▅▄▄▃▃▂▂▂▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▂▂▂▂▂▂▃▃▃▄▄▅▅▆▆▇▇██
+wandb:     Record ▁▁▁▁▁▁▁▁▁▃▃▃▃▆▆▆▆▆▆█
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 0.6585
+wandb:     Record 5
+wandb: 
+wandb: 🚀 View run good-sweep-2 at: https://wandb.ai/saheb37/rl-snake/runs/ay9lnga9
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_150440-ay9lnga9/logs
+2026-05-13 15:30:30,272 - wandb.wandb_agent - INFO - Cleaning up finished run: ay9lnga9
+2026-05-13 15:30:31,529 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 15:30:31,529 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.05
+	gamma: 0.98
+	hidden_dim: 128
+	lr: 0.00010528651006049192
+	n_steps: 2
+	seed: 42
+	train_calls: 10
+2026-05-13 15:30:31,533 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.05 --gamma=0.98 --hidden_dim=128 --lr=0.00010528651006049192 --n_steps=2 --seed=42 --train_calls=10
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 3h63fis0
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_153033-3h63fis0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run daily-sweep-3
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/3h63fis0
+2026-05-13 15:30:36,539 - wandb.wandb_agent - INFO - Running runs: ['3h63fis0']
+wandb: Network error (ConnectionError), entering retry loop.
+Done. Games=2000 | Final Mean: 3.020 | Best: 17
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▂▂▃▃▄▄▅▅▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▁▂▂▃▄▅▅▆▆▇▇█████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 3.02
+wandb:     Record 17
+wandb: 
+wandb: 🚀 View run daily-sweep-3 at: https://wandb.ai/saheb37/rl-snake/runs/3h63fis0
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_153033-3h63fis0/logs
+2026-05-13 16:16:51,203 - wandb.wandb_agent - INFO - Cleaning up finished run: 3h63fis0
+2026-05-13 16:16:52,030 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 16:16:52,030 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.01
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 7.337128337826173e-05
+	n_steps: 1
+	seed: 42
+	train_calls: 6
+2026-05-13 16:16:52,035 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.01 --gamma=0.99 --hidden_dim=256 --lr=7.337128337826173e-05 --n_steps=1 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 790zmmpj
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_161653-790zmmpj
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run royal-sweep-4
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/790zmmpj
+2026-05-13 16:16:57,045 - wandb.wandb_agent - INFO - Running runs: ['790zmmpj']
+Done. Games=2000 | Final Mean: 2.317 | Best: 18
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▃▃▃▃▄▄▄▄▅▅▆▆▇█
+wandb:     Record ▁▁▁▁▂▂▂▂▃▄▄▅▅▅▅▅▇▇██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 2.3175
+wandb:     Record 18
+wandb: 
+wandb: 🚀 View run royal-sweep-4 at: https://wandb.ai/saheb37/rl-snake/runs/790zmmpj
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_161653-790zmmpj/logs
+2026-05-13 16:42:36,085 - wandb.wandb_agent - INFO - Cleaning up finished run: 790zmmpj
+2026-05-13 16:42:36,954 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 16:42:36,954 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.1
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 0.0007490134687314821
+	n_steps: 2
+	seed: 42
+	train_calls: 8
+2026-05-13 16:42:36,958 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.7 --epsilon_end=0.1 --gamma=0.99 --hidden_dim=256 --lr=0.0007490134687314821 --n_steps=2 --seed=42 --train_calls=8
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 26u3i5g2
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_164238-26u3i5g2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tough-sweep-5
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/26u3i5g2
+2026-05-13 16:42:41,969 - wandb.wandb_agent - INFO - Running runs: ['26u3i5g2']
+Done. Games=2000 | Final Mean: 1.831 | Best: 10
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▃▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▃▃▄▄▄▅▅▆▆▇▇▇██
+wandb:     Record ▁▁▂▃▃▃▄▄▅▅▅▅▅▅▇▇▇▇▇█
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 1.831
+wandb:     Record 10
+wandb: 
+wandb: 🚀 View run tough-sweep-5 at: https://wandb.ai/saheb37/rl-snake/runs/26u3i5g2
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_164238-26u3i5g2/logs
+2026-05-13 16:51:29,131 - wandb.wandb_agent - INFO - Cleaning up finished run: 26u3i5g2
+2026-05-13 16:51:29,820 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 16:51:29,820 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 128
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.05
+	gamma: 0.99
+	hidden_dim: 128
+	lr: 0.00012487841517297717
+	n_steps: 4
+	seed: 42
+	train_calls: 6
+2026-05-13 16:51:29,824 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=128 --epsilon_decay_fraction=0.7 --epsilon_end=0.05 --gamma=0.99 --hidden_dim=128 --lr=0.00012487841517297717 --n_steps=4 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run u479bqkw
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_165131-u479bqkw
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run misty-sweep-6
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/u479bqkw
+2026-05-13 16:51:34,833 - wandb.wandb_agent - INFO - Running runs: ['u479bqkw']
+wandb: Network error (ConnectionError), entering retry loop.
+Done. Games=2000 | Final Mean: 0.632 | Best: 5
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▆▅▄▄▄▃▃▂▂▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▂▂▂▂▂▂▃▃▃▄▄▅▅▆▆▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▃▃▃▃▃▆▆▆█████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.632
+wandb:     Record 5
+wandb: 
+wandb: 🚀 View run misty-sweep-6 at: https://wandb.ai/saheb37/rl-snake/runs/u479bqkw
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_165131-u479bqkw/logs
+2026-05-13 17:05:43,875 - wandb.wandb_agent - INFO - Cleaning up finished run: u479bqkw
+2026-05-13 17:05:44,831 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 17:05:44,831 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 64
+	ch2: 128
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.01
+	gamma: 0.995
+	hidden_dim: 128
+	lr: 0.000126265680070202
+	n_steps: 1
+	seed: 42
+	train_calls: 10
+2026-05-13 17:05:44,836 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=64 --ch2=128 --epsilon_decay_fraction=0.7 --epsilon_end=0.01 --gamma=0.995 --hidden_dim=128 --lr=0.000126265680070202 --n_steps=1 --seed=42 --train_calls=10
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_170546-rdz45xxu
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run young-sweep-7
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/rdz45xxu
+2026-05-13 17:05:49,848 - wandb.wandb_agent - INFO - Running runs: ['rdz45xxu']
+wandb: Network error (ConnectionError), entering retry loop.
+Done. Games=2000 | Final Mean: 9.380 | Best: 35
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading config.yaml; uploading output.log
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▂▂▃▃▄▅▅▆▆▇▇▇▇██
+wandb:     Record ▁▁▁▁▂▂▃▅▅▆▇▇▇▇██████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 9.3805
+wandb:     Record 35
+wandb: 
+wandb: 🚀 View run young-sweep-7 at: https://wandb.ai/saheb37/rl-snake/runs/rdz45xxu
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_170546-rdz45xxu/logs
+2026-05-13 18:11:53,407 - wandb.wandb_agent - INFO - Cleaning up finished run: rdz45xxu
+2026-05-13 18:11:54,195 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 18:11:54,196 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.01
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 0.0009623148078523844
+	n_steps: 4
+	seed: 42
+	train_calls: 8
+2026-05-13 18:11:54,200 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.7 --epsilon_end=0.01 --gamma=0.99 --hidden_dim=256 --lr=0.0009623148078523844 --n_steps=4 --seed=42 --train_calls=8
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run jn511fvh
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_181155-jn511fvh
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run skilled-sweep-8
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/jn511fvh
+2026-05-13 18:11:59,209 - wandb.wandb_agent - INFO - Running runs: ['jn511fvh']
+Done. Games=2000 | Final Mean: 0.741 | Best: 6
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml; uploading history steps 19-19, summary, console lines 0-0
+wandb: uploading data
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▃▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▃▃▄▄▅▅▆▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▁▁▃▃▃▃▃▃▃▅▅█████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 0.741
+wandb:     Record 6
+wandb: 
+wandb: 🚀 View run skilled-sweep-8 at: https://wandb.ai/saheb37/rl-snake/runs/jn511fvh
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_181155-jn511fvh/logs
+2026-05-13 18:25:45,792 - wandb.wandb_agent - INFO - Cleaning up finished run: jn511fvh
+2026-05-13 18:25:46,488 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 18:25:46,488 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.1
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 5.122113603242179e-05
+	n_steps: 4
+	seed: 42
+	train_calls: 10
+2026-05-13 18:25:46,493 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.1 --gamma=0.99 --hidden_dim=256 --lr=5.122113603242179e-05 --n_steps=4 --seed=42 --train_calls=10
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run j8a65dql
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_182548-j8a65dql
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ancient-sweep-9
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/j8a65dql
+2026-05-13 18:25:51,504 - wandb.wandb_agent - INFO - Running runs: ['j8a65dql']
+Done. Games=2000 | Final Mean: 0.499 | Best: 5
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading output.log
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▃▂▂▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▂▂▃▃▃▄▄▅▅▆▆▇██
+wandb:     Record ▁▁▁▁▁▁▁▁▁▆▆▆▆▆▆▆▆▆██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 0.499
+wandb:     Record 5
+wandb: 
+wandb: 🚀 View run ancient-sweep-9 at: https://wandb.ai/saheb37/rl-snake/runs/j8a65dql
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_182548-j8a65dql/logs
+2026-05-13 18:39:31,025 - wandb.wandb_agent - INFO - Cleaning up finished run: j8a65dql
+2026-05-13 18:39:31,685 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 18:39:31,686 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.01
+	gamma: 0.995
+	hidden_dim: 256
+	lr: 0.0007807740455837665
+	n_steps: 4
+	seed: 42
+	train_calls: 4
+2026-05-13 18:39:31,690 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.01 --gamma=0.995 --hidden_dim=256 --lr=0.0007807740455837665 --n_steps=4 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 7gbs7cdk
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_183933-7gbs7cdk
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run clear-sweep-10
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/7gbs7cdk
+2026-05-13 18:39:36,697 - wandb.wandb_agent - INFO - Running runs: ['7gbs7cdk']
+Done. Games=2000 | Final Mean: 0.555 | Best: 4
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml; uploading output.log
+wandb: uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▂▂▂▂▃▃▃▄▄▅▆▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▅▅▅▅▅▅▅▅▅▅▅▅▅▅██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 0.5555
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run clear-sweep-10 at: https://wandb.ai/saheb37/rl-snake/runs/7gbs7cdk
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_183933-7gbs7cdk/logs
+2026-05-13 18:45:40,427 - wandb.wandb_agent - INFO - Cleaning up finished run: 7gbs7cdk
+2026-05-13 18:45:41,279 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 18:45:41,280 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.01
+	gamma: 0.98
+	hidden_dim: 256
+	lr: 4.094688848609502e-05
+	n_steps: 2
+	seed: 42
+	train_calls: 6
+2026-05-13 18:45:41,283 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.01 --gamma=0.98 --hidden_dim=256 --lr=4.094688848609502e-05 --n_steps=2 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run kgejpyko
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_184543-kgejpyko
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run giddy-sweep-11
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/kgejpyko
+2026-05-13 18:45:46,289 - wandb.wandb_agent - INFO - Running runs: ['kgejpyko']
+Done. Games=2000 | Final Mean: 1.397 | Best: 13
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▆▆▇█
+wandb:     Record ▁▁▁▁▁▂▃▃▃▃▃▃▄▄▅▇▇▇▇█
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 1.397
+wandb:     Record 13
+wandb: 
+wandb: 🚀 View run giddy-sweep-11 at: https://wandb.ai/saheb37/rl-snake/runs/kgejpyko
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_184543-kgejpyko/logs
+2026-05-13 19:02:23,317 - wandb.wandb_agent - INFO - Cleaning up finished run: kgejpyko
+2026-05-13 19:02:24,077 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 19:02:24,077 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.05
+	gamma: 0.98
+	hidden_dim: 128
+	lr: 0.00014501067606165753
+	n_steps: 4
+	seed: 42
+	train_calls: 4
+2026-05-13 19:02:24,080 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.05 --gamma=0.98 --hidden_dim=128 --lr=0.00014501067606165753 --n_steps=4 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run cwby7snz
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_190225-cwby7snz
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fluent-sweep-12
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/cwby7snz
+2026-05-13 19:02:29,088 - wandb.wandb_agent - INFO - Running runs: ['cwby7snz']
+Done. Games=2000 | Final Mean: 0.500 | Best: 5
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▅▄▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▁▁▂▂▂▂▃▃▄▄▅▅▅▆▆▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▁▃▃▃▃▃▃▃▃▃▃██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.5
+wandb:     Record 5
+wandb: 
+wandb: 🚀 View run fluent-sweep-12 at: https://wandb.ai/saheb37/rl-snake/runs/cwby7snz
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_190225-cwby7snz/logs
+2026-05-13 19:09:47,829 - wandb.wandb_agent - INFO - Cleaning up finished run: cwby7snz
+2026-05-13 19:09:48,525 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 19:09:48,526 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 64
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.05
+	gamma: 0.99
+	hidden_dim: 128
+	lr: 8.722958007847346e-05
+	n_steps: 4
+	seed: 42
+	train_calls: 4
+2026-05-13 19:09:48,530 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=64 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.05 --gamma=0.99 --hidden_dim=128 --lr=8.722958007847346e-05 --n_steps=4 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 7sdsa57q
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_190950-7sdsa57q
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run classic-sweep-13
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/7sdsa57q
+2026-05-13 19:09:53,540 - wandb.wandb_agent - INFO - Running runs: ['7sdsa57q']
+Done. Games=2000 | Final Mean: 0.439 | Best: 4
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▅▄▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▂▁▂▂▂▂▃▃▃▄▄▅▅▆▆▇▇██
+wandb:     Record ▁▁▁▁▁▁▁▅▅▅▅▅████████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.4385
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run classic-sweep-13 at: https://wandb.ai/saheb37/rl-snake/runs/7sdsa57q
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_190950-7sdsa57q/logs
+2026-05-13 19:36:08,156 - wandb.wandb_agent - INFO - Cleaning up finished run: 7sdsa57q
+2026-05-13 19:36:09,076 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 19:36:09,076 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.05
+	gamma: 0.995
+	hidden_dim: 256
+	lr: 0.0006396441092073895
+	n_steps: 2
+	seed: 42
+	train_calls: 6
+2026-05-13 19:36:09,080 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.05 --gamma=0.995 --hidden_dim=256 --lr=0.0006396441092073895 --n_steps=2 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run sgu2yvx9
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_193610-sgu2yvx9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run breezy-sweep-14
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/sgu2yvx9
+2026-05-13 19:36:14,090 - wandb.wandb_agent - INFO - Running runs: ['sgu2yvx9']
+Done. Games=2000 | Final Mean: 3.070 | Best: 15
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▃▃▄▅▅▅▆▆▇▇▇▇██
+wandb:     Record ▁▁▁▂▂▄▄▄▆▆▆▆▆▆▆▇▇▇▇█
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 3.07
+wandb:     Record 15
+wandb: 
+wandb: 🚀 View run breezy-sweep-14 at: https://wandb.ai/saheb37/rl-snake/runs/sgu2yvx9
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_193610-sgu2yvx9/logs
+2026-05-13 20:11:24,090 - wandb.wandb_agent - INFO - Cleaning up finished run: sgu2yvx9
+2026-05-13 20:11:24,872 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 20:11:24,873 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 64
+	ch2: 128
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.05
+	gamma: 0.995
+	hidden_dim: 128
+	lr: 0.0003749429080945834
+	n_steps: 4
+	seed: 42
+	train_calls: 6
+2026-05-13 20:11:24,876 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=64 --ch2=128 --epsilon_decay_fraction=0.5 --epsilon_end=0.05 --gamma=0.995 --hidden_dim=128 --lr=0.0003749429080945834 --n_steps=4 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run timfsrhb
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_201126-timfsrhb
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fallen-sweep-15
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/timfsrhb
+2026-05-13 20:11:29,883 - wandb.wandb_agent - INFO - Running runs: ['timfsrhb']
+Done. Games=2000 | Final Mean: 0.703 | Best: 4
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml; uploading output.log
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▂▂▃▃▄▄▅▅▅▆▆▆▇▇▇██
+wandb:     Record ▁▁▁▅▅▅▅▅▅▅▅▅▅▅██████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.7025
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run fallen-sweep-15 at: https://wandb.ai/saheb37/rl-snake/runs/timfsrhb
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_201126-timfsrhb/logs
+2026-05-13 21:07:19,759 - wandb.wandb_agent - INFO - Cleaning up finished run: timfsrhb
+2026-05-13 21:07:20,512 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 21:07:20,512 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.01
+	gamma: 0.98
+	hidden_dim: 128
+	lr: 0.00023411629856142903
+	n_steps: 4
+	seed: 42
+	train_calls: 10
+2026-05-13 21:07:20,516 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.01 --gamma=0.98 --hidden_dim=128 --lr=0.00023411629856142903 --n_steps=4 --seed=42 --train_calls=10
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run r6haoh9d
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_210723-r6haoh9d
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run good-sweep-16
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/r6haoh9d
+2026-05-13 21:07:25,530 - wandb.wandb_agent - INFO - Running runs: ['r6haoh9d']
+Done. Games=2000 | Final Mean: 0.629 | Best: 5
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▂▂▂▃▃▄▄▅▅▆▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▁▁▁▁▃▃▃▃▆▆▆▆████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 0.629
+wandb:     Record 5
+wandb: 
+wandb: 🚀 View run good-sweep-16 at: https://wandb.ai/saheb37/rl-snake/runs/r6haoh9d
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_210723-r6haoh9d/logs
+2026-05-13 21:49:46,271 - wandb.wandb_agent - INFO - Cleaning up finished run: r6haoh9d
+2026-05-13 21:49:46,988 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 21:49:46,989 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.1
+	gamma: 0.995
+	hidden_dim: 128
+	lr: 0.0002457460835061466
+	n_steps: 4
+	seed: 42
+	train_calls: 6
+2026-05-13 21:49:46,993 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.7 --epsilon_end=0.1 --gamma=0.995 --hidden_dim=128 --lr=0.0002457460835061466 --n_steps=4 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 8xruszaq
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_214948-8xruszaq
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run serene-sweep-17
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/8xruszaq
+2026-05-13 21:49:52,005 - wandb.wandb_agent - INFO - Running runs: ['8xruszaq']
+Done. Games=2000 | Final Mean: 0.519 | Best: 5
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▅▄▄▃▃▂▂▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▂▂▂▂▂▃▃▄▄▄▅▅▆▆▇▇██
+wandb:     Record ▁▁▁▁▁▁▁▁▁▃▃▃▃▃██████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 0.519
+wandb:     Record 5
+wandb: 
+wandb: 🚀 View run serene-sweep-17 at: https://wandb.ai/saheb37/rl-snake/runs/8xruszaq
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_214948-8xruszaq/logs
+2026-05-13 21:58:10,129 - wandb.wandb_agent - INFO - Cleaning up finished run: 8xruszaq
+2026-05-13 21:58:11,030 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 21:58:11,030 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.1
+	gamma: 0.99
+	hidden_dim: 128
+	lr: 0.0005620602135938925
+	n_steps: 2
+	seed: 42
+	train_calls: 10
+2026-05-13 21:58:11,034 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.7 --epsilon_end=0.1 --gamma=0.99 --hidden_dim=128 --lr=0.0005620602135938925 --n_steps=2 --seed=42 --train_calls=10
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 362kfk3v
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_215812-362kfk3v
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fallen-sweep-18
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/362kfk3v
+2026-05-13 21:58:16,045 - wandb.wandb_agent - INFO - Running runs: ['362kfk3v']
+Done. Games=2000 | Final Mean: 2.092 | Best: 10
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▄▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▂▂▃▃▄▄▅▅▆▆▆▇▇▇▇██
+wandb:     Record ▁▁▁▁▂▃▅▅▅▇▇▇▇▇▇▇▇▇██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 2.092
+wandb:     Record 10
+wandb: 
+wandb: 🚀 View run fallen-sweep-18 at: https://wandb.ai/saheb37/rl-snake/runs/362kfk3v
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_215812-362kfk3v/logs
+2026-05-13 22:33:55,163 - wandb.wandb_agent - INFO - Cleaning up finished run: 362kfk3v
+2026-05-13 22:33:55,906 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 22:33:55,906 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.05
+	gamma: 0.99
+	hidden_dim: 128
+	lr: 0.00021190078553558905
+	n_steps: 1
+	seed: 42
+	train_calls: 8
+2026-05-13 22:33:55,911 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.05 --gamma=0.99 --hidden_dim=128 --lr=0.00021190078553558905 --n_steps=1 --seed=42 --train_calls=8
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run lpjg06t4
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_223357-lpjg06t4
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run classic-sweep-19
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/lpjg06t4
+2026-05-13 22:34:00,925 - wandb.wandb_agent - INFO - Running runs: ['lpjg06t4']
+Done. Games=2000 | Final Mean: 5.627 | Best: 27
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▄▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▃▃▄▅▅▆▆▆▇▇▇▇███
+wandb:     Record ▁▁▁▂▂▄▆▆▆▆▇▇▇▇▇▇▇▇██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 5.6265
+wandb:     Record 27
+wandb: 
+wandb: 🚀 View run classic-sweep-19 at: https://wandb.ai/saheb37/rl-snake/runs/lpjg06t4
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_223357-lpjg06t4/logs
+2026-05-13 22:56:00,235 - wandb.wandb_agent - INFO - Cleaning up finished run: lpjg06t4
+2026-05-13 22:56:01,162 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 22:56:01,163 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 64
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.05
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 0.0003950495142980139
+	n_steps: 4
+	seed: 42
+	train_calls: 4
+2026-05-13 22:56:01,167 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=64 --epsilon_decay_fraction=0.3 --epsilon_end=0.05 --gamma=0.99 --hidden_dim=256 --lr=0.0003950495142980139 --n_steps=4 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run drnf613f
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_225602-drnf613f
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run skilled-sweep-20
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/drnf613f
+2026-05-13 22:56:06,176 - wandb.wandb_agent - INFO - Running runs: ['drnf613f']
+Done. Games=2000 | Final Mean: 0.624 | Best: 4
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▅▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▁▂▂▂▃▃▄▄▄▅▅▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▁▅▅▅▅▅▅█████████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.6235
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run skilled-sweep-20 at: https://wandb.ai/saheb37/rl-snake/runs/drnf613f
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_225602-drnf613f/logs
+2026-05-13 23:03:31,317 - wandb.wandb_agent - INFO - Cleaning up finished run: drnf613f
+2026-05-13 23:03:32,307 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 23:03:32,308 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.01
+	gamma: 0.99
+	hidden_dim: 128
+	lr: 5.161062084823876e-05
+	n_steps: 2
+	seed: 42
+	train_calls: 8
+2026-05-13 23:03:32,312 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.01 --gamma=0.99 --hidden_dim=128 --lr=5.161062084823876e-05 --n_steps=2 --seed=42 --train_calls=8
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 5ygtu4jm
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_230333-5ygtu4jm
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run stilted-sweep-21
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/5ygtu4jm
+2026-05-13 23:03:37,320 - wandb.wandb_agent - INFO - Running runs: ['5ygtu4jm']
+Done. Games=2000 | Final Mean: 0.449 | Best: 4
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml; uploading output.log
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▁▁▂▂▃▃▃▃▃▄▄▄▅▅▆▇▇█
+wandb:     Record ▁▁▁▁▁▁▁█████████████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 0.449
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run stilted-sweep-21 at: https://wandb.ai/saheb37/rl-snake/runs/5ygtu4jm
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_230333-5ygtu4jm/logs
+2026-05-13 23:17:06,713 - wandb.wandb_agent - INFO - Cleaning up finished run: 5ygtu4jm
+2026-05-13 23:17:07,472 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 23:17:07,473 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.05
+	gamma: 0.995
+	hidden_dim: 128
+	lr: 3.756419420804424e-05
+	n_steps: 4
+	seed: 42
+	train_calls: 4
+2026-05-13 23:17:07,477 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.7 --epsilon_end=0.05 --gamma=0.995 --hidden_dim=128 --lr=3.756419420804424e-05 --n_steps=4 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run vt3pjix0
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_231709-vt3pjix0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run generous-sweep-22
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/vt3pjix0
+2026-05-13 23:17:12,487 - wandb.wandb_agent - INFO - Running runs: ['vt3pjix0']
+Done. Games=2000 | Final Mean: 0.317 | Best: 3
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▆▅▅▄▄▄▃▃▃▂▂▂▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▂▃▃▃▄▃▃▃▃▃▃▄▄▅▆▆▇█
+wandb:     Record ▁▁▁█████████████████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.317
+wandb:     Record 3
+wandb: 
+wandb: 🚀 View run generous-sweep-22 at: https://wandb.ai/saheb37/rl-snake/runs/vt3pjix0
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_231709-vt3pjix0/logs
+2026-05-13 23:34:32,315 - wandb.wandb_agent - INFO - Cleaning up finished run: vt3pjix0
+2026-05-13 23:34:33,050 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-13 23:34:33,050 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.01
+	gamma: 0.98
+	hidden_dim: 256
+	lr: 0.00015225515529342776
+	n_steps: 1
+	seed: 42
+	train_calls: 6
+2026-05-13 23:34:33,055 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.01 --gamma=0.98 --hidden_dim=256 --lr=0.00015225515529342776 --n_steps=1 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run ev5ztzc8
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_233434-ev5ztzc8
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run likely-sweep-23
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/ev5ztzc8
+2026-05-13 23:34:38,068 - wandb.wandb_agent - INFO - Running runs: ['ev5ztzc8']
+Done. Games=2000 | Final Mean: 8.208 | Best: 37
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▁▂▂▃▃▄▄▅▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▁▂▃▃▃▆▆▆▇▇▇▇████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 8.208
+wandb:     Record 37
+wandb: 
+wandb: 🚀 View run likely-sweep-23 at: https://wandb.ai/saheb37/rl-snake/runs/ev5ztzc8
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_233434-ev5ztzc8/logs
+2026-05-14 00:20:01,727 - wandb.wandb_agent - INFO - Cleaning up finished run: ev5ztzc8
+2026-05-14 00:20:02,392 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 00:20:02,392 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.1
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 0.0004217314940040273
+	n_steps: 4
+	seed: 42
+	train_calls: 4
+2026-05-14 00:20:02,396 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.7 --epsilon_end=0.1 --gamma=0.99 --hidden_dim=256 --lr=0.0004217314940040273 --n_steps=4 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run p1dnm6o9
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_002004-p1dnm6o9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run feasible-sweep-24
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/p1dnm6o9
+2026-05-14 00:20:07,408 - wandb.wandb_agent - INFO - Running runs: ['p1dnm6o9']
+Done. Games=2000 | Final Mean: 0.576 | Best: 4
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▅▄▄▃▃▂▂▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▁▂▂▂▂▂▃▃▄▄▅▆▆▆▇▇██
+wandb:     Record ▁▁▁▁▁▁▁▁▅▅▅▅▅▅██████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 0.5755
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run feasible-sweep-24 at: https://wandb.ai/saheb37/rl-snake/runs/p1dnm6o9
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_002004-p1dnm6o9/logs
+2026-05-14 00:26:06,004 - wandb.wandb_agent - INFO - Cleaning up finished run: p1dnm6o9
+2026-05-14 00:26:06,802 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 00:26:06,803 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 256
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.7
+	epsilon_end: 0.1
+	gamma: 0.98
+	hidden_dim: 128
+	lr: 0.0001507620578057703
+	n_steps: 4
+	seed: 42
+	train_calls: 6
+2026-05-14 00:26:06,807 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=256 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.7 --epsilon_end=0.1 --gamma=0.98 --hidden_dim=128 --lr=0.0001507620578057703 --n_steps=4 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run wojzb4wo
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_002608-wojzb4wo
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run deft-sweep-25
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/wojzb4wo
+2026-05-14 00:26:11,818 - wandb.wandb_agent - INFO - Running runs: ['wojzb4wo']
+Done. Games=2000 | Final Mean: 0.602 | Best: 6
+wandb: updating run metadata
+wandb: uploading history steps 19-19, summary, console lines 0-0; uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: uploading config.yaml; uploading output.log
+wandb: uploading data
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▅▄▄▃▃▃▂▂▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▂▁▁▁▂▂▂▂▂▂▃▃▄▄▅▅▆▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▁▁▃▃▃▃▃▃▅▅▆██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 0.602
+wandb:     Record 6
+wandb: 
+wandb: 🚀 View run deft-sweep-25 at: https://wandb.ai/saheb37/rl-snake/runs/wojzb4wo
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_002608-wojzb4wo/logs
+2026-05-14 00:45:32,867 - wandb.wandb_agent - INFO - Cleaning up finished run: wojzb4wo
+2026-05-14 00:45:33,614 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 00:45:33,614 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 128
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.05
+	gamma: 0.98
+	hidden_dim: 256
+	lr: 0.00015177255747598047
+	n_steps: 1
+	seed: 42
+	train_calls: 4
+2026-05-14 00:45:33,620 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=128 --epsilon_decay_fraction=0.5 --epsilon_end=0.05 --gamma=0.98 --hidden_dim=256 --lr=0.00015177255747598047 --n_steps=1 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run fv0829s4
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_004535-fv0829s4
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run apricot-sweep-26
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/fv0829s4
+2026-05-14 00:45:38,631 - wandb.wandb_agent - INFO - Running runs: ['fv0829s4']
+Done. Games=2000 | Final Mean: 5.428 | Best: 25
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml; uploading output.log
+wandb: uploading wandb-summary.json; uploading output.log
+wandb: uploading output.log
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▂▃▄▄▅▅▆▆▇▇▇▇███
+wandb:     Record ▁▁▁▁▁▃▅▅▆▆▇▇▇▇██████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 5.4275
+wandb:     Record 25
+wandb: 
+wandb: 🚀 View run apricot-sweep-26 at: https://wandb.ai/saheb37/rl-snake/runs/fv0829s4
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_004535-fv0829s4/logs
+2026-05-14 01:15:35,967 - wandb.wandb_agent - INFO - Cleaning up finished run: fv0829s4
+2026-05-14 01:15:36,807 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 01:15:36,807 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.05
+	gamma: 0.98
+	hidden_dim: 256
+	lr: 0.0001202364261278036
+	n_steps: 4
+	seed: 42
+	train_calls: 8
+2026-05-14 01:15:36,809 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.05 --gamma=0.98 --hidden_dim=256 --lr=0.0001202364261278036 --n_steps=4 --seed=42 --train_calls=8
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run dvbqr12u
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_011538-dvbqr12u
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run happy-sweep-27
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/dvbqr12u
+2026-05-14 01:15:41,816 - wandb.wandb_agent - INFO - Running runs: ['dvbqr12u']
+Done. Games=2000 | Final Mean: 0.702 | Best: 4
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading config.yaml
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▆▅▄▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▂▂▂▂▃▄▄▅▅▅▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▁▁▁▁████████████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.05
+wandb:       Game 2000
+wandb: Mean_Score 0.7015
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run happy-sweep-27 at: https://wandb.ai/saheb37/rl-snake/runs/dvbqr12u
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_011538-dvbqr12u/logs
+2026-05-14 01:57:13,471 - wandb.wandb_agent - INFO - Cleaning up finished run: dvbqr12u
+2026-05-14 01:57:39,836 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 01:57:39,836 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.1
+	gamma: 0.98
+	hidden_dim: 128
+	lr: 0.0002876206315147179
+	n_steps: 4
+	seed: 42
+	train_calls: 6
+2026-05-14 01:57:39,840 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.3 --epsilon_end=0.1 --gamma=0.98 --hidden_dim=128 --lr=0.0002876206315147179 --n_steps=4 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run 1xkgz333
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_015741-1xkgz333
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run comfy-sweep-28
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/1xkgz333
+2026-05-14 01:57:44,852 - wandb.wandb_agent - INFO - Running runs: ['1xkgz333']
+Done. Games=2000 | Final Mean: 0.602 | Best: 4
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▆▅▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▃▃▄▅▅▆▆▆▇▇▇▇██
+wandb:     Record ▁▁▁▁▅███████████████
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 0.602
+wandb:     Record 4
+wandb: 
+wandb: 🚀 View run comfy-sweep-28 at: https://wandb.ai/saheb37/rl-snake/runs/1xkgz333
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_015741-1xkgz333/logs
+2026-05-14 02:22:49,092 - wandb.wandb_agent - INFO - Cleaning up finished run: 1xkgz333
+2026-05-14 02:22:49,917 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 02:22:49,917 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 128
+	ch1: 64
+	ch2: 128
+	epsilon_decay_fraction: 0.3
+	epsilon_end: 0.01
+	gamma: 0.99
+	hidden_dim: 256
+	lr: 0.0005266347639628303
+	n_steps: 1
+	seed: 42
+	train_calls: 4
+2026-05-14 02:22:49,921 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=128 --ch1=64 --ch2=128 --epsilon_decay_fraction=0.3 --epsilon_end=0.01 --gamma=0.99 --hidden_dim=256 --lr=0.0005266347639628303 --n_steps=1 --seed=42 --train_calls=4
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run cys62989
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_022251-cys62989
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run whole-sweep-29
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/cys62989
+2026-05-14 02:22:54,931 - wandb.wandb_agent - INFO - Running runs: ['cys62989']
+Done. Games=2000 | Final Mean: 9.204 | Best: 38
+wandb: updating run metadata
+wandb: updating run metadata; uploading history steps 19-19, summary, console lines 0-0
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading data
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▂▂▂▃▄▄▅▅▆▆▇▇▇██
+wandb:     Record ▁▁▁▁▂▂▃▄▅▅▇▇▇▇▇▇▇▇██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.01
+wandb:       Game 2000
+wandb: Mean_Score 9.2035
+wandb:     Record 38
+wandb: 
+wandb: 🚀 View run whole-sweep-29 at: https://wandb.ai/saheb37/rl-snake/runs/cys62989
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_022251-cys62989/logs
+2026-05-14 02:38:16,546 - wandb.wandb_agent - INFO - Cleaning up finished run: cys62989
+2026-05-14 02:38:17,451 - wandb.wandb_agent - INFO - Agent received command: run
+2026-05-14 02:38:17,451 - wandb.wandb_agent - INFO - Agent starting run with config:
+	batch_size: 512
+	ch1: 32
+	ch2: 64
+	epsilon_decay_fraction: 0.5
+	epsilon_end: 0.1
+	gamma: 0.98
+	hidden_dim: 128
+	lr: 3.89696000311067e-05
+	n_steps: 2
+	seed: 42
+	train_calls: 6
+2026-05-14 02:38:17,455 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python scripts/train_dqn_conv_sweep.py --batch_size=512 --ch1=32 --ch2=64 --epsilon_decay_fraction=0.5 --epsilon_end=0.1 --gamma=0.98 --hidden_dim=128 --lr=3.89696000311067e-05 --n_steps=2 --seed=42 --train_calls=6
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'rl-snake' when running a sweep.
+wandb: setting up run op8017bn
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260514_023819-op8017bn
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run deft-sweep-30
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🧹 View sweep at https://wandb.ai/saheb37/rl-snake/sweeps/igzvteil
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/op8017bn
+2026-05-14 02:38:22,463 - wandb.wandb_agent - INFO - Running runs: ['op8017bn']
+Done. Games=2000 | Final Mean: 1.359 | Best: 10
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 19-19, summary, console lines 0-0
+wandb: 
+wandb: Run history:
+wandb:    Epsilon █▇▅▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+wandb: Mean_Score ▁▁▁▁▂▂▂▃▃▃▄▄▄▅▅▆▆▇▇█
+wandb:     Record ▁▁▁▁▃▃▃▄▄▄▄▄▅▅▅▆▆▇██
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.1
+wandb:       Game 2000
+wandb: Mean_Score 1.3585
+wandb:     Record 10
+wandb: 
+wandb: 🚀 View run deft-sweep-30 at: https://wandb.ai/saheb37/rl-snake/runs/op8017bn
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260514_023819-op8017bn/logs
+2026-05-14 03:04:36,915 - wandb.wandb_agent - INFO - Cleaning up finished run: op8017bn
+wandb: Terminating and syncing runs. Press ctrl-c to kill.

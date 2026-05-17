@@ -168,4 +168,16 @@ wandb/
 *.out
 *.pth
 
+.DS_Storerl-snake/
+kaggle_kernel/
+tea_debug.log
+wandb/
+*.pth
+pilot_logs/convnet_v3_16x16_master.log
+pilot_logs/convnet_v3_master.log
+pilot_logs/convnet_v2_master.log
+pilot_logs/convnet_master.log
+pilot_logs/featuredqn_longrun_master.log
+pilot_logs/rnd_master.log
+pilot_logs/sweep_igzvteil.log
 .DS_Store

@@ -1,0 +1,15 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run qyakbbau
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_143512-qyakbbau
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_v2_10x10_dense_seed1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/qyakbbau
+ConvDQN v2 | 10×10 dense | γ=0.99 batch=256 calls/ep=6 lr=0.0001 ε_decay/step=2.53e-05
+Game 100 | Score: 0 | Record: 2 | Mean: 0.14 | ε: 0.912 | Steps: 3,457
+Game 200 | Score: 1 | Record: 3 | Mean: 0.15 | ε: 0.840 | Steps: 6,299
+Game 300 | Score: 0 | Record: 3 | Mean: 0.18 | ε: 0.760 | Steps: 9,467

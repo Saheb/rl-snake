@@ -1,0 +1,996 @@
+=== ConvDQN_10x10_dense_seed0 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run 2o0lhjzz
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_105717-2o0lhjzz
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_10x10_dense_seed0
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/2o0lhjzz
+Starting ConvDQN training on 10x10 (dense)...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.20 | Epsilon: 0.961
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.21 | Epsilon: 0.922
+Game 300 | Score: 0 | Record: 3 | Mean Score: 0.23 | Epsilon: 0.883
+Game 400 | Score: 1 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.23 | Epsilon: 0.804
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 3 | Mean Score: 0.23 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.648
+Game 1000 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.608
+Game 1100 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.530
+Game 1300 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.491
+Game 1400 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.412
+Game 1600 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.373
+Game 1700 | Score: 1 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.295
+Game 1900 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 3 | Mean Score: 0.22 | Epsilon: 0.216
+Game 2100 | Score: 0 | Record: 3 | Mean Score: 0.23 | Epsilon: 0.177
+Game 2200 | Score: 1 | Record: 3 | Mean Score: 0.23 | Epsilon: 0.138
+Game 2300 | Score: 1 | Record: 3 | Mean Score: 0.24 | Epsilon: 0.099
+Game 2400 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.060
+Game 2500 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.020
+Game 2600 | Score: 0 | Record: 3 | Mean Score: 0.26 | Epsilon: 0.020
+Game 2700 | Score: 1 | Record: 3 | Mean Score: 0.28 | Epsilon: 0.020
+Game 2800 | Score: 1 | Record: 3 | Mean Score: 0.29 | Epsilon: 0.020
+Game 2900 | Score: 1 | Record: 3 | Mean Score: 0.30 | Epsilon: 0.020
+Game 3000 | Score: 0 | Record: 3 | Mean Score: 0.31 | Epsilon: 0.020
+Game 3100 | Score: 1 | Record: 3 | Mean Score: 0.33 | Epsilon: 0.020
+Game 3200 | Score: 1 | Record: 4 | Mean Score: 0.34 | Epsilon: 0.020
+Game 3300 | Score: 0 | Record: 4 | Mean Score: 0.36 | Epsilon: 0.020
+Game 3400 | Score: 0 | Record: 4 | Mean Score: 0.38 | Epsilon: 0.020
+Game 3500 | Score: 1 | Record: 4 | Mean Score: 0.40 | Epsilon: 0.020
+Game 3600 | Score: 2 | Record: 4 | Mean Score: 0.42 | Epsilon: 0.020
+Game 3700 | Score: 1 | Record: 4 | Mean Score: 0.43 | Epsilon: 0.020
+Game 3800 | Score: 3 | Record: 4 | Mean Score: 0.46 | Epsilon: 0.020
+Game 3900 | Score: 0 | Record: 7 | Mean Score: 0.48 | Epsilon: 0.020
+Game 4000 | Score: 3 | Record: 8 | Mean Score: 0.51 | Epsilon: 0.020
+Game 4100 | Score: 1 | Record: 8 | Mean Score: 0.54 | Epsilon: 0.020
+Game 4200 | Score: 0 | Record: 8 | Mean Score: 0.56 | Epsilon: 0.020
+Game 4300 | Score: 1 | Record: 8 | Mean Score: 0.60 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 3 | Record: 8 | Mean Score: 0.63 | Epsilon: 0.020
+Game 4500 | Score: 2 | Record: 8 | Mean Score: 0.67 | Epsilon: 0.020
+Game 4600 | Score: 4 | Record: 9 | Mean Score: 0.70 | Epsilon: 0.020
+Game 4700 | Score: 3 | Record: 9 | Mean Score: 0.74 | Epsilon: 0.020
+Game 4800 | Score: 2 | Record: 9 | Mean Score: 0.77 | Epsilon: 0.020
+Game 4900 | Score: 0 | Record: 9 | Mean Score: 0.81 | Epsilon: 0.020
+Game 5000 | Score: 1 | Record: 9 | Mean Score: 0.84 | Epsilon: 0.020
+
+Done. Best: 9, Final Mean: 0.84
+wandb: uploading history steps 48-48, summary, console lines 50-50; updating run metadata
+wandb: updating run metadata
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▂▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇██
+wandb: Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▅▅▅▆▇▇▇█
+wandb:     Record ▁▁▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▃▃▃▃▃▃▆▇▇▇▇████
+wandb:      Score ▁▁▁▃▁▁▁▁▁▁▁▁▁▁▃▁▁▃▃▁▁▃▃▃▁▃▁▁▃▅▆▁▆▃▁▅█▆▅▃
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 0.8356
+wandb:     Record 9
+wandb:      Score 1
+wandb: 
+wandb: 🚀 View run ConvDQN_10x10_dense_seed0 at: https://wandb.ai/saheb37/rl-snake/runs/2o0lhjzz
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_105717-2o0lhjzz/logs
+--- ConvDQN_10x10_dense_seed0 done ---
+=== ConvDQN_10x10_dense_seed1 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run smm4bziu
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_110824-smm4bziu
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_10x10_dense_seed1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/smm4bziu
+Starting ConvDQN training on 10x10 (dense)...
+Game 100 | Score: 0 | Record: 3 | Mean Score: 0.27 | Epsilon: 0.961
+Game 200 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.922
+Game 300 | Score: 1 | Record: 3 | Mean Score: 0.27 | Epsilon: 0.883
+Game 400 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.804
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.26 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 3 | Mean Score: 0.26 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.648
+Game 1000 | Score: 1 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.608
+Game 1100 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.530
+Game 1300 | Score: 0 | Record: 3 | Mean Score: 0.24 | Epsilon: 0.491
+Game 1400 | Score: 1 | Record: 3 | Mean Score: 0.24 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 3 | Mean Score: 0.24 | Epsilon: 0.412
+Game 1600 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.373
+Game 1700 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 3 | Mean Score: 0.25 | Epsilon: 0.295
+Game 1900 | Score: 1 | Record: 3 | Mean Score: 0.26 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 3 | Mean Score: 0.27 | Epsilon: 0.216
+Game 2100 | Score: 1 | Record: 3 | Mean Score: 0.28 | Epsilon: 0.177
+Game 2200 | Score: 0 | Record: 3 | Mean Score: 0.29 | Epsilon: 0.138
+Game 2300 | Score: 0 | Record: 3 | Mean Score: 0.30 | Epsilon: 0.099
+Game 2400 | Score: 1 | Record: 3 | Mean Score: 0.32 | Epsilon: 0.060
+Game 2500 | Score: 0 | Record: 3 | Mean Score: 0.33 | Epsilon: 0.020
+Game 2600 | Score: 1 | Record: 4 | Mean Score: 0.35 | Epsilon: 0.020
+Game 2700 | Score: 0 | Record: 4 | Mean Score: 0.37 | Epsilon: 0.020
+Game 2800 | Score: 0 | Record: 5 | Mean Score: 0.40 | Epsilon: 0.020
+Game 2900 | Score: 0 | Record: 5 | Mean Score: 0.43 | Epsilon: 0.020
+Game 3000 | Score: 0 | Record: 6 | Mean Score: 0.46 | Epsilon: 0.020
+Game 3100 | Score: 1 | Record: 6 | Mean Score: 0.49 | Epsilon: 0.020
+Game 3200 | Score: 3 | Record: 6 | Mean Score: 0.53 | Epsilon: 0.020
+Game 3300 | Score: 2 | Record: 6 | Mean Score: 0.56 | Epsilon: 0.020
+Game 3400 | Score: 4 | Record: 8 | Mean Score: 0.62 | Epsilon: 0.020
+Game 3500 | Score: 0 | Record: 8 | Mean Score: 0.66 | Epsilon: 0.020
+Game 3600 | Score: 1 | Record: 8 | Mean Score: 0.72 | Epsilon: 0.020
+Game 3700 | Score: 2 | Record: 9 | Mean Score: 0.78 | Epsilon: 0.020
+Game 3800 | Score: 2 | Record: 9 | Mean Score: 0.84 | Epsilon: 0.020
+Game 3900 | Score: 4 | Record: 10 | Mean Score: 0.91 | Epsilon: 0.020
+Game 4000 | Score: 4 | Record: 10 | Mean Score: 0.98 | Epsilon: 0.020
+Game 4100 | Score: 2 | Record: 12 | Mean Score: 1.07 | Epsilon: 0.020
+Game 4200 | Score: 4 | Record: 14 | Mean Score: 1.16 | Epsilon: 0.020
+Game 4300 | Score: 6 | Record: 15 | Mean Score: 1.24 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 2 | Record: 15 | Mean Score: 1.35 | Epsilon: 0.020
+Game 4500 | Score: 12 | Record: 15 | Mean Score: 1.44 | Epsilon: 0.020
+Game 4600 | Score: 3 | Record: 16 | Mean Score: 1.54 | Epsilon: 0.020
+Game 4700 | Score: 4 | Record: 16 | Mean Score: 1.63 | Epsilon: 0.020
+Game 4800 | Score: 10 | Record: 16 | Mean Score: 1.72 | Epsilon: 0.020
+Game 4900 | Score: 4 | Record: 17 | Mean Score: 1.81 | Epsilon: 0.020
+Game 5000 | Score: 4 | Record: 20 | Mean Score: 1.90 | Epsilon: 0.020
+
+Done. Best: 20, Final Mean: 1.90
+wandb: updating run metadata
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▄▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇███
+wandb: Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▃▄▄▄▅▅▆▆▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▃▃▃▃▄▄▅▆▆▆▆▆▆█
+wandb:      Score ▁▁▂▁▁▁▁▂▁▁▂▁▁▁▁▁▂▁▁▂▂▁▁▁▂▂▃▁▂▂▃▃▂▃▅█▃▃▇▃
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 1.8974
+wandb:     Record 20
+wandb:      Score 4
+wandb: 
+wandb: 🚀 View run ConvDQN_10x10_dense_seed1 at: https://wandb.ai/saheb37/rl-snake/runs/smm4bziu
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_110824-smm4bziu/logs
+--- ConvDQN_10x10_dense_seed1 done ---
+=== ConvDQN_10x10_dense_seed2 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run 26vj6gzs
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_111918-26vj6gzs
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_10x10_dense_seed2
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/26vj6gzs
+Starting ConvDQN training on 10x10 (dense)...
+Game 100 | Score: 1 | Record: 2 | Mean Score: 0.19 | Epsilon: 0.961
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.18 | Epsilon: 0.922
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.21 | Epsilon: 0.883
+Game 400 | Score: 1 | Record: 2 | Mean Score: 0.23 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.804
+Game 600 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.648
+Game 1000 | Score: 1 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.608
+Game 1100 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.530
+Game 1300 | Score: 1 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.491
+Game 1400 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.412
+Game 1600 | Score: 1 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.373
+Game 1700 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 2 | Mean Score: 0.26 | Epsilon: 0.295
+Game 1900 | Score: 1 | Record: 3 | Mean Score: 0.26 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 3 | Mean Score: 0.27 | Epsilon: 0.216
+Game 2100 | Score: 0 | Record: 3 | Mean Score: 0.29 | Epsilon: 0.177
+Game 2200 | Score: 0 | Record: 3 | Mean Score: 0.30 | Epsilon: 0.138
+Game 2300 | Score: 0 | Record: 3 | Mean Score: 0.32 | Epsilon: 0.099
+Game 2400 | Score: 1 | Record: 4 | Mean Score: 0.34 | Epsilon: 0.060
+Game 2500 | Score: 0 | Record: 4 | Mean Score: 0.36 | Epsilon: 0.020
+Game 2600 | Score: 0 | Record: 4 | Mean Score: 0.39 | Epsilon: 0.020
+Game 2700 | Score: 1 | Record: 4 | Mean Score: 0.42 | Epsilon: 0.020
+Game 2800 | Score: 0 | Record: 4 | Mean Score: 0.45 | Epsilon: 0.020
+Game 2900 | Score: 1 | Record: 4 | Mean Score: 0.48 | Epsilon: 0.020
+Game 3000 | Score: 2 | Record: 6 | Mean Score: 0.51 | Epsilon: 0.020
+Game 3100 | Score: 2 | Record: 6 | Mean Score: 0.55 | Epsilon: 0.020
+Game 3200 | Score: 0 | Record: 7 | Mean Score: 0.58 | Epsilon: 0.020
+Game 3300 | Score: 2 | Record: 7 | Mean Score: 0.62 | Epsilon: 0.020
+Game 3400 | Score: 2 | Record: 7 | Mean Score: 0.66 | Epsilon: 0.020
+Game 3500 | Score: 0 | Record: 7 | Mean Score: 0.70 | Epsilon: 0.020
+Game 3600 | Score: 2 | Record: 10 | Mean Score: 0.74 | Epsilon: 0.020
+Game 3700 | Score: 2 | Record: 10 | Mean Score: 0.80 | Epsilon: 0.020
+Game 3800 | Score: 3 | Record: 10 | Mean Score: 0.86 | Epsilon: 0.020
+Game 3900 | Score: 3 | Record: 10 | Mean Score: 0.92 | Epsilon: 0.020
+Game 4000 | Score: 7 | Record: 10 | Mean Score: 0.99 | Epsilon: 0.020
+Game 4100 | Score: 3 | Record: 10 | Mean Score: 1.06 | Epsilon: 0.020
+Game 4200 | Score: 8 | Record: 11 | Mean Score: 1.13 | Epsilon: 0.020
+Game 4300 | Score: 2 | Record: 11 | Mean Score: 1.20 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 4 | Record: 13 | Mean Score: 1.27 | Epsilon: 0.020
+Game 4500 | Score: 9 | Record: 14 | Mean Score: 1.36 | Epsilon: 0.020
+Game 4600 | Score: 8 | Record: 14 | Mean Score: 1.43 | Epsilon: 0.020
+Game 4700 | Score: 5 | Record: 14 | Mean Score: 1.51 | Epsilon: 0.020
+Game 4800 | Score: 9 | Record: 15 | Mean Score: 1.59 | Epsilon: 0.020
+Game 4900 | Score: 3 | Record: 16 | Mean Score: 1.67 | Epsilon: 0.020
+Game 5000 | Score: 6 | Record: 16 | Mean Score: 1.73 | Epsilon: 0.020
+
+Done. Best: 16, Final Mean: 1.73
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▄▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▅▅▆▇▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▅▅▅▅▅▅▅▇▇▇▇█
+wandb:      Score ▂▁▁▂▁▁▁▁▂▁▂▁▁▂▁▂▁▁▁▁▁▁▂▂▃▃▃▁▃▃▃▆▃▇▃█▇▅█▆
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 1.7326
+wandb:     Record 16
+wandb:      Score 6
+wandb: 
+wandb: 🚀 View run ConvDQN_10x10_dense_seed2 at: https://wandb.ai/saheb37/rl-snake/runs/26vj6gzs
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_111918-26vj6gzs/logs
+--- ConvDQN_10x10_dense_seed2 done ---
+=== FeatureDQN_16x16_dense_seed0 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run ae1370ay
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_112751-ae1370ay
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run FeatureDQN_16x16_dense_seed0
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/ae1370ay
+Starting Baseline DQN Training (Dueling + 3-Step) on 16x16 Board...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.08 | Epsilon: 0.96 | Intrinsic: 0.000 | BufTerm: 0.198 | SampTerm: 0.196 | Oversample: 0.99x
+[coverage] Game 100 | unique_states_cumulative: 1696/65536 (2.6%) | last100_unique: 1696
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.09 | Epsilon: 0.92 | Intrinsic: 0.000 | BufTerm: 0.199 | SampTerm: 0.163 | Oversample: 0.82x
+[coverage] Game 200 | unique_states_cumulative: 3263/65536 (5.0%) | last100_unique: 1712
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.08 | Epsilon: 0.88 | Intrinsic: 0.000 | BufTerm: 0.204 | SampTerm: 0.152 | Oversample: 0.75x
+[coverage] Game 300 | unique_states_cumulative: 4626/65536 (7.1%) | last100_unique: 1660
+Game 400 | Score: 0 | Record: 2 | Mean Score: 0.09 | Epsilon: 0.84 | Intrinsic: 0.000 | BufTerm: 0.211 | SampTerm: 0.180 | Oversample: 0.85x
+[coverage] Game 400 | unique_states_cumulative: 5867/65536 (9.0%) | last100_unique: 1504
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.08 | Epsilon: 0.80 | Intrinsic: 0.000 | BufTerm: 0.217 | SampTerm: 0.144 | Oversample: 0.66x
+[coverage] Game 500 | unique_states_cumulative: 6880/65536 (10.5%) | last100_unique: 1455
+Game 600 | Score: 0 | Record: 2 | Mean Score: 0.07 | Epsilon: 0.77 | Intrinsic: 0.000 | BufTerm: 0.226 | SampTerm: 0.169 | Oversample: 0.75x
+[coverage] Game 600 | unique_states_cumulative: 7613/65536 (11.6%) | last100_unique: 1257
+Game 700 | Score: 0 | Record: 2 | Mean Score: 0.06 | Epsilon: 0.73 | Intrinsic: 0.000 | BufTerm: 0.230 | SampTerm: 0.172 | Oversample: 0.75x
+[coverage] Game 700 | unique_states_cumulative: 8426/65536 (12.9%) | last100_unique: 1400
+Game 800 | Score: 0 | Record: 2 | Mean Score: 0.06 | Epsilon: 0.69 | Intrinsic: 0.000 | BufTerm: 0.235 | SampTerm: 0.180 | Oversample: 0.77x
+[coverage] Game 800 | unique_states_cumulative: 9177/65536 (14.0%) | last100_unique: 1307
+Game 900 | Score: 2 | Record: 2 | Mean Score: 0.07 | Epsilon: 0.65 | Intrinsic: 0.000 | BufTerm: 0.238 | SampTerm: 0.171 | Oversample: 0.72x
+[coverage] Game 900 | unique_states_cumulative: 9843/65536 (15.0%) | last100_unique: 1363
+Game 1000 | Score: 0 | Record: 2 | Mean Score: 0.08 | Epsilon: 0.61 | Intrinsic: 0.000 | BufTerm: 0.241 | SampTerm: 0.192 | Oversample: 0.80x
+[coverage] Game 1000 | unique_states_cumulative: 10605/65536 (16.2%) | last100_unique: 1406
+Game 1100 | Score: 0 | Record: 2 | Mean Score: 0.09 | Epsilon: 0.57 | Intrinsic: 0.000 | BufTerm: 0.240 | SampTerm: 0.171 | Oversample: 0.71x
+[coverage] Game 1100 | unique_states_cumulative: 11481/65536 (17.5%) | last100_unique: 1599
+Game 1200 | Score: 0 | Record: 5 | Mean Score: 0.12 | Epsilon: 0.53 | Intrinsic: 0.000 | BufTerm: 0.235 | SampTerm: 0.181 | Oversample: 0.77x
+[coverage] Game 1200 | unique_states_cumulative: 12562/65536 (19.2%) | last100_unique: 1994
+Game 1300 | Score: 0 | Record: 6 | Mean Score: 0.13 | Epsilon: 0.49 | Intrinsic: 0.000 | BufTerm: 0.235 | SampTerm: 0.192 | Oversample: 0.82x
+[coverage] Game 1300 | unique_states_cumulative: 13361/65536 (20.4%) | last100_unique: 1623
+Game 1400 | Score: 0 | Record: 6 | Mean Score: 0.17 | Epsilon: 0.45 | Intrinsic: 0.000 | BufTerm: 0.231 | SampTerm: 0.167 | Oversample: 0.72x
+[coverage] Game 1400 | unique_states_cumulative: 14362/65536 (21.9%) | last100_unique: 1955
+Game 1500 | Score: 2 | Record: 7 | Mean Score: 0.21 | Epsilon: 0.41 | Intrinsic: 0.000 | BufTerm: 0.229 | SampTerm: 0.175 | Oversample: 0.76x
+[coverage] Game 1500 | unique_states_cumulative: 15280/65536 (23.3%) | last100_unique: 1940
+Game 1600 | Score: 0 | Record: 7 | Mean Score: 0.26 | Epsilon: 0.37 | Intrinsic: 0.000 | BufTerm: 0.225 | SampTerm: 0.205 | Oversample: 0.91x
+[coverage] Game 1600 | unique_states_cumulative: 16494/65536 (25.2%) | last100_unique: 2271
+Game 1700 | Score: 0 | Record: 7 | Mean Score: 0.30 | Epsilon: 0.33 | Intrinsic: 0.000 | BufTerm: 0.222 | SampTerm: 0.192 | Oversample: 0.86x
+[coverage] Game 1700 | unique_states_cumulative: 17537/65536 (26.8%) | last100_unique: 2277
+Game 1800 | Score: 3 | Record: 10 | Mean Score: 0.36 | Epsilon: 0.29 | Intrinsic: 0.000 | BufTerm: 0.217 | SampTerm: 0.164 | Oversample: 0.75x
+[coverage] Game 1800 | unique_states_cumulative: 18828/65536 (28.7%) | last100_unique: 2645
+Game 1900 | Score: 5 | Record: 11 | Mean Score: 0.44 | Epsilon: 0.26 | Intrinsic: 0.000 | BufTerm: 0.211 | SampTerm: 0.191 | Oversample: 0.90x
+[coverage] Game 1900 | unique_states_cumulative: 20381/65536 (31.1%) | last100_unique: 3129
+Game 2000 | Score: 0 | Record: 15 | Mean Score: 0.55 | Epsilon: 0.22 | Intrinsic: 0.000 | BufTerm: 0.201 | SampTerm: 0.197 | Oversample: 0.98x
+[coverage] Game 2000 | unique_states_cumulative: 22318/65536 (34.1%) | last100_unique: 3952
+Game 2100 | Score: 0 | Record: 18 | Mean Score: 0.68 | Epsilon: 0.18 | Intrinsic: 0.000 | BufTerm: 0.191 | SampTerm: 0.177 | Oversample: 0.93x
+[coverage] Game 2100 | unique_states_cumulative: 24275/65536 (37.0%) | last100_unique: 4419
+Game 2200 | Score: 0 | Record: 26 | Mean Score: 0.80 | Epsilon: 0.14 | Intrinsic: 0.000 | BufTerm: 0.182 | SampTerm: 0.165 | Oversample: 0.91x
+[coverage] Game 2200 | unique_states_cumulative: 26090/65536 (39.8%) | last100_unique: 4603
+Game 2300 | Score: 8 | Record: 26 | Mean Score: 0.96 | Epsilon: 0.10 | Intrinsic: 0.000 | BufTerm: 0.172 | SampTerm: 0.177 | Oversample: 1.03x
+[coverage] Game 2300 | unique_states_cumulative: 28179/65536 (43.0%) | last100_unique: 5678
+Game 2400 | Score: 20 | Record: 26 | Mean Score: 1.08 | Epsilon: 0.06 | Intrinsic: 0.000 | BufTerm: 0.167 | SampTerm: 0.160 | Oversample: 0.96x
+[coverage] Game 2400 | unique_states_cumulative: 29686/65536 (45.3%) | last100_unique: 4386
+Game 2500 | Score: 0 | Record: 31 | Mean Score: 1.34 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.153 | SampTerm: 0.172 | Oversample: 1.13x
+[coverage] Game 2500 | unique_states_cumulative: 32509/65536 (49.6%) | last100_unique: 8041
+Game 2600 | Score: 19 | Record: 37 | Mean Score: 1.61 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.141 | SampTerm: 0.157 | Oversample: 1.12x
+[coverage] Game 2600 | unique_states_cumulative: 35069/65536 (53.5%) | last100_unique: 8351
+Game 2700 | Score: 0 | Record: 37 | Mean Score: 1.86 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.129 | SampTerm: 0.160 | Oversample: 1.24x
+[coverage] Game 2700 | unique_states_cumulative: 37326/65536 (57.0%) | last100_unique: 8576
+Game 2800 | Score: 19 | Record: 46 | Mean Score: 2.09 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.110 | SampTerm: 0.132 | Oversample: 1.20x
+[coverage] Game 2800 | unique_states_cumulative: 39193/65536 (59.8%) | last100_unique: 8177
+Game 2900 | Score: 0 | Record: 46 | Mean Score: 2.34 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.087 | SampTerm: 0.125 | Oversample: 1.45x
+[coverage] Game 2900 | unique_states_cumulative: 41263/65536 (63.0%) | last100_unique: 9199
+Game 3000 | Score: 0 | Record: 46 | Mean Score: 2.52 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.072 | SampTerm: 0.113 | Oversample: 1.58x
+[coverage] Game 3000 | unique_states_cumulative: 42902/65536 (65.5%) | last100_unique: 8024
+Game 3100 | Score: 0 | Record: 46 | Mean Score: 2.74 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.058 | SampTerm: 0.079 | Oversample: 1.35x
+[coverage] Game 3100 | unique_states_cumulative: 44615/65536 (68.1%) | last100_unique: 9186
+Game 3200 | Score: 0 | Record: 46 | Mean Score: 2.93 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.052 | SampTerm: 0.096 | Oversample: 1.83x
+[coverage] Game 3200 | unique_states_cumulative: 46112/65536 (70.4%) | last100_unique: 8949
+Game 3300 | Score: 0 | Record: 46 | Mean Score: 3.08 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.050 | SampTerm: 0.075 | Oversample: 1.51x
+[coverage] Game 3300 | unique_states_cumulative: 47256/65536 (72.1%) | last100_unique: 7960
+Game 3400 | Score: 0 | Record: 52 | Mean Score: 3.23 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.047 | SampTerm: 0.063 | Oversample: 1.33x
+[coverage] Game 3400 | unique_states_cumulative: 48344/65536 (73.8%) | last100_unique: 8213
+Game 3500 | Score: 0 | Record: 52 | Mean Score: 3.46 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.067 | Oversample: 1.49x
+[coverage] Game 3500 | unique_states_cumulative: 49682/65536 (75.8%) | last100_unique: 10683
+Game 3600 | Score: 5 | Record: 52 | Mean Score: 3.61 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.087 | Oversample: 1.93x
+[coverage] Game 3600 | unique_states_cumulative: 50627/65536 (77.3%) | last100_unique: 8732
+Game 3700 | Score: 0 | Record: 52 | Mean Score: 3.79 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.068 | Oversample: 1.58x
+[coverage] Game 3700 | unique_states_cumulative: 51766/65536 (79.0%) | last100_unique: 9877
+Game 3800 | Score: 0 | Record: 52 | Mean Score: 3.89 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.075 | Oversample: 1.67x
+[coverage] Game 3800 | unique_states_cumulative: 52556/65536 (80.2%) | last100_unique: 8165
+Game 3900 | Score: 23 | Record: 52 | Mean Score: 4.05 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.049 | Oversample: 1.14x
+[coverage] Game 3900 | unique_states_cumulative: 53429/65536 (81.5%) | last100_unique: 9891
+Game 4000 | Score: 17 | Record: 52 | Mean Score: 4.14 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.069 | Oversample: 1.58x
+[coverage] Game 4000 | unique_states_cumulative: 54049/65536 (82.5%) | last100_unique: 8149
+Game 4100 | Score: 0 | Record: 52 | Mean Score: 4.31 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.042 | SampTerm: 0.048 | Oversample: 1.15x
+[coverage] Game 4100 | unique_states_cumulative: 54998/65536 (83.9%) | last100_unique: 11009
+Game 4200 | Score: 21 | Record: 52 | Mean Score: 4.42 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.041 | SampTerm: 0.053 | Oversample: 1.29x
+[coverage] Game 4200 | unique_states_cumulative: 55637/65536 (84.9%) | last100_unique: 8924
+Game 4300 | Score: 16 | Record: 52 | Mean Score: 4.57 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.042 | SampTerm: 0.061 | Oversample: 1.47x
+[coverage] Game 4300 | unique_states_cumulative: 56305/65536 (85.9%) | last100_unique: 10224
+[Game 4375] Final LR cooldown applied → 1e-5
+Game 4400 | Score: 22 | Record: 52 | Mean Score: 4.62 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.059 | Oversample: 1.36x
+[coverage] Game 4400 | unique_states_cumulative: 56647/65536 (86.4%) | last100_unique: 6879
+Game 4500 | Score: 10 | Record: 52 | Mean Score: 4.68 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.057 | Oversample: 1.30x
+[coverage] Game 4500 | unique_states_cumulative: 57089/65536 (87.1%) | last100_unique: 7604
+Game 4600 | Score: 17 | Record: 52 | Mean Score: 4.79 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.068 | Oversample: 1.54x
+[coverage] Game 4600 | unique_states_cumulative: 57549/65536 (87.8%) | last100_unique: 9602
+Game 4700 | Score: 0 | Record: 52 | Mean Score: 4.88 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.061 | Oversample: 1.41x
+[coverage] Game 4700 | unique_states_cumulative: 57939/65536 (88.4%) | last100_unique: 8587
+Game 4800 | Score: 32 | Record: 52 | Mean Score: 5.00 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.055 | Oversample: 1.28x
+[coverage] Game 4800 | unique_states_cumulative: 58446/65536 (89.2%) | last100_unique: 10494
+Game 4900 | Score: 0 | Record: 52 | Mean Score: 5.08 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.057 | Oversample: 1.33x
+[coverage] Game 4900 | unique_states_cumulative: 58803/65536 (89.7%) | last100_unique: 8948
+Game 5000 | Score: 6 | Record: 52 | Mean Score: 5.19 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.061 | Oversample: 1.42x
+[coverage] Game 5000 | unique_states_cumulative: 59253/65536 (90.4%) | last100_unique: 10331
+
+Training Complete!
+Best Score: 52
+Final Mean Score: 5.19
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 49-49, summary, console lines 100-105
+wandb: 
+wandb: Run history:
+wandb:        Buf_Terminal_Frac ▆▇▇▇▇███████▇▇▇▇▆▆▆▅▄▄▃▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Coverage_Cumulative ▁▁▁▂▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▅▅▅▆▆▆▆▇▇▇▇▇▇███████
+wandb: Coverage_Cumulative_Frac ▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▆▆▆▇▇▇▇▇▇▇▇███████
+wandb:       Coverage_Window100 ▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▃▃▃▄▃▆▆▆▇▆▇▆█▆▇▇▆█▆▇▆▇▆██
+wandb:                  Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                     Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb:               Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▄▄▄▅▅▅▆▆▆▆▇▇▇▇▇███
+wandb:                   Record ▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▄▄▄▆▆▇▇▇▇▇█████████████
+wandb:     Sample_Terminal_Frac █▆▆▇▅▇▇▆▇▆▇▆▇█▇▇█▇▆▇▇▆▆▅▄▂▃▂▂▃▂▁▂▁▁▁▁▂▁▂
+wandb:                    Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▁▁▁▃▅▅▁▁▁▁▁▁▁▂▁▆▅▁▆▅▃▅▁█▂
+wandb:                       +1 ...
+wandb: 
+wandb: Run summary:
+wandb:        Buf_Terminal_Frac 0.0432
+wandb:      Coverage_Cumulative 59253
+wandb: Coverage_Cumulative_Frac 0.90413
+wandb:       Coverage_Window100 10331
+wandb:                  Epsilon 0.02
+wandb:                     Game 5000
+wandb:               Mean_Score 5.1916
+wandb:                   Record 52
+wandb:     Sample_Terminal_Frac 0.06133
+wandb:                    Score 6
+wandb:                       +1 ...
+wandb: 
+wandb: 🚀 View run FeatureDQN_16x16_dense_seed0 at: https://wandb.ai/saheb37/rl-snake/runs/ae1370ay
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_112751-ae1370ay/logs
+--- FeatureDQN_16x16_dense_seed0 done ---
+=== FeatureDQN_16x16_dense_seed1 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run tomjh5u0
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_114939-tomjh5u0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run FeatureDQN_16x16_dense_seed1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/tomjh5u0
+Starting Baseline DQN Training (Dueling + 3-Step) on 16x16 Board...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.05 | Epsilon: 0.96 | Intrinsic: 0.000 | BufTerm: 0.198 | SampTerm: 0.205 | Oversample: 1.04x
+[coverage] Game 100 | unique_states_cumulative: 1677/65536 (2.6%) | last100_unique: 1677
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.04 | Epsilon: 0.92 | Intrinsic: 0.000 | BufTerm: 0.213 | SampTerm: 0.171 | Oversample: 0.80x
+[coverage] Game 200 | unique_states_cumulative: 3064/65536 (4.7%) | last100_unique: 1464
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.05 | Epsilon: 0.88 | Intrinsic: 0.000 | BufTerm: 0.219 | SampTerm: 0.168 | Oversample: 0.77x
+[coverage] Game 300 | unique_states_cumulative: 4265/65536 (6.5%) | last100_unique: 1489
+Game 400 | Score: 0 | Record: 2 | Mean Score: 0.04 | Epsilon: 0.84 | Intrinsic: 0.000 | BufTerm: 0.224 | SampTerm: 0.183 | Oversample: 0.82x
+[coverage] Game 400 | unique_states_cumulative: 5447/65536 (8.3%) | last100_unique: 1477
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.05 | Epsilon: 0.80 | Intrinsic: 0.000 | BufTerm: 0.228 | SampTerm: 0.181 | Oversample: 0.80x
+[coverage] Game 500 | unique_states_cumulative: 6522/65536 (10.0%) | last100_unique: 1493
+Game 600 | Score: 0 | Record: 2 | Mean Score: 0.06 | Epsilon: 0.77 | Intrinsic: 0.000 | BufTerm: 0.233 | SampTerm: 0.167 | Oversample: 0.71x
+[coverage] Game 600 | unique_states_cumulative: 7383/65536 (11.3%) | last100_unique: 1393
+Game 700 | Score: 0 | Record: 2 | Mean Score: 0.06 | Epsilon: 0.73 | Intrinsic: 0.000 | BufTerm: 0.236 | SampTerm: 0.184 | Oversample: 0.78x
+[coverage] Game 700 | unique_states_cumulative: 8327/65536 (12.7%) | last100_unique: 1467
+Game 800 | Score: 1 | Record: 2 | Mean Score: 0.08 | Epsilon: 0.69 | Intrinsic: 0.000 | BufTerm: 0.235 | SampTerm: 0.168 | Oversample: 0.72x
+[coverage] Game 800 | unique_states_cumulative: 9339/65536 (14.3%) | last100_unique: 1616
+Game 900 | Score: 0 | Record: 3 | Mean Score: 0.08 | Epsilon: 0.65 | Intrinsic: 0.000 | BufTerm: 0.238 | SampTerm: 0.175 | Oversample: 0.74x
+[coverage] Game 900 | unique_states_cumulative: 10092/65536 (15.4%) | last100_unique: 1436
+Game 1000 | Score: 0 | Record: 3 | Mean Score: 0.09 | Epsilon: 0.61 | Intrinsic: 0.000 | BufTerm: 0.240 | SampTerm: 0.211 | Oversample: 0.88x
+[coverage] Game 1000 | unique_states_cumulative: 10819/65536 (16.5%) | last100_unique: 1372
+Game 1100 | Score: 1 | Record: 4 | Mean Score: 0.11 | Epsilon: 0.57 | Intrinsic: 0.000 | BufTerm: 0.238 | SampTerm: 0.167 | Oversample: 0.70x
+[coverage] Game 1100 | unique_states_cumulative: 11685/65536 (17.8%) | last100_unique: 1629
+Game 1200 | Score: 0 | Record: 4 | Mean Score: 0.13 | Epsilon: 0.53 | Intrinsic: 0.000 | BufTerm: 0.236 | SampTerm: 0.189 | Oversample: 0.80x
+[coverage] Game 1200 | unique_states_cumulative: 12563/65536 (19.2%) | last100_unique: 1714
+Game 1300 | Score: 5 | Record: 5 | Mean Score: 0.16 | Epsilon: 0.49 | Intrinsic: 0.000 | BufTerm: 0.233 | SampTerm: 0.177 | Oversample: 0.76x
+[coverage] Game 1300 | unique_states_cumulative: 13561/65536 (20.7%) | last100_unique: 1898
+Game 1400 | Score: 4 | Record: 5 | Mean Score: 0.20 | Epsilon: 0.45 | Intrinsic: 0.000 | BufTerm: 0.230 | SampTerm: 0.175 | Oversample: 0.76x
+[coverage] Game 1400 | unique_states_cumulative: 14616/65536 (22.3%) | last100_unique: 1943
+Game 1500 | Score: 0 | Record: 6 | Mean Score: 0.23 | Epsilon: 0.41 | Intrinsic: 0.000 | BufTerm: 0.227 | SampTerm: 0.189 | Oversample: 0.83x
+[coverage] Game 1500 | unique_states_cumulative: 15591/65536 (23.8%) | last100_unique: 2119
+Game 1600 | Score: 2 | Record: 8 | Mean Score: 0.31 | Epsilon: 0.37 | Intrinsic: 0.000 | BufTerm: 0.218 | SampTerm: 0.160 | Oversample: 0.73x
+[coverage] Game 1600 | unique_states_cumulative: 17218/65536 (26.3%) | last100_unique: 3005
+Game 1700 | Score: 0 | Record: 11 | Mean Score: 0.40 | Epsilon: 0.33 | Intrinsic: 0.000 | BufTerm: 0.208 | SampTerm: 0.200 | Oversample: 0.96x
+[coverage] Game 1700 | unique_states_cumulative: 18924/65536 (28.9%) | last100_unique: 3412
+Game 1800 | Score: 4 | Record: 11 | Mean Score: 0.47 | Epsilon: 0.29 | Intrinsic: 0.000 | BufTerm: 0.202 | SampTerm: 0.193 | Oversample: 0.96x
+[coverage] Game 1800 | unique_states_cumulative: 20516/65536 (31.3%) | last100_unique: 3253
+Game 1900 | Score: 1 | Record: 16 | Mean Score: 0.55 | Epsilon: 0.26 | Intrinsic: 0.000 | BufTerm: 0.195 | SampTerm: 0.192 | Oversample: 0.98x
+[coverage] Game 1900 | unique_states_cumulative: 22109/65536 (33.7%) | last100_unique: 3365
+Game 2000 | Score: 3 | Record: 16 | Mean Score: 0.62 | Epsilon: 0.22 | Intrinsic: 0.000 | BufTerm: 0.191 | SampTerm: 0.173 | Oversample: 0.91x
+[coverage] Game 2000 | unique_states_cumulative: 23244/65536 (35.5%) | last100_unique: 3084
+Game 2100 | Score: 0 | Record: 17 | Mean Score: 0.71 | Epsilon: 0.18 | Intrinsic: 0.000 | BufTerm: 0.186 | SampTerm: 0.184 | Oversample: 0.99x
+[coverage] Game 2100 | unique_states_cumulative: 24590/65536 (37.5%) | last100_unique: 3480
+Game 2200 | Score: 15 | Record: 23 | Mean Score: 0.84 | Epsilon: 0.14 | Intrinsic: 0.000 | BufTerm: 0.177 | SampTerm: 0.183 | Oversample: 1.03x
+[coverage] Game 2200 | unique_states_cumulative: 26461/65536 (40.4%) | last100_unique: 4917
+Game 2300 | Score: 6 | Record: 23 | Mean Score: 0.95 | Epsilon: 0.10 | Intrinsic: 0.000 | BufTerm: 0.171 | SampTerm: 0.165 | Oversample: 0.97x
+[coverage] Game 2300 | unique_states_cumulative: 27999/65536 (42.7%) | last100_unique: 4502
+Game 2400 | Score: 0 | Record: 25 | Mean Score: 1.12 | Epsilon: 0.06 | Intrinsic: 0.000 | BufTerm: 0.161 | SampTerm: 0.180 | Oversample: 1.12x
+[coverage] Game 2400 | unique_states_cumulative: 30005/65536 (45.8%) | last100_unique: 5886
+Game 2500 | Score: 0 | Record: 27 | Mean Score: 1.37 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.149 | SampTerm: 0.165 | Oversample: 1.11x
+[coverage] Game 2500 | unique_states_cumulative: 32554/65536 (49.7%) | last100_unique: 7662
+Game 2600 | Score: 0 | Record: 41 | Mean Score: 1.70 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.135 | SampTerm: 0.165 | Oversample: 1.22x
+[coverage] Game 2600 | unique_states_cumulative: 35535/65536 (54.2%) | last100_unique: 9468
+Game 2700 | Score: 11 | Record: 41 | Mean Score: 1.86 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.127 | SampTerm: 0.145 | Oversample: 1.14x
+[coverage] Game 2700 | unique_states_cumulative: 37106/65536 (56.6%) | last100_unique: 6528
+Game 2800 | Score: 0 | Record: 41 | Mean Score: 2.12 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.105 | SampTerm: 0.149 | Oversample: 1.42x
+[coverage] Game 2800 | unique_states_cumulative: 39188/65536 (59.8%) | last100_unique: 8715
+Game 2900 | Score: 15 | Record: 44 | Mean Score: 2.39 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.081 | SampTerm: 0.124 | Oversample: 1.53x
+[coverage] Game 2900 | unique_states_cumulative: 41247/65536 (62.9%) | last100_unique: 9623
+Game 3000 | Score: 0 | Record: 44 | Mean Score: 2.59 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.069 | SampTerm: 0.107 | Oversample: 1.54x
+[coverage] Game 3000 | unique_states_cumulative: 42809/65536 (65.3%) | last100_unique: 8066
+Game 3100 | Score: 11 | Record: 44 | Mean Score: 2.75 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.062 | SampTerm: 0.095 | Oversample: 1.54x
+[coverage] Game 3100 | unique_states_cumulative: 44271/65536 (67.6%) | last100_unique: 8031
+Game 3200 | Score: 0 | Record: 44 | Mean Score: 2.96 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.052 | SampTerm: 0.076 | Oversample: 1.46x
+[coverage] Game 3200 | unique_states_cumulative: 45735/65536 (69.8%) | last100_unique: 9130
+Game 3300 | Score: 0 | Record: 44 | Mean Score: 3.17 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.047 | SampTerm: 0.068 | Oversample: 1.44x
+[coverage] Game 3300 | unique_states_cumulative: 47249/65536 (72.1%) | last100_unique: 9623
+Game 3400 | Score: 0 | Record: 44 | Mean Score: 3.33 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.046 | SampTerm: 0.072 | Oversample: 1.57x
+[coverage] Game 3400 | unique_states_cumulative: 48450/65536 (73.9%) | last100_unique: 8782
+Game 3500 | Score: 12 | Record: 54 | Mean Score: 3.52 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.046 | SampTerm: 0.076 | Oversample: 1.66x
+[coverage] Game 3500 | unique_states_cumulative: 49647/65536 (75.8%) | last100_unique: 9782
+Game 3600 | Score: 0 | Record: 54 | Mean Score: 3.65 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.085 | Oversample: 1.93x
+[coverage] Game 3600 | unique_states_cumulative: 50626/65536 (77.2%) | last100_unique: 8378
+Game 3700 | Score: 22 | Record: 54 | Mean Score: 3.78 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.075 | Oversample: 1.68x
+[coverage] Game 3700 | unique_states_cumulative: 51522/65536 (78.6%) | last100_unique: 8716
+Game 3800 | Score: 26 | Record: 54 | Mean Score: 3.95 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.056 | Oversample: 1.27x
+[coverage] Game 3800 | unique_states_cumulative: 52486/65536 (80.1%) | last100_unique: 9636
+Game 3900 | Score: 0 | Record: 54 | Mean Score: 4.11 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.067 | Oversample: 1.55x
+[coverage] Game 3900 | unique_states_cumulative: 53387/65536 (81.5%) | last100_unique: 9851
+Game 4000 | Score: 30 | Record: 54 | Mean Score: 4.24 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.065 | Oversample: 1.54x
+[coverage] Game 4000 | unique_states_cumulative: 54107/65536 (82.6%) | last100_unique: 9169
+Game 4100 | Score: 0 | Record: 54 | Mean Score: 4.31 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.064 | Oversample: 1.46x
+[coverage] Game 4100 | unique_states_cumulative: 54611/65536 (83.3%) | last100_unique: 7407
+Game 4200 | Score: 0 | Record: 54 | Mean Score: 4.39 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.071 | Oversample: 1.59x
+[coverage] Game 4200 | unique_states_cumulative: 55136/65536 (84.1%) | last100_unique: 8451
+Game 4300 | Score: 0 | Record: 54 | Mean Score: 4.47 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.056 | Oversample: 1.25x
+[coverage] Game 4300 | unique_states_cumulative: 55625/65536 (84.9%) | last100_unique: 8003
+[Game 4375] Final LR cooldown applied → 1e-5
+Game 4400 | Score: 14 | Record: 54 | Mean Score: 4.56 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.046 | SampTerm: 0.076 | Oversample: 1.66x
+[coverage] Game 4400 | unique_states_cumulative: 56150/65536 (85.7%) | last100_unique: 8789
+Game 4500 | Score: 46 | Record: 54 | Mean Score: 4.68 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.055 | Oversample: 1.21x
+[coverage] Game 4500 | unique_states_cumulative: 56674/65536 (86.5%) | last100_unique: 9649
+Game 4600 | Score: 0 | Record: 54 | Mean Score: 4.81 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.075 | Oversample: 1.69x
+[coverage] Game 4600 | unique_states_cumulative: 57181/65536 (87.3%) | last100_unique: 9729
+Game 4700 | Score: 0 | Record: 54 | Mean Score: 4.90 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.071 | Oversample: 1.58x
+[coverage] Game 4700 | unique_states_cumulative: 57533/65536 (87.8%) | last100_unique: 9057
+Game 4800 | Score: 19 | Record: 54 | Mean Score: 5.04 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.069 | Oversample: 1.57x
+[coverage] Game 4800 | unique_states_cumulative: 58024/65536 (88.5%) | last100_unique: 10584
+Game 4900 | Score: 0 | Record: 54 | Mean Score: 5.13 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.076 | Oversample: 1.74x
+[coverage] Game 4900 | unique_states_cumulative: 58398/65536 (89.1%) | last100_unique: 9392
+Game 5000 | Score: 15 | Record: 54 | Mean Score: 5.22 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.042 | SampTerm: 0.080 | Oversample: 1.89x
+[coverage] Game 5000 | unique_states_cumulative: 58706/65536 (89.6%) | last100_unique: 9046
+
+Training Complete!
+Best Score: 54
+Final Mean Score: 5.22
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 49-49, summary, console lines 100-105
+wandb: 
+wandb: Run history:
+wandb:        Buf_Terminal_Frac ▆▇▇▇█████████▇▇▆▆▆▆▆▅▄▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Coverage_Cumulative ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▆▆▆▆▇▇▇▇▇▇▇▇███████
+wandb: Coverage_Cumulative_Frac ▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▆▆▆▇▇▇▇▇▇▇███████
+wandb:       Coverage_Window100 ▁▁▁▁▁▁▁▁▁▁▁▂▃▂▂▃▄▃▄▆▅▇▇▆▆▇▇▇▆▇▇▇▆▆▆▇▇▇█▇
+wandb:                  Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                     Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▇▇▇▇▇▇███
+wandb:               Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▄▄▄▅▅▅▆▆▆▆▇▇▇▇▇▇███
+wandb:                   Record ▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▃▃▃▄▄▆▆▆▇▇▇▇▇████████████
+wandb:     Sample_Terminal_Frac █▆▆▇▇▇▆▆█▆▇▆▇▆▇▆▇▇▆▇▆▅▅▄▃▂▂▂▂▂▁▂▁▁▂▂▁▂▂▂
+wandb:                    Score ▁▁▁▁▁▁▁▁▁▁▂▁▁▁▂▁▁▃▂▁▁▃▁▃▁▁▁▃▁▄▁▆▁▁▁█▁▁▄▃
+wandb:                       +1 ...
+wandb: 
+wandb: Run summary:
+wandb:        Buf_Terminal_Frac 0.04225
+wandb:      Coverage_Cumulative 58706
+wandb: Coverage_Cumulative_Frac 0.89578
+wandb:       Coverage_Window100 9046
+wandb:                  Epsilon 0.02
+wandb:                     Game 5000
+wandb:               Mean_Score 5.2204
+wandb:                   Record 54
+wandb:     Sample_Terminal_Frac 0.08
+wandb:                    Score 15
+wandb:                       +1 ...
+wandb: 
+wandb: 🚀 View run FeatureDQN_16x16_dense_seed1 at: https://wandb.ai/saheb37/rl-snake/runs/tomjh5u0
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_114939-tomjh5u0/logs
+--- FeatureDQN_16x16_dense_seed1 done ---
+=== FeatureDQN_16x16_dense_seed2 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run o8v0i2dh
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_121130-o8v0i2dh
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run FeatureDQN_16x16_dense_seed2
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/o8v0i2dh
+Starting Baseline DQN Training (Dueling + 3-Step) on 16x16 Board...
+Game 100 | Score: 0 | Record: 3 | Mean Score: 0.11 | Epsilon: 0.96 | Intrinsic: 0.000 | BufTerm: 0.191 | SampTerm: 0.204 | Oversample: 1.07x
+[coverage] Game 100 | unique_states_cumulative: 1771/65536 (2.7%) | last100_unique: 1771
+Game 200 | Score: 0 | Record: 3 | Mean Score: 0.08 | Epsilon: 0.92 | Intrinsic: 0.000 | BufTerm: 0.201 | SampTerm: 0.160 | Oversample: 0.80x
+[coverage] Game 200 | unique_states_cumulative: 3170/65536 (4.8%) | last100_unique: 1592
+Game 300 | Score: 0 | Record: 3 | Mean Score: 0.07 | Epsilon: 0.88 | Intrinsic: 0.000 | BufTerm: 0.209 | SampTerm: 0.177 | Oversample: 0.85x
+[coverage] Game 300 | unique_states_cumulative: 4479/65536 (6.8%) | last100_unique: 1532
+Game 400 | Score: 0 | Record: 3 | Mean Score: 0.07 | Epsilon: 0.84 | Intrinsic: 0.000 | BufTerm: 0.218 | SampTerm: 0.193 | Oversample: 0.89x
+[coverage] Game 400 | unique_states_cumulative: 5506/65536 (8.4%) | last100_unique: 1399
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.07 | Epsilon: 0.80 | Intrinsic: 0.000 | BufTerm: 0.221 | SampTerm: 0.205 | Oversample: 0.93x
+[coverage] Game 500 | unique_states_cumulative: 6646/65536 (10.1%) | last100_unique: 1509
+Game 600 | Score: 0 | Record: 3 | Mean Score: 0.07 | Epsilon: 0.77 | Intrinsic: 0.000 | BufTerm: 0.225 | SampTerm: 0.183 | Oversample: 0.81x
+[coverage] Game 600 | unique_states_cumulative: 7547/65536 (11.5%) | last100_unique: 1429
+Game 700 | Score: 0 | Record: 3 | Mean Score: 0.07 | Epsilon: 0.73 | Intrinsic: 0.000 | BufTerm: 0.232 | SampTerm: 0.181 | Oversample: 0.78x
+[coverage] Game 700 | unique_states_cumulative: 8290/65536 (12.6%) | last100_unique: 1280
+Game 800 | Score: 0 | Record: 3 | Mean Score: 0.08 | Epsilon: 0.69 | Intrinsic: 0.000 | BufTerm: 0.234 | SampTerm: 0.168 | Oversample: 0.72x
+[coverage] Game 800 | unique_states_cumulative: 9213/65536 (14.1%) | last100_unique: 1482
+Game 900 | Score: 0 | Record: 3 | Mean Score: 0.08 | Epsilon: 0.65 | Intrinsic: 0.000 | BufTerm: 0.240 | SampTerm: 0.191 | Oversample: 0.80x
+[coverage] Game 900 | unique_states_cumulative: 9824/65536 (15.0%) | last100_unique: 1250
+Game 1000 | Score: 0 | Record: 3 | Mean Score: 0.09 | Epsilon: 0.61 | Intrinsic: 0.000 | BufTerm: 0.241 | SampTerm: 0.195 | Oversample: 0.81x
+[coverage] Game 1000 | unique_states_cumulative: 10614/65536 (16.2%) | last100_unique: 1462
+Game 1100 | Score: 0 | Record: 3 | Mean Score: 0.10 | Epsilon: 0.57 | Intrinsic: 0.000 | BufTerm: 0.243 | SampTerm: 0.191 | Oversample: 0.78x
+[coverage] Game 1100 | unique_states_cumulative: 11244/65536 (17.2%) | last100_unique: 1366
+Game 1200 | Score: 4 | Record: 4 | Mean Score: 0.12 | Epsilon: 0.53 | Intrinsic: 0.000 | BufTerm: 0.242 | SampTerm: 0.181 | Oversample: 0.75x
+[coverage] Game 1200 | unique_states_cumulative: 12105/65536 (18.5%) | last100_unique: 1648
+Game 1300 | Score: 0 | Record: 6 | Mean Score: 0.14 | Epsilon: 0.49 | Intrinsic: 0.000 | BufTerm: 0.240 | SampTerm: 0.203 | Oversample: 0.84x
+[coverage] Game 1300 | unique_states_cumulative: 12981/65536 (19.8%) | last100_unique: 1738
+Game 1400 | Score: 0 | Record: 6 | Mean Score: 0.16 | Epsilon: 0.45 | Intrinsic: 0.000 | BufTerm: 0.239 | SampTerm: 0.183 | Oversample: 0.76x
+[coverage] Game 1400 | unique_states_cumulative: 13725/65536 (20.9%) | last100_unique: 1614
+Game 1500 | Score: 2 | Record: 7 | Mean Score: 0.20 | Epsilon: 0.41 | Intrinsic: 0.000 | BufTerm: 0.235 | SampTerm: 0.163 | Oversample: 0.69x
+[coverage] Game 1500 | unique_states_cumulative: 14884/65536 (22.7%) | last100_unique: 2141
+Game 1600 | Score: 0 | Record: 7 | Mean Score: 0.26 | Epsilon: 0.37 | Intrinsic: 0.000 | BufTerm: 0.228 | SampTerm: 0.176 | Oversample: 0.77x
+[coverage] Game 1600 | unique_states_cumulative: 16308/65536 (24.9%) | last100_unique: 2655
+Game 1700 | Score: 0 | Record: 9 | Mean Score: 0.31 | Epsilon: 0.33 | Intrinsic: 0.000 | BufTerm: 0.224 | SampTerm: 0.211 | Oversample: 0.94x
+[coverage] Game 1700 | unique_states_cumulative: 17483/65536 (26.7%) | last100_unique: 2366
+Game 1800 | Score: 0 | Record: 10 | Mean Score: 0.39 | Epsilon: 0.29 | Intrinsic: 0.000 | BufTerm: 0.217 | SampTerm: 0.187 | Oversample: 0.86x
+[coverage] Game 1800 | unique_states_cumulative: 18865/65536 (28.8%) | last100_unique: 2941
+Game 1900 | Score: 0 | Record: 11 | Mean Score: 0.48 | Epsilon: 0.26 | Intrinsic: 0.000 | BufTerm: 0.210 | SampTerm: 0.221 | Oversample: 1.06x
+[coverage] Game 1900 | unique_states_cumulative: 20422/65536 (31.2%) | last100_unique: 3202
+Game 2000 | Score: 3 | Record: 13 | Mean Score: 0.56 | Epsilon: 0.22 | Intrinsic: 0.000 | BufTerm: 0.203 | SampTerm: 0.199 | Oversample: 0.98x
+[coverage] Game 2000 | unique_states_cumulative: 21939/65536 (33.5%) | last100_unique: 3298
+Game 2100 | Score: 11 | Record: 18 | Mean Score: 0.68 | Epsilon: 0.18 | Intrinsic: 0.000 | BufTerm: 0.194 | SampTerm: 0.203 | Oversample: 1.04x
+[coverage] Game 2100 | unique_states_cumulative: 23770/65536 (36.3%) | last100_unique: 4247
+Game 2200 | Score: 4 | Record: 19 | Mean Score: 0.81 | Epsilon: 0.14 | Intrinsic: 0.000 | BufTerm: 0.184 | SampTerm: 0.180 | Oversample: 0.98x
+[coverage] Game 2200 | unique_states_cumulative: 25681/65536 (39.2%) | last100_unique: 4737
+Game 2300 | Score: 3 | Record: 27 | Mean Score: 0.96 | Epsilon: 0.10 | Intrinsic: 0.000 | BufTerm: 0.175 | SampTerm: 0.176 | Oversample: 1.00x
+[coverage] Game 2300 | unique_states_cumulative: 27542/65536 (42.0%) | last100_unique: 5051
+Game 2400 | Score: 0 | Record: 29 | Mean Score: 1.16 | Epsilon: 0.06 | Intrinsic: 0.000 | BufTerm: 0.163 | SampTerm: 0.165 | Oversample: 1.01x
+[coverage] Game 2400 | unique_states_cumulative: 29832/65536 (45.5%) | last100_unique: 6474
+Game 2500 | Score: 0 | Record: 34 | Mean Score: 1.43 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.150 | SampTerm: 0.177 | Oversample: 1.18x
+[coverage] Game 2500 | unique_states_cumulative: 32528/65536 (49.6%) | last100_unique: 7938
+Game 2600 | Score: 27 | Record: 43 | Mean Score: 1.67 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.139 | SampTerm: 0.160 | Oversample: 1.15x
+[coverage] Game 2600 | unique_states_cumulative: 34871/65536 (53.2%) | last100_unique: 7980
+Game 2700 | Score: 0 | Record: 43 | Mean Score: 2.00 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.122 | SampTerm: 0.164 | Oversample: 1.35x
+[coverage] Game 2700 | unique_states_cumulative: 37837/65536 (57.7%) | last100_unique: 10195
+Game 2800 | Score: 0 | Record: 43 | Mean Score: 2.19 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.103 | SampTerm: 0.161 | Oversample: 1.56x
+[coverage] Game 2800 | unique_states_cumulative: 39472/65536 (60.2%) | last100_unique: 7644
+Game 2900 | Score: 0 | Record: 43 | Mean Score: 2.39 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.082 | SampTerm: 0.109 | Oversample: 1.33x
+[coverage] Game 2900 | unique_states_cumulative: 41266/65536 (63.0%) | last100_unique: 8156
+Game 3000 | Score: 0 | Record: 43 | Mean Score: 2.61 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.066 | SampTerm: 0.109 | Oversample: 1.66x
+[coverage] Game 3000 | unique_states_cumulative: 43096/65536 (65.8%) | last100_unique: 9067
+Game 3100 | Score: 0 | Record: 43 | Mean Score: 2.84 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.054 | SampTerm: 0.092 | Oversample: 1.69x
+[coverage] Game 3100 | unique_states_cumulative: 44738/65536 (68.3%) | last100_unique: 9359
+Game 3200 | Score: 0 | Record: 43 | Mean Score: 3.02 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.048 | SampTerm: 0.060 | Oversample: 1.24x
+[coverage] Game 3200 | unique_states_cumulative: 46048/65536 (70.3%) | last100_unique: 8773
+Game 3300 | Score: 0 | Record: 43 | Mean Score: 3.22 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.057 | Oversample: 1.26x
+[coverage] Game 3300 | unique_states_cumulative: 47430/65536 (72.4%) | last100_unique: 9452
+Game 3400 | Score: 0 | Record: 43 | Mean Score: 3.36 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.059 | Oversample: 1.30x
+[coverage] Game 3400 | unique_states_cumulative: 48446/65536 (73.9%) | last100_unique: 8084
+Game 3500 | Score: 0 | Record: 43 | Mean Score: 3.52 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.064 | Oversample: 1.44x
+[coverage] Game 3500 | unique_states_cumulative: 49425/65536 (75.4%) | last100_unique: 9165
+Game 3600 | Score: 18 | Record: 43 | Mean Score: 3.69 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.061 | Oversample: 1.37x
+[coverage] Game 3600 | unique_states_cumulative: 50513/65536 (77.1%) | last100_unique: 9568
+Game 3700 | Score: 0 | Record: 43 | Mean Score: 3.79 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.047 | Oversample: 1.04x
+[coverage] Game 3700 | unique_states_cumulative: 51294/65536 (78.3%) | last100_unique: 7688
+Game 3800 | Score: 18 | Record: 43 | Mean Score: 3.90 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.063 | Oversample: 1.40x
+[coverage] Game 3800 | unique_states_cumulative: 52016/65536 (79.4%) | last100_unique: 7951
+Game 3900 | Score: 0 | Record: 43 | Mean Score: 4.03 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.061 | Oversample: 1.37x
+[coverage] Game 3900 | unique_states_cumulative: 52774/65536 (80.5%) | last100_unique: 8802
+Game 4000 | Score: 21 | Record: 43 | Mean Score: 4.18 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.045 | SampTerm: 0.068 | Oversample: 1.52x
+[coverage] Game 4000 | unique_states_cumulative: 53522/65536 (81.7%) | last100_unique: 9558
+Game 4100 | Score: 0 | Record: 43 | Mean Score: 4.33 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.057 | Oversample: 1.30x
+[coverage] Game 4100 | unique_states_cumulative: 54360/65536 (82.9%) | last100_unique: 10435
+Game 4200 | Score: 0 | Record: 43 | Mean Score: 4.44 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.044 | SampTerm: 0.059 | Oversample: 1.34x
+[coverage] Game 4200 | unique_states_cumulative: 55005/65536 (83.9%) | last100_unique: 9017
+Game 4300 | Score: 0 | Record: 43 | Mean Score: 4.55 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.047 | Oversample: 1.08x
+[coverage] Game 4300 | unique_states_cumulative: 55641/65536 (84.9%) | last100_unique: 9142
+[Game 4375] Final LR cooldown applied → 1e-5
+Game 4400 | Score: 15 | Record: 43 | Mean Score: 4.68 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.043 | SampTerm: 0.083 | Oversample: 1.90x
+[coverage] Game 4400 | unique_states_cumulative: 56213/65536 (85.8%) | last100_unique: 9679
+Game 4500 | Score: 0 | Record: 43 | Mean Score: 4.80 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.042 | SampTerm: 0.080 | Oversample: 1.92x
+[coverage] Game 4500 | unique_states_cumulative: 56796/65536 (86.7%) | last100_unique: 10053
+Game 4600 | Score: 19 | Record: 49 | Mean Score: 4.93 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.041 | SampTerm: 0.071 | Oversample: 1.74x
+[coverage] Game 4600 | unique_states_cumulative: 57334/65536 (87.5%) | last100_unique: 10045
+Game 4700 | Score: 0 | Record: 49 | Mean Score: 5.03 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.040 | SampTerm: 0.079 | Oversample: 1.97x
+[coverage] Game 4700 | unique_states_cumulative: 57825/65536 (88.2%) | last100_unique: 9814
+Game 4800 | Score: 0 | Record: 49 | Mean Score: 5.12 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.040 | SampTerm: 0.072 | Oversample: 1.79x
+[coverage] Game 4800 | unique_states_cumulative: 58204/65536 (88.8%) | last100_unique: 9003
+Game 4900 | Score: 0 | Record: 49 | Mean Score: 5.23 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.040 | SampTerm: 0.069 | Oversample: 1.72x
+[coverage] Game 4900 | unique_states_cumulative: 58609/65536 (89.4%) | last100_unique: 10252
+Game 5000 | Score: 1 | Record: 49 | Mean Score: 5.37 | Epsilon: 0.02 | Intrinsic: 0.000 | BufTerm: 0.038 | SampTerm: 0.061 | Oversample: 1.60x
+[coverage] Game 5000 | unique_states_cumulative: 59065/65536 (90.1%) | last100_unique: 11505
+
+Training Complete!
+Best Score: 49
+Final Mean Score: 5.37
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 49-49, summary, console lines 100-105
+wandb: 
+wandb: Run history:
+wandb:        Buf_Terminal_Frac ▆▇▇▇▇████████▇▇▇▇▆▆▆▅▄▄▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      Coverage_Cumulative ▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▅▅▆▆▆▆▇▇▇▇▇▇▇▇██████
+wandb: Coverage_Cumulative_Frac ▁▁▁▂▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▅▅▆▆▆▆▇▇▇▇▇▇▇███████
+wandb:       Coverage_Window100 ▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▃▃▄▅▆▇▅▆▆▇▇▆▆▇▅▆▇▇▆▆▇▇▇▆█
+wandb:                  Epsilon ██▇▇▇▆▆▅▅▅▄▄▄▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                     Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb:               Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▄▄▄▄▅▅▅▆▆▆▆▆▇▇▇▇███
+wandb:                   Record ▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▃▃▃▅▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇████
+wandb:     Sample_Terminal_Frac ▇▅▆▇▇▆▆▇▇▇▇▆▅▆██▇▇▆▆▅▆▅▃▃▁▁▁▁▁▁▁▁▁▁▂▂▂▂▁
+wandb:                    Score ▁▁▁▁▁▁▁▁▁▁▁▁▂▁▁▂▄▂▂▁█▁▁▁▁▁▁▁▁▆▆▁▆▁▁▅▁▆▁▁
+wandb:                       +1 ...
+wandb: 
+wandb: Run summary:
+wandb:        Buf_Terminal_Frac 0.03845
+wandb:      Coverage_Cumulative 59065
+wandb: Coverage_Cumulative_Frac 0.90126
+wandb:       Coverage_Window100 11505
+wandb:                  Epsilon 0.02
+wandb:                     Game 5000
+wandb:               Mean_Score 5.3692
+wandb:                   Record 49
+wandb:     Sample_Terminal_Frac 0.06133
+wandb:                    Score 1
+wandb:                       +1 ...
+wandb: 
+wandb: 🚀 View run FeatureDQN_16x16_dense_seed2 at: https://wandb.ai/saheb37/rl-snake/runs/o8v0i2dh
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_121130-o8v0i2dh/logs
+--- FeatureDQN_16x16_dense_seed2 done ---
+=== ConvDQN_16x16_dense_seed0 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run x7bifp75
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_123240-x7bifp75
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_16x16_dense_seed0
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/x7bifp75
+Starting ConvDQN training on 16x16 (dense)...
+Game 100 | Score: 0 | Record: 3 | Mean Score: 0.19 | Epsilon: 0.961
+Game 200 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.922
+Game 300 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.883
+Game 400 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.804
+Game 600 | Score: 1 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.648
+Game 1000 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.608
+Game 1100 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.530
+Game 1300 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.491
+Game 1400 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.412
+Game 1600 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.373
+Game 1700 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.295
+Game 1900 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.216
+Game 2100 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.177
+Game 2200 | Score: 1 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.138
+Game 2300 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.099
+Game 2400 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.060
+Game 2500 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 2600 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 2700 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 2800 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 2900 | Score: 1 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 3000 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 3100 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 3200 | Score: 0 | Record: 3 | Mean Score: 0.13 | Epsilon: 0.020
+Game 3300 | Score: 1 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3400 | Score: 1 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3500 | Score: 1 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3600 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3700 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3800 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3900 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 4000 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 4100 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 4200 | Score: 1 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+Game 4300 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 1 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+Game 4500 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 4600 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 4700 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 4800 | Score: 0 | Record: 4 | Mean Score: 0.18 | Epsilon: 0.020
+Game 4900 | Score: 1 | Record: 4 | Mean Score: 0.18 | Epsilon: 0.020
+Game 5000 | Score: 0 | Record: 4 | Mean Score: 0.18 | Epsilon: 0.020
+
+Done. Best: 4, Final Mean: 0.18
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading output.log
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: Mean_Score █▆▅▅▆▅▆▅▅▅▄▄▃▃▃▂▂▂▂▁▁▁▁▁▁▂▂▂▃▃▃▃▄▄▅▅▆▆▆▇
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁██
+wandb:      Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁█▁▁███▁▁▁▁▁█▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 0.1818
+wandb:     Record 4
+wandb:      Score 0
+wandb: 
+wandb: 🚀 View run ConvDQN_16x16_dense_seed0 at: https://wandb.ai/saheb37/rl-snake/runs/x7bifp75
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_123240-x7bifp75/logs
+--- ConvDQN_16x16_dense_seed0 done ---
+=== ConvDQN_16x16_dense_seed1 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run kn36sxrl
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_125053-kn36sxrl
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_16x16_dense_seed1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/kn36sxrl
+Starting ConvDQN training on 16x16 (dense)...
+Game 100 | Score: 1 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.961
+Game 200 | Score: 1 | Record: 2 | Mean Score: 0.19 | Epsilon: 0.922
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.21 | Epsilon: 0.883
+Game 400 | Score: 0 | Record: 2 | Mean Score: 0.20 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.18 | Epsilon: 0.804
+Game 600 | Score: 0 | Record: 2 | Mean Score: 0.18 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 2 | Mean Score: 0.18 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 2 | Mean Score: 0.17 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 2 | Mean Score: 0.17 | Epsilon: 0.648
+Game 1000 | Score: 0 | Record: 2 | Mean Score: 0.17 | Epsilon: 0.608
+Game 1100 | Score: 1 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.530
+Game 1300 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.491
+Game 1400 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.412
+Game 1600 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.373
+Game 1700 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.295
+Game 1900 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.216
+Game 2100 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.177
+Game 2200 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.138
+Game 2300 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.099
+Game 2400 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.060
+Game 2500 | Score: 1 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 2600 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 2700 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 2800 | Score: 1 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 2900 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3000 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3100 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3200 | Score: 1 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3300 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3400 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3500 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.020
+Game 3600 | Score: 3 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3700 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3800 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+Game 3900 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+Game 4000 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 4100 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 4200 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 4300 | Score: 0 | Record: 3 | Mean Score: 0.18 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 0 | Record: 3 | Mean Score: 0.18 | Epsilon: 0.020
+Game 4500 | Score: 0 | Record: 3 | Mean Score: 0.19 | Epsilon: 0.020
+Game 4600 | Score: 1 | Record: 3 | Mean Score: 0.19 | Epsilon: 0.020
+Game 4700 | Score: 1 | Record: 3 | Mean Score: 0.19 | Epsilon: 0.020
+Game 4800 | Score: 0 | Record: 3 | Mean Score: 0.20 | Epsilon: 0.020
+Game 4900 | Score: 0 | Record: 3 | Mean Score: 0.20 | Epsilon: 0.020
+Game 5000 | Score: 0 | Record: 3 | Mean Score: 0.20 | Epsilon: 0.020
+
+Done. Best: 3, Final Mean: 0.20
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml; uploading output.log
+wandb: uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▆▅▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: Mean_Score ▂▆██▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▃▄▄▄▅▆▆▆▇▇
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁███████████
+wandb:      Score ▃▃▁▁▁▁▁▁▁▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█▁▁▁▁▁▁▁▃▃▁▁
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 0.2018
+wandb:     Record 3
+wandb:      Score 0
+wandb: 
+wandb: 🚀 View run ConvDQN_16x16_dense_seed1 at: https://wandb.ai/saheb37/rl-snake/runs/kn36sxrl
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_125053-kn36sxrl/logs
+--- ConvDQN_16x16_dense_seed1 done ---
+=== ConvDQN_16x16_dense_seed2 ===
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run ulrdshc2
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_130911-ulrdshc2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_16x16_dense_seed2
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/ulrdshc2
+Starting ConvDQN training on 16x16 (dense)...
+Game 100 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.961
+Game 200 | Score: 1 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.922
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.883
+Game 400 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.804
+Game 600 | Score: 0 | Record: 2 | Mean Score: 0.17 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 2 | Mean Score: 0.17 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.648
+Game 1000 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.608
+Game 1100 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 2 | Mean Score: 0.16 | Epsilon: 0.530
+Game 1300 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.491
+Game 1400 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 2 | Mean Score: 0.15 | Epsilon: 0.412
+Game 1600 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.373
+Game 1700 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.295
+Game 1900 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.216
+Game 2100 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.177
+Game 2200 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.138
+Game 2300 | Score: 0 | Record: 2 | Mean Score: 0.14 | Epsilon: 0.099
+Game 2400 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.060
+Game 2500 | Score: 0 | Record: 3 | Mean Score: 0.14 | Epsilon: 0.020
+Game 2600 | Score: 1 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 2700 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 2800 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 2900 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3000 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3100 | Score: 1 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3200 | Score: 0 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3300 | Score: 1 | Record: 3 | Mean Score: 0.15 | Epsilon: 0.020
+Game 3400 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+Game 3500 | Score: 0 | Record: 3 | Mean Score: 0.16 | Epsilon: 0.020
+Game 3600 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 3700 | Score: 1 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 3800 | Score: 0 | Record: 3 | Mean Score: 0.17 | Epsilon: 0.020
+Game 3900 | Score: 0 | Record: 3 | Mean Score: 0.18 | Epsilon: 0.020
+Game 4000 | Score: 0 | Record: 4 | Mean Score: 0.18 | Epsilon: 0.020
+Game 4100 | Score: 1 | Record: 4 | Mean Score: 0.19 | Epsilon: 0.020
+Game 4200 | Score: 0 | Record: 4 | Mean Score: 0.19 | Epsilon: 0.020
+Game 4300 | Score: 1 | Record: 4 | Mean Score: 0.19 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 1 | Record: 4 | Mean Score: 0.20 | Epsilon: 0.020
+Game 4500 | Score: 0 | Record: 4 | Mean Score: 0.20 | Epsilon: 0.020
+Game 4600 | Score: 0 | Record: 4 | Mean Score: 0.21 | Epsilon: 0.020
+Game 4700 | Score: 2 | Record: 4 | Mean Score: 0.21 | Epsilon: 0.020
+Game 4800 | Score: 1 | Record: 4 | Mean Score: 0.22 | Epsilon: 0.020
+Game 4900 | Score: 0 | Record: 4 | Mean Score: 0.22 | Epsilon: 0.020
+Game 5000 | Score: 1 | Record: 4 | Mean Score: 0.22 | Epsilon: 0.020
+
+Done. Best: 4, Final Mean: 0.22
+wandb: updating run metadata
+wandb: uploading config.yaml; uploading output.log; uploading wandb-summary.json
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▅▅▅▄▄▄▃▃▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: Mean_Score ▁▁▃▃▃▄▃▃▃▃▂▂▂▁▁▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▅▅▆▆▇▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▅▅▅▅▅▅▅▅▅▅▅▅▅█████████
+wandb:      Score ▁▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▅▁▁▅▅▁▁▁▅▁▁▅▁▅▁▁█▅▅
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 0.2226
+wandb:     Record 4
+wandb:      Score 1
+wandb: 
+wandb: 🚀 View run ConvDQN_16x16_dense_seed2 at: https://wandb.ai/saheb37/rl-snake/runs/ulrdshc2
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_130911-ulrdshc2/logs
+--- ConvDQN_16x16_dense_seed2 done ---
+All experiments complete.

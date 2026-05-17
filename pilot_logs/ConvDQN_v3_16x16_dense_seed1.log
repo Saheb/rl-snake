@@ -1,0 +1,141 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run jlalqc30
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260516_195358-jlalqc30
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_v3_16x16_dense_seed1
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/jlalqc30
+ConvDQN v3 | 16×16 dense | γ=0.995 batch=512 calls/ep=10 lr=0.000126 n_steps=1 ε_end=0.01 ε_decay/step=2.30e-06
+Game 100 | Score: 0 | Record: 2 | Mean: 0.18 | ε: 0.981 | Steps: 8,271
+Game 200 | Score: 1 | Record: 2 | Mean: 0.21 | ε: 0.960 | Steps: 17,266
+Game 300 | Score: 0 | Record: 2 | Mean: 0.23 | ε: 0.939 | Steps: 26,616
+Game 400 | Score: 0 | Record: 2 | Mean: 0.24 | ε: 0.923 | Steps: 33,352
+Game 500 | Score: 0 | Record: 2 | Mean: 0.25 | ε: 0.905 | Steps: 41,102
+Game 600 | Score: 1 | Record: 2 | Mean: 0.26 | ε: 0.888 | Steps: 48,472
+Game 700 | Score: 0 | Record: 2 | Mean: 0.27 | ε: 0.871 | Steps: 55,913
+Game 800 | Score: 0 | Record: 2 | Mean: 0.29 | ε: 0.852 | Steps: 64,079
+Game 900 | Score: 2 | Record: 3 | Mean: 0.32 | ε: 0.834 | Steps: 72,055
+Game 1000 | Score: 1 | Record: 3 | Mean: 0.35 | ε: 0.817 | Steps: 79,643
+Game 1100 | Score: 0 | Record: 3 | Mean: 0.38 | ε: 0.799 | Steps: 87,243
+Game 1200 | Score: 1 | Record: 3 | Mean: 0.41 | ε: 0.782 | Steps: 94,639
+Game 1300 | Score: 2 | Record: 3 | Mean: 0.44 | ε: 0.765 | Steps: 102,081
+Game 1400 | Score: 2 | Record: 3 | Mean: 0.47 | ε: 0.748 | Steps: 109,576
+Game 1500 | Score: 0 | Record: 3 | Mean: 0.51 | ε: 0.732 | Steps: 116,480
+Game 1600 | Score: 0 | Record: 3 | Mean: 0.55 | ε: 0.717 | Steps: 122,938
+Game 1700 | Score: 0 | Record: 3 | Mean: 0.59 | ε: 0.700 | Steps: 130,359
+Game 1800 | Score: 1 | Record: 3 | Mean: 0.62 | ε: 0.686 | Steps: 136,541
+Game 1900 | Score: 2 | Record: 3 | Mean: 0.65 | ε: 0.671 | Steps: 142,782
+Game 2000 | Score: 2 | Record: 3 | Mean: 0.68 | ε: 0.657 | Steps: 148,907
+Game 2100 | Score: 2 | Record: 3 | Mean: 0.72 | ε: 0.645 | Steps: 154,135
+Game 2200 | Score: 1 | Record: 3 | Mean: 0.75 | ε: 0.631 | Steps: 160,166
+Game 2300 | Score: 1 | Record: 3 | Mean: 0.78 | ε: 0.618 | Steps: 165,836
+Game 2400 | Score: 1 | Record: 3 | Mean: 0.81 | ε: 0.606 | Steps: 171,326
+Game 2500 | Score: 1 | Record: 4 | Mean: 0.83 | ε: 0.593 | Steps: 176,837
+Game 2600 | Score: 1 | Record: 4 | Mean: 0.86 | ε: 0.581 | Steps: 182,131
+Game 2700 | Score: 3 | Record: 4 | Mean: 0.88 | ε: 0.569 | Steps: 187,281
+Game 2800 | Score: 2 | Record: 4 | Mean: 0.91 | ε: 0.557 | Steps: 192,622
+Game 2900 | Score: 2 | Record: 4 | Mean: 0.93 | ε: 0.544 | Steps: 198,065
+Game 3000 | Score: 2 | Record: 4 | Mean: 0.96 | ε: 0.532 | Steps: 203,200
+Game 3100 | Score: 2 | Record: 4 | Mean: 0.98 | ε: 0.521 | Steps: 208,019
+Game 3200 | Score: 2 | Record: 4 | Mean: 0.99 | ε: 0.510 | Steps: 212,745
+Game 3300 | Score: 3 | Record: 5 | Mean: 1.02 | ε: 0.498 | Steps: 217,878
+Game 3400 | Score: 3 | Record: 5 | Mean: 1.04 | ε: 0.487 | Steps: 222,727
+Game 3500 | Score: 2 | Record: 5 | Mean: 1.06 | ε: 0.476 | Steps: 227,667
+Game 3600 | Score: 2 | Record: 5 | Mean: 1.08 | ε: 0.465 | Steps: 232,468
+Game 3700 | Score: 2 | Record: 5 | Mean: 1.10 | ε: 0.455 | Steps: 236,889
+Game 3800 | Score: 0 | Record: 5 | Mean: 1.11 | ε: 0.444 | Steps: 241,481
+Game 3900 | Score: 2 | Record: 5 | Mean: 1.13 | ε: 0.433 | Steps: 246,109
+Game 4000 | Score: 2 | Record: 5 | Mean: 1.15 | ε: 0.424 | Steps: 250,288
+Game 4100 | Score: 3 | Record: 5 | Mean: 1.16 | ε: 0.414 | Steps: 254,631
+Game 4200 | Score: 1 | Record: 5 | Mean: 1.18 | ε: 0.403 | Steps: 259,213
+Game 4300 | Score: 1 | Record: 5 | Mean: 1.19 | ε: 0.394 | Steps: 263,149
+Game 4400 | Score: 2 | Record: 5 | Mean: 1.21 | ε: 0.384 | Steps: 267,736
+Game 4500 | Score: 2 | Record: 5 | Mean: 1.23 | ε: 0.374 | Steps: 271,826
+Game 4600 | Score: 2 | Record: 5 | Mean: 1.24 | ε: 0.364 | Steps: 276,142
+Game 4700 | Score: 2 | Record: 5 | Mean: 1.25 | ε: 0.355 | Steps: 280,271
+Game 4800 | Score: 2 | Record: 5 | Mean: 1.27 | ε: 0.345 | Steps: 284,472
+Game 4900 | Score: 2 | Record: 5 | Mean: 1.29 | ε: 0.336 | Steps: 288,449
+Game 5000 | Score: 2 | Record: 5 | Mean: 1.30 | ε: 0.326 | Steps: 292,885
+Game 5100 | Score: 1 | Record: 5 | Mean: 1.32 | ε: 0.316 | Steps: 297,212
+Game 5200 | Score: 1 | Record: 6 | Mean: 1.33 | ε: 0.306 | Steps: 301,602
+Game 5300 | Score: 3 | Record: 6 | Mean: 1.35 | ε: 0.296 | Steps: 305,753
+Game 5400 | Score: 2 | Record: 6 | Mean: 1.36 | ε: 0.287 | Steps: 309,681
+Game 5500 | Score: 3 | Record: 7 | Mean: 1.37 | ε: 0.278 | Steps: 313,741
+Game 5600 | Score: 0 | Record: 7 | Mean: 1.39 | ε: 0.268 | Steps: 317,877
+Game 5700 | Score: 2 | Record: 7 | Mean: 1.40 | ε: 0.259 | Steps: 321,974
+Game 5800 | Score: 4 | Record: 7 | Mean: 1.42 | ε: 0.249 | Steps: 326,290
+Game 5900 | Score: 2 | Record: 7 | Mean: 1.43 | ε: 0.239 | Steps: 330,588
+Game 6000 | Score: 2 | Record: 7 | Mean: 1.45 | ε: 0.229 | Steps: 334,938
+Game 6100 | Score: 3 | Record: 7 | Mean: 1.47 | ε: 0.220 | Steps: 339,058
+Game 6200 | Score: 1 | Record: 7 | Mean: 1.48 | ε: 0.210 | Steps: 343,234
+Game 6300 | Score: 2 | Record: 7 | Mean: 1.50 | ε: 0.199 | Steps: 347,791
+Game 6400 | Score: 3 | Record: 7 | Mean: 1.52 | ε: 0.190 | Steps: 352,100
+Game 6500 | Score: 2 | Record: 7 | Mean: 1.53 | ε: 0.180 | Steps: 356,297
+Game 6600 | Score: 4 | Record: 7 | Mean: 1.55 | ε: 0.170 | Steps: 360,708
+Game 6700 | Score: 1 | Record: 7 | Mean: 1.57 | ε: 0.160 | Steps: 364,862
+Game 6800 | Score: 4 | Record: 7 | Mean: 1.59 | ε: 0.149 | Steps: 369,584
+Game 6900 | Score: 0 | Record: 7 | Mean: 1.61 | ε: 0.138 | Steps: 374,479
+Game 7000 | Score: 3 | Record: 9 | Mean: 1.63 | ε: 0.127 | Steps: 379,459
+Game 7100 | Score: 6 | Record: 9 | Mean: 1.66 | ε: 0.114 | Steps: 384,952
+Game 7200 | Score: 5 | Record: 10 | Mean: 1.69 | ε: 0.100 | Steps: 391,081
+Game 7300 | Score: 2 | Record: 10 | Mean: 1.72 | ε: 0.086 | Steps: 396,946
+Game 7400 | Score: 9 | Record: 12 | Mean: 1.75 | ε: 0.070 | Steps: 403,919
+Game 7500 | Score: 1 | Record: 12 | Mean: 1.79 | ε: 0.053 | Steps: 411,550
+Game 7600 | Score: 2 | Record: 15 | Mean: 1.85 | ε: 0.025 | Steps: 423,514
+Game 7700 | Score: 14 | Record: 23 | Mean: 1.96 | ε: 0.010 | Steps: 449,446
+Game 7800 | Score: 5 | Record: 24 | Mean: 2.07 | ε: 0.010 | Steps: 475,725
+Game 7900 | Score: 7 | Record: 28 | Mean: 2.19 | ε: 0.010 | Steps: 502,216
+Game 8000 | Score: 14 | Record: 28 | Mean: 2.33 | ε: 0.010 | Steps: 531,382
+Game 8100 | Score: 17 | Record: 32 | Mean: 2.46 | ε: 0.010 | Steps: 557,821
+Game 8200 | Score: 6 | Record: 32 | Mean: 2.60 | ε: 0.010 | Steps: 583,084
+Game 8300 | Score: 29 | Record: 32 | Mean: 2.75 | ε: 0.010 | Steps: 612,752
+Game 8400 | Score: 25 | Record: 33 | Mean: 2.89 | ε: 0.010 | Steps: 639,428
+Game 8500 | Score: 12 | Record: 37 | Mean: 3.04 | ε: 0.010 | Steps: 667,720
+Game 8600 | Score: 17 | Record: 37 | Mean: 3.18 | ε: 0.010 | Steps: 691,832
+Game 8700 | Score: 5 | Record: 37 | Mean: 3.32 | ε: 0.010 | Steps: 717,147
+Game 8800 | Score: 2 | Record: 37 | Mean: 3.47 | ε: 0.010 | Steps: 744,349
+Game 8900 | Score: 33 | Record: 37 | Mean: 3.66 | ε: 0.010 | Steps: 778,238
+Game 9000 | Score: 8 | Record: 38 | Mean: 3.81 | ε: 0.010 | Steps: 805,047
+Game 9100 | Score: 37 | Record: 46 | Mean: 3.99 | ε: 0.010 | Steps: 836,439
+Game 9200 | Score: 26 | Record: 46 | Mean: 4.14 | ε: 0.010 | Steps: 864,386
+0.010 | Steps: 1,281,656
+Game 9200 | Score: 21 | Record: 53 | Mean: 9.17 | ε: 0.010 | Steps: 1,306,300
+Game 9300 | Score: 16 | Record: 53 | Mean: 9.30 | ε: 0.010 | Steps: 1,332,519
+Game 9400 | Score: 4 | Record: 53 | Mean: 9.41 | ε: 0.010 | Steps: 1,356,283
+Game 9500 | Score: 9 | Record: 53 | Mean: 9.51 | ε: 0.010 | Steps: 1,379,809
+Game 9600 | Score: 29 | Record: 53 | Mean: 9.62 | ε: 0.010 | Steps: 1,405,786
+Game 9700 | Score: 7 | Record: 53 | Mean: 9.71 | ε: 0.010 | Steps: 1,428,343
+Game 9800 | Score: 15 | Record: 53 | Mean: 9.80 | ε: 0.010 | Steps: 1,451,134
+Game 9900 | Score: 2 | Record: 53 | Mean: 9.88 | ε: 0.010 | Steps: 1,473,414
+Game 10000 | Score: 5 | Record: 53 | Mean: 9.98 | ε: 0.010 | Steps: 1,496,891
+
+Done. Best: 53, Final Mean: 9.98
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading config.yaml
+wandb: uploading output.log
+wandb: 
+wandb: Run history:
+wandb:     Epsilon ██▇▇▇▆▅▅▅▅▄▄▄▄▃▃▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:        Game ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇▇███
+wandb:  Mean_Score ▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▂▂▂▃▃▃▄▄▄▄▅▅▅▆▆▆▆▇▇▇▇████
+wandb:      Record ▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▄▄▅▅▆▆▆▆▇▇▇▇▇▇▇▇▇▇██████
+wandb:       Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▁▂▂▃▃▃▄▃▃█▂▆▂▄▇▅█▇▇▅▃▅▂▇▂
+wandb: Total_Steps ▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▂▂▂▂▂▃▃▃▄▄▄▄▄▅▅▅▆▇▇▇▇▇█
+wandb: 
+wandb: Run summary:
+wandb:     Epsilon 0.01
+wandb:        Game 10000
+wandb:  Mean_Score 9.9785
+wandb:      Record 53
+wandb:       Score 5
+wandb: Total_Steps 1496891
+wandb: 
+wandb: 🚀 View run ConvDQN_v3_16x16_dense_seed1 at: https://wandb.ai/saheb37/rl-snake/runs/yqkk45um
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260516_011343-yqkk45um/logs

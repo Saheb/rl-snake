@@ -1,0 +1,87 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run 26vj6gzs
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260513_111918-26vj6gzs
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_10x10_dense_seed2
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/26vj6gzs
+Starting ConvDQN training on 10x10 (dense)...
+Game 100 | Score: 1 | Record: 2 | Mean Score: 0.19 | Epsilon: 0.961
+Game 200 | Score: 0 | Record: 2 | Mean Score: 0.18 | Epsilon: 0.922
+Game 300 | Score: 0 | Record: 2 | Mean Score: 0.21 | Epsilon: 0.883
+Game 400 | Score: 1 | Record: 2 | Mean Score: 0.23 | Epsilon: 0.844
+Game 500 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.804
+Game 600 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.765
+Game 700 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.726
+Game 800 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.687
+Game 900 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.648
+Game 1000 | Score: 1 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.608
+Game 1100 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.569
+Game 1200 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.530
+Game 1300 | Score: 1 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.491
+Game 1400 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.452
+Game 1500 | Score: 0 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.412
+Game 1600 | Score: 1 | Record: 2 | Mean Score: 0.24 | Epsilon: 0.373
+Game 1700 | Score: 0 | Record: 2 | Mean Score: 0.25 | Epsilon: 0.334
+Game 1800 | Score: 0 | Record: 2 | Mean Score: 0.26 | Epsilon: 0.295
+Game 1900 | Score: 1 | Record: 3 | Mean Score: 0.26 | Epsilon: 0.256
+Game 2000 | Score: 0 | Record: 3 | Mean Score: 0.27 | Epsilon: 0.216
+Game 2100 | Score: 0 | Record: 3 | Mean Score: 0.29 | Epsilon: 0.177
+Game 2200 | Score: 0 | Record: 3 | Mean Score: 0.30 | Epsilon: 0.138
+Game 2300 | Score: 0 | Record: 3 | Mean Score: 0.32 | Epsilon: 0.099
+Game 2400 | Score: 1 | Record: 4 | Mean Score: 0.34 | Epsilon: 0.060
+Game 2500 | Score: 0 | Record: 4 | Mean Score: 0.36 | Epsilon: 0.020
+Game 2600 | Score: 0 | Record: 4 | Mean Score: 0.39 | Epsilon: 0.020
+Game 2700 | Score: 1 | Record: 4 | Mean Score: 0.42 | Epsilon: 0.020
+Game 2800 | Score: 0 | Record: 4 | Mean Score: 0.45 | Epsilon: 0.020
+Game 2900 | Score: 1 | Record: 4 | Mean Score: 0.48 | Epsilon: 0.020
+Game 3000 | Score: 2 | Record: 6 | Mean Score: 0.51 | Epsilon: 0.020
+Game 3100 | Score: 2 | Record: 6 | Mean Score: 0.55 | Epsilon: 0.020
+Game 3200 | Score: 0 | Record: 7 | Mean Score: 0.58 | Epsilon: 0.020
+Game 3300 | Score: 2 | Record: 7 | Mean Score: 0.62 | Epsilon: 0.020
+Game 3400 | Score: 2 | Record: 7 | Mean Score: 0.66 | Epsilon: 0.020
+Game 3500 | Score: 0 | Record: 7 | Mean Score: 0.70 | Epsilon: 0.020
+Game 3600 | Score: 2 | Record: 10 | Mean Score: 0.74 | Epsilon: 0.020
+Game 3700 | Score: 2 | Record: 10 | Mean Score: 0.80 | Epsilon: 0.020
+Game 3800 | Score: 3 | Record: 10 | Mean Score: 0.86 | Epsilon: 0.020
+Game 3900 | Score: 3 | Record: 10 | Mean Score: 0.92 | Epsilon: 0.020
+Game 4000 | Score: 7 | Record: 10 | Mean Score: 0.99 | Epsilon: 0.020
+Game 4100 | Score: 3 | Record: 10 | Mean Score: 1.06 | Epsilon: 0.020
+Game 4200 | Score: 8 | Record: 11 | Mean Score: 1.13 | Epsilon: 0.020
+Game 4300 | Score: 2 | Record: 11 | Mean Score: 1.20 | Epsilon: 0.020
+[Game 4375] LR cooldown → 1e-5
+Game 4400 | Score: 4 | Record: 13 | Mean Score: 1.27 | Epsilon: 0.020
+Game 4500 | Score: 9 | Record: 14 | Mean Score: 1.36 | Epsilon: 0.020
+Game 4600 | Score: 8 | Record: 14 | Mean Score: 1.43 | Epsilon: 0.020
+Game 4700 | Score: 5 | Record: 14 | Mean Score: 1.51 | Epsilon: 0.020
+Game 4800 | Score: 9 | Record: 15 | Mean Score: 1.59 | Epsilon: 0.020
+Game 4900 | Score: 3 | Record: 16 | Mean Score: 1.67 | Epsilon: 0.020
+Game 5000 | Score: 6 | Record: 16 | Mean Score: 1.73 | Epsilon: 0.020
+
+Done. Best: 16, Final Mean: 1.73
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 49-49, summary, console lines 51-53
+wandb: 
+wandb: Run history:
+wandb:    Epsilon ██▇▇▇▆▆▆▅▅▅▄▄▄▃▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       Game ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: Mean_Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▄▄▄▅▅▆▇▇▇█
+wandb:     Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▅▅▅▅▅▅▅▇▇▇▇█
+wandb:      Score ▂▁▁▂▁▁▁▁▂▁▂▁▁▂▁▂▁▁▁▁▁▁▂▂▃▃▃▁▃▃▃▆▃▇▃█▇▅█▆
+wandb: 
+wandb: Run summary:
+wandb:    Epsilon 0.02
+wandb:       Game 5000
+wandb: Mean_Score 1.7326
+wandb:     Record 16
+wandb:      Score 6
+wandb: 
+wandb: 🚀 View run ConvDQN_10x10_dense_seed2 at: https://wandb.ai/saheb37/rl-snake/runs/26vj6gzs
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260513_111918-26vj6gzs/logs
