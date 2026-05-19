@@ -3,6 +3,8 @@
 [![Curiosity notebook](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![PPO agent mastering 10×10 Snake after curriculum training](assets/hero_snake.webp)
+
 A full journey through modern reinforcement learning on the game of Snake — from tabular Q-learning through ConvNets — with interactive marimo notebooks, real training logs, and honest empirical results.
 
 ---
