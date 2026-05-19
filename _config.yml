@@ -1,0 +1,9 @@
+theme: minima
+title: RL Snake
+description: A full journey through modern reinforcement learning on Snake — tabular Q through ConvNets.
+url: "https://saheb.github.io"
+baseurl: "/rl-snake"
+github_username: Saheb
+
+minima:
+  skin: dark
