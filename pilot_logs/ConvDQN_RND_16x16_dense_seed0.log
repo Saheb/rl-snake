@@ -1,0 +1,105 @@
+/Users/saheb/home/rl-snake/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /Users/saheb/.netrc.
+wandb: Currently logged in as: saheb37 to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run mkhy8jw0
+wandb: Tracking run with wandb version 0.26.0
+wandb: Run data is saved locally in /Users/saheb/home/rl-snake/wandb/run-20260518_145553-mkhy8jw0
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ConvDQN_RND_16x16_dense_seed0
+wandb: ⭐️ View project at https://wandb.ai/saheb37/rl-snake
+wandb: 🚀 View run at https://wandb.ai/saheb37/rl-snake/runs/mkhy8jw0
+ConvDQN+RND | 16×16 dense | γ=0.995 batch=512 calls/ep=10 lr=0.000126 β_rnd=0.05 ε_decay/step=3.68e-06
+Game 100 | Score: 0 | Record: 2 | Mean: 0.22 | ε: 0.966 | RND_loss: 0.0000 | Steps: 9,267
+Game 200 | Score: 0 | Record: 2 | Mean: 0.20 | ε: 0.938 | RND_loss: 0.0000 | Steps: 16,946
+Game 300 | Score: 0 | Record: 2 | Mean: 0.22 | ε: 0.907 | RND_loss: 0.0000 | Steps: 25,163
+Game 400 | Score: 0 | Record: 2 | Mean: 0.21 | ε: 0.882 | RND_loss: 0.0000 | Steps: 31,943
+Game 500 | Score: 0 | Record: 2 | Mean: 0.23 | ε: 0.856 | RND_loss: 0.0000 | Steps: 39,031
+Game 600 | Score: 0 | Record: 2 | Mean: 0.24 | ε: 0.833 | RND_loss: 0.0000 | Steps: 45,347
+Game 700 | Score: 0 | Record: 2 | Mean: 0.24 | ε: 0.808 | RND_loss: 0.0000 | Steps: 52,211
+Game 800 | Score: 1 | Record: 2 | Mean: 0.26 | ε: 0.785 | RND_loss: 0.0000 | Steps: 58,363
+Game 900 | Score: 0 | Record: 3 | Mean: 0.29 | ε: 0.759 | RND_loss: 0.0000 | Steps: 65,444
+Game 1000 | Score: 1 | Record: 3 | Mean: 0.32 | ε: 0.735 | RND_loss: 0.0000 | Steps: 72,039
+Game 1100 | Score: 1 | Record: 3 | Mean: 0.34 | ε: 0.709 | RND_loss: 0.0000 | Steps: 78,878
+Game 1200 | Score: 0 | Record: 3 | Mean: 0.38 | ε: 0.683 | RND_loss: 0.0000 | Steps: 86,203
+Game 1300 | Score: 2 | Record: 3 | Mean: 0.42 | ε: 0.657 | RND_loss: 0.0000 | Steps: 93,096
+Game 1400 | Score: 1 | Record: 3 | Mean: 0.46 | ε: 0.630 | RND_loss: 0.0000 | Steps: 100,521
+Game 1500 | Score: 0 | Record: 3 | Mean: 0.51 | ε: 0.605 | RND_loss: 0.0000 | Steps: 107,302
+Game 1600 | Score: 2 | Record: 3 | Mean: 0.55 | ε: 0.578 | RND_loss: 0.0000 | Steps: 114,498
+Game 1700 | Score: 2 | Record: 3 | Mean: 0.60 | ε: 0.557 | RND_loss: 0.0000 | Steps: 120,300
+Game 1800 | Score: 2 | Record: 3 | Mean: 0.64 | ε: 0.536 | RND_loss: 0.0000 | Steps: 125,913
+Game 1900 | Score: 2 | Record: 3 | Mean: 0.69 | ε: 0.516 | RND_loss: 0.0000 | Steps: 131,336
+Game 2000 | Score: 1 | Record: 3 | Mean: 0.74 | ε: 0.493 | RND_loss: 0.0000 | Steps: 137,563
+Game 2100 | Score: 2 | Record: 3 | Mean: 0.78 | ε: 0.473 | RND_loss: 0.0000 | Steps: 143,154
+Game 2200 | Score: 3 | Record: 4 | Mean: 0.82 | ε: 0.452 | RND_loss: 0.0000 | Steps: 148,658
+Game 2300 | Score: 1 | Record: 5 | Mean: 0.86 | ε: 0.433 | RND_loss: 0.0000 | Steps: 154,002
+Game 2400 | Score: 2 | Record: 5 | Mean: 0.89 | ε: 0.415 | RND_loss: 0.0000 | Steps: 158,936
+Game 2500 | Score: 1 | Record: 5 | Mean: 0.93 | ε: 0.398 | RND_loss: 0.0000 | Steps: 163,586
+Game 2600 | Score: 1 | Record: 5 | Mean: 0.97 | ε: 0.381 | RND_loss: 0.0000 | Steps: 168,156
+Game 2700 | Score: 2 | Record: 5 | Mean: 1.00 | ε: 0.364 | RND_loss: 0.0000 | Steps: 172,765
+Game 2800 | Score: 1 | Record: 5 | Mean: 1.03 | ε: 0.347 | RND_loss: 0.0000 | Steps: 177,334
+Game 2900 | Score: 3 | Record: 5 | Mean: 1.06 | ε: 0.331 | RND_loss: 0.0000 | Steps: 181,749
+Game 3000 | Score: 1 | Record: 5 | Mean: 1.10 | ε: 0.314 | RND_loss: 0.0000 | Steps: 186,223
+Game 3100 | Score: 2 | Record: 5 | Mean: 1.13 | ε: 0.298 | RND_loss: 0.0000 | Steps: 190,570
+Game 3200 | Score: 3 | Record: 5 | Mean: 1.16 | ε: 0.283 | RND_loss: 0.0000 | Steps: 194,674
+Game 3300 | Score: 3 | Record: 7 | Mean: 1.20 | ε: 0.266 | RND_loss: 0.0000 | Steps: 199,374
+Game 3400 | Score: 2 | Record: 7 | Mean: 1.23 | ε: 0.249 | RND_loss: 0.0000 | Steps: 204,029
+Game 3500 | Score: 5 | Record: 7 | Mean: 1.26 | ε: 0.233 | RND_loss: 0.0000 | Steps: 208,346
+Game 3600 | Score: 2 | Record: 7 | Mean: 1.29 | ε: 0.216 | RND_loss: 0.0000 | Steps: 212,845
+Game 3700 | Score: 3 | Record: 7 | Mean: 1.33 | ε: 0.199 | RND_loss: 0.0000 | Steps: 217,469
+Game 3800 | Score: 4 | Record: 7 | Mean: 1.36 | ε: 0.182 | RND_loss: 0.0000 | Steps: 222,160
+Game 3900 | Score: 2 | Record: 8 | Mean: 1.40 | ε: 0.163 | RND_loss: 0.0000 | Steps: 227,189
+Game 4000 | Score: 1 | Record: 8 | Mean: 1.44 | ε: 0.147 | RND_loss: 0.0000 | Steps: 231,685
+Game 4100 | Score: 2 | Record: 8 | Mean: 1.47 | ε: 0.126 | RND_loss: 0.0000 | Steps: 237,328
+Game 4200 | Score: 7 | Record: 9 | Mean: 1.51 | ε: 0.104 | RND_loss: 0.0000 | Steps: 243,175
+Game 4300 | Score: 4 | Record: 10 | Mean: 1.57 | ε: 0.081 | RND_loss: 0.0000 | Steps: 249,518
+Game 4400 | Score: 2 | Record: 11 | Mean: 1.63 | ε: 0.054 | RND_loss: 0.0000 | Steps: 256,927
+Game 4500 | Score: 11 | Record: 18 | Mean: 1.75 | ε: 0.010 | RND_loss: 0.0000 | Steps: 272,230
+Game 4600 | Score: 7 | Record: 24 | Mean: 1.94 | ε: 0.010 | RND_loss: 0.0000 | Steps: 295,319
+Game 4700 | Score: 12 | Record: 24 | Mean: 2.12 | ε: 0.010 | RND_loss: 0.0000 | Steps: 315,272
+Game 4800 | Score: 9 | Record: 26 | Mean: 2.33 | ε: 0.010 | RND_loss: 0.0000 | Steps: 347,813
+Game 4900 | Score: 18 | Record: 26 | Mean: 2.53 | ε: 0.010 | RND_loss: 0.0000 | Steps: 368,820
+Game 5000 | Score: 7 | Record: 29 | Mean: 2.72 | ε: 0.010 | RND_loss: 0.0000 | Steps: 389,795
+Game 5100 | Score: 24 | Record: 29 | Mean: 2.96 | ε: 0.010 | RND_loss: 0.0000 | Steps: 414,693
+Game 5200 | Score: 13 | Record: 29 | Mean: 3.16 | ε: 0.010 | RND_loss: 0.0000 | Steps: 436,357
+Game 5300 | Score: 14 | Record: 29 | Mean: 3.35 | ε: 0.010 | RND_loss: 0.0000 | Steps: 455,500
+Game 5400 | Score: 13 | Record: 30 | Mean: 3.53 | ε: 0.010 | RND_loss: 0.0000 | Steps: 476,588
+Game 5500 | Score: 17 | Record: 30 | Mean: 3.74 | ε: 0.010 | RND_loss: 0.0000 | Steps: 498,942
+Game 5600 | Score: 4 | Record: 32 | Mean: 3.96 | ε: 0.010 | RND_loss: 0.0000 | Steps: 524,982
+Game 5700 | Score: 19 | Record: 32 | Mean: 4.15 | ε: 0.010 | RND_loss: 0.0000 | Steps: 549,681
+Game 5800 | Score: 9 | Record: 33 | Mean: 4.36 | ε: 0.010 | RND_loss: 0.0000 | Steps: 575,116
+Game 5900 | Score: 25 | Record: 36 | Mean: 4.54 | ε: 0.010 | RND_loss: 0.0000 | Steps: 597,541
+Game 6000 | Score: 9 | Record: 37 | Mean: 4.73 | ε: 0.010 | RND_loss: 0.0000 | Steps: 621,176
+Game 6100 | Score: 16 | Record: 37 | Mean: 4.92 | ε: 0.010 | RND_loss: 0.0000 | Steps: 647,528
+Game 6200 | Score: 14 | Record: 37 | Mean: 5.08 | ε: 0.010 | RND_loss: 0.0000 | Steps: 670,985
+Game 6300 | Score: 5 | Record: 37 | Mean: 5.26 | ε: 0.010 | RND_loss: 0.0000 | Steps: 696,234
+Game 6400 | Score: 25 | Record: 37 | Mean: 5.43 | ε: 0.010 | RND_loss: 0.0000 | Steps: 720,065
+Game 6500 | Score: 6 | Record: 42 | Mean: 5.61 | ε: 0.010 | RND_loss: 0.0000 | Steps: 745,569
+Game 6600 | Score: 3 | Record: 42 | Mean: 5.77 | ε: 0.010 | RND_loss: 0.0000 | Steps: 768,071
+Game 6700 | Score: 17 | Record: 42 | Mean: 5.92 | ε: 0.010 | RND_loss: 0.0000 | Steps: 790,138
+Game 6800 | Score: 33 | Record: 42 | Mean: 6.09 | ε: 0.010 | RND_loss: 0.0000 | Steps: 815,952
+Game 6900 | Score: 11 | Record: 42 | Mean: 6.24 | ε: 0.010 | RND_loss: 0.0000 | Steps: 838,710
+Game 7000 | Score: 37 | Record: 42 | Mean: 6.38 | ε: 0.010 | RND_loss: 0.0000 | Steps: 861,393
+Game 7100 | Score: 12 | Record: 42 | Mean: 6.52 | ε: 0.010 | RND_loss: 0.0000 | Steps: 882,838
+Game 7200 | Score: 3 | Record: 42 | Mean: 6.66 | ε: 0.010 | RND_loss: 0.0000 | Steps: 906,533
+Game 7300 | Score: 19 | Record: 44 | Mean: 6.81 | ε: 0.010 | RND_loss: 0.0000 | Steps: 930,646
+Game 7400 | Score: 10 | Record: 44 | Mean: 6.96 | ε: 0.010 | RND_loss: 0.0000 | Steps: 955,321
+Game 7500 | Score: 30 | Record: 44 | Mean: 7.10 | ε: 0.010 | RND_loss: 0.0000 | Steps: 978,071
+Game 7600 | Score: 28 | Record: 45 | Mean: 7.23 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,000,251
+Game 7700 | Score: 5 | Record: 56 | Mean: 7.35 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,022,252
+Game 7800 | Score: 34 | Record: 56 | Mean: 7.50 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,046,707
+Game 7900 | Score: 13 | Record: 56 | Mean: 7.64 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,070,157
+Game 8000 | Score: 20 | Record: 56 | Mean: 7.78 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,094,575
+Game 8100 | Score: 22 | Record: 56 | Mean: 7.89 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,116,357
+Game 8200 | Score: 16 | Record: 56 | Mean: 8.02 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,139,325
+Game 8300 | Score: 11 | Record: 56 | Mean: 8.15 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,163,025
+Game 8400 | Score: 19 | Record: 56 | Mean: 8.26 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,184,160
+Game 8500 | Score: 4 | Record: 56 | Mean: 8.39 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,209,026
+Game 8600 | Score: 7 | Record: 56 | Mean: 8.50 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,231,581
+Game 8700 | Score: 6 | Record: 56 | Mean: 8.62 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,255,471
+[Game 8750] LR cooldown → 1e-5
+Game 8800 | Score: 3 | Record: 56 | Mean: 8.75 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,280,544
+Game 8900 | Score: 11 | Record: 56 | Mean: 8.86 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,303,137
+Game 9000 | Score: 7 | Record: 56 | Mean: 8.97 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,327,797
+Game 9100 | Score: 15 | Record: 56 | Mean: 9.08 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,350,925
+Game 9200 | Score: 26 | Record: 56 | Mean: 9.20 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,376,013

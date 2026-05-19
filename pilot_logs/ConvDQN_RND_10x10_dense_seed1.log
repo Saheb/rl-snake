@@ -105,3 +105,38 @@ Game 9100 | Score: 26 | Record: 44 | Mean: 10.86 | ε: 0.010 | RND_loss: 0.0000 
 Game 9200 | Score: 8 | Record: 44 | Mean: 10.95 | ε: 0.010 | RND_loss: 0.0000 | Steps: 987,217
 Game 9300 | Score: 22 | Record: 44 | Mean: 11.05 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,003,610
 Game 9400 | Score: 26 | Record: 44 | Mean: 11.13 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,019,518
+Game 9500 | Score: 25 | Record: 44 | Mean: 11.22 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,034,953
+Game 9600 | Score: 22 | Record: 44 | Mean: 11.29 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,050,547
+Game 9700 | Score: 3 | Record: 44 | Mean: 11.37 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,066,042
+Game 9800 | Score: 27 | Record: 44 | Mean: 11.45 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,082,081
+Game 9900 | Score: 21 | Record: 44 | Mean: 11.53 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,097,725
+Game 10000 | Score: 16 | Record: 44 | Mean: 11.61 | ε: 0.010 | RND_loss: 0.0000 | Steps: 1,114,021
+
+Done. Best: 44, Final Mean: 11.61
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml; uploading output.log
+wandb: uploading wandb-summary.json; uploading output.log
+wandb: uploading history steps 99-99, summary, console lines 101-103
+wandb: 
+wandb: Run history:
+wandb:     Epsilon █▇▇▇▆▅▅▅▄▄▄▃▃▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:        Game ▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▅▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇█████
+wandb:  Mean_Score ▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▃▃▃▄▄▄▅▅▅▆▆▆▆▆▆▆▇▇▇▇███
+wandb:    RND_Loss ▁█▆▅▄▃▃▃▃▂▂▂▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+wandb:      Record ▁▁▁▁▁▁▂▂▂▂▂▃▄▄▅▆▆▆▆▆▇▇▇▇▇▇▇▇████████████
+wandb:       Score ▁▁▁▁▁▁▂▁▁▁▂▄▅▅▅▆▄▁▃▅▆▂▅▄▃▅▁▅▄▅▅▅▃█▇▇▇▇▇█
+wandb: Total_Steps ▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▆▆▆▇▇▇▇▇▇███
+wandb: 
+wandb: Run summary:
+wandb:     Epsilon 0.01
+wandb:        Game 10000
+wandb:  Mean_Score 11.6126
+wandb:    RND_Loss 0.0
+wandb:      Record 44
+wandb:       Score 16
+wandb: Total_Steps 1114021
+wandb: 
+wandb: 🚀 View run ConvDQN_RND_10x10_dense_seed1 at: https://wandb.ai/saheb37/rl-snake/runs/4zpuehek
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260516_183531-4zpuehek/logs

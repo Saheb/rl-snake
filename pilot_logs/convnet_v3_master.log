@@ -786,3 +786,65 @@ Game 6500 | Score: 26 | Record: 41 | Mean: 5.43 | ε: 0.010 | Steps: 693,554
 Game 6600 | Score: 20 | Record: 41 | Mean: 5.63 | ε: 0.010 | Steps: 719,027
 Game 6700 | Score: 23 | Record: 41 | Mean: 5.80 | ε: 0.010 | Steps: 742,814
 Game 6800 | Score: 30 | Record: 41 | Mean: 5.96 | ε: 0.010 | Steps: 765,833
+Game 6900 | Score: 28 | Record: 41 | Mean: 6.13 | ε: 0.010 | Steps: 789,719
+Game 7000 | Score: 27 | Record: 41 | Mean: 6.31 | ε: 0.010 | Steps: 814,216
+Game 7100 | Score: 23 | Record: 49 | Mean: 6.49 | ε: 0.010 | Steps: 840,079
+Game 7200 | Score: 3 | Record: 49 | Mean: 6.66 | ε: 0.010 | Steps: 864,350
+Game 7300 | Score: 21 | Record: 49 | Mean: 6.80 | ε: 0.010 | Steps: 886,681
+Game 7400 | Score: 19 | Record: 49 | Mean: 6.97 | ε: 0.010 | Steps: 911,345
+Game 7500 | Score: 24 | Record: 49 | Mean: 7.11 | ε: 0.010 | Steps: 934,512
+Game 7600 | Score: 3 | Record: 49 | Mean: 7.26 | ε: 0.010 | Steps: 958,110
+Game 7700 | Score: 50 | Record: 50 | Mean: 7.39 | ε: 0.010 | Steps: 980,775
+Game 7800 | Score: 4 | Record: 50 | Mean: 7.52 | ε: 0.010 | Steps: 1,003,211
+Game 7900 | Score: 17 | Record: 50 | Mean: 7.68 | ε: 0.010 | Steps: 1,029,708
+Game 8000 | Score: 32 | Record: 52 | Mean: 7.81 | ε: 0.010 | Steps: 1,052,736
+Game 8100 | Score: 19 | Record: 52 | Mean: 7.94 | ε: 0.010 | Steps: 1,076,012
+Game 8200 | Score: 21 | Record: 52 | Mean: 8.07 | ε: 0.010 | Steps: 1,098,921
+Game 8300 | Score: 8 | Record: 52 | Mean: 8.22 | ε: 0.010 | Steps: 1,126,132
+Game 8400 | Score: 15 | Record: 52 | Mean: 8.34 | ε: 0.010 | Steps: 1,148,783
+Game 8500 | Score: 13 | Record: 52 | Mean: 8.46 | ε: 0.010 | Steps: 1,172,628
+Game 8600 | Score: 25 | Record: 52 | Mean: 8.56 | ε: 0.010 | Steps: 1,193,901
+Game 8700 | Score: 7 | Record: 52 | Mean: 8.68 | ε: 0.010 | Steps: 1,217,037
+[Game 8750] LR cooldown → 1e-5
+Game 8800 | Score: 36 | Record: 52 | Mean: 8.81 | ε: 0.010 | Steps: 1,242,567
+Game 8900 | Score: 4 | Record: 53 | Mean: 8.95 | ε: 0.010 | Steps: 1,268,769
+Game 9000 | Score: 10 | Record: 53 | Mean: 9.06 | ε: 0.010 | Steps: 1,292,536
+Game 9100 | Score: 13 | Record: 53 | Mean: 9.19 | ε: 0.010 | Steps: 1,319,347
+Game 9200 | Score: 4 | Record: 53 | Mean: 9.31 | ε: 0.010 | Steps: 1,344,160
+Game 9300 | Score: 21 | Record: 53 | Mean: 9.42 | ε: 0.010 | Steps: 1,368,869
+Game 9400 | Score: 12 | Record: 53 | Mean: 9.54 | ε: 0.010 | Steps: 1,394,225
+Game 9500 | Score: 14 | Record: 53 | Mean: 9.65 | ε: 0.010 | Steps: 1,420,596
+Game 9600 | Score: 5 | Record: 54 | Mean: 9.76 | ε: 0.010 | Steps: 1,445,639
+Game 9700 | Score: 16 | Record: 54 | Mean: 9.86 | ε: 0.010 | Steps: 1,470,306
+Game 9800 | Score: 14 | Record: 54 | Mean: 9.96 | ε: 0.010 | Steps: 1,495,665
+Game 9900 | Score: 22 | Record: 54 | Mean: 10.08 | ε: 0.010 | Steps: 1,522,296
+Game 10000 | Score: 34 | Record: 54 | Mean: 10.18 | ε: 0.010 | Steps: 1,547,439
+
+Done. Best: 54, Final Mean: 10.18
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading config.yaml
+wandb: uploading data
+wandb: 
+wandb: Run history:
+wandb:     Epsilon ██▇▇▆▅▄▄▄▄▃▃▃▃▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:        Game ▁▁▁▁▂▂▂▂▂▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇▇▇█
+wandb:  Mean_Score ▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▂▂▂▂▃▄▄▄▄▅▅▅▅▆▆▆▆▆▇▇▇▇██
+wandb:      Record ▁▁▁▁▁▁▁▁▁▁▁▁▁▂▂▂▂▂▂▂▃▅▅▅▅▆▆▆▆▆▇▇▇███████
+wandb:       Score ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂▃▄▆▄▅▄▄▅▅▇▅▅▇▅▄▆█▃▄▄▄█
+wandb: Total_Steps ▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▂▂▂▂▂▃▃▃▄▄▄▄▅▅▅▆▆▆▆▆▆▇▇▇█
+wandb: 
+wandb: Run summary:
+wandb:     Epsilon 0.01
+wandb:        Game 10000
+wandb:  Mean_Score 10.1805
+wandb:      Record 54
+wandb:       Score 34
+wandb: Total_Steps 1547439
+wandb: 
+wandb: 🚀 View run ConvDQN_v3_16x16_dense_seed2 at: https://wandb.ai/saheb37/rl-snake/runs/fcw6nrf4
+wandb: ⭐️ View project at: https://wandb.ai/saheb37/rl-snake
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260517_011056-fcw6nrf4/logs
+--- ConvDQN_v3_16x16_dense_seed2 done ---
+All v3 experiments complete.
