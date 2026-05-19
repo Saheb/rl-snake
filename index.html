@@ -59,6 +59,9 @@
     .bar-val { color: var(--muted); font-size: 0.8rem; }
 
     footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.8rem; color: var(--muted); }
+
+    .hero-img { text-align: center; margin: 1.5rem 0; }
+    .hero-img img { max-width: 320px; border-radius: 8px; border: 1px solid var(--border); }
   </style>
 </head>
 <body>
@@ -80,6 +83,10 @@
     <p>A full journey through modern reinforcement learning on Snake — from tabular Q-learning through ConvNets — with interactive notebooks, real training logs, and honest empirical results.</p>
   </div>
 
+  <div class="hero-img">
+    <img src="notebooks/random_walk.gif" alt="Snake agent learning to play" />
+  </div>
+
   <!-- NOTEBOOKS -->
   <h2>Interactive Notebooks</h2>
 
@@ -88,7 +95,9 @@
       <h3>Curiosity Killed the Snake</h3>
       <p>Does the Intrinsic Curiosity Module (Pathak et al., 2017) actually help? A 2×3×2×3 ablation across DQN, PPO, three reward modes, two boards, three seeds. Includes the death-oversampling trap and the terminal-mask fix.</p>
     </div>
-    <a class="btn" href="https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm">Open →</a>
+    <a href="https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm" style="flex-shrink:0">
+      <img src="https://marimo.io/shield.svg" alt="Open in marimo" style="height:28px" />
+    </a>
   </div>
 
   <div class="notebook-card">
@@ -96,7 +105,9 @@
       <h3>ConvNet vs Feature DQN</h3>
       <p>Can raw grid pixels beat 24 hand-crafted features? A 30-trial W&B hyperparameter sweep, architecture walkthrough, and RND exploration ablation. ConvNet v3 reaches mean 12.32 on 10×10 vs Feature DQN's 5.50.</p>
     </div>
-    <a class="btn" href="https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/convnet.py/wasm">Open →</a>
+    <a href="https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/convnet.py/wasm" style="flex-shrink:0">
+      <img src="https://marimo.io/shield.svg" alt="Open in marimo" style="height:28px" />
+    </a>
   </div>
 
   <!-- RESULTS -->
@@ -122,14 +133,21 @@
 
   <h3>1 · Classical Baselines</h3>
   <table>
-    <tr><th>Algorithm</th><th>Notes</th></tr>
-    <tr><td>Tabular Q-Learning</td><td>5×5 board; converges in ~10k episodes</td></tr>
-    <tr><td>REINFORCE</td><td>Policy gradient baseline; high variance</td></tr>
-    <tr><td>A2C</td><td>Critic stabilises training on 8×8</td></tr>
-    <tr><td>PPO</td><td>On-policy; strong on dense reward</td></tr>
-    <tr><td>PPO + Curriculum</td><td>Progressive board growth 5×5 → 10×10</td></tr>
-    <tr><td>Behaviour Cloning → PPO</td><td>Pretrain on human demos; mixed results</td></tr>
-    <tr><td>DQN teacher → PPO student</td><td>Knowledge distillation across algorithm families</td></tr>
+    <tr><th>Algorithm</th><th>Board</th><th>Games</th><th>Mean Score</th><th>Notes</th></tr>
+    <tr><td>Tabular Q-Learning</td><td>5×5</td><td>~10k</td><td class="num">—</td><td>Converges; too small to generalise</td></tr>
+    <tr><td>REINFORCE</td><td>8×8</td><td>—</td><td class="num">—</td><td>High variance; baseline for policy gradient</td></tr>
+    <tr><td>A2C</td><td>8×8</td><td>—</td><td class="num">—</td><td>Critic stabilises training</td></tr>
+    <tr><td>DQN</td><td>8×8</td><td>4k</td><td class="num mid">4.61</td><td>Pilot A — Dueling + 3-step</td></tr>
+    <tr><td>DQN + PER</td><td>8×8</td><td>4k</td><td class="num mid">4.48</td><td>Pilot B — prioritised replay</td></tr>
+    <tr><td>DQN + PER + ICM (unmasked)</td><td>8×8</td><td>4k</td><td class="num mid">4.46</td><td>Pilot C — ICM poisons terminal transitions</td></tr>
+    <tr><td>DQN + PER + ICM (masked)</td><td>8×8</td><td>4k</td><td class="num mid">4.60</td><td>Pilot D — terminal mask fix</td></tr>
+    <tr><td>PPO (dense reward)</td><td>10×10</td><td>5k</td><td class="num low">0.12</td><td>PPO struggles with shaped reward</td></tr>
+    <tr><td>PPO (pure sparse)</td><td>10×10</td><td>5k</td><td class="num mid">5.36</td><td>PPO shines without dense shaping</td></tr>
+    <tr><td>PPO + ICM (dense)</td><td>10×10</td><td>5k</td><td class="num low">0.14</td><td>ICM doesn't rescue PPO + dense</td></tr>
+    <tr><td>PPO + ICM (pure sparse)</td><td>10×10</td><td>5k</td><td class="num best">6.63</td><td>+24% — ICM's real contribution</td></tr>
+    <tr><td>PPO + Curriculum</td><td>5→10×10</td><td>—</td><td class="num">—</td><td>Progressive board growth</td></tr>
+    <tr><td>Behaviour Cloning → PPO</td><td>10×10</td><td>—</td><td class="num">—</td><td>Pretrain on human demos; mixed results</td></tr>
+    <tr><td>DQN teacher → PPO student</td><td>10×10</td><td>—</td><td class="num">—</td><td>Knowledge distillation across families</td></tr>
   </table>
 
   <h3>2 · Curiosity Investigation</h3>
