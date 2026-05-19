@@ -7,3 +7,17 @@ github_username: Saheb
 
 minima:
   skin: dark
+  header_pages: []   # no nav tabs — README is the whole site
+
+exclude:
+  - docs/
+  - notebooks/
+  - scripts/
+  - pilot_logs/
+  - sweeps/
+  - assets/
+  - logs/
+  - hf_space/
+  - "*.sh"
+  - "*.py"
+  - "*.log"
