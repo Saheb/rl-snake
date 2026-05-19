@@ -84,7 +84,8 @@
   </div>
 
   <div class="hero-img">
-    <img src="notebooks/random_walk.gif" alt="Snake agent learning to play" />
+    <img src="assets/hero_snake.webp" alt="PPO agent mastering 10×10 Snake after curriculum training" />
+    <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem">Final PPO agent after the 5×5 → 10×10 curriculum</p>
   </div>
 
   <!-- NOTEBOOKS -->
@@ -131,26 +132,37 @@
   <!-- EXPERIMENT HISTORY -->
   <h2>Experiment History</h2>
 
-  <h3>1 · Classical Baselines</h3>
+  <h3>1 · Zero to Hero — the Curriculum Journey</h3>
+  <p style="font-size:0.875rem;color:var(--muted);margin-bottom:0.75rem">
+    <a href="assets/snake_learning_journey.html">Watch the gameplay replay →</a>
+  </p>
   <table>
-    <tr><th>Algorithm</th><th>Board</th><th>Games</th><th>Mean Score</th><th>Notes</th></tr>
-    <tr><td>Tabular Q-Learning</td><td>5×5</td><td>~10k</td><td class="num">—</td><td>Converges; too small to generalise</td></tr>
-    <tr><td>REINFORCE</td><td>8×8</td><td>—</td><td class="num">—</td><td>High variance; baseline for policy gradient</td></tr>
-    <tr><td>A2C</td><td>8×8</td><td>—</td><td class="num">—</td><td>Critic stabilises training</td></tr>
-    <tr><td>DQN</td><td>8×8</td><td>4k</td><td class="num mid">4.61</td><td>Pilot A — Dueling + 3-step</td></tr>
-    <tr><td>DQN + PER</td><td>8×8</td><td>4k</td><td class="num mid">4.48</td><td>Pilot B — prioritised replay</td></tr>
-    <tr><td>DQN + PER + ICM (unmasked)</td><td>8×8</td><td>4k</td><td class="num mid">4.46</td><td>Pilot C — ICM poisons terminal transitions</td></tr>
-    <tr><td>DQN + PER + ICM (masked)</td><td>8×8</td><td>4k</td><td class="num mid">4.60</td><td>Pilot D — terminal mask fix</td></tr>
-    <tr><td>PPO (dense reward)</td><td>10×10</td><td>5k</td><td class="num low">0.12</td><td>PPO struggles with shaped reward</td></tr>
-    <tr><td>PPO (pure sparse)</td><td>10×10</td><td>5k</td><td class="num mid">5.36</td><td>PPO shines without dense shaping</td></tr>
-    <tr><td>PPO + ICM (dense)</td><td>10×10</td><td>5k</td><td class="num low">0.14</td><td>ICM doesn't rescue PPO + dense</td></tr>
-    <tr><td>PPO + ICM (pure sparse)</td><td>10×10</td><td>5k</td><td class="num best">6.63</td><td>+24% — ICM's real contribution</td></tr>
-    <tr><td>PPO + Curriculum</td><td>5→10×10</td><td>—</td><td class="num">—</td><td>Progressive board growth</td></tr>
-    <tr><td>Behaviour Cloning → PPO</td><td>10×10</td><td>—</td><td class="num">—</td><td>Pretrain on human demos; mixed results</td></tr>
-    <tr><td>DQN teacher → PPO student</td><td>10×10</td><td>—</td><td class="num">—</td><td>Knowledge distillation across families</td></tr>
+    <tr><th>Phase</th><th>Algorithm</th><th>Board</th><th>Max Score</th><th>Notes</th></tr>
+    <tr><td>0</td><td>Tabular Q-Learning</td><td>5×5</td><td class="num best">24 ✓</td><td>Perfect on small board</td></tr>
+    <tr><td>1</td><td>Double Q-Learning</td><td>5×5</td><td class="num best">24</td><td>Stable convergence</td></tr>
+    <tr><td>2</td><td>Behaviour Cloning + PPO</td><td>8×8</td><td class="num mid">46</td><td>Human demos bootstrap policy</td></tr>
+    <tr><td>3</td><td>PPO + Curriculum (5→10×10)</td><td>10×10</td><td class="num best">64</td><td>Progressive board growth</td></tr>
   </table>
 
-  <h3>2 · Curiosity Investigation</h3>
+  <h3>2 · DQN Ablations (8×8, 4k games, n=3)</h3>
+  <table>
+    <tr><th>Algorithm</th><th>Mean Score</th><th>Notes</th></tr>
+    <tr><td>DQN + Dueling + 3-step</td><td class="num mid">4.61</td><td>Pilot A baseline</td></tr>
+    <tr><td>DQN + PER</td><td class="num mid">4.48</td><td>Pilot B — prioritised replay</td></tr>
+    <tr><td>DQN + PER + ICM (unmasked)</td><td class="num mid">4.46</td><td>Pilot C — ICM poisons terminal transitions</td></tr>
+    <tr><td>DQN + PER + ICM (terminal mask)</td><td class="num mid">4.60</td><td>Pilot D — fix recovers baseline</td></tr>
+  </table>
+
+  <h3>3 · ICM Investigation (10×10, 5k games, n=3)</h3>
+  <table>
+    <tr><th>Algorithm</th><th>Reward mode</th><th>Mean Score</th><th>Notes</th></tr>
+    <tr><td>PPO</td><td>dense</td><td class="num low">0.12</td><td>PPO struggles with shaped reward</td></tr>
+    <tr><td>PPO + ICM</td><td>dense</td><td class="num low">0.14</td><td>ICM doesn't rescue PPO + dense</td></tr>
+    <tr><td>PPO</td><td>pure sparse</td><td class="num mid">5.36</td><td>PPO shines without dense shaping</td></tr>
+    <tr><td>PPO + ICM</td><td>pure sparse</td><td class="num best">6.63</td><td>+24% — ICM's real contribution</td></tr>
+  </table>
+
+  <h3>4 · Curiosity Summary</h3>
   <table>
     <tr><th>Question</th><th>Answer</th></tr>
     <tr><td>Does ICM help DQN with dense reward?</td><td class="low">No — |Δ| &lt; 0.05</td></tr>
@@ -160,7 +172,7 @@
     <tr><td>Does ICM increase state coverage?</td><td class="low">No — both saturate at ~99%</td></tr>
   </table>
 
-  <h3>3 · ConvNet Sweep Findings</h3>
+  <h3>5 · ConvNet Sweep Findings</h3>
   <ul>
     <li><strong>n_steps=1 universally better with PER</strong> — appeared in every top sweep config; multi-step returns hurt with prioritised replay</li>
     <li><strong>ch1=64 / ch2=128</strong> — larger second conv layer consistently wins over ch1=32/ch2=64</li>
