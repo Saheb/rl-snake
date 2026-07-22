@@ -168,7 +168,8 @@ wandb/
 *.out
 *.pth
 
-.DS_Storerl-snake/
+.DS_Store
+rl-snake/
 kaggle_kernel/
 tea_debug.log
 wandb/
@@ -181,3 +182,6 @@ pilot_logs/featuredqn_longrun_master.log
 pilot_logs/rnd_master.log
 pilot_logs/sweep_igzvteil.log
 .DS_Store
+
+# Exception: ship the final cross-size agent so anyone can try it (824 KB)
+!size_transfer/curriculum_ego_best.pth

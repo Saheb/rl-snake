@@ -1,0 +1,14 @@
+=== near-only-10x10 (food<=4) — board sweep, normal food ===
+ board toward-food%  coverage
+    10           95      94.4
+    11           89     105.4
+    12           70      83.3
+    14           60      90.7
+    16           55      78.8
+=== full-range-10x10 — board sweep, normal food ===
+ board toward-food%  coverage
+    10           98      94.5
+    11           98     111.9
+    12           92     119.3
+    14           64      85.2
+    16           56      51.6

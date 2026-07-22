@@ -1,0 +1,26 @@
+
+=== 6x6-trained (pivot 6) ===
+ board toward-food%  coverage  food/budget   regime
+     6           96      36.0         87.4   interp
+     7           96      48.9         74.8   EXTRAP
+     8           94      63.8         63.5   EXTRAP
+     9           84      75.4         43.5   EXTRAP
+    10           70      77.6         24.6   EXTRAP
+    11           56      57.8          7.1   EXTRAP
+    12           55      58.6          5.6   EXTRAP
+    14           52      47.4          2.5   EXTRAP
+    16           52      49.2          2.3   EXTRAP
+
+=== 10x10-trained (pivot 10) ===
+ board toward-food%  coverage  food/budget   regime
+     6           97      35.5         87.4   interp
+     7           98      48.8         77.3   interp
+     8           98      62.3         68.3   interp
+     9           98      78.0         62.0   interp
+    10           99      94.0         56.4   interp
+    11           98     111.0         51.0   EXTRAP
+    12           93     121.4         41.5   EXTRAP
+    14           66      93.3         13.6   EXTRAP
+    16           57      60.4          5.2   EXTRAP
+
+Wrote /Users/saheb/home/rl-snake/size_transfer/interp_extrap.png

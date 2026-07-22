@@ -1,0 +1,34 @@
+== Training AttnPoolQNet on 6x6 ==
+  game   500 | eps 0.82 | train 0.44 | GREEDY 9.67±3.0
+  game  1000 | eps 0.64 | train 1.22 | GREEDY 10.37±2.3
+  game  1500 | eps 0.46 | train 1.81 | GREEDY 11.30±2.5
+  game  2000 | eps 0.29 | train 2.62 | GREEDY 12.80±3.4
+  game  2500 | eps 0.11 | train 4.35 | GREEDY 14.67±3.9
+  game  3000 | eps 0.02 | train 12.05 | GREEDY 15.13±4.2
+  game  3500 | eps 0.02 | train 13.05 | GREEDY 16.50±3.6
+  game  4000 | eps 0.02 | train 14.36 | GREEDY 16.97±3.3
+  best greedy 16.97
+
+== zero-shot transfer (greedy score / cells) ==
+board || base score base /cells | attn score attn /cells
+    6 ||      18.07       0.502 |      18.37       0.510
+    8 ||      22.57       0.353 |      19.10       0.298
+   10 ||      22.80       0.228 |      19.37       0.194
+   12 ||       9.13       0.063 |       9.87       0.069
+   16 ||       1.57       0.006 |       0.53       0.002
+   24 ||       0.50       0.001 |       0.00       0.000
+   32 ||       0.42       0.000 |       0.17       0.000
+
+== big-board probe (greedy score, few eps) ==
+   48 || base    0.00 | attn    0.50
+   64 || base    0.00 | attn    0.00
+
+== food margin (real play) & canonical (fixed scene) ==
+board ||  base fm  attn fm | base canon attn canon
+    6 ||    0.956    1.035 |      0.611      0.594
+    8 ||    0.739    0.713 |      0.397      0.655
+   10 ||    0.590    0.542 |      0.312      0.877
+   12 ||    0.420    0.394 |      0.283      0.981
+   16 ||    0.192    0.184 |      0.253      1.002
+
+Wrote /Users/saheb/home/rl-snake/size_transfer/attn_pool.png

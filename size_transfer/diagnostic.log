@@ -1,0 +1,7 @@
+board  6: food-dir decodability 0.97 | danger 0.95 | greedy score 18.3
+board  8: food-dir decodability 0.96 | danger 0.97 | greedy score 23.4
+board 10: food-dir decodability 0.95 | danger 0.99 | greedy score 19.1
+board 12: food-dir decodability 0.92 | danger 1.00 | greedy score 4.8
+board 16: food-dir decodability 0.90 | danger 1.00 | greedy score 2.5
+
+Wrote /Users/saheb/home/rl-snake/size_transfer/pooling_dilution.png

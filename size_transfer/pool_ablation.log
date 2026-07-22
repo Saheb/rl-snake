@@ -1,0 +1,18 @@
+== Training MaskedAvgPoolQNet on 6x6 ==
+  game   500 | eps 0.82 | train 0.47 | GREEDY 11.10±3.5
+  game  1000 | eps 0.64 | train 1.31 | GREEDY 8.87±2.9
+  game  1500 | eps 0.46 | train 1.56 | GREEDY 10.97±2.4
+  game  2000 | eps 0.29 | train 2.37 | GREEDY 13.50±2.9
+  game  2500 | eps 0.11 | train 4.72 | GREEDY 13.47±4.1
+  game  3000 | eps 0.02 | train 11.34 | GREEDY 16.43±3.5
+  game  3500 | eps 0.02 | train 12.77 | GREEDY 16.80±3.1
+  game  4000 | eps 0.02 | train 13.22 | GREEDY 18.37±3.9
+  best greedy 18.37
+
+board || greedy base greedy mask | food_m base food_m mask | danger base danger mask | tw-arg base tw-arg mask
+Traceback (most recent call last):
+  File "/Users/saheb/home/rl-snake/scripts/size_pool_ablation.py", line 158, in <module>
+    evaluate()
+  File "/Users/saheb/home/rl-snake/scripts/size_pool_ablation.py", line 133, in evaluate
+    f_b, d_b, t_b = margin_decomp(base, b)
+ValueError: too many values to unpack (expected 3)

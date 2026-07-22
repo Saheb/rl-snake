@@ -1,0 +1,20 @@
+== Training EGO on 10x10 for interpolation test ==
+  game   500 | eps 0.82 | train 0.66 | GREEDY 11.50
+  game  1000 | eps 0.64 | train 1.35 | GREEDY 11.77
+  game  1500 | eps 0.46 | train 2.04 | GREEDY 13.40
+  game  2000 | eps 0.29 | train 2.20 | GREEDY 17.07
+  game  2500 | eps 0.11 | train 4.33 | GREEDY 19.57
+  game  3000 | eps 0.02 | train 13.46 | GREEDY 20.57
+  game  3500 | eps 0.02 | train 15.64 | GREEDY 26.37
+  game  4000 | eps 0.02 | train 15.36 | GREEDY 27.53
+  best greedy 27.53
+
+== both trained on 10x10 | interpolation (<=10) vs extrapolation (>10) ==
+board |   baseline tf% (score) |    ego tf% (score) | region
+    6 |     86% (  16.6)        |     85% (  15.8)   | INTERP
+    8 |     88% (  22.2)        |     88% (  22.7)   | INTERP
+   10 |     87% (  26.5)        |     89% (  27.4)   | INTERP
+   11 |     90% (  31.0)        |     91% (  29.2)   | extrap
+   12 |     84% (  31.1)        |     92% (  30.4)   | extrap
+   14 |     66% (  18.3)        |     85% (  34.5)   | extrap
+   16 |     64% (  19.3)        |     75% (  26.7)   | extrap

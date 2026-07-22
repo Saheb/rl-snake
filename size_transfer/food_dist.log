@@ -1,0 +1,32 @@
+== Training NEAR-ONLY agent on 10x10 (food <= 4) ==
+  game   500 | eps 0.82 | GREEDY(near) 10.33
+  game  1000 | eps 0.64 | GREEDY(near) 11.83
+  game  1500 | eps 0.46 | GREEDY(near) 12.03
+  game  2000 | eps 0.29 | GREEDY(near) 17.53
+  game  2500 | eps 0.11 | GREEDY(near) 17.17
+  game  3000 | eps 0.02 | GREEDY(near) 19.17
+  game  3500 | eps 0.02 | GREEDY(near) 25.17
+  game  4000 | eps 0.02 | GREEDY(near) 26.60
+  best 26.60
+
+=== near-only (d<=4) — same 10x10 board, food at controlled distance ===
+ food_dist toward-food%  avg_score  max_score
+         2           95      149.7        168
+         4           96       89.9         95
+         6           93       56.5         64
+         8           84       34.4         48
+        10           88       30.7         38
+        12           90       27.3         33
+        14           90       23.3         29
+
+=== full-range — same 10x10 board, food at controlled distance ===
+ food_dist toward-food%  avg_score  max_score
+         2           94      142.2        165
+         4           97       91.6         96
+         6           98       63.1         66
+         8           98       48.2         51
+        10           99       39.7         41
+        12          100       34.0         35
+        14          100       29.4         31
+
+Wrote /Users/saheb/home/rl-snake/size_transfer/food_distance.png

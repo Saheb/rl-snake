@@ -1,0 +1,10 @@
+--- 6x6-trained (the wanderer) ---
+ board toward-food%  timeout%  score
+    10           74        37   19.8
+    12           55       100    7.2
+    16           51       100    2.0
+--- 10x10-trained (distant food seen) ---
+ board toward-food%  timeout%  score
+    10           90         0   26.5
+    12           83        23   32.6
+    16           62        67   14.1

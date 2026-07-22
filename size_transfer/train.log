@@ -1,0 +1,18 @@
+== Training size-agnostic ConvNet on 6x6 (reward=dense) ==
+  game   500 | eps 0.82 | train 0.54 | GREEDY 10.37±4.4
+  game  1000 | eps 0.64 | train 1.18 | GREEDY 10.37±3.4
+  game  1500 | eps 0.46 | train 1.70 | GREEDY 10.80±2.4
+  game  2000 | eps 0.29 | train 2.67 | GREEDY 13.40±3.0
+  game  2500 | eps 0.11 | train 4.79 | GREEDY 14.57±3.8
+  game  3000 | eps 0.02 | train 12.54 | GREEDY 15.03±4.5
+  game  3500 | eps 0.02 | train 12.82 | GREEDY 17.70±3.4
+  game  4000 | eps 0.02 | train 12.81 | GREEDY 17.77±3.9
+  best greedy 17.77
+
+== Zero-shot transfer (/Users/saheb/home/rl-snake/size_transfer/sizeagnostic_6x6_best.pth) ==
+  board  6x6  | greedy 18.52 ± 2.95 | score/cells 0.514
+  board  8x8  | greedy 22.50 ± 4.75 | score/cells 0.352
+  board 10x10 | greedy 20.98 ± 9.32 | score/cells 0.210
+  board 12x12 | greedy  5.96 ± 5.29 | score/cells 0.041
+  board 16x16 | greedy  1.62 ± 1.78 | score/cells 0.006
+Wrote /Users/saheb/home/rl-snake/size_transfer/transfer_curve.png

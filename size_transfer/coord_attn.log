@@ -1,0 +1,27 @@
+== Training CoordAttnPoolQNet on 6x6 (no curriculum) ==
+  game   500 | eps 0.82 | train 0.51 | GREEDY 10.60
+  game  1000 | eps 0.64 | train 1.26 | GREEDY 9.30
+  game  1500 | eps 0.46 | train 1.51 | GREEDY 11.80
+  game  2000 | eps 0.29 | train 2.46 | GREEDY 12.33
+  game  2500 | eps 0.11 | train 5.10 | GREEDY 13.67
+  game  3000 | eps 0.02 | train 11.16 | GREEDY 15.60
+  game  3500 | eps 0.02 | train 11.67 | GREEDY 17.00
+  game  4000 | eps 0.02 | train 12.92 | GREEDY 18.63
+  best greedy 18.63
+
+== zero-shot transfer: score/cells | toward-food% (attn 3ch vs coord 5ch) ==
+board ||  attn s/c attn tf% | coord s/c coord tf% || attn farcanon coord farcanon
+    6 ||     0.504    86.4% |     0.483     84.5% ||         0.476          0.477
+    8 ||     0.346    81.3% |     0.323     80.0% ||         0.655          0.297
+   10 ||     0.190    68.8% |     0.174     61.9% ||         0.470          0.089
+   12 ||     0.028    53.3% |     0.061     59.9% ||         0.566          0.090
+   16 ||     0.008    50.5% |     0.040     52.7% ||         0.625          0.140
+   24 ||     0.001    50.3% |     0.001     50.0% ||         0.554          0.261
+   32 ||     0.000    50.0% |     0.000     49.8% ||         0.523          0.256
+
+== big-board probe: toward-food% + far-food canonical margin (coord) + greedy ==
+   48 || coord toward-food  50.0% | far-canon margin   0.250 argmax_toward=True | greedy   0.00
+   64 || coord toward-food  50.0% | far-canon margin   0.226 argmax_toward=True | greedy   0.00
+  100 || coord toward-food  49.5% | far-canon margin   0.179 argmax_toward=True | greedy   0.00
+
+Wrote /Users/saheb/home/rl-snake/size_transfer/coord_attn.png

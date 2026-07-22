@@ -1,0 +1,27 @@
+== Training egocentric attention agent on 6x6 (no curriculum) ==
+  game   500 | eps 0.82 | train 0.40 | GREEDY 8.80
+  game  1000 | eps 0.64 | train 1.22 | GREEDY 11.23
+  game  1500 | eps 0.46 | train 1.72 | GREEDY 12.07
+  game  2000 | eps 0.29 | train 2.23 | GREEDY 12.40
+  game  2500 | eps 0.11 | train 5.19 | GREEDY 14.20
+  game  3000 | eps 0.02 | train 11.59 | GREEDY 16.33
+  game  3500 | eps 0.02 | train 12.59 | GREEDY 17.60
+  game  4000 | eps 0.02 | train 14.31 | GREEDY 18.97
+  best greedy 18.97
+
+== ego (relative coords) zero-shot transfer + far-food direction (food mid-board) ==
+board ||  ego s/c  ego tf% |  ego farM ego arg ||  abs farM abs arg
+    6 ||    0.525    85.2% |     0.613    True ||     0.329    True
+    8 ||    0.273    69.0% |     0.728    True ||     0.428    True
+   10 ||    0.022    54.6% |     0.837    True ||     0.013    True
+   12 ||    0.003    50.6% |     1.432    True ||    -0.015   False
+   16 ||    0.001    50.2% |     1.637    True ||     0.046    True
+   24 ||    0.000    50.0% |     1.328    True ||     0.127    True
+   32 ||    0.000    50.2% |     1.110    True ||     0.179    True
+
+== ego big-board probe: toward-food% | far-food margin | greedy ==
+   48 || toward-food  50.0% | far-margin   0.933 argmax_toward=True | greedy   0.00
+   64 || toward-food  50.2% | far-margin   0.862 argmax_toward=True | greedy   0.00
+  100 || toward-food  50.2% | far-margin   0.785 argmax_toward=True | greedy   0.00
+
+Wrote /Users/saheb/home/rl-snake/size_transfer/ego_attn.png

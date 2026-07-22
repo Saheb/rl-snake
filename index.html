@@ -77,7 +77,7 @@
 
 <main>
   <div class="hero">
-    <p>A full journey through modern reinforcement learning on Snake — from tabular Q-learning through ConvNets — with interactive notebooks, real training logs, and honest empirical results.</p>
+    <p>A full journey through modern reinforcement learning on Snake — from tabular Q-learning through ConvNets to a mechanistic investigation of <strong>size generalization</strong> — with interactive notebooks, real training logs, and honest empirical results.</p>
   </div>
 
   <div class="hero-img">
@@ -107,6 +107,46 @@
       <img src="https://marimo.io/shield.svg" alt="Open in marimo" style="height:28px" />
     </a>
   </div>
+
+  <div class="notebook-card">
+    <div>
+      <h3>A Snake Agent That Scales</h3>
+      <p>Play the cross-size agent trained only on boards 6–22 — it navigates up to 100×100 zero-shot. Loads the shipped 824&nbsp;KB model; pick any board size and watch it go. Runs locally (PyTorch).</p>
+    </div>
+    <a href="https://github.com/Saheb/rl-snake/blob/main/notebooks/size_generalization.py" class="btn" style="flex-shrink:0">View →</a>
+  </div>
+
+  <!-- SIZE GENERALIZATION -->
+  <h2>Size Generalization — one agent, any board</h2>
+  <p>A "size-agnostic" ConvNet (fully convolutional + global pooling, so it <em>runs</em> on any board) trained on 6×6 <em>should</em> play 16×16 — same game, bigger board. It doesn't: it random-walks by board ~16. A mechanistic investigation into <strong>why</strong>, ending in a fix — <strong>one agent, trained only on boards 6–22, plays 100×100 zero-shot.</strong></p>
+
+  <h3>Zero-shot transfer to 100×100 · toward-food % (never trained above 22)</h3>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">curriculum (6–22)</span><div class="bar-fill best" style="width:245px;background:#4ade80"></div><span class="bar-val best">98%</span></div>
+    <div class="bar-row"><span class="bar-label">single-size (6×6)</span><div class="bar-fill low" style="width:125px;background:#f87171"></div><span class="bar-val low">50% (chance)</span></div>
+  </div>
+
+  <table>
+    <tr><th>Board (zero-shot)</th><th>6</th><th>16</th><th>32</th><th>64</th><th>100</th></tr>
+    <tr><td>single-size (6×6) — toward-food %</td><td class="num best">87</td><td class="num low">51</td><td class="num low">50</td><td class="num low">50</td><td class="num low">50</td></tr>
+    <tr><td>curriculum (6–22) — toward-food %</td><td class="num best">88</td><td class="num">—</td><td class="num best">96</td><td class="num best">98</td><td class="num best">98</td></tr>
+  </table>
+  <p style="font-size:0.8rem;color:var(--muted)">toward-food % = fraction of greedy moves that reduce distance to food (50% = chance). The curriculum agent also eats <strong>~86 food per game on 100×100</strong>, a board it never trained on.</p>
+
+  <h3>What we found</h3>
+  <ul>
+    <li><strong>Decodable ≠ used.</strong> The pooled representation still encodes food-direction at every size (a refit probe reads it at 0.90), yet the frozen policy can't act on it — the food-steering <em>margin</em> collapses 5× while the danger margin stays invariant.</li>
+    <li><strong>Probe fixes ≠ behaviour fixes.</strong> Architectural changes (attention pooling, coordinate channels) each improved their mechanistic probe while doing nothing — or hurting — real-play transfer. A cautionary tale about probe-guided design.</li>
+    <li><strong>Root cause is coverage, not architecture.</strong> 71–88% of big-board play is <em>outside</em> the 6×6 training support — "far from all walls" is geometrically impossible on 6×6 yet dominates big boards. No architectural trick fixes a policy on states it never saw.</li>
+    <li><strong>The fix.</strong> A size-invariant <em>representation</em> (egocentric relative coordinates + attention pooling — big boards <em>look</em> like training near the head) <strong>plus</strong> training <em>coverage</em> across a size range → clean extrapolation 4.5× past the largest training board.</li>
+    <li><strong>Performance <em>rises</em> with board size</strong> because larger boards remove constraints: wall interactions fall 54%→1%, collision rate ~22× lower, survival ~90× longer.</li>
+  </ul>
+
+  <h3>The final agent</h3>
+  <div style="background:#fbfbfd;border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center;margin:0.75rem 0">
+    <img src="size_transfer/arch_final.svg" alt="Cross-size agent architecture: egocentric input, attention pool, dueling head" style="max-width:100%" />
+  </div>
+  <p style="font-size:0.875rem;color:var(--muted)">Tiny (~209K params, 824&nbsp;KB) and shipped in the repo. Full narrative — every probe, ablation, and dead-end — in <a href="https://github.com/Saheb/rl-snake/blob/main/size_transfer/FINDINGS.md">FINDINGS.md</a>; overview in <a href="https://github.com/Saheb/rl-snake/blob/main/size_transfer/README.md">size_transfer/README</a>.</p>
 
   <!-- RESULTS -->
   <h2>Results</h2>
@@ -183,7 +223,8 @@
 cd rl-snake
 uv sync
 uv run marimo edit notebooks/curiosity.py
-uv run marimo edit notebooks/convnet.py</code></pre>
+uv run marimo edit notebooks/convnet.py
+uv run marimo edit notebooks/size_generalization.py  # play the cross-size agent (6→100)</code></pre>
 
 </main>
 
