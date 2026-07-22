@@ -111,9 +111,11 @@
   <div class="notebook-card">
     <div>
       <h3>A Snake Agent That Scales</h3>
-      <p>Play the cross-size agent trained only on boards 6–22 — it navigates up to 100×100 zero-shot. Loads the shipped 824&nbsp;KB model; pick any board size and watch it go. Runs locally (PyTorch).</p>
+      <p>Play the cross-size agent trained only on boards 6–22 — it navigates up to 100×100 zero-shot. Loads the shipped 824&nbsp;KB model; pick any board size and watch it go.</p>
     </div>
-    <a href="https://github.com/Saheb/rl-snake/blob/main/notebooks/size_generalization.py" class="btn" style="flex-shrink:0">View →</a>
+    <a href="https://colab.research.google.com/github/Saheb/rl-snake/blob/main/notebooks/size_generalization_colab.ipynb" style="flex-shrink:0">
+      <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="height:28px" />
+    </a>
   </div>
 
   <!-- SIZE GENERALIZATION -->
@@ -123,15 +125,16 @@
   <h3>Zero-shot transfer to 100×100 · toward-food % (never trained above 22)</h3>
   <div class="bar-chart">
     <div class="bar-row"><span class="bar-label">curriculum (6–22)</span><div class="bar-fill best" style="width:245px;background:#4ade80"></div><span class="bar-val best">98%</span></div>
-    <div class="bar-row"><span class="bar-label">single-size (6×6)</span><div class="bar-fill low" style="width:125px;background:#f87171"></div><span class="bar-val low">50% (chance)</span></div>
+    <div class="bar-row"><span class="bar-label">single-size</span><div class="bar-fill low" style="width:125px;background:#f87171"></div><span class="bar-val low">50% (chance)</span></div>
   </div>
 
   <table>
     <tr><th>Board (zero-shot)</th><th>6</th><th>16</th><th>32</th><th>64</th><th>100</th></tr>
     <tr><td>single-size (6×6) — toward-food %</td><td class="num best">87</td><td class="num low">51</td><td class="num low">50</td><td class="num low">50</td><td class="num low">50</td></tr>
+    <tr><td>single-size (10×10) — toward-food %</td><td class="num best">92</td><td class="num mid">59</td><td class="num low">50</td><td class="num low">50</td><td class="num low">50</td></tr>
     <tr><td>curriculum (6–22) — toward-food %</td><td class="num best">88</td><td class="num">—</td><td class="num best">96</td><td class="num best">98</td><td class="num best">98</td></tr>
   </table>
-  <p style="font-size:0.8rem;color:var(--muted)">toward-food % = fraction of greedy moves that reduce distance to food (50% = chance). The curriculum agent also eats <strong>~86 food per game on 100×100</strong>, a board it never trained on.</p>
+  <p style="font-size:0.8rem;color:var(--muted)">toward-food % = fraction of greedy moves that reduce distance to food (50% = chance). The curriculum agent also eats <strong>~86 food per game on 100×100</strong>, a board it never trained on. A bigger single training board just moves the cliff outward (6×6 → chance by 16, 10×10 → by ~32); only training across a <em>range</em> of sizes removes it.</p>
 
   <h3>What we found</h3>
   <ul>
@@ -148,10 +151,12 @@
   </div>
   <p style="font-size:0.875rem;color:var(--muted)">Tiny (~209K params, 824&nbsp;KB) and shipped in the repo. Full narrative — every probe, ablation, and dead-end — in <a href="https://github.com/Saheb/rl-snake/blob/main/size_transfer/FINDINGS.md">FINDINGS.md</a>; overview in <a href="https://github.com/Saheb/rl-snake/blob/main/size_transfer/README.md">size_transfer/README</a>.</p>
 
-  <!-- RESULTS -->
-  <h2>Results</h2>
+  <!-- EARLIER EXPERIMENTS -->
+  <h2>Earlier experiments</h2>
+  <p>The road here — from a tabular agent on a 5×5 grid, through curriculum PPO that first mastered 10×10, to ConvNets that beat hand-crafted features. (Full detail is in the two notebooks above.)</p>
 
-  <h3>10×10 board · 10k games · 3 seeds</h3>
+  <h3>ConvNet vs hand-crafted features · mean food eaten</h3>
+  <p style="font-size:0.8rem;color:var(--muted);margin:0.75rem 0 0.2rem">10×10 board · 10k games · 3 seeds</p>
   <div class="bar-chart">
     <div class="bar-row"><span class="bar-label">ConvNet v3</span><div class="bar-fill best" style="width:246px;background:#4ade80"></div><span class="bar-val best">12.32</span></div>
     <div class="bar-row"><span class="bar-label">ConvNet+RND</span><div class="bar-fill mid" style="width:239px;background:#facc15"></div><span class="bar-val mid">11.96</span></div>
@@ -159,20 +164,14 @@
     <div class="bar-row"><span class="bar-label">ConvNet v1</span><div class="bar-fill low" style="width:30px;background:#f87171"></div><span class="bar-val low">1.49</span></div>
   </div>
 
-  <h3>16×16 board · 16k games</h3>
+  <p style="font-size:0.8rem;color:var(--muted);margin:0.9rem 0 0.2rem">16×16 board · 16k games</p>
   <div class="bar-chart">
     <div class="bar-row"><span class="bar-label">ConvNet v3</span><div class="bar-fill best" style="width:216px;background:#4ade80"></div><span class="bar-val best">10.83</span></div>
     <div class="bar-row"><span class="bar-label">Feature DQN</span><div class="bar-fill" style="width:118px;background:#38bdf8"></div><span class="bar-val" style="color:var(--accent)">5.92</span></div>
     <div class="bar-row"><span class="bar-label">ConvNet v1</span><div class="bar-fill low" style="width:4px;background:#f87171"></div><span class="bar-val low">0.20</span></div>
   </div>
 
-  <!-- EXPERIMENT HISTORY -->
-  <h2>Experiment History</h2>
-
-  <h3>1 · Zero to Hero — the Curriculum Journey</h3>
-  <p style="font-size:0.875rem;color:var(--muted);margin-bottom:0.75rem">
-    <a href="assets/snake_learning_journey.html">Watch the gameplay replay →</a>
-  </p>
+  <h3>The curriculum journey &nbsp;<a href="assets/snake_learning_journey.html" style="font-size:0.8rem;font-weight:400">watch the replay →</a></h3>
   <table>
     <tr><th>Phase</th><th>Algorithm</th><th>Board</th><th>Max Score</th><th>Notes</th></tr>
     <tr><td>0</td><td>Tabular Q-Learning</td><td>5×5</td><td class="num best">24 ✓</td><td>Perfect on small board</td></tr>
@@ -181,25 +180,7 @@
     <tr><td>3</td><td>PPO + Curriculum (5→10×10)</td><td>10×10</td><td class="num best">64</td><td>Progressive board growth</td></tr>
   </table>
 
-  <h3>2 · DQN Ablations (8×8, 4k games, n=3)</h3>
-  <table>
-    <tr><th>Algorithm</th><th>Mean Score</th><th>Notes</th></tr>
-    <tr><td>DQN + Dueling + 3-step</td><td class="num mid">4.61</td><td>Pilot A baseline</td></tr>
-    <tr><td>DQN + PER</td><td class="num mid">4.48</td><td>Pilot B — prioritised replay</td></tr>
-    <tr><td>DQN + PER + ICM (unmasked)</td><td class="num mid">4.46</td><td>Pilot C — ICM poisons terminal transitions</td></tr>
-    <tr><td>DQN + PER + ICM (terminal mask)</td><td class="num mid">4.60</td><td>Pilot D — fix recovers baseline</td></tr>
-  </table>
-
-  <h3>3 · ICM Investigation (10×10, 5k games, n=3)</h3>
-  <table>
-    <tr><th>Algorithm</th><th>Reward mode</th><th>Mean Score</th><th>Notes</th></tr>
-    <tr><td>PPO</td><td>dense</td><td class="num low">0.12</td><td>PPO struggles with shaped reward</td></tr>
-    <tr><td>PPO + ICM</td><td>dense</td><td class="num low">0.14</td><td>ICM doesn't rescue PPO + dense</td></tr>
-    <tr><td>PPO</td><td>pure sparse</td><td class="num mid">5.36</td><td>PPO shines without dense shaping</td></tr>
-    <tr><td>PPO + ICM</td><td>pure sparse</td><td class="num best">6.63</td><td>+24% — ICM's real contribution</td></tr>
-  </table>
-
-  <h3>4 · Curiosity Summary</h3>
+  <h3>Curiosity (ICM), in one table</h3>
   <table>
     <tr><th>Question</th><th>Answer</th></tr>
     <tr><td>Does ICM help DQN with dense reward?</td><td class="low">No — |Δ| &lt; 0.05</td></tr>
@@ -209,7 +190,7 @@
     <tr><td>Does ICM increase state coverage?</td><td class="low">No — both saturate at ~99%</td></tr>
   </table>
 
-  <h3>5 · ConvNet Sweep Findings</h3>
+  <h3>ConvNet sweep findings</h3>
   <ul>
     <li><strong>n_steps=1 universally better with PER</strong> — appeared in every top sweep config; multi-step returns hurt with prioritised replay</li>
     <li><strong>ch1=64 / ch2=128</strong> — larger second conv layer consistently wins over ch1=32/ch2=64</li>

@@ -86,9 +86,12 @@ A "size-agnostic" ConvNet (fully convolutional + global pooling, so it *runs* on
 | board (zero-shot) | 6 | 16 | 32 | 64 | **100** |
 |---|---|---|---|---|---|
 | single-size (6×6) agent — toward-food% | 87% | 51% | 50% | 50% | 50% |
+| single-size (10×10) agent — toward-food% | 92% | 59% | 50% | 50% | 50% |
 | **curriculum agent (6–22) — toward-food%** | 88% | — | 96% | 98% | **98%** |
 
 *toward-food% = fraction of greedy moves that reduce Manhattan distance to food (50% = chance). The curriculum agent also **eats ~86 food per game on 100×100**, a board it never trained on.*
+
+A **bigger single training board just moves the cliff outward** — a 6×6 agent is at chance by board 16, a 10×10 agent by ~32 — but neither reaches 100. Only training across a *range* of sizes removes the cliff. (The egocentric representation helps too: a single-size 10×10 *egocentric* agent holds to ~32 before fading — further than the plain baseline, but still not 100 without coverage.)
 
 **What changed from the base ConvNet** (the setup this phase evolved):
 - **Head:** replaced the board-size-locked `flatten → Linear` head with a size-agnostic **global-pooling** head — this is what lets a single network *run* on any board size.
@@ -107,7 +110,11 @@ A "size-agnostic" ConvNet (fully convolutional + global pooling, so it *runs* on
 
 The full narrative — every probe, ablation, and dead-end — is in [`size_transfer/FINDINGS.md`](size_transfer/FINDINGS.md).
 
-**Try it yourself.** The trained agent ships in the repo — [`size_transfer/curriculum_ego_best.pth`](size_transfer/curriculum_ego_best.pth) (824 KB, ~209K params). Pick any board size and watch it play in [`notebooks/size_generalization.py`](notebooks/size_generalization.py):
+**Try it yourself.** The trained agent ships in the repo — [`size_transfer/curriculum_ego_best.pth`](size_transfer/curriculum_ego_best.pth) (824 KB, ~209K params). Pick any board size and watch it play:
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Saheb/rl-snake/blob/main/notebooks/size_generalization_colab.ipynb) — runs in the browser, no install.
+
+Or locally with the marimo notebook:
 
 ```bash
 uv run marimo edit notebooks/size_generalization.py
@@ -149,7 +156,7 @@ single-size (6×6) agent ████████████▌              50
 |---|---|---|
 | [`curiosity.py`](notebooks/curiosity.py) | ICM on DQN + PPO, 2×3×2×3 ablation, death-oversampling trap, terminal-mask fix | [![Open](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/curiosity.py/wasm) |
 | [`convnet.py`](notebooks/convnet.py) | Feature DQN vs ConvNet, hyperparameter sweep, RND ablation, architecture walkthrough | [![Open](https://marimo.io/shield.svg)](https://molab.marimo.io/github/Saheb/rl-snake/blob/main/notebooks/convnet.py/wasm) |
-| [`size_generalization.py`](notebooks/size_generalization.py) | Play the cross-size agent on any board 6→100 zero-shot (loads the shipped 824 KB model) | `uv run marimo edit` (local — uses PyTorch) |
+| [`size_generalization.py`](notebooks/size_generalization.py) | Play the cross-size agent on any board 6→100 zero-shot (loads the shipped 824 KB model) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Saheb/rl-snake/blob/main/notebooks/size_generalization_colab.ipynb) · or `uv run marimo edit` locally |
 
 ---
 

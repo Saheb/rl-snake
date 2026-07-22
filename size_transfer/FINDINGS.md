@@ -432,6 +432,10 @@ trained on 10×10, fine grid:
 - **Corroborates coverage:** the failure point moves outward with training board size (6×6-trained
   cracks ~board 11; 10×10-trained holds through 12, softens at 14–16). Bigger training board → more of
   the far-from-walls/far-food regime in-support → transfer extends.
+- **Pushed to the full grid (6→100), a single training size still never reaches 100.** 10×10 avg-pool:
+  92%@6, 59%@16, chance (≈50%) by 32. 10×10 egocentric: 88%@16, 68%@32, 53%@64, chance by 100 — the
+  egocentric representation carries a *single* training size further (to ~32) but coverage is what
+  removes the cliff entirely (curriculum reaches 98% at 100).
 
 **Resolved recipe for a cross-size agent:** egocentric arch + train across sizes. Interpolation is
 free; extrapolation range tracks training coverage; and with adequate training scale the egocentric

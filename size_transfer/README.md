@@ -32,7 +32,9 @@ agent: [arch_final.svg](arch_final.svg) (the size-agnostic baseline it evolved f
 ## Try it yourself
 
 The trained agent ships here: **`curriculum_ego_best.pth`** (824 KB, ~209K params). Play it on any
-board size (6→100) — pick a size, watch it go:
+board size (6→100) — pick a size, watch it go.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Saheb/rl-snake/blob/main/notebooks/size_generalization_colab.ipynb) (browser, no install), or locally:
 
 ```bash
 uv run marimo edit notebooks/size_generalization.py   # from the repo root
