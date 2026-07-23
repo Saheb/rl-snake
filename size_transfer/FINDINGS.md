@@ -469,6 +469,22 @@ Why it extrapolates so far, composing exactly as predicted:
   in-support, and those statistics *saturate* beyond ~20, so 100 looks in-distribution.
 - Neither ingredient worked alone (proven the hard way); together, extrapolation is essentially free.
 
+**Curriculum ablation** (`scripts/size_curriculum.py --sizes 10,14,20 --tag lean`). A leaner 3-size
+curriculum {10,14,20} — no low end, no density — **matches** the 5-size {6,10,14,18,22} at 100×100
+(both 97.6% toward-food) and actually eats *more* on big boards (100×100: 106 vs 86 food; 64: 79 vs 66),
+since without 6×6 episodes it spends proportionally more training on large boards. Its only cost is a
+hair at board 6 (86.6% vs 88.5%) — a size it never trained on yet still plays (interpolating *below*
+the range is easy). Confirms the design reasoning: the load-bearing choice is **max-size ≈ 20** (where
+the egocentric `tanh(offset/3)` view saturates, so all bigger boards look alike); the density and the
+low end are optional caution, not necessity.
+
+Pushed to the limit, even a **two-size {10,20}** curriculum matches (97.7% at 100×100, 111 food), and
+board 14 — the *untrained* middle of the 10→20 gap — shows **no dip** (92.1%): the egocentric encoding
+interpolates the interior cleanly, so density is fully optional; two endpoints suffice as long as the
+top one reaches the saturation point. Side-pattern across the three curricula: fewer/larger training
+sizes → *more* food on big boards (86→106→111 at 100×100), as more of the budget lands on large-board
+play, while toward-food% stays ~97–98% throughout.
+
 Why score *rises* with board size (not mysterious — larger boards remove constraints;
 `scripts/size_collision_rate.py`):
 

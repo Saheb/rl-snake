@@ -1,0 +1,26 @@
+== Training curriculum ego on sizes [10, 14, 20] ==
+  game   500 | eps 0.88 | train[10:0.5  14:0.5  20:0.7] | GREEDY 10:12.7 20:19.5
+  game  1000 | eps 0.76 | train[10:0.7  14:1.1  20:1.1] | GREEDY 10:10.4 20:23.5
+  game  1500 | eps 0.64 | train[10:1.5  14:1.6  20:1.5] | GREEDY 10:11.1 20:21.5
+  game  2000 | eps 0.52 | train[10:1.5  14:1.6  20:1.9] | GREEDY 10:12.7 20:17.9
+  game  2500 | eps 0.40 | train[10:2.0  14:1.8  20:1.9] | GREEDY 10:13.7 20:13.8
+  game  3000 | eps 0.29 | train[10:2.7  14:2.4  20:2.2] | GREEDY 10:13.1 20:17.6
+  game  3500 | eps 0.17 | train[10:3.0  14:2.8  20:3.5] | GREEDY 10:15.5 20:26.4
+  game  4000 | eps 0.05 | train[10:7.1  14:6.3  20:6.2] | GREEDY 10:19.1 20:25.7
+  game  4500 | eps 0.02 | train[10:11.9  14:12.2  20:11.4] | GREEDY 10:21.1 20:35.8
+  game  5000 | eps 0.02 | train[10:14.3  14:14.9  20:15.7] | GREEDY 10:21.6 20:42.2
+  game  5500 | eps 0.02 | train[10:16.7  14:13.1  20:10.9] | GREEDY 10:22.7 20:47.3
+  game  6000 | eps 0.02 | train[10:14.5  14:16.8  20:15.3] | GREEDY 10:22.7 20:48.5
+  best 71.17
+
+== curriculum ego (trained on [10, 14, 20]) — zero-shot fine grid ==
+board | toward-food% | avg score | max score | region
+    6 |        86.6% |      13.4 |           | train
+   10 |        91.7% |      22.0 |           | train
+   14 |        91.4% |      32.1 |           | train
+   18 |        92.3% |      40.4 |           | train
+   22 |        94.4% |      43.5 |           | train
+   32 |        94.7% |      55.2 |           | EXTRAP
+   48 |        97.0% |      67.8 |           | EXTRAP
+   64 |        97.3% |      79.2 |           | EXTRAP
+  100 |        97.6% |     106.5 |           | EXTRAP

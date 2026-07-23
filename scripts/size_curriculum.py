@@ -18,6 +18,7 @@ from utils.per import PrioritizedReplayBuffer
 
 OUT = "/Users/saheb/home/rl-snake/size_transfer"
 CKPT = f"{OUT}/curriculum_ego_best.pth"
+FINAL = f"{OUT}/curriculum_ego_final.pth"
 TRAIN_SIZES = [6, 10, 14, 18, 22]
 EVAL_GRID = [6, 10, 14, 18, 22, 32, 48, 64, 100]
 
@@ -106,20 +107,21 @@ def train(n_games=6000, reward="dense", seed=0):
                 target.load_state_dict(model.state_dict())
 
         if g % 500 == 0:
-            g10 = eval_run(model, 10, n=15)[1]; g22 = eval_run(model, 22, n=10)[1]
+            lo, hi = min(TRAIN_SIZES), max(TRAIN_SIZES)
+            glo = eval_run(model, lo, n=15)[1]; ghi = eval_run(model, hi, n=10)[1]
             trains = "  ".join(f"{b}:{np.mean(recent[b]):.1f}" for b in TRAIN_SIZES if recent[b])
-            print(f"  game {g:5d} | eps {eps:.2f} | train[{trains}] | GREEDY 10:{g10:.1f} 22:{g22:.1f}", flush=True)
-            score = g10 + g22
+            print(f"  game {g:5d} | eps {eps:.2f} | train[{trains}] | GREEDY {lo}:{glo:.1f} {hi}:{ghi:.1f}", flush=True)
+            score = glo + ghi
             if score > best:
                 best = score; torch.save(model.state_dict(), CKPT)
-    torch.save(model.state_dict(), f"{OUT}/curriculum_ego_final.pth")
-    print(f"  best (g10+g22) {best:.2f}", flush=True)
+    torch.save(model.state_dict(), FINAL)
+    print(f"  best {best:.2f}", flush=True)
 
 
 def evaluate():
     model = CoordAttnPoolQNet().to(DEVICE)
     model.load_state_dict(torch.load(CKPT, map_location=DEVICE)); model.eval()
-    print("\n== curriculum ego (trained on 6..22) — zero-shot fine grid ==")
+    print(f"\n== curriculum ego (trained on {TRAIN_SIZES}) — zero-shot fine grid ==")
     print(f"{'board':>5} | {'toward-food%':>12} | {'avg score':>9} | {'max score':>9} | region")
     for B in EVAL_GRID:
         n, cm = (12, 2) if B <= 32 else (4, 1)
@@ -130,7 +132,18 @@ def evaluate():
 
 
 if __name__ == "__main__":
-    if "--eval-only" not in sys.argv:
-        print("== Training curriculum ego on sizes 6..22 ==", flush=True)
-        train()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sizes", default="6,10,14,18,22", help="comma-separated training board sizes")
+    ap.add_argument("--games", type=int, default=6000)
+    ap.add_argument("--tag", default="", help="checkpoint suffix, e.g. 'lean' -> curriculum_ego_lean_best.pth")
+    ap.add_argument("--eval-only", action="store_true")
+    args = ap.parse_args()
+    TRAIN_SIZES = [int(x) for x in args.sizes.split(",")]      # rebinds module global (train/eval read it)
+    if args.tag:
+        CKPT = f"{OUT}/curriculum_ego_{args.tag}_best.pth"
+        FINAL = f"{OUT}/curriculum_ego_{args.tag}_final.pth"
+    if not args.eval_only:
+        print(f"== Training curriculum ego on sizes {TRAIN_SIZES} ==", flush=True)
+        train(n_games=args.games)
     evaluate()
